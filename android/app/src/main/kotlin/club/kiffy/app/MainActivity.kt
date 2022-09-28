@@ -1,4 +1,4 @@
-package com.example.kiffy_front
+package club.kiffy.app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kiffy_front">
+    package="club.kiffy.app">
    <application
-        android:label="kiffy_front"
+        android:label="Kiffy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
