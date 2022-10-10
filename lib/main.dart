@@ -1,8 +1,7 @@
+import 'package:Kiffy/global/firebase/firebase_options.dart';
 import 'package:Kiffy/global/router/route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-import 'firebase/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
