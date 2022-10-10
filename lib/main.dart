@@ -1,14 +1,13 @@
-import 'package:Kiffy/screens/login_screen.dart';
+import 'package:Kiffy/global/router/route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import 'firebase/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDefault();
-  runApp(const MyApp());
+  runApp(const KiffyApp());
 }
 
 Future<void> initDefault() async {
@@ -17,12 +16,12 @@ Future<void> initDefault() async {
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class KiffyApp extends StatelessWidget {
+  const KiffyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
-        routerConfig: _router,
+        routerConfig: routes,
         title: "KIFFY",
       );
 }
