@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -17,18 +18,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: Text("${ref.watch(counterProvider)}"),
-          ),
+          Text("${ref.watch(counterProvider)}"),
           Center(
             child: ElevatedButton(
-              onPressed: () => context.go('/sign'),
+              onPressed: () => context.push('/sign'),
               child: Text('Next screen'),
             ),
           ),
+          Center(
+            child: Text("title".tr()),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(

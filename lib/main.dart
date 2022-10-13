@@ -1,8 +1,10 @@
 import 'package:Kiffy/global/firebase/firebase_options.dart';
 import 'package:Kiffy/router/route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
@@ -22,13 +24,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // }
 
 // 변경 라우팅 설정
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDefault();
+  await EasyLocalization.ensureInitialized();
 
-  runApp(const ProviderScope(
-    child: KiffyApp(),
-  ));
+  runApp(
+    EasyLocalization(
+      path: 'assets/translations',
+      supportedLocales: const [Locale('ko'), Locale('en'), Locale('id')],
+      fallbackLocale: const Locale('ko'),
+      startLocale: const Locale('ko'),
+      useFallbackTranslations: true,
+      child: const ProviderScope(
+        child: KiffyApp(),
+      ),
+    ),
+  );
 }
 
 Future<void> initDefault() async {
@@ -46,6 +58,11 @@ class KiffyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
+      // 다국어 설정
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      // 라우팅 설정
       routeInformationProvider: router.routeInformationProvider,
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,

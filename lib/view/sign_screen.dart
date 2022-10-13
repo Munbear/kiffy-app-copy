@@ -23,7 +23,7 @@ class _SignScreenState extends ConsumerState<SignScreen> {
           ),
           Center(
             child: ElevatedButton(
-              onPressed: () => context.go("/"),
+              onPressed: () => context.push("/"),
               child: Text("To Home"),
             ),
           )
