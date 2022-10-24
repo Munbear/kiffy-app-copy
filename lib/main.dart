@@ -6,23 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await initDefault();
-//   runApp(const KiffyApp());
-// }
-
-//기존 라우팅 설정
-// class KiffyApp extends StatelessWidget {
-//   const KiffyApp({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) => MaterialApp.router(
-//         routerConfig: routes,
-//         title: "KIFFY",
-//       );
-// }
-
 // 변경 라우팅 설정
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,6 +41,8 @@ class KiffyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
+      // 디버깅 라벨 제거
+      debugShowCheckedModeBanner: false,
       // 다국어 설정
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

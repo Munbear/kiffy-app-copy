@@ -26,7 +26,18 @@ class _IntroScreenState extends State<IntroScreen> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/images/background.png"), fit: BoxFit.cover),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment(1.9, 0.1),
+            colors: [
+              Color(0xffBA00FF),
+              Color(0xffB003FA),
+              Color(0xff960AEE),
+              Color(0xff6A15DB),
+              Color(0xff2F25BF),
+              Color(0xff0031AA),
+            ],
+          ),
         ),
         child: const Center(
           child: Image(width: 100, height: 90, image: AssetImage("assets/images/logo.png")),

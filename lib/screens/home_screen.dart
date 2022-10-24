@@ -21,16 +21,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("${ref.watch(counterProvider)}"),
           Center(
-            child: ElevatedButton(
-              onPressed: () => context.push('/sign'),
-              child: Text('Next screen'),
-            ),
+            child: Text('this is home screen'),
           ),
-          Center(
-            child: Text("title".tr()),
-          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
