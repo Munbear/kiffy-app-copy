@@ -15,7 +15,7 @@ class _SettingProfileScreenState extends State<SettingProfileScreen> {
   File? _image;
   final picker = ImagePicker();
 
-  // 실행시키면 에뮬레이터 팅김
+  // 갤러리에서 이미지 선택 :: IOS 에뮬레이터에서는 팅김
   Future addImage(ImageSource imageSource) async {
     final image = await picker.pickImage(source: imageSource);
     setState(() {
@@ -45,7 +45,7 @@ class _SettingProfileScreenState extends State<SettingProfileScreen> {
                         border: Border.all(color: Colors.black, width: 0.5),
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
-                      child: Text("Add Photo"),
+                      child: _image == null ? Text("Add Photo") : Image.file(File(_image!.path)),
                     ),
                   ),
                   // 생년월일
