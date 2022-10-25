@@ -1,6 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+
+import 'package:Kiffy/enums/gender_type.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SettingProfileScreen extends StatefulWidget {
@@ -11,13 +12,15 @@ class SettingProfileScreen extends StatefulWidget {
 }
 
 class _SettingProfileScreenState extends State<SettingProfileScreen> {
-  final ImagePicker _picker = ImagePicker();
+  File? _image;
+  final picker = ImagePicker();
 
-  Future<void> _addImage(ImageSource source) async {
-    final XFile? image = await _picker.pickImage(source: source);
-    if (image != null) {
-      // 사진 추가 기능 계속 만들어야됨
-    }
+  // 실행시키면 에뮬레이터 팅김
+  Future addImage(ImageSource imageSource) async {
+    final image = await picker.pickImage(source: imageSource);
+    setState(() {
+      _image = File(image!.path);
+    });
   }
 
   @override
@@ -25,30 +28,46 @@ class _SettingProfileScreenState extends State<SettingProfileScreen> {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.white),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 26),
+        padding: const EdgeInsets.symmetric(horizontal: 26),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 테스트
-            Container(
-              color: Colors.indigoAccent,
-              child: Form(
-                child: Column(
-                  children: [
-                    TextFormField(),
-                    TextFormField(),
-                    TextFormField(),
-                  ],
-                ),
-              ),
-            ),
-            // 사진
-            Container(
-              child: ElevatedButton(
-                onPressed: () {
-                  _addImage(ImageSource.gallery);
-                },
-                child: Text('사진등록'),
+            Form(
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      addImage(ImageSource.gallery);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 0.5),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Text("Add Photo"),
+                    ),
+                  ),
+                  // 생년월일
+                  TextFormField(),
+                  // 닉네임
+                  TextFormField(),
+                  SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: GenderType.values.map((item) {
+                      return Expanded(
+                        child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 0.5),
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Center(child: Text(item.gender))),
+                      );
+                    }).toList(),
+                  ),
+                ],
               ),
             ),
           ],
