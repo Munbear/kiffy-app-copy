@@ -29,178 +29,186 @@ class _SettingProfileScreenState extends State<SettingProfileScreen> {
       appBar: AppBar(backgroundColor: Colors.white),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 26),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Form(
-              child: Column(
-                children: [
-                  Wrap(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          addImage(ImageSource.gallery);
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: _image == null
-                              ? Center(
-                                  child: Icon(Icons.add_a_photo),
-                                )
-                              : ClipRRect(
-                                  child: Image.file(
-                                    File(_image!.path),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          addImage(ImageSource.gallery);
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: _image == null
-                              ? Center(
-                                  child: Icon(Icons.add_a_photo),
-                                )
-                              : ClipRRect(
-                                  child: Image.file(
-                                    File(_image!.path),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          addImage(ImageSource.gallery);
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: _image == null
-                              ? Center(
-                                  child: Icon(Icons.add_a_photo),
-                                )
-                              : ClipRRect(
-                                  child: Image.file(
-                                    File(_image!.path),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          addImage(ImageSource.gallery);
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: _image == null
-                              ? Center(
-                                  child: Icon(Icons.add_a_photo),
-                                )
-                              : ClipRRect(
-                                  child: Image.file(
-                                    File(_image!.path),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          addImage(ImageSource.gallery);
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: _image == null
-                              ? Center(
-                                  child: Icon(Icons.add_a_photo),
-                                )
-                              : ClipRRect(
-                                  child: Image.file(
-                                    File(_image!.path),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          addImage(ImageSource.gallery);
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: _image == null
-                              ? Center(
-                                  child: Icon(Icons.add_a_photo),
-                                )
-                              : ClipRRect(
-                                  child: Image.file(
-                                    File(_image!.path),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  // 생년월일
-                  TextFormField(),
-                  // 닉네임
-                  TextFormField(),
-                  SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: GenderType.values.map((item) {
-                      return Expanded(
-                        child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Form(
+                child: Column(
+                  children: [
+                    Wrap(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            addImage(ImageSource.gallery);
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 150,
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black, width: 0.5),
-                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
                             ),
-                            child: Center(child: Text(item.gender))),
-                      );
-                    }).toList(),
-                  ),
-                ],
+                            child: _image == null
+                                ? Center(
+                                    child: Icon(Icons.add_a_photo),
+                                  )
+                                : ClipRRect(
+                                    child: Image.file(
+                                      File(_image!.path),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            addImage(ImageSource.gallery);
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 0.5),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: _image == null
+                                ? Center(
+                                    child: Icon(Icons.add_a_photo),
+                                  )
+                                : ClipRRect(
+                                    child: Image.file(
+                                      File(_image!.path),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            addImage(ImageSource.gallery);
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 0.5),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: _image == null
+                                ? Center(
+                                    child: Icon(Icons.add_a_photo),
+                                  )
+                                : ClipRRect(
+                                    child: Image.file(
+                                      File(_image!.path),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            addImage(ImageSource.gallery);
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 0.5),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: _image == null
+                                ? Center(
+                                    child: Icon(Icons.add_a_photo),
+                                  )
+                                : ClipRRect(
+                                    child: Image.file(
+                                      File(_image!.path),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            addImage(ImageSource.gallery);
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 0.5),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: _image == null
+                                ? Center(
+                                    child: Icon(Icons.add_a_photo),
+                                  )
+                                : ClipRRect(
+                                    child: Image.file(
+                                      File(_image!.path),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            addImage(ImageSource.gallery);
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 0.5),
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: _image == null
+                                ? Center(
+                                    child: Icon(Icons.add_a_photo),
+                                  )
+                                : ClipRRect(
+                                    child: Image.file(
+                                      File(_image!.path),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // 생년월일
+                    TextFormField(),
+                    // 닉네임
+                    TextFormField(),
+                    SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: GenderType.values.map((item) {
+                        return Expanded(
+                          child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black, width: 0.5),
+                                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              ),
+                              child: Center(child: Text(item.gender))),
+                        );
+                      }).toList(),
+                    ),
+                    Container(
+                      color: Colors.blue,
+                      width: MediaQuery.of(context).size.width,
+                      height: 800,
+                      child: Text('df'),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
