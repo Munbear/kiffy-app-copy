@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../api/login.dart';
+import '../view_model/login_token.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -33,7 +33,7 @@ void googleLogin() async {
   print(token);
 
   if (token != null) {
-    test(token);
+    getUserToken(token);
   }
 
   //로그인하면 UserCredential 반환

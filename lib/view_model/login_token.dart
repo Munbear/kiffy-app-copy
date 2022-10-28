@@ -1,7 +1,7 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
-Future<void> test(String accessToken) async {
+Future<void> getUserToken(String accessToken) async {
   var url = Uri.http("api-dev.kiffy.club", "/product/api/view/sign/v1/in/google");
 
   var body = {"accessToken": accessToken};
