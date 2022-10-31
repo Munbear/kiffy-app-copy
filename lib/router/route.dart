@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../screens/intro_screen.dart';
 import '../screens/setting_profile_screen.dart';
+import '../screens/test_screen.dart';
 
 // 라우팅 변경
 final routerProvider = Provider<GoRouter>(
@@ -45,6 +46,11 @@ class RouterNotifier extends ChangeNotifier {
           name: 'main',
           path: '/',
           builder: (context, _) => const HomeScreen(),
+        ),
+        GoRoute(
+          name: 'test',
+          path: '/test',
+          builder: (context, _) => const AnimatedListSample(),
         ),
       ];
 }
