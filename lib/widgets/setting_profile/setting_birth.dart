@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddBirthTextForm extends StatefulWidget {
+class AddBirthTextForm extends ConsumerStatefulWidget {
   final String hinText;
   final String labelText;
   final bool isOpacity;
@@ -13,10 +14,10 @@ class AddBirthTextForm extends StatefulWidget {
   });
 
   @override
-  State<AddBirthTextForm> createState() => _AddBirthTextFormState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddBirthTextFormState();
 }
 
-class _AddBirthTextFormState extends State<AddBirthTextForm> {
+class _AddBirthTextFormState extends ConsumerState<AddBirthTextForm> {
   TextEditingController nameTextEditingController = TextEditingController();
 
   @override

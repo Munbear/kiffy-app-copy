@@ -1,16 +1,17 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class IntroScreen extends StatefulWidget {
+class IntroScreen extends ConsumerStatefulWidget {
   const IntroScreen({super.key});
 
   @override
-  State<IntroScreen> createState() => _IntroScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _IntroScreenState();
 }
 
-class _IntroScreenState extends State<IntroScreen> {
+class _IntroScreenState extends ConsumerState<IntroScreen> {
   @override
   void initState() {
     super.initState();

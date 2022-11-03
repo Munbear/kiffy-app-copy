@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class IntroduceTextForm extends StatefulWidget {
+class IntroduceTextForm extends ConsumerStatefulWidget {
   final bool isOpacity;
 
   const IntroduceTextForm({super.key, required this.isOpacity});
 
   @override
-  State<IntroduceTextForm> createState() => _IntroduceTextFormState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _IntroduceTextFormState();
 }
 
-class _IntroduceTextFormState extends State<IntroduceTextForm> {
+class _IntroduceTextFormState extends ConsumerState<IntroduceTextForm> {
   @override
   Widget build(BuildContext context) {
     return Visibility(

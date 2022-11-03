@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingNickName extends StatefulWidget {
+class SettingNickName extends ConsumerStatefulWidget {
   final String hinText;
   final String labelText;
   final bool isOpacity;
@@ -13,10 +14,10 @@ class SettingNickName extends StatefulWidget {
   });
 
   @override
-  State<SettingNickName> createState() => _SettingNickNameState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SettingNickNameState();
 }
 
-class _SettingNickNameState extends State<SettingNickName> {
+class _SettingNickNameState extends ConsumerState<SettingNickName> {
   TextEditingController nameTextEditingController = TextEditingController();
 
   @override

@@ -1,16 +1,17 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-class PhotoWrap extends StatefulWidget {
+class PhotoWrap extends ConsumerStatefulWidget {
   const PhotoWrap({super.key});
 
   @override
-  State<PhotoWrap> createState() => _PhotoWrapState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _PhotoWrapState();
 }
 
-class _PhotoWrapState extends State<PhotoWrap> {
+class _PhotoWrapState extends ConsumerState<PhotoWrap> {
   File? _image;
   final picker = ImagePicker();
 

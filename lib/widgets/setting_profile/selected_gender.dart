@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../enums/gender_type.dart';
 
-class SelectedGender extends StatefulWidget {
+class SelectedGender extends ConsumerStatefulWidget {
   const SelectedGender({super.key});
 
   @override
-  State<SelectedGender> createState() => _SelectedGenderState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SelectedGenderState();
 }
 
-class _SelectedGenderState extends State<SelectedGender> {
+class _SelectedGenderState extends ConsumerState<SelectedGender> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
@@ -29,7 +30,9 @@ class _SelectedGenderState extends State<SelectedGender> {
                 ),
                 child: Center(
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      null;
+                    },
                     icon: item.gender,
                   ),
                 ),
