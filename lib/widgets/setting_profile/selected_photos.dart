@@ -15,17 +15,21 @@ class SelectedPhotos extends ConsumerStatefulWidget {
 class _SelectedPhotosState extends ConsumerState<SelectedPhotos> {
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: widget.isOpacity,
-      child: Wrap(
-        children: [
-          PhotoWrap(),
-          PhotoWrap(),
-          PhotoWrap(),
-          PhotoWrap(),
-          PhotoWrap(),
-          PhotoWrap(),
-        ],
+    return Offstage(
+      offstage: !widget.isOpacity,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        height: widget.isOpacity ? 320 : 0,
+        child: Wrap(
+          children: [
+            PhotoWrap(),
+            PhotoWrap(),
+            PhotoWrap(),
+            PhotoWrap(),
+            PhotoWrap(),
+            PhotoWrap(),
+          ],
+        ),
       ),
     );
   }

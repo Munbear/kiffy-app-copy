@@ -13,10 +13,12 @@ class IntroduceTextForm extends ConsumerStatefulWidget {
 class _IntroduceTextFormState extends ConsumerState<IntroduceTextForm> {
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: widget.isOpacity,
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 20),
+    return Offstage(
+      offstage: !widget.isOpacity,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        height: widget.isOpacity ? 222 : 0,
+        padding: const EdgeInsets.symmetric(vertical: 0),
         child: TextFormField(
           decoration: InputDecoration(
             hintText: "자기소개서를 작성해주세요",
@@ -31,7 +33,7 @@ class _IntroduceTextFormState extends ConsumerState<IntroduceTextForm> {
             contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           ),
           maxLines: 10,
-          maxLength: 300,
+          // maxLength: 300,
         ),
       ),
     );

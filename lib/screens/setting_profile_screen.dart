@@ -64,17 +64,20 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
+                        // 자기소개
                         AnimatedOpacity(
                           opacity: isOpacityIntroduce ? 1.0 : 0.0,
                           duration: const Duration(milliseconds: 500),
                           child: IntroduceTextForm(isOpacity: isOpacityIntroduce),
                         ),
+
                         // 사진 선택
                         AnimatedOpacity(
                           opacity: isOpacityPhoto ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 800),
                           child: SelectedPhotos(isOpacity: isOpacityPhoto),
                         ),
+
                         // 생년월일
                         AnimatedOpacity(
                           opacity: isOpacityBirth ? 1.0 : 0.0,
@@ -87,6 +90,7 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
                           duration: const Duration(milliseconds: 500),
                           child: SettingNickName(hinText: "NickName", labelText: "NickName", isOpacity: isOpacityName),
                         ),
+
                         // 성별 선택
                         SelectedGender(),
                       ],

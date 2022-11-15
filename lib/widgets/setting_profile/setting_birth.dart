@@ -22,27 +22,31 @@ class _AddBirthTextFormState extends ConsumerState<AddBirthTextForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: widget.isOpacity,
-      child: TextFormField(
-        autofocus: false,
-        textAlign: TextAlign.start,
-        textInputAction: TextInputAction.done,
-        controller: nameTextEditingController,
-        style: const TextStyle(
-          color: Colors.black87,
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-        ),
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 15),
-          labelText: widget.labelText,
-          floatingLabelBehavior: FloatingLabelBehavior.auto,
-          hintText: widget.hinText,
-          hintStyle: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.w500),
-          labelStyle: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.w500),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent, width: 1),
+    return Offstage(
+      offstage: !widget.isOpacity,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        height: widget.isOpacity ? 50 : 0,
+        child: TextFormField(
+          autofocus: false,
+          textAlign: TextAlign.start,
+          textInputAction: TextInputAction.done,
+          controller: nameTextEditingController,
+          style: const TextStyle(
+            color: Colors.black87,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 15),
+            labelText: widget.labelText,
+            floatingLabelBehavior: FloatingLabelBehavior.auto,
+            hintText: widget.hinText,
+            hintStyle: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.w500),
+            labelStyle: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.w500),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent, width: 1),
+            ),
           ),
         ),
       ),
