@@ -9,6 +9,8 @@ import '../widgets/setting_profile/setting_birth.dart';
 import '../widgets/setting_profile/setting_nick_name.dart';
 
 class SettingProfileScreen extends ConsumerStatefulWidget {
+  // static String get routeName => 'setting';
+  // static String get routeLocation => 'setting';
   const SettingProfileScreen({super.key});
 
   @override
@@ -50,8 +52,9 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
           child: Column(
             children: [
-              SizedBox(
-                height: 100,
+              Container(
+                // color: Colors.red,
+                height: 80,
                 child: Center(
                   child: Text(
                     guideText,
@@ -65,31 +68,16 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
                     child: Column(
                       children: [
                         // 자기소개
-                        AnimatedOpacity(
-                          opacity: isOpacityIntroduce ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 500),
-                          child: IntroduceTextForm(isOpacity: isOpacityIntroduce),
-                        ),
+                        IntroduceTextForm(isOpacity: isOpacityIntroduce),
 
                         // 사진 선택
-                        AnimatedOpacity(
-                          opacity: isOpacityPhoto ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 800),
-                          child: SelectedPhotos(isOpacity: isOpacityPhoto),
-                        ),
+                        SelectedPhotos(isOpacity: isOpacityPhoto),
 
                         // 생년월일
-                        AnimatedOpacity(
-                          opacity: isOpacityBirth ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 500),
-                          child: AddBirthTextForm(hinText: "Birth day", labelText: "Birth day", isOpacity: isOpacityBirth),
-                        ),
+                        AddBirthTextForm(hinText: "Birth day", labelText: "Birth day", isOpacity: isOpacityBirth),
+
                         // 닉네임
-                        AnimatedOpacity(
-                          opacity: isOpacityName ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 500),
-                          child: SettingNickName(hinText: "NickName", labelText: "NickName", isOpacity: isOpacityName),
-                        ),
+                        SettingNickName(hinText: "NickName", labelText: "NickName", isOpacity: isOpacityName),
 
                         // 성별 선택
                         SelectedGender(),
