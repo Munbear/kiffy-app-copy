@@ -79,8 +79,8 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
                         // 닉네임
                         SettingNickName(hinText: "NickName", labelText: "NickName", isOpacity: isOpacityName),
 
-                        // 성별 선택
-                        SelectedGender(),
+                        // 성별 선택 :: 테스트
+                        const SelectedGender(),
                       ],
                     ),
                   ),
