@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class IntroScreen extends ConsumerStatefulWidget {
+  static String get routeName => 'intro';
+  static String get routeLocation => '/intro';
   const IntroScreen({super.key});
 
   @override

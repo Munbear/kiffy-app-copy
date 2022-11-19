@@ -6,6 +6,8 @@ import '../widgets/sigin_button.dart';
 
 // riverpod 용 StatefulWidget 으로 변경
 class SignScreen extends ConsumerStatefulWidget {
+  static String get routeName => 'sign';
+  static String get routeLocation => '/sign';
   const SignScreen({super.key});
 
   @override

@@ -16,7 +16,7 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       refreshListenable: router,
       routes: router._routes,
-      initialLocation: "/setting",
+      initialLocation: SettingProfileScreen.routeLocation,
     );
   },
 );
@@ -26,23 +26,23 @@ class RouterNotifier extends ChangeNotifier {
 
   List<GoRoute> get _routes => [
         GoRoute(
-          name: 'intro',
-          path: '/intro',
+          name: IntroScreen.routeName,
+          path: IntroScreen.routeLocation,
           builder: (context, _) => const IntroScreen(),
         ),
         GoRoute(
-          name: 'sign',
-          path: '/sign',
+          name: SignScreen.routeName,
+          path: SignScreen.routeLocation,
           builder: (context, _) => const SignScreen(),
         ),
         GoRoute(
-          name: 'setting',
-          path: '/setting',
+          name: SettingProfileScreen.routeName,
+          path: SettingProfileScreen.routeLocation,
           builder: (context, _) => const SettingProfileScreen(),
         ),
         GoRoute(
-          name: 'main',
-          path: '/',
+          name: HomeScreen.routeName,
+          path: HomeScreen.routeLocation,
           builder: (context, _) => const HomeScreen(),
         ),
       ];

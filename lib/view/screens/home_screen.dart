@@ -7,6 +7,8 @@ import '../../providers/test_provider.dart';
 
 // 변경 : provider 용 statefulWidget 변경
 class HomeScreen extends ConsumerStatefulWidget {
+  static String get routeName => 'home';
+  static String get routeLocation => '/home';
   const HomeScreen({super.key});
 
   @override

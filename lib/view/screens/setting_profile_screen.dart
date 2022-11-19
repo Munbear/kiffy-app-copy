@@ -9,8 +9,8 @@ import '../widgets/setting_profile/setting_birth.dart';
 import '../widgets/setting_profile/setting_nick_name.dart';
 
 class SettingProfileScreen extends ConsumerStatefulWidget {
-  // static String get routeName => 'setting';
-  // static String get routeLocation => 'setting';
+  static String get routeName => 'setting';
+  static String get routeLocation => '/setting';
   const SettingProfileScreen({super.key});
 
   @override
