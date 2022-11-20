@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../widgets/common/white_circle.dart';
 import '../widgets/sigin_button.dart';
 
 // riverpod 용 StatefulWidget 으로 변경
@@ -20,39 +21,57 @@ class _SignScreenState extends ConsumerState<SignScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment(1.9, 0.1),
-            colors: [
-              Color(0xffBA00FF),
-              Color(0xffB003FA),
-              Color(0xff960AEE),
-              Color(0xff6A15DB),
-              Color(0xff2F25BF),
-              Color(0xff0031AA),
-            ],
+      backgroundColor: Color(0xfff6f6f6),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image(
+            width: 72,
+            height: 63,
+            image: AssetImage("assets/images/logo_purple.png"),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          const SizedBox(height: 46),
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Image(width: 100, height: 90, image: AssetImage("assets/images/logo.png")),
-              const SizedBox(height: 92),
-              // 버튼 위젯으로 감싸야됨
-              SiginButton(text: "Sign in width Google", onRoute: onRouteLogin),
-              const SizedBox(height: 25),
-              // 버튼 위젯으로 감싸야됨ㅂ
-              SiginButton(text: "Sign in width FaceBook", onRoute: onRouteLogin),
+              // Divider(
+              //   color: Colors.red,
+              // ),
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 68, right: 20),
+                  color: const Color(0xffD0D0D0),
+                  height: 1,
+                ),
+              ),
+              const Text(
+                "LOG IN",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff0031AA),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 20, right: 68),
+                  height: 1,
+                  color: const Color(0xffD0D0D0),
+                ),
+              ),
             ],
           ),
-        ),
+          const SizedBox(height: 60),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              WhiteCircleWidget(imagePath: "assets/images/facebook_logo.png"),
+              SizedBox(width: 38),
+              WhiteCircleWidget(imagePath: "assets/images/google_logo.png")
+            ],
+          ),
+        ],
       ),
     );
   }

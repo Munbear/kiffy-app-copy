@@ -43,7 +43,7 @@ class _IntroScreenState extends ConsumerState<IntroScreen> {
           ),
         ),
         child: const Center(
-          child: Image(width: 100, height: 90, image: AssetImage("assets/images/logo.png")),
+          child: Image(width: 100, height: 90, image: AssetImage("assets/images/logo_white.png")),
         ),
       ),
     );

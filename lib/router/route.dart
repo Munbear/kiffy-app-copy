@@ -1,4 +1,5 @@
 import 'package:Kiffy/view/screens/home_screen.dart';
+import 'package:Kiffy/view/screens/login_screen.dart';
 import 'package:Kiffy/view/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +17,7 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       refreshListenable: router,
       routes: router._routes,
-      initialLocation: SettingProfileScreen.routeLocation,
+      initialLocation: IntroScreen.routeLocation,
     );
   },
 );
