@@ -1,9 +1,9 @@
+import 'package:Kiffy/view/screens/helper_screen.dart';
 import 'package:Kiffy/view/screens/home_screen.dart';
-import 'package:Kiffy/view/screens/login_screen.dart';
 import 'package:Kiffy/view/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../view/screens/intro_screen.dart';
 import '../view/screens/setting_profile_screen.dart';
@@ -17,7 +17,7 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       refreshListenable: router,
       routes: router._routes,
-      initialLocation: IntroScreen.routeLocation,
+      initialLocation: HelperScreen.routeLocation,
     );
   },
 );
@@ -26,6 +26,10 @@ class RouterNotifier extends ChangeNotifier {
   RouterNotifier(ProviderRef<GoRouter> ref);
 
   List<GoRoute> get _routes => [
+        GoRoute(
+            name: HelperScreen.routeName,
+            path: HelperScreen.routeLocation,
+            builder: (context, _) => const HelperScreen()),
         GoRoute(
           name: IntroScreen.routeName,
           path: IntroScreen.routeLocation,
