@@ -1,3 +1,4 @@
+import 'package:Kiffy/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +9,9 @@ import '../widgets/sigin_button.dart';
 // riverpod 용 StatefulWidget 으로 변경
 class SignScreen extends ConsumerStatefulWidget {
   static String get routeName => 'sign';
+
   static String get routeLocation => '/sign';
+
   const SignScreen({super.key});
 
   @override
@@ -65,10 +68,12 @@ class _SignScreenState extends ConsumerState<SignScreen> {
           const SizedBox(height: 60),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               WhiteCircleWidget(imagePath: "assets/images/facebook_logo.png"),
               SizedBox(width: 38),
-              WhiteCircleWidget(imagePath: "assets/images/google_logo.png")
+              ElevatedButton(
+                  onPressed: () => ref.read(AuthProvider.notifier).auth(),
+                  child: WhiteCircleWidget(imagePath: "assets/images/google_logo.png"))
             ],
           ),
         ],

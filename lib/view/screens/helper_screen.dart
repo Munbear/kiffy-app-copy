@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+import 'package:Kiffy/providers/test_provider.dart';
 import 'package:Kiffy/view/screens/home_screen.dart';
 import 'package:Kiffy/view/screens/intro_screen.dart';
 import 'package:Kiffy/view/screens/setting_profile_screen.dart';
@@ -28,11 +27,21 @@ class _HelperScreenState extends ConsumerState<HelperScreen> {
   ];
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Color(0xf5f5f5ff),
-        body: SafeArea(
-            child: Column(
-          children: pageRoutes
+  void initState() {
+    super.initState();
+    ref.read(counterProvider);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final counter = ref.watch(counterProvider);
+
+    return Scaffold(
+      backgroundColor: Color(0xf5f5f5ff),
+      body: SafeArea(
+          child: Column(
+        children: [
+          pageRoutes
               .map((pageRoute) => Row(
                     children: [
                       Column(
@@ -45,6 +54,23 @@ class _HelperScreenState extends ConsumerState<HelperScreen> {
                     ],
                   ))
               .toList(),
-        )),
-      );
+          [
+            Row(
+              children: [
+                ElevatedButton(
+                    onPressed: () =>
+                        ref.read(counterProvider.notifier).increment(),
+                    child: Text("업")),
+                Text("${counter}"),
+                ElevatedButton(
+                    onPressed: () =>
+                        ref.read(counterProvider.notifier).decrement(),
+                    child: Text("다운"))
+              ],
+            )
+          ]
+        ].expand((element) => element).toList(),
+      )),
+    );
+  }
 }
