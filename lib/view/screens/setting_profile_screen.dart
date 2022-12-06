@@ -24,14 +24,17 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
   bool isOpacityBirth = false;
   bool isOpacityName = false;
 
-  String guideText = "성별을 선택해 주세요";
+  // 이름을
+  String guideText = "nama";
 
   void upDateGuodeText() {
     setState(() {
-      if (currentNumber == 1) guideText = "사용하실 닉네임을 입력해주세요";
-      if (currentNumber == 2) guideText = "생년월일을 입력해 주세요";
-      if (currentNumber == 3) guideText = "사진을 등록해 주세요";
-      if (currentNumber == 4) guideText = "자기소개를 작성해 주세요";
+      // 생년월일
+      if (currentNumber == 1) guideText = "ultah";
+      // 성별
+      if (currentNumber == 2) guideText = "jenis kelamin";
+      // if (currentNumber == 3) guideText = "사진을 등록해 주세요";
+      // if (currentNumber == 4) guideText = "자기소개를 작성해 주세요";
     });
   }
 
@@ -39,8 +42,8 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
     setState(() {
       if (currentNumber == 1) isOpacityName = !isOpacityName;
       if (currentNumber == 2) isOpacityBirth = !isOpacityBirth;
-      if (currentNumber == 3) isOpacityPhoto = !isOpacityPhoto;
-      if (currentNumber == 4) isOpacityIntroduce = !isOpacityIntroduce;
+      // if (currentNumber == 3) isOpacityPhoto = !isOpacityPhoto;
+      // if (currentNumber == 4) isOpacityIntroduce = !isOpacityIntroduce;
     });
   }
 
@@ -67,20 +70,20 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        // 자기소개
-                        IntroduceTextForm(isOpacity: isOpacityIntroduce),
+                        // // 자기소개
+                        // IntroduceTextForm(isOpacity: isOpacityIntroduce),
 
-                        // 사진 선택
-                        SelectedPhotos(isOpacity: isOpacityPhoto),
+                        // // 사진 선택
+                        // SelectedPhotos(isOpacity: isOpacityPhoto),
+
+                        // 성별 선택 :: 테스트
+                        const SelectedGender(),
 
                         // 생년월일
                         AddBirthTextForm(hinText: "Birth day", labelText: "Birth day", isOpacity: isOpacityBirth),
 
                         // 닉네임
                         SettingNickName(hinText: "NickName", labelText: "NickName", isOpacity: isOpacityName),
-
-                        // 성별 선택 :: 테스트
-                        const SelectedGender(),
                       ],
                     ),
                   ),
