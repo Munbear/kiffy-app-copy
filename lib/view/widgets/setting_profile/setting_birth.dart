@@ -4,13 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class AddBirthTextForm extends ConsumerStatefulWidget {
   final String hinText;
   final String labelText;
-  final bool isOpacity;
+  final bool isShowed;
 
   const AddBirthTextForm({
     super.key,
     required this.hinText,
     required this.labelText,
-    required this.isOpacity,
+    required this.isShowed,
   });
 
   @override
@@ -23,14 +23,14 @@ class _AddBirthTextFormState extends ConsumerState<AddBirthTextForm> {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      opacity: widget.isOpacity ? 1.0 : 0.0,
+      opacity: widget.isShowed ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 500),
       child: Offstage(
-        offstage: !widget.isOpacity,
+        offstage: !widget.isShowed,
         child: AnimatedContainer(
           margin: const EdgeInsets.symmetric(vertical: 15),
           duration: const Duration(milliseconds: 200),
-          height: widget.isOpacity ? 50 : 0,
+          height: widget.isShowed ? 50 : 0,
           child: TextFormField(
             autofocus: false,
             textAlign: TextAlign.start,

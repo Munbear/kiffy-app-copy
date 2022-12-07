@@ -19,29 +19,44 @@ class SettingProfileScreen extends ConsumerStatefulWidget {
 
 class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
   int currentNumber = 0;
-  bool isOpacityIntroduce = false;
-  bool isOpacityPhoto = false;
-  bool isOpacityBirth = false;
-  bool isOpacityName = false;
+  bool isShowedNickname = false;
+  bool isShowedBirth = false;
+  bool isShowedGender = false;
+  bool isShowedIntroduce = false;
+  bool isShowedPhoto = false;
 
   // 이름을
-  String guideText = "nama";
+  String title = "nama";
+  String guideText = "Dengan nama yang diatur di profil KIFFY, Tidak dapat diubah setelah ini.";
 
-  void upDateGuodeText() {
+  void upDateGuideText() {
     setState(() {
+      //이름
+      if (currentNumber == 0) title;
+
       // 생년월일
-      if (currentNumber == 1) guideText = "ultah";
+      if (currentNumber == 1) title = "ultah";
+      if (currentNumber == 1) guideText = "Masukkan tanggal lahir Anda.";
+
       // 성별
-      if (currentNumber == 2) guideText = "jenis kelamin";
-      // if (currentNumber == 3) guideText = "사진을 등록해 주세요";
-      // if (currentNumber == 4) guideText = "자기소개를 작성해 주세요";
+      if (currentNumber == 2) title = "jenis kelamin";
+      if (currentNumber == 2) guideText = "Silakan pilih jenis kelamin.";
+
+      // 사진
+      // if (currentNumber == 3) title = "사진을 등록해 주세요";
+      // 자기소개
+      // if (currentNumber == 4) title = "자기소개를 작성해 주세요";
     });
   }
 
   void showNextStep() {
     setState(() {
-      if (currentNumber == 1) isOpacityName = !isOpacityName;
-      if (currentNumber == 2) isOpacityBirth = !isOpacityBirth;
+      // 닉네임
+      if (currentNumber == 0) isShowedNickname = !isShowedNickname;
+      // 생년월일
+      if (currentNumber == 1) isShowedBirth = !isShowedBirth;
+      // 성별
+      if (currentNumber == 2) isShowedGender = !isShowedGender;
       // if (currentNumber == 3) isOpacityPhoto = !isOpacityPhoto;
       // if (currentNumber == 4) isOpacityIntroduce = !isOpacityIntroduce;
     });
@@ -55,19 +70,32 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
           child: Column(
             children: [
-              Container(
-                // color: Colors.red,
-                height: 80,
-                child: Center(
-                  child: Text(
-                    guideText,
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
+              SizedBox(
+                height: 100,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Text(
+                        title,
+                        style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Center(
+                      child: Text(
+                        guideText,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              const SizedBox(height: 100),
               Form(
                 child: Expanded(
-                  child: SingleChildScrollView(
+                  child: Container(
+                    color: Colors.red,
                     child: Column(
                       children: [
                         // // 자기소개
@@ -77,13 +105,16 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
                         // SelectedPhotos(isOpacity: isOpacityPhoto),
 
                         // 성별 선택 :: 테스트
-                        const SelectedGender(),
+                        SelectedGender(isShowed: isShowedGender),
 
                         // 생년월일
-                        AddBirthTextForm(hinText: "Birth day", labelText: "Birth day", isOpacity: isOpacityBirth),
+                        AddBirthTextForm(hinText: "Birth day", labelText: "Birth day", isShowed: isShowedBirth),
 
-                        // 닉네임
-                        SettingNickName(hinText: "NickName", labelText: "NickName", isOpacity: isOpacityName),
+                        // 닉네임 기본으로 보여줌
+                        const SettingNickName(
+                          hinText: "NickName",
+                          labelText: "NickName", /*isShowed: isShowedNickname*/
+                        ),
                       ],
                     ),
                   ),
@@ -94,7 +125,7 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
                   setState(() {
                     currentNumber++;
                     showNextStep();
-                    upDateGuodeText();
+                    upDateGuideText();
                   });
                 },
                 child: const ConfirmButton(text: "확인"),

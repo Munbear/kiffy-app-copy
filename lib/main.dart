@@ -9,7 +9,9 @@ import 'package:easy_localization/easy_localization.dart';
 // 변경 라우팅 설정
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await initDefault();
+
   await EasyLocalization.ensureInitialized();
 
   runApp(
