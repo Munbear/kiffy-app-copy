@@ -1,4 +1,3 @@
-import 'package:Kiffy/providers/signup_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,7 +11,7 @@ class SiginButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // 구글. 페이스북, 애플 로고 작업?
     return InkWell(
-      onTap: () => ref.read(SignupProvider.notifier).googleLogin(),
+      onTap: () => {},
       child: Container(
         height: 57,
         decoration: BoxDecoration(

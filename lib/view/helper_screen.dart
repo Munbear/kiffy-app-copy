@@ -2,7 +2,7 @@ import 'package:Kiffy/providers/test_provider.dart';
 import 'package:Kiffy/view/screens/home_screen.dart';
 import 'package:Kiffy/view/screens/intro_screen.dart';
 import 'package:Kiffy/view/screens/setting_profile_screen.dart';
-import 'package:Kiffy/view/screens/sign_in_screen.dart';
+import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

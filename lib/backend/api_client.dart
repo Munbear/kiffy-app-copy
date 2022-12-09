@@ -1,8 +1,28 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
-final KiffyApi = ApiClient();
+
+class ApiBaseClient extends http.BaseClient {
+  final http.Client _client = http.Client();
+  String? _accessToken;
+
+  // TODO 더 좋은 방법 없음??
+  void setAccessToken(String accessToken) {
+    _accessToken = accessToken;
+  }
+
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) {
+    if (_accessToken != null) {
+      request.headers[HttpHeaders.authorizationHeader] = 'Bearer ${_accessToken}';
+    }
+
+    return _client.send(request);
+  }
+}
+
 
 class ApiClient extends http.BaseClient {
   final http.Client _client = http.Client();

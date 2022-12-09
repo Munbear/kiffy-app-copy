@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../widgets/common/white_circle.dart';
-import '../widgets/sigin_button.dart';
+import '../../widgets/common/white_circle.dart';
+import '../../widgets/sigin_button.dart';
 
 // riverpod 용 StatefulWidget 으로 변경
 class SignScreen extends ConsumerStatefulWidget {
