@@ -1,16 +1,14 @@
-import 'package:flutter/material.dart';
-
 enum GenderType { male, female }
 
 extension SelectedGender on GenderType {
-  Widget get gender {
+  String get gender {
     switch (this) {
       case GenderType.male:
-        return Icon(Icons.male_outlined);
+        return "laki";
       case GenderType.female:
-        return Icon(Icons.female_outlined);
+        return "cewek";
       default:
-        return Icon(Icons.person);
+        return "";
     }
   }
 }

@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:Kiffy/router/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
+import 'sign_in_screen.dart';
 
 class IntroScreen extends ConsumerStatefulWidget {
   static String get routeName => 'intro';
@@ -21,7 +24,7 @@ class _IntroScreenState extends ConsumerState<IntroScreen> {
   }
 
   void _init() async {
-    Timer(const Duration(seconds: 3), () => context.replace('/sign'));
+    Timer(Duration(seconds: 3), () => ref.read(routerProvider).replace(SignScreen.routeLocation));
   }
 
   @override

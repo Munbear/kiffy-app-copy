@@ -8,7 +8,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // 변경 라우팅 설정
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await initDefault();
+
   await EasyLocalization.ensureInitialized();
 
   runApp(
