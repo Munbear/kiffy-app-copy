@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../enums/gender_type.dart';
-import '../../widgets/common/gender_button.dart';
+import 'gender_button.dart';
 
 class SelectedGender extends ConsumerStatefulWidget {
   final bool isShowed;

@@ -1,7 +1,7 @@
 import 'package:Kiffy/view/couter_screen.dart';
-import 'package:Kiffy/view/service/providers/test_provider.dart';
-import 'package:Kiffy/view/screens/home_screen.dart';
-import 'package:Kiffy/view/screens/intro_screen.dart';
+import 'package:Kiffy/view/test_provider.dart';
+import 'package:Kiffy/view/home/screen/home_screen.dart';
+import 'package:Kiffy/view/intro/screen/intro_screen.dart';
 import 'package:Kiffy/view/add_profile/screen/setting_profile_screen.dart';
 import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
 import 'package:flutter/material.dart';

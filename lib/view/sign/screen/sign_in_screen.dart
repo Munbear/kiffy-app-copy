@@ -1,4 +1,4 @@
-import 'package:Kiffy/view/service/providers/auth_provider.dart';
+import 'package:Kiffy/view/sign/service/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,7 +6,6 @@ import '../widget/white_circle.dart';
 
 class SignScreen extends ConsumerStatefulWidget {
   static String get routeName => 'sign';
-
   static String get routeLocation => '/sign';
 
   const SignScreen({super.key});

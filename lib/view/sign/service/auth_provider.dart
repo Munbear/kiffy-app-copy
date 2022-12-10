@@ -2,13 +2,13 @@ import 'package:Kiffy/backend/auth_clinet.dart';
 import 'package:Kiffy/backend/user_client.dart';
 import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/view/screens/home_screen.dart';
 import 'package:Kiffy/view/add_profile/screen/setting_profile_screen.dart';
+import 'package:Kiffy/view/home/screen/home_screen.dart';
 import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final authProvider = StateNotifierProvider<AuthState, AuthToken>((ref) => AuthState(ref));
 

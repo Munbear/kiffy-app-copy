@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../widgets/common/confirm_button.dart';
+import '../widget/confirm_button.dart';
 import '../widget/introduce_text_form.dart';
 import '../widget/selected_gender.dart';
 import '../widget/selected_photos.dart';

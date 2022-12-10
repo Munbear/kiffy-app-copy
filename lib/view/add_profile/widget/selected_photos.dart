@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../widgets/common/photo_wrap.dart';
+import 'photo_wrap.dart';
 
 class SelectedPhotos extends ConsumerStatefulWidget {
   final bool isOpacity;

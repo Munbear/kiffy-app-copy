@@ -1,11 +1,11 @@
 import 'package:Kiffy/view/couter_screen.dart';
 import 'package:Kiffy/view/helper_screen.dart';
-import 'package:Kiffy/view/screens/home_screen.dart';
+import 'package:Kiffy/view/home/screen/home_screen.dart';
 import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:Kiffy/view/screens/intro_screen.dart';
+import 'package:Kiffy/view/intro/screen/intro_screen.dart';
 import 'package:Kiffy/view/add_profile/screen/setting_profile_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
