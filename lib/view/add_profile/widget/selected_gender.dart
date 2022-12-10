@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../enums/gender_type.dart';
+import '../../../global/model/gender_type.dart';
 import 'gender_button.dart';
 
 class SelectedGender extends ConsumerStatefulWidget {
