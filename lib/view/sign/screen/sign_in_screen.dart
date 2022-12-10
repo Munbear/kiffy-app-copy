@@ -4,14 +4,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../widgets/common/white_circle.dart';
 
-class SignScreen extends ConsumerWidget {
+class SignScreen extends ConsumerStatefulWidget {
   static String get routeName => 'sign';
+
   static String get routeLocation => '/sign';
 
   const SignScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignScreenState();
+}
+
+
+class _SignScreenState extends ConsumerState<SignScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xfff6f6f6),
       body: Column(
@@ -69,7 +81,7 @@ class SignScreen extends ConsumerWidget {
 
               // 구글 로그인 버튼
               InkWell(
-                onTap: () => ref.read(AuthProvider.notifier).auth(),
+                onTap: () => ref.read(authProvider.notifier).auth(),
                 child: const WhiteCircleWidget(imagePath: "assets/images/google_logo.png"),
               ),
             ],
