@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 변경 라우팅 설정
 Future<void> main() async {
@@ -30,7 +31,7 @@ Future<void> main() async {
 }
 
 //변경 라우팅 설정
-class KiffyApp extends ConsumerWidget {
+class KiffyApp extends HookConsumerWidget {
   const KiffyApp({super.key});
 
   @override
