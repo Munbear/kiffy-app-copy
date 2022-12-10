@@ -12,3 +12,12 @@ main.dart
     ㄴ widget : 위 스크린들에서 사용되는 위젯들 / ViewModel과 함께 사용함
     ㄴ service : 위 Screen 및 위젯에서 사용되는 API 및 로직 및 프로바이더
 ```
+
+## 언어파일 다운로드받기
+```shell
+# translations 디렉토리로 이동
+$ cd assets/translations
+
+# 번역 파일 다운로드
+$ localazy download json
+```

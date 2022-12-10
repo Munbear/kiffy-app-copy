@@ -1,0 +1,19 @@
+{
+  "writeKey": "a8103634645696376856-15912735294b1260a8181f5b85c09f7485fcaf4366d7176640aea7e765974f25",
+  "readKey": "a8103634645696376856-b42076d6a8d6ba1ade60ac33bb723a742f5ebf10a9d056f7bcaceb67aaca94e9",
+  "conversion": {
+    "actions": {
+      "group": "json",
+      "output": "${langLsrUnderscore}.json",
+      "type": "json"
+    }
+  },
+  "download": {
+    "includeSourceLang": true,
+    "files": [
+      {
+        "group": "json"
+      }
+    ]
+  }
+}
