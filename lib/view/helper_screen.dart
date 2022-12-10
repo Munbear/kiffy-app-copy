@@ -45,7 +45,7 @@ class HelperScreen extends HookConsumerWidget {
           [
             Row(
               children: [
-                Text("app.sign.singbutton".tr()),
+                Text("app.test.test".tr()),
                 ElevatedButton(onPressed: () => ref.read(counterProvider.notifier).increment(), child: Text("업")),
                 Text("${counter}"),
                 ElevatedButton(onPressed: () => ref.read(counterProvider.notifier).decrement(), child: Text("다운"))

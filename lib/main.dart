@@ -19,9 +19,12 @@ Future<void> main() async {
   runApp(
     EasyLocalization(
       path: 'assets/translations',
-      supportedLocales: const [Locale('ko', 'KR'), Locale('id', 'ID')],
-      fallbackLocale: const Locale('id', 'ID'),
-      startLocale: const Locale('id', 'ID'),
+      //지원할 언어
+      supportedLocales: const [Locale('ko'), Locale('id')],
+      // 지원되지 않은 언어로 접속할때 보여질 언어
+      fallbackLocale: const Locale('id'),
+      // 기본 언어
+      startLocale: const Locale('id'),
       useFallbackTranslations: true,
       child: const ProviderScope(
         child: KiffyApp(),
