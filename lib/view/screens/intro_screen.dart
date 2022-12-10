@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:Kiffy/router/route.dart';
+import 'package:Kiffy/config/router/route.dart';
+import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
-import 'sign_in_screen.dart';
 
 class IntroScreen extends ConsumerStatefulWidget {
   static String get routeName => 'intro';

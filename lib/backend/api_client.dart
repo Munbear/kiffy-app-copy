@@ -1,89 +1,29 @@
-import 'dart:convert';
 import 'dart:io';
 
+import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ApiBaseClient extends http.BaseClient {
-  final http.Client _client = http.Client();
-  String? _accessToken;
+  late final http.Client client;
+  late final FlutterSecureStorage _storage;
+  late final String baseUrl;
 
-  // TODO 더 좋은 방법 없음??
-  void setAccessToken(String accessToken) {
-    _accessToken = accessToken;
+  ApiBaseClient() {
+    client = http.Client();
+    _storage = const FlutterSecureStorage();
+    baseUrl = Constants.API;
   }
 
   @override
-  Future<http.StreamedResponse> send(http.BaseRequest request) {
-    if (_accessToken != null) {
-      request.headers[HttpHeaders.authorizationHeader] = 'Bearer ${_accessToken}';
+  Future<http.StreamedResponse> send(http.BaseRequest request) async {
+    String? accessToken = await _storage.read(key: Constants.SECURE_STORAGE_AUTHTOEKN);
+    if (accessToken != null) {
+        request.headers[HttpHeaders.authorizationHeader] = 'Bearer ${accessToken}';
     }
+    request.headers[HttpHeaders.acceptHeader] = "application/json";
+    request.headers[HttpHeaders.contentTypeHeader] = "application/json";
 
-    return _client.send(request);
+    return client.send(request);
   }
-}
-
-
-class ApiClient extends http.BaseClient {
-  final http.Client _client = http.Client();
-  String? _accessToken;
-
-  void setAccessToken(String accessToken) {
-    _accessToken = accessToken;
-  }
-
-  @override
-  Future<http.StreamedResponse> send(http.BaseRequest request) {
-    if (_accessToken != null) {
-      request.headers['Authorization'] = 'Bearer ${_accessToken}';
-    }
-    return _client.send(request);
-  }
-
-  Future<SignInResponse> signIn(SignProvider provider, String accessToken) async {
-    final response = await _client.post(Uri.http("host"), body: {"accessToken": accessToken});
-
-    return SignInResponse.fromJson(jsonDecode(response.body));
-  }
-
-  Future<UserStatusResponse> getUserStatus() async {
-    final response = await _client.get(Uri.http("api-dev.kiffy.club/product/api/view/user/v1/me/status"));
-    return UserStatusResponse.fromJson(jsonDecode(response.body));
-  }
-}
-
-enum SignProvider {
-  GOOGLE,
-  APPLE;
-}
-
-class SignInResponse {
-  late String accessToken;
-
-  SignInResponse.fromJson(Map<String, dynamic> json) : accessToken = json["accessToken"];
-}
-
-enum UserStatus {
-  JOINER,
-  APPROVED;
-
-  static UserStatus fromString(String status) {
-    switch (status) {
-      case "JOINER":
-        return UserStatus.JOINER;
-      case "APPROVED":
-        return UserStatus.APPROVED;
-      default:
-        return UserStatus.JOINER;
-    }
-  }
-}
-
-class UserStatusResponse {
-  late String id;
-  late UserStatus status;
-
-  UserStatusResponse.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
-        status = UserStatus.fromString(json["status"]);
 }

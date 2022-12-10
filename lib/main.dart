@@ -1,3 +1,4 @@
+import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:Kiffy/config/firebase/firebase_options.dart';
 import 'package:Kiffy/config/router/route.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -8,9 +9,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // 변경 라우팅 설정
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await initDefault();
-
+  Constants.setEnvironment(Environment.Local);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  ).whenComplete(() => {});
   await EasyLocalization.ensureInitialized();
 
   runApp(
@@ -25,12 +27,6 @@ Future<void> main() async {
       ),
     ),
   );
-}
-
-Future<void> initDefault() async {
-  FirebaseApp app = await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  ).whenComplete(() => {});
 }
 
 //변경 라우팅 설정

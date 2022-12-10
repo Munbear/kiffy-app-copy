@@ -2,7 +2,7 @@ import 'package:Kiffy/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../widgets/common/white_circle.dart';
+import '../../widgets/common/white_circle.dart';
 
 class SignScreen extends ConsumerWidget {
   static String get routeName => 'sign';
