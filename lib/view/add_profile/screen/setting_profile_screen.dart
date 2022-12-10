@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../widgets/common/confirm_button.dart';
-import '../widgets/setting_profile/introduce_text_form.dart';
-import '../widgets/setting_profile/selected_gender.dart';
-import '../widgets/setting_profile/selected_photos.dart';
-import '../widgets/setting_profile/setting_birth.dart';
-import '../widgets/setting_profile/setting_nick_name.dart';
+import '../../widgets/common/confirm_button.dart';
+import '../widget/introduce_text_form.dart';
+import '../widget/selected_gender.dart';
+import '../widget/selected_photos.dart';
+import '../widget/setting_birth.dart';
+import '../widget/setting_nick_name.dart';
 
 class SettingProfileScreen extends ConsumerStatefulWidget {
   static String get routeName => 'setting';
