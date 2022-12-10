@@ -1,29 +1,22 @@
 import 'package:Kiffy/view/sign/service/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class IntroScreen extends ConsumerStatefulWidget {
+class IntroScreen extends HookConsumerWidget {
   static String get routeName => 'intro';
+
   static String get routeLocation => '/intro';
+
   const IntroScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _IntroScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    useEffect(() {
+      ref.read(authProvider.notifier).autoAuth();
+    }, []);
 
-class _IntroScreenState extends ConsumerState<IntroScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _init();
-  }
-
-  void _init() async {
-    ref.read(authProvider.notifier).autoAuth();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
