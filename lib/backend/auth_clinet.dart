@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:Kiffy/backend/api_client.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final AuthApi = AuthClient();
+final AuthClientProvider = Provider((ref) => AuthClient());
 
 class AuthClient extends ApiBaseClient {
   Future<SignInResponse> signIn(SignProvider provider, String accessToken) async {

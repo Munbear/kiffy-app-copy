@@ -38,7 +38,7 @@ class AuthState extends StateNotifier<AuthToken> {
 
     if (savedAccessToken != null) {
       try {
-        final userStatus = await UserApi.getUserStatus();
+        final userStatus = await ref.read(UserClientProvider).getUserStatus();
         state.authStatus = AuthStatus.SUCCESS;
         state.userStatus = userStatus.status;
         _routeByAuthToken(state);
@@ -63,9 +63,9 @@ class AuthState extends StateNotifier<AuthToken> {
     );
 
     final token = googleAuth?.accessToken;
-    var response = await AuthApi.signIn(SignProvider.GOOGLE, token!);
+    var response = await ref.read(AuthClientProvider).signIn(SignProvider.GOOGLE, token!);
     await storage.write(key: Constants.SECURE_STORAGE_AUTHTOEKN, value: response.accessToken);
-    final userStatus = await UserApi.getUserStatus();
+    final userStatus = await ref.read(UserClientProvider).getUserStatus();
     state.authStatus = AuthStatus.SUCCESS;
     state.userStatus = userStatus.status;
     _routeByAuthToken(state);
