@@ -27,10 +27,8 @@ class RouterNotifier extends ChangeNotifier {
   RouterNotifier(ProviderRef<GoRouter> ref);
 
   List<GoRoute> get _routes => [
-        GoRoute(
-            name: CounterScreen.routeName, path: CounterScreen.routeLocation, builder: (context, _) => CounterScreen()),
-        GoRoute(
-            name: HelperScreen.routeName, path: HelperScreen.routeLocation, builder: (context, _) => HelperScreen()),
+        GoRoute(name: CounterScreen.routeName, path: CounterScreen.routeLocation, builder: (context, _) => CounterScreen()),
+        GoRoute(name: HelperScreen.routeName, path: HelperScreen.routeLocation, builder: (context, _) => HelperScreen()),
         GoRoute(
           name: IntroScreen.routeName,
           path: IntroScreen.routeLocation,
@@ -44,7 +42,7 @@ class RouterNotifier extends ChangeNotifier {
         GoRoute(
           name: SettingProfileScreen.routeName,
           path: SettingProfileScreen.routeLocation,
-          builder: (context, _) => const SettingProfileScreen(),
+          builder: (context, _) => SettingProfileScreen(),
         ),
         GoRoute(
           name: HomeScreen.routeName,
