@@ -67,10 +67,11 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 51, vertical: 20),
           child: Column(
             children: [
-              SizedBox(
+              Container(
+                decoration: BoxDecoration(border: Border.all(color: Colors.red)),
                 height: 100,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -91,11 +92,11 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 100),
+              const SizedBox(height: 70),
               Form(
                 child: Expanded(
                   child: Container(
-                    color: Colors.red,
+                    decoration: BoxDecoration(border: Border.all(color: Colors.red)),
                     child: Column(
                       children: [
                         // // 자기소개
@@ -111,10 +112,7 @@ class _SettingProfileScreenState extends ConsumerState<SettingProfileScreen> {
                         AddBirthTextForm(hinText: "Birth day", labelText: "Birth day", isShowed: isShowedBirth),
 
                         // 닉네임 기본으로 보여줌
-                        const SettingNickName(
-                          hinText: "NickName",
-                          labelText: "NickName", /*isShowed: isShowedNickname*/
-                        ),
+                        const SettingNickName(hinText: "NickName", labelText: "NickName"),
                       ],
                     ),
                   ),

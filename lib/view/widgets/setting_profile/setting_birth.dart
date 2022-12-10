@@ -33,7 +33,7 @@ class _AddBirthTextFormState extends ConsumerState<AddBirthTextForm> {
           height: widget.isShowed ? 50 : 0,
           child: TextFormField(
             autofocus: false,
-            textAlign: TextAlign.start,
+            textAlign: TextAlign.center,
             textInputAction: TextInputAction.done,
             controller: nameTextEditingController,
             style: const TextStyle(
@@ -43,13 +43,13 @@ class _AddBirthTextFormState extends ConsumerState<AddBirthTextForm> {
             ),
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15),
-              labelText: widget.labelText,
+              // labelText: widget.labelText,
               floatingLabelBehavior: FloatingLabelBehavior.auto,
               hintText: widget.hinText,
               hintStyle: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.w500),
               labelStyle: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.w500),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent, width: 1),
+              focusedBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Color(0xff0031AA), width: 1),
               ),
             ),
           ),

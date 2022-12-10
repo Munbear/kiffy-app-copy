@@ -1,8 +1,8 @@
-import 'package:Kiffy/providers/auth_provider.dart';
+import 'package:Kiffy/view/service/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../widgets/common/white_circle.dart';
+import '../widgets/common/white_circle.dart';
 
 class SignScreen extends ConsumerStatefulWidget {
   static String get routeName => 'sign';
@@ -14,7 +14,6 @@ class SignScreen extends ConsumerStatefulWidget {
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SignScreenState();
 }
-
 
 class _SignScreenState extends ConsumerState<SignScreen> {
   @override

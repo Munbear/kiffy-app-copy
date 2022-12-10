@@ -1,8 +1,8 @@
-import 'package:Kiffy/providers/test_provider.dart';
+import 'package:Kiffy/view/service/providers/test_provider.dart';
 import 'package:Kiffy/view/screens/home_screen.dart';
 import 'package:Kiffy/view/screens/intro_screen.dart';
 import 'package:Kiffy/view/screens/setting_profile_screen.dart';
-import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
+import 'package:Kiffy/view/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -19,12 +19,7 @@ class HelperScreen extends ConsumerStatefulWidget {
 }
 
 class _HelperScreenState extends ConsumerState<HelperScreen> {
-  List<String> pageRoutes = [
-    IntroScreen.routeLocation,
-    HomeScreen.routeLocation,
-    SignScreen.routeLocation,
-    SettingProfileScreen.routeLocation
-  ];
+  List<String> pageRoutes = [IntroScreen.routeLocation, HomeScreen.routeLocation, SignScreen.routeLocation, SettingProfileScreen.routeLocation];
 
   @override
   void initState() {
@@ -45,11 +40,7 @@ class _HelperScreenState extends ConsumerState<HelperScreen> {
               .map((pageRoute) => Row(
                     children: [
                       Column(
-                        children: [
-                          ElevatedButton(
-                              onPressed: () => context.go(pageRoute),
-                              child: Text("Go to ${pageRoute}"))
-                        ],
+                        children: [ElevatedButton(onPressed: () => context.go(pageRoute), child: Text("Go to ${pageRoute}"))],
                       )
                     ],
                   ))
@@ -57,15 +48,9 @@ class _HelperScreenState extends ConsumerState<HelperScreen> {
           [
             Row(
               children: [
-                ElevatedButton(
-                    onPressed: () =>
-                        ref.read(counterProvider.notifier).increment(),
-                    child: Text("업")),
+                ElevatedButton(onPressed: () => ref.read(counterProvider.notifier).increment(), child: Text("업")),
                 Text("${counter}"),
-                ElevatedButton(
-                    onPressed: () =>
-                        ref.read(counterProvider.notifier).decrement(),
-                    child: Text("다운"))
+                ElevatedButton(onPressed: () => ref.read(counterProvider.notifier).decrement(), child: Text("다운"))
               ],
             )
           ]

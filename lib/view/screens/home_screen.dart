@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../providers/test_provider.dart';
+import '../service/providers/test_provider.dart';
 
 // 변경 : provider 용 statefulWidget 변경
 class HomeScreen extends ConsumerStatefulWidget {
