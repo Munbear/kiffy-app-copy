@@ -17,7 +17,32 @@ class HomeScreen extends HookConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          child: UserProfileView(),
+          child: PageView(
+            controller: PageController(viewportFraction: 0.95),
+            scrollDirection: Axis.vertical,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.red
+                ),
+                child: Container(
+                  padding: EdgeInsets.all(30),
+                  child: Text("hello"),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.blue
+                ),
+                child: Container(
+                  padding: EdgeInsets.all(30),
+                  child: Text("hello"),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
