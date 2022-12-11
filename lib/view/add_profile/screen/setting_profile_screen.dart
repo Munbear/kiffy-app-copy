@@ -11,9 +11,9 @@ import '../widget/setting_birth.dart';
 import '../widget/setting_nick_name.dart';
 
 enum ProfileEditProcess {
-  Name,
-  Birthday,
-  Gender;
+  name,
+  birthday,
+  gender;
 }
 
 class ProfileEditProcessContent {
@@ -24,40 +24,39 @@ class ProfileEditProcessContent {
 
   factory ProfileEditProcessContent.of(ProfileEditProcess process) {
     switch (process) {
-      case ProfileEditProcess.Name:
-        return ProfileEditProcessContent(title: "Name", guideText: "이름을 입력해주세요");
-      case ProfileEditProcess.Gender:
-        return ProfileEditProcessContent(title: "Gender", guideText: "성별을 입력해주세요");
-      case ProfileEditProcess.Birthday:
-        return ProfileEditProcessContent(title: "Birthday", guideText: "생일을 입력해주세요");
+      case ProfileEditProcess.name:
+        return ProfileEditProcessContent(title: "name", guideText: "이름을 입력해주세요");
+      case ProfileEditProcess.gender:
+        return ProfileEditProcessContent(title: "gender", guideText: "성별을 입력해주세요");
+      case ProfileEditProcess.birthday:
+        return ProfileEditProcessContent(title: "birthday", guideText: "생일을 입력해주세요");
     }
   }
 }
 
 class SettingProfileScreen extends HookConsumerWidget {
   static String get routeName => 'setting';
-
   static String get routeLocation => '/setting';
 
   const SettingProfileScreen({super.key});
 
   void processNextStep(ValueNotifier step) {
     switch (step.value) {
-      case ProfileEditProcess.Name:
-        step.value = ProfileEditProcess.Birthday;
+      case ProfileEditProcess.name:
+        step.value = ProfileEditProcess.birthday;
         break;
-      case ProfileEditProcess.Birthday:
-        step.value = ProfileEditProcess.Gender;
+      case ProfileEditProcess.birthday:
+        step.value = ProfileEditProcess.gender;
         break;
-      case ProfileEditProcess.Gender:
-        step.value = ProfileEditProcess.Gender;
+      case ProfileEditProcess.gender:
+        step.value = ProfileEditProcess.gender;
         break;
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var process = useState(ProfileEditProcess.Name);
+    var process = useState(ProfileEditProcess.name);
     var processContent = useState<ProfileEditProcessContent>(ProfileEditProcessContent.of(process.value));
 
     useValueChanged(process.value, (_, __) {
@@ -71,8 +70,7 @@ class SettingProfileScreen extends HookConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 51, vertical: 20),
           child: Column(
             children: [
-              Container(
-                decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+              SizedBox(
                 height: 100,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -96,28 +94,29 @@ class SettingProfileScreen extends HookConsumerWidget {
               const SizedBox(height: 70),
               Form(
                 child: Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(border: Border.all(color: Colors.red)),
-                    child: Column(
-                      children: [
-                        // // 자기소개
-                        // IntroduceTextForm(isOpacity: isOpacityIntroduce),
+                  child: SingleChildScrollView(
+                    child: SizedBox(
+                      child: Column(
+                        children: [
+                          // // 자기소개
+                          // IntroduceTextForm(isOpacity: isOpacityIntroduce),
 
-                        // // 사진 선택
-                        // SelectedPhotos(isOpacity: isOpacityPhoto),
+                          // // 사진 선택
+                          // SelectedPhotos(isOpacity: isOpacityPhoto),
 
-                        // 성별 선택 :: 테스트
-                        SelectedGender(isShowed: process.value == ProfileEditProcess.Gender),
+                          // 성별 선택 :: 테스트
+                          SelectedGender(isShowed: process.value == ProfileEditProcess.gender),
 
-                        // 생년월일
-                        AddBirthTextForm(
-                            hinText: "Birth day",
-                            labelText: "Birth day",
-                            isShowed: [ProfileEditProcess.Gender, ProfileEditProcess.Birthday].contains(process.value)),
+                          // 생년월일
+                          AddBirthTextForm(
+                              hinText: "Birth day",
+                              labelText: "Birth day",
+                              isShowed: [ProfileEditProcess.gender, ProfileEditProcess.birthday].contains(process.value)),
 
-                        // 닉네임 기본으로 보여줌
-                        const SettingNickName(hinText: "NickName", labelText: "NickName"),
-                      ],
+                          // 닉네임 기본으로 보여줌
+                          const SettingNickName(hinText: "NickName", labelText: "NickName"),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -134,77 +133,4 @@ class SettingProfileScreen extends HookConsumerWidget {
       ),
     );
   }
-
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     body: SafeArea(
-//       child: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 51, vertical: 20),
-//         child: Column(
-//           children: [
-//             Container(
-//               decoration: BoxDecoration(border: Border.all(color: Colors.red)),
-//               height: 100,
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: [
-//                   Center(
-//                     child: Text(
-//                       title,
-//                       style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-//                     ),
-//                   ),
-//                   const SizedBox(height: 16),
-//                   Center(
-//                     child: Text(
-//                       guideText,
-//                       textAlign: TextAlign.center,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             const SizedBox(height: 70),
-//             Form(
-//               child: Expanded(
-//                 child: Container(
-//                   decoration: BoxDecoration(border: Border.all(color: Colors.red)),
-//                   child: Column(
-//                     children: [
-//                       // // 자기소개
-//                       // IntroduceTextForm(isOpacity: isOpacityIntroduce),
-
-//                       // // 사진 선택
-//                       // SelectedPhotos(isOpacity: isOpacityPhoto),
-
-//                       // 성별 선택 :: 테스트
-//                       SelectedGender(isShowed: isShowedGender),
-
-//                       // 생년월일
-//                       AddBirthTextForm(hinText: "Birth day", labelText: "Birth day", isShowed: isShowedBirth),
-
-//                       // 닉네임 기본으로 보여줌
-//                       const SettingNickName(hinText: "NickName", labelText: "NickName"),
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             InkWell(
-//               onTap: () {
-//                 setState(() {
-//                   currentNumber++;
-//                   showNextStep();
-//                   upDateGuideText();
-//                 });
-//               },
-//               child: const ConfirmButton(text: "확인"),
-//             ),
-//           ],
-//         ),
-//       ),
-//     ),
-//   );
-// }
 }
