@@ -65,17 +65,38 @@ class RouterNotifier extends ChangeNotifier {
             GoRoute(
               name: HomeScreen.routeName,
               path: HomeScreen.routeLocation,
-              builder: (context, _) => const HomeScreen(),
+              pageBuilder: (context, state) => CustomTransitionPage(
+                child: HomeScreen(),
+                transitionDuration: const Duration(milliseconds: 0),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                  child: child,
+                ),
+              ),
             ),
             GoRoute(
               name: MyPageScreen.routeName,
               path: MyPageScreen.routeLocation,
-              builder: (context, _) => MyPageScreen(),
+              pageBuilder: (context, state) => CustomTransitionPage(
+                child: MyPageScreen(),
+                transitionDuration: const Duration(milliseconds: 0),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                  child: child,
+                ),
+              ),
             ),
             GoRoute(
               name: ChatScreen.routeName,
               path: ChatScreen.routeLocation,
-              builder: (context, _) => ChatScreen(),
+              pageBuilder: (context, state) => CustomTransitionPage(
+                child: ChatScreen(),
+                transitionDuration: const Duration(milliseconds: 0),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                  child: child,
+                ),
+              ),
             ),
           ],
         )
