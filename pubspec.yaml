@@ -37,6 +37,7 @@ dependencies:
 
   easy_localization: ^3.0.1
   image_picker: ^0.8.6
+  flutter_svg: ^1.1.6
 #  get_it: ^7.2.0
 #  dio: ^4.0.6
   flutter_secure_storage: ^7.0.0
@@ -50,9 +51,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: BottomNavBarIcon
+      fonts:
+        - asset: assets/fonts/BottomNavBarIcon.ttf  # fonts:
   assets:
     - assets/images/
     - assets/translations/
-  # fonts:
   #   - family:
   #     fonts:
