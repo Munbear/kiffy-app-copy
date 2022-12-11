@@ -1,37 +1,35 @@
-import 'package:Kiffy/global/layout/bottom_nav.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:Kiffy/view/home/widget/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../test_provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 변경 : provider 용 statefulWidget 변경
-class HomeScreen extends ConsumerStatefulWidget {
+class HomeScreen extends HookConsumerWidget {
   static String get routeName => 'home';
+
   static String get routeLocation => '/home';
+
   const HomeScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends ConsumerState<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Text('this is home screen'),
-          ),
-        ],
+      body: SafeArea(
+        child: Container(
+          child: UserProfileView(),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => ref.read(counterProvider.notifier).increment(),
-        child: Icon(Icons.add),
+        onPressed: () {
+          print('hello');
+        },
+        child: SvgPicture.asset(
+          "assets/images/like_icon.svg",
+          width: 59,
+          height: 59,
+          fit: BoxFit.scaleDown,
+        ),
       ),
     );
   }
