@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -28,11 +29,11 @@ class _AddBirthTextFormState extends ConsumerState<AddBirthTextForm> {
       child: Offstage(
         offstage: !widget.isShowed,
         child: AnimatedContainer(
-          margin: const EdgeInsets.symmetric(vertical: 15),
+          margin: const EdgeInsets.only(bottom: 25),
           duration: const Duration(milliseconds: 200),
           height: widget.isShowed ? 50 : 0,
           child: TextFormField(
-            autofocus: false,
+            autofocus: widget.isShowed ? true : false,
             textAlign: TextAlign.center,
             textInputAction: TextInputAction.done,
             controller: nameTextEditingController,
@@ -43,7 +44,6 @@ class _AddBirthTextFormState extends ConsumerState<AddBirthTextForm> {
             ),
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15),
-              // labelText: widget.labelText,
               floatingLabelBehavior: FloatingLabelBehavior.auto,
               hintText: widget.hinText,
               hintStyle: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.w500),

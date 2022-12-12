@@ -3,7 +3,7 @@ import 'package:Kiffy/view/couter_screen.dart';
 import 'package:Kiffy/view/test_provider.dart';
 import 'package:Kiffy/view/home/screen/home_screen.dart';
 import 'package:Kiffy/view/intro/screen/intro_screen.dart';
-import 'package:Kiffy/view/add_profile/screen/setting_profile_screen.dart';
+import 'package:Kiffy/view/add_profile/screen/add_profile.dart';
 import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class HelperScreen extends HookConsumerWidget {
     IntroScreen.routeLocation,
     HomeScreen.routeLocation,
     SignScreen.routeLocation,
-    SettingProfileScreen.routeLocation
+    AddProfile.routeLocation
   ];
 
   static String get routeName => 'helper';
@@ -40,9 +40,7 @@ class HelperScreen extends HookConsumerWidget {
               .map((pageRoute) => Row(
                     children: [
                       Column(
-                        children: [
-                          ElevatedButton(onPressed: () => context.go(pageRoute), child: Text("Go to ${pageRoute}"))
-                        ],
+                        children: [ElevatedButton(onPressed: () => context.go(pageRoute), child: Text("Go to ${pageRoute}"))],
                       )
                     ],
                   ))

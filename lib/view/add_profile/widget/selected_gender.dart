@@ -26,11 +26,10 @@ class _SelectedGenderState extends ConsumerState<SelectedGender> {
         offstage: !widget.isShowed,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          margin: const EdgeInsets.symmetric(vertical: 15),
-          decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
+          margin: const EdgeInsets.only(bottom: 25),
           height: widget.isShowed ? 50 : 0,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: GenderType.values.map(
               (item) {
                 return InkWell(
