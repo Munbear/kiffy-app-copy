@@ -4,7 +4,7 @@ import 'package:Kiffy/view/add_profile/widget/process_guide_box.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../widget/selected_photos.dart';
+// import 'selected_photos.dart';
 
 class AddPhotos extends HookConsumerWidget {
   final process;
@@ -39,18 +39,17 @@ class AddPhotos extends HookConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 30),
-                // 없어도 될거 같음
-                Center(
-                  child: Icon(Icons.add),
-                )
               ],
             ),
           ),
         ),
-        InkWell(
-          onTap: () {},
-          child: ConfirmButton(
-            text: "확인",
+        Padding(
+          padding: EdgeInsets.fromLTRB(15, 0, 15, 30),
+          child: InkWell(
+            onTap: () {},
+            child: ConfirmButton(
+              text: "확인",
+            ),
           ),
         ),
       ],

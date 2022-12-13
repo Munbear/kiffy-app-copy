@@ -1,17 +1,18 @@
-import 'package:Kiffy/view/add_profile/screen/add_photos.dart';
+import 'package:Kiffy/view/add_profile/widget/add_photos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../widget/add_introduction.dart';
 import '../widget/confirm_button.dart';
 import '../widget/introduce_text_form.dart';
 import '../widget/process_guide_box.dart';
 import '../widget/selected_gender.dart';
-import '../widget/selected_photos.dart';
+
 import '../widget/setting_birth.dart';
 import '../widget/setting_nick_name.dart';
-import 'add_user_info.dart';
+import '../widget/add_user_info.dart';
 
 enum ProfileEditProcess {
   name,
@@ -78,11 +79,7 @@ class AddProfile extends HookConsumerWidget {
             AddPhotos(process: process, processContent: processContent, showNext: processNextStep),
 
             // 자기소개 작성 화면
-            Container(
-              width: 200,
-              height: 200,
-              color: Colors.blue,
-            ),
+            AddIntroduction(processContent: processContent)
           ],
         ),
       ),

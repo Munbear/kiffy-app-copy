@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../widget/confirm_button.dart';
-import '../widget/selected_gender.dart';
-import '../widget/setting_birth.dart';
-import '../widget/setting_nick_name.dart';
-import 'add_profile.dart';
+import 'confirm_button.dart';
+import 'selected_gender.dart';
+import 'setting_birth.dart';
+import 'setting_nick_name.dart';
+import '../screen/add_profile.dart';
 
 class AddUserInfo extends HookConsumerWidget {
   final process;
