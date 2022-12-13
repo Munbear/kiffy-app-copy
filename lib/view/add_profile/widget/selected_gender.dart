@@ -29,7 +29,7 @@ class _SelectedGenderState extends ConsumerState<SelectedGender> {
           margin: const EdgeInsets.only(bottom: 25),
           height: widget.isShowed ? 50 : 0,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: Gender.values.map(
               (item) {
                 return InkWell(

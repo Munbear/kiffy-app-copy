@@ -9,7 +9,7 @@ class GenderButton extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      width: 139,
+      width: 140,
       height: 44,
       decoration: BoxDecoration(
         color: isChecked ? Colors.white : Colors.transparent,

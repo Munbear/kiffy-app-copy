@@ -24,7 +24,7 @@ class AddUserInfo extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 45),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         children: [
           Form(
@@ -37,7 +37,7 @@ class AddUserInfo extends HookConsumerWidget {
                       ProcessGuideBox(content: processContent),
 
                       // 공간 여백
-                      const SizedBox(height: 60),
+                      const SizedBox(height: 30),
 
                       // 성별 선택
                       SelectedGender(isShowed: process.value == ProfileEditProcess.gender),
@@ -62,6 +62,7 @@ class AddUserInfo extends HookConsumerWidget {
             },
             child: const ConfirmButton(text: "확인"),
           ),
+          const SizedBox(height: 30),
         ],
       ),
     );

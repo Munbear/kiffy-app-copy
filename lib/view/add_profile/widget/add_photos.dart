@@ -44,10 +44,10 @@ class AddPhotos extends HookConsumerWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.fromLTRB(15, 0, 15, 30),
+          padding: const EdgeInsets.fromLTRB(15, 0, 15, 30),
           child: InkWell(
             onTap: () {},
-            child: ConfirmButton(
+            child: const ConfirmButton(
               text: "확인",
             ),
           ),
