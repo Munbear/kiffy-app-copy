@@ -16,46 +16,58 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          child: PageView(
-            controller: PageController(viewportFraction: 0.95),
-            scrollDirection: Axis.vertical,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.red
+          child: Stack(
+        clipBehavior: Clip.hardEdge,
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 30),
+            child: Stack(
+              children: [
+                PageView(
+                  controller: PageController(viewportFraction: 0.9),
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      child: Container(
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: UserProfileView(),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      child: Container(
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: UserProfileView(),
+                      ),
+                    ),
+                  ],
                 ),
-                child: Container(
-                  padding: EdgeInsets.all(30),
-                  child: Text("hello"),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.blue
-                ),
-                child: Container(
-                  padding: EdgeInsets.all(30),
-                  child: Text("hello"),
-                ),
-              ),
-            ],
+                Container(
+                  alignment: Alignment.bottomRight,
+                  padding: EdgeInsets.only(bottom: 50, right: 20),
+                  child: SvgPicture.asset("assets/images/like_icon.svg"),
+                )
+              ],
+            ),
           ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('hello');
-        },
-        child: SvgPicture.asset(
-          "assets/images/like_icon.svg",
-          width: 59,
-          height: 59,
-          fit: BoxFit.scaleDown,
-        ),
-      ),
+          Container(
+            color: Colors.red,
+            child: SizedBox(
+              height: 60,
+              child: Container(
+                color: Colors.purple,
+              ),
+            ),
+          ),
+        ],
+      )),
     );
   }
 }
