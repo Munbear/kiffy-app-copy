@@ -1,58 +1,104 @@
-
-import 'package:flutter/cupertino.dart';
+import 'package:Kiffy/global/model/gender_type.dart';
+import 'package:Kiffy/global/model/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+class UserProfileMedia {
+  String id;
+  MediaType type;
+  String url;
+
+  UserProfileMedia({
+    required this.id,
+    required this.type,
+    required this.url,
+  });
+}
+
+class UserProfile {
+  String id;
+  String name;
+  String intro;
+  Gender gender;
+  DateTime birthDate;
+  List<UserProfileMedia> medias;
+
+  UserProfile({
+    required this.id,
+    required this.name,
+    required this.intro,
+    required this.gender,
+    required this.birthDate,
+    required this.medias,
+  });
+}
+
 class UserProfileView extends HookConsumerWidget {
-  const UserProfileView({super.key});
+  const UserProfileView({super.key, required this.userProfile});
 
-
+  final UserProfile userProfile;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageView(
       children: [
-        SizedBox.expand(
-          child: Stack(
-            children: [
-              SizedBox.expand(
-                child: Image.network(
-                  "http://storage-dev.kiffy.club/public/01GM38YDFF6FGHP7EN04F2HNYM/640x.png",
-                  fit: BoxFit.cover,
+        [
+          Container(
+            child: SizedBox.expand(
+              child: Stack(
+                children: [
+                  SizedBox.expand(
+                    child: Image.network(
+                      userProfile.medias[0].url,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.bottomLeft,
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "${userProfile.name} - ${(DateTime.now().difference(userProfile.birthDate).inDays / 365).floor()}",
+                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+        userProfile.medias.getRange(1, userProfile.medias.length).map((media) => Container(
+              child: SizedBox.expand(
+                child: Stack(
+                  children: [
+                    SizedBox.expand(
+                      child: Image.network(
+                        media.url,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.bottomLeft,
+                      padding: EdgeInsets.all(20),
+                      child: Text(
+                        "${userProfile.name} - ${(DateTime.now().difference(userProfile.birthDate).inDays / 365).floor()}",
+                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: Colors.white),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              Container(
-                alignment: Alignment.bottomLeft,
-                padding: EdgeInsets.all(20),
-                child: Text(
-                    "NaMa - 24",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        SizedBox.expand(
-          child: Container(
-            color: Colors.blue,
-            child: Center(
-              child: Text("Hello 2"),
+            )),
+        [
+          Container(
+            child: Column(
+              children: [
+                Text("${userProfile.gender}"),
+                Text("${userProfile.intro}"),
+              ],
             ),
-          ),
-        ),
-        SizedBox.expand(
-          child: Container(
-            color: Colors.yellow,
-            child: Center(
-              child: Text("Hello 3"),
-            ),
-          ),
-        ),
-      ],
+          )
+        ]
+      ].expand((element) => element).toList(),
     );
   }
 }

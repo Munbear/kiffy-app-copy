@@ -1,11 +1,11 @@
-enum GenderType { male, female }
+enum Gender { male, female }
 
-extension SelectedGender on GenderType {
+extension SelectedGender on Gender {
   String get gender {
     switch (this) {
-      case GenderType.male:
+      case Gender.male:
         return "laki";
-      case GenderType.female:
+      case Gender.female:
         return "cewek";
       default:
         return "";

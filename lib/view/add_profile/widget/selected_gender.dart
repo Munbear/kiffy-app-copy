@@ -30,7 +30,7 @@ class _SelectedGenderState extends ConsumerState<SelectedGender> {
           height: widget.isShowed ? 50 : 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: GenderType.values.map(
+            children: Gender.values.map(
               (item) {
                 return InkWell(
                   onTap: () => setState(() {
