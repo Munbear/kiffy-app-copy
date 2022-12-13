@@ -28,21 +28,55 @@ class HomeScreen extends HookConsumerWidget {
                   scrollDirection: Axis.vertical,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(5),
+                      padding: EdgeInsets.all(10),
                       child: Container(
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.7),
+                              spreadRadius: 0,
+                              blurRadius: 5.0,
+                              offset: Offset(0, 3),
+                            )
+                          ],
                         ),
                         child: UserProfileView(),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(5),
+                      padding: EdgeInsets.all(10),
                       child: Container(
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.7),
+                              spreadRadius: 0,
+                              blurRadius: 5.0,
+                              offset: Offset(0, 3),
+                            )
+                          ],
+                        ),
+                        child: UserProfileView(),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Container(
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.7),
+                              spreadRadius: 0,
+                              blurRadius: 5.0,
+                              offset: Offset(0, 3),
+                            )
+                          ],
                         ),
                         child: UserProfileView(),
                       ),
