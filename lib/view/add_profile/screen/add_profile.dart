@@ -61,6 +61,8 @@ class AddProfile extends HookConsumerWidget {
     }
   }
 
+  void moveNextStep() {}
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final process = useState(ProfileEditProcess.name);
@@ -82,9 +84,7 @@ class AddProfile extends HookConsumerWidget {
           child: PageView(
             physics: const NeverScrollableScrollPhysics(), // 스크롤 막음
             controller: _pageController,
-            onPageChanged: ((pageIndex) => useValueChanged(currentPageIndex.value, (_, __) {
-                  currentPageIndex.value = pageIndex;
-                })),
+            onPageChanged: ((pageIndex) => moveNextStep()),
             children: [
               // 닉넴임, 생년월일, 성별 선택 화면
               AddUserInfo(
