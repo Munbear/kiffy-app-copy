@@ -10,12 +10,14 @@ class AddPhotos extends HookConsumerWidget {
   final process;
   final processContent;
   Function showNext;
+  final saveValue;
 
   AddPhotos({
     super.key,
     required this.process,
     required this.processContent,
     required this.showNext,
+    required this.saveValue,
   });
 
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,10 +48,10 @@ class AddPhotos extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 0, 15, 30),
           child: InkWell(
-            onTap: () {},
-            child: const ConfirmButton(
-              text: "확인",
-            ),
+            onTap: () {
+              showNext(process);
+            },
+            child: const ConfirmButton(text: "확인"),
           ),
         ),
       ],

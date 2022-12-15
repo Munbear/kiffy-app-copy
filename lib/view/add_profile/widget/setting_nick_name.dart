@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -5,12 +7,14 @@ class SettingNickName extends ConsumerStatefulWidget {
   final String hinText;
   final String labelText;
   final bool isShowed;
+  final GlobalKey<FormState> saveValue;
 
   const SettingNickName({
     super.key,
     required this.hinText,
     required this.labelText,
     required this.isShowed,
+    required this.saveValue,
   });
 
   @override
@@ -22,9 +26,12 @@ class _SettingNickNameState extends ConsumerState<SettingNickName> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
       child: TextFormField(
+        onSaved: (saveValue) {
+          print(saveValue);
+        },
         autofocus: widget.isShowed ? false : true,
         textAlign: TextAlign.center,
         textInputAction: TextInputAction.done,

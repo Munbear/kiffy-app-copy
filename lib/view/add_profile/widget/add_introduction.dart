@@ -6,7 +6,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddIntroduction extends HookConsumerWidget {
   final processContent;
-  const AddIntroduction({super.key, required this.processContent});
+  final saveValue;
+
+  const AddIntroduction({
+    super.key,
+    required this.processContent,
+    required this.saveValue,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
