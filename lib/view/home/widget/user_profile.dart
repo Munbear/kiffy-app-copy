@@ -3,6 +3,7 @@ import 'package:Kiffy/global/model/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+// 유저 프로필 사진
 class UserProfileMedia {
   String id;
   MediaType type;
@@ -15,6 +16,7 @@ class UserProfileMedia {
   });
 }
 
+// 유저 정보
 class UserProfile {
   String id;
   String name;

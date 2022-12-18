@@ -1,4 +1,4 @@
-import 'package:Kiffy/view/add_profile/service/add_profile_provider.dart';
+import 'package:Kiffy/view/add_profile/service/profile_guide_text_provider.dart';
 import 'package:Kiffy/view/add_profile/widget/process_guide_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

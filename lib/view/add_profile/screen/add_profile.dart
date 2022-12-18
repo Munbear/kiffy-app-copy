@@ -39,6 +39,8 @@ class AddProfile extends HookConsumerWidget {
       body: SafeArea(
         child: Form(
           key: formKey,
+          // 텍스트 값 관리
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: PageView(
             physics: const NeverScrollableScrollPhysics(), // 스크롤 막음
             controller: _pageController,

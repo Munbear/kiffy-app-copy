@@ -4,7 +4,7 @@ import 'package:Kiffy/view/add_profile/widget/process_guide_box.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../service/add_profile_provider.dart';
+import '../service/profile_guide_text_provider.dart';
 
 // import 'selected_photos.dart';
 

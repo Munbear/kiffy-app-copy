@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -21,11 +22,22 @@ class SettingNickName extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var userName = useState<String>("");
+
     return SizedBox(
       height: 50,
       child: TextFormField(
-        onSaved: (saveValue) {
-          print(saveValue);
+        //?
+        onSaved: (value) {
+          print(value);
+        },
+        // ?
+        onChanged: (valuee) {
+          userName.value = valuee;
+        },
+        // ?
+        validator: (value) {
+          if (value == null) return "텍스트를 입력해주세요";
         },
         autofocus: isShowed ? false : true,
         textAlign: TextAlign.center,
