@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class GenderButton extends HookConsumerWidget {
   final String? value;
-  final bool isChecked;
-  const GenderButton({super.key, this.value, required this.isChecked});
+  final bool isCheckeed;
+  const GenderButton({super.key, this.value, required this.isCheckeed});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -12,9 +12,9 @@ class GenderButton extends HookConsumerWidget {
       width: 140,
       height: 44,
       decoration: BoxDecoration(
-        color: isChecked ? Colors.white : Colors.transparent,
+        color: isCheckeed ? Colors.white : Colors.transparent,
         borderRadius: BorderRadius.circular(7),
-        border: Border.all(color: isChecked ? const Color(0xff0031AA) : const Color(0xffbdbdbd), width: 1.5),
+        border: Border.all(color: isCheckeed ? const Color(0xff0031AA) : const Color(0xffbdbdbd), width: 1.5),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +26,7 @@ class GenderButton extends HookConsumerWidget {
             value!,
             style: TextStyle(
               fontSize: 18,
-              color: isChecked ? const Color(0xff0031AA) : const Color(0xffBDBDBD),
+              color: isCheckeed ? const Color(0xff0031AA) : const Color(0xffBDBDBD),
             ),
           ),
         ],

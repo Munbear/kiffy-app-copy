@@ -11,6 +11,7 @@ class GetProfile extends StateNotifier<String> {
 
   final Ref ref;
 
+  // 가이드 텍스트 변경 함수
   void processNextStep(ValueNotifier step) {
     switch (step.value) {
       case ProfileEditProcess.name:
@@ -27,4 +28,12 @@ class GetProfile extends StateNotifier<String> {
         break;
     }
   }
+
+  // 텍스트 상태 관리
+
+  // 다음 페이지 이동 함수
+
+  // 텍스트 상태 저장 함수
+
+  //
 }

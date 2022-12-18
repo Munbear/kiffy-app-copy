@@ -49,7 +49,6 @@ class AddPhotos extends HookConsumerWidget {
           padding: const EdgeInsets.fromLTRB(15, 0, 15, 30),
           child: InkWell(
             onTap: () {
-              // showNext(process);
               ref.read(profileProvider.notifier).processNextStep(process);
             },
             child: const ConfirmButton(text: "확인"),

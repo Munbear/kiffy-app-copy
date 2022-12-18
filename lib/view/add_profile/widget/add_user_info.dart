@@ -15,13 +15,11 @@ class AddUserInfo extends HookConsumerWidget {
   final process;
   final processContent;
   final saveValue;
-  // Function showNext;
 
   AddUserInfo({
     super.key,
     required this.process,
     required this.processContent,
-    // required this.showNext,
     required this.saveValue,
   });
 

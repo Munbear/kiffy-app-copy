@@ -21,23 +21,6 @@ class AddProfile extends HookConsumerWidget {
 
   const AddProfile({super.key});
 
-  // void processNextStep(ValueNotifier step) {
-  //   switch (step.value) {
-  //     case ProfileEditProcess.name:
-  //       step.value = ProfileEditProcess.birthday;
-  //       break;
-  //     case ProfileEditProcess.birthday:
-  //       step.value = ProfileEditProcess.gender;
-  //       break;
-  //     case ProfileEditProcess.gender:
-  //       step.value = ProfileEditProcess.media;
-  //       break;
-  //     case ProfileEditProcess.media:
-  //       step.value = ProfileEditProcess.intro;
-  //       break;
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final process = useState(ProfileEditProcess.name);
