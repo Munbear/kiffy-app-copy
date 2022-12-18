@@ -2,40 +2,35 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SettingNickName extends ConsumerStatefulWidget {
+class SettingNickName extends HookConsumerWidget {
   final String hinText;
   final String labelText;
   final bool isShowed;
   final GlobalKey<FormState> saveValue;
 
-  const SettingNickName({
+  SettingNickName({
     super.key,
     required this.hinText,
     required this.labelText,
     required this.isShowed,
     required this.saveValue,
   });
-
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _SettingNickNameState();
-}
-
-class _SettingNickNameState extends ConsumerState<SettingNickName> {
   TextEditingController nameTextEditingController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       height: 50,
       child: TextFormField(
         onSaved: (saveValue) {
           print(saveValue);
         },
-        autofocus: widget.isShowed ? false : true,
+        autofocus: isShowed ? false : true,
         textAlign: TextAlign.center,
         textInputAction: TextInputAction.done,
-        controller: nameTextEditingController,
+        // controller: nameTextEditingController,
         style: const TextStyle(
           color: Colors.black87,
           fontSize: 18,
@@ -44,7 +39,7 @@ class _SettingNickNameState extends ConsumerState<SettingNickName> {
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 15),
           floatingLabelBehavior: FloatingLabelBehavior.auto,
-          hintText: widget.hinText,
+          hintText: hinText,
           hintStyle: const TextStyle(
             color: Colors.grey,
             fontSize: 18,

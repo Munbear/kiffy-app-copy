@@ -11,13 +11,9 @@ class SelectedGender extends HookConsumerWidget {
 
   SelectedGender({super.key, required this.isShowed});
 
-  bool isChecked = false;
-  String? currentValue;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isCheckeed = useState<bool>(false);
-    var _currentValue = useState<String>("");
+    var currentValue = useState<String>("");
 
     return AnimatedOpacity(
       opacity: isShowed ? 1.0 : 0.0,
@@ -34,11 +30,11 @@ class SelectedGender extends HookConsumerWidget {
               (item) {
                 return InkWell(
                   onTap: () {
-                    _currentValue.value = item.gender;
+                    currentValue.value = item.gender;
                   },
                   child: GenderButton(
                     value: item.gender,
-                    isCheckeed: item.gender == _currentValue.value,
+                    isChecked: item.gender == currentValue.value,
                   ),
                 );
               },

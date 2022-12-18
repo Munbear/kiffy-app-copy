@@ -1,39 +1,35 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AddBirthTextForm extends ConsumerStatefulWidget {
+class AddBirthTextForm extends HookConsumerWidget {
   final String hinText;
   final String labelText;
   final bool isShowed;
 
-  const AddBirthTextForm({
+  AddBirthTextForm({
     super.key,
     required this.hinText,
     required this.labelText,
     required this.isShowed,
   });
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddBirthTextFormState();
-}
-
-class _AddBirthTextFormState extends ConsumerState<AddBirthTextForm> {
   TextEditingController nameTextEditingController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return AnimatedOpacity(
-      opacity: widget.isShowed ? 1.0 : 0.0,
+      opacity: isShowed ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 500),
       child: Offstage(
-        offstage: !widget.isShowed,
+        offstage: !isShowed,
         child: AnimatedContainer(
           margin: const EdgeInsets.only(bottom: 25),
           duration: const Duration(milliseconds: 200),
-          height: widget.isShowed ? 50 : 0,
+          height: isShowed ? 50 : 0,
           child: TextFormField(
-            autofocus: widget.isShowed ? true : false,
+            autofocus: isShowed ? true : false,
             textAlign: TextAlign.center,
             textInputAction: TextInputAction.done,
             controller: nameTextEditingController,
@@ -45,7 +41,7 @@ class _AddBirthTextFormState extends ConsumerState<AddBirthTextForm> {
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15),
               floatingLabelBehavior: FloatingLabelBehavior.auto,
-              hintText: widget.hinText,
+              hintText: hinText,
               hintStyle: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.w500),
               labelStyle: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.w500),
               focusedBorder: const UnderlineInputBorder(
