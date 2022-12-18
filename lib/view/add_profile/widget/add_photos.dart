@@ -4,19 +4,19 @@ import 'package:Kiffy/view/add_profile/widget/process_guide_box.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../service/add_profile_provider.dart';
+
 // import 'selected_photos.dart';
 
 class AddPhotos extends HookConsumerWidget {
   final process;
   final processContent;
-  Function showNext;
   final saveValue;
 
   AddPhotos({
     super.key,
     required this.process,
     required this.processContent,
-    required this.showNext,
     required this.saveValue,
   });
 
@@ -49,7 +49,8 @@ class AddPhotos extends HookConsumerWidget {
           padding: const EdgeInsets.fromLTRB(15, 0, 15, 30),
           child: InkWell(
             onTap: () {
-              showNext(process);
+              // showNext(process);
+              ref.read(profileProvider.notifier).processNextStep(process);
             },
             child: const ConfirmButton(text: "확인"),
           ),

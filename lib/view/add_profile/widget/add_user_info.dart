@@ -1,3 +1,4 @@
+import 'package:Kiffy/view/add_profile/service/add_profile_provider.dart';
 import 'package:Kiffy/view/add_profile/widget/process_guide_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -13,14 +14,14 @@ import '../screen/add_profile.dart';
 class AddUserInfo extends HookConsumerWidget {
   final process;
   final processContent;
-  Function showNext;
   final saveValue;
+  // Function showNext;
 
   AddUserInfo({
     super.key,
     required this.process,
     required this.processContent,
-    required this.showNext,
+    // required this.showNext,
     required this.saveValue,
   });
 
@@ -65,7 +66,8 @@ class AddUserInfo extends HookConsumerWidget {
           ),
           InkWell(
             onTap: () {
-              showNext(process);
+              ref.read(profileProvider.notifier).processNextStep(process);
+              // showNext(process);
             },
             child: const ConfirmButton(text: "확인"),
           ),
