@@ -20,19 +20,18 @@ class ProfileGuideText extends StateNotifier<String> {
       case ProfileEditProcess.birthday:
         step.value = ProfileEditProcess.gender;
         break;
-      case ProfileEditProcess.gender:
-        step.value = ProfileEditProcess.media;
-        break;
-      case ProfileEditProcess.media:
-        step.value = ProfileEditProcess.intro;
-        break;
+      // case ProfileEditProcess.gender:
+      //   step.value = ProfileEditProcess.media;
+      //   break;
+      // case ProfileEditProcess.media:
+      //   step.value = ProfileEditProcess.intro;
+      //   break;
     }
   }
 
   // 텍스트 상태 관리
 
   // 다음 페이지 이동 함수
-
   // 텍스트 상태 저장 함수
 
   //

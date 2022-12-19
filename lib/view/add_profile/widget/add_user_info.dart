@@ -15,12 +15,14 @@ class AddUserInfo extends HookConsumerWidget {
   final process;
   final processContent;
   final saveValue;
+  // Function nextPage;
 
   AddUserInfo({
     super.key,
     required this.process,
     required this.processContent,
     required this.saveValue,
+    // required this.nextPage,
   });
 
   @override
@@ -62,14 +64,14 @@ class AddUserInfo extends HookConsumerWidget {
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              ref.read(profileProvider.notifier).processNextStep(process);
-              // showNext(process);
-            },
-            child: const ConfirmButton(text: "확인"),
-          ),
-          const SizedBox(height: 30),
+          // InkWell(
+          //   onTap: () {
+          //     ref.read(profileProvider.notifier).processNextStep(process);
+          //     // showNext(process);
+          //   },
+          //   child: const ConfirmButton(text: "확인"),
+          // ),
+          // const SizedBox(height: 30),
         ],
       ),
     );
