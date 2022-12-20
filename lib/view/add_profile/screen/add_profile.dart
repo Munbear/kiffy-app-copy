@@ -23,22 +23,19 @@ class AddProfile extends HookConsumerWidget {
 
   AddProfile({super.key});
 
-  // int currentIndex = 0;
-  final PageController pageController = PageController(initialPage: 0);
-
-  void moveNextPage(currentPage) {
-    print(currentPage);
-    pageController.animateToPage(currentPage, duration: const Duration(milliseconds: 200), curve: Curves.linear);
-    // print("hello");
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = GlobalKey<FormState>();
 
     final process = useState(ProfileEditProcess.name);
     final processContent = useState<ProcessGuideText>(ProcessGuideText.of(process.value));
-    final currentPages = useState<int>(0);
+    final currentPage = useState<int>(0);
+    final PageController pageController = PageController(initialPage: currentPage.value);
+
+    void moveTest(ValueNotifier index) {
+      if (index.value == 0) pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+      if (index.value == 1) pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    }
 
     useValueChanged(process.value, (_, __) {
       processContent.value = ProcessGuideText.of(process.value);
@@ -57,6 +54,7 @@ class AddProfile extends HookConsumerWidget {
                 child: PageView(
                   physics: const NeverScrollableScrollPhysics(), // 스크롤 막음
                   controller: pageController,
+                  onPageChanged: ((index) => currentPage.value = index),
                   children: [
                     // 닉넴임, 생년월일, 성별 선택 화면
                     AddUserInfo(
@@ -80,8 +78,7 @@ class AddProfile extends HookConsumerWidget {
               InkWell(
                 onTap: () {
                   ref.read(profileProvider.notifier).processNextStep(process);
-                  currentPages.value = 1;
-                  moveNextPage(currentPages.value);
+                  moveTest(currentPage);
                 },
                 child: const ConfirmButton(text: "확인"),
               ),

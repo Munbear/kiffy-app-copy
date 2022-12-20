@@ -26,23 +26,19 @@ class AddIntroduction extends HookConsumerWidget {
             child: TextFormField(
               maxLines: 6,
               decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 19, vertical: 11),
-                  hintText: "perkenalan diri",
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    borderSide: const BorderSide(color: Color(0xff0031AA)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    borderSide: const BorderSide(color: Color(0xff0031AA)),
-                  )),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 19, vertical: 11),
+                hintText: "perkenalan diri",
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(7),
+                  borderSide: const BorderSide(color: Color(0xff0031AA)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(7),
+                  borderSide: const BorderSide(color: Color(0xff0031AA)),
+                ),
+              ),
             ),
           ),
-          InkWell(
-            onTap: () {},
-            child: const ConfirmButton(text: "확인"),
-          ),
-          const SizedBox(height: 30),
         ],
       ),
     );
