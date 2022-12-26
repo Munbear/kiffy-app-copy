@@ -20,7 +20,27 @@ class AddIntroduction extends HookConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         children: [
-          ProcessGuideBox(content: processContent),
+          SizedBox(
+            height: 100,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Text(
+                    "Introduction",
+                    style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Center(
+                  child: Text(
+                    "자기소개를 입력해 주세요",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          ),
           const SizedBox(height: 30),
           Expanded(
             child: TextFormField(

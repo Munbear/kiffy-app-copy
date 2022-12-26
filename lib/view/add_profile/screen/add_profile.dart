@@ -21,7 +21,7 @@ class AddProfile extends HookConsumerWidget {
   static String get routeName => 'setting';
   static String get routeLocation => '/setting';
 
-  AddProfile({super.key});
+  const AddProfile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,10 +29,12 @@ class AddProfile extends HookConsumerWidget {
 
     final process = useState(ProfileEditProcess.name);
     final processContent = useState<ProcessGuideText>(ProcessGuideText.of(process.value));
+
     final currentPage = useState<int>(0);
+
     final PageController pageController = PageController(initialPage: currentPage.value);
 
-    void moveTest(ValueNotifier index) {
+    void moveNextStep(ValueNotifier index) {
       if (index.value == 0) pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
       if (index.value == 1) pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     }
@@ -78,7 +80,7 @@ class AddProfile extends HookConsumerWidget {
               InkWell(
                 onTap: () {
                   ref.read(profileProvider.notifier).processNextStep(process);
-                  moveTest(currentPage);
+                  moveNextStep(currentPage);
                 },
                 child: const ConfirmButton(text: "확인"),
               ),
