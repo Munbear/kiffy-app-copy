@@ -30,6 +30,7 @@ class HelperScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final counter = ref.watch(counterProvider);
+    var location = useGeoLocation();
 
     return Scaffold(
       backgroundColor: Color(0xf5f5f5ff),
@@ -54,8 +55,7 @@ class HelperScreen extends HookConsumerWidget {
                 ElevatedButton(onPressed: () => ref.read(counterProvider.notifier).decrement(), child: Text("다운")),
                 ElevatedButton(
                     onPressed: () async {
-                      var position = await ref.read(GeoLocatorProvider).getPosition();
-                      print(position);
+                      print(location.value);
                     },
                     child: Text("위치가져오기"))
               ],
