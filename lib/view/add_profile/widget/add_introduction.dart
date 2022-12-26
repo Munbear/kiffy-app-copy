@@ -20,6 +20,7 @@ class AddIntroduction extends HookConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         children: [
+          // 가이드 고정 텍스트
           const GuideTextBox(guideTitle: "자기소개서", guideSubTitle: "자기소개서를 작성해 주세요"),
           const SizedBox(height: 30),
           Expanded(
