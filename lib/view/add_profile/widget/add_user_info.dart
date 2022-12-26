@@ -1,11 +1,6 @@
-import 'package:Kiffy/view/add_profile/service/profile_guide_text_provider.dart';
 import 'package:Kiffy/view/add_profile/widget/process_guide_box.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:http/retry.dart';
-
-import 'confirm_button.dart';
 import 'selected_gender.dart';
 import 'setting_birth.dart';
 import 'setting_nick_name.dart';
@@ -15,20 +10,18 @@ class AddUserInfo extends HookConsumerWidget {
   final process;
   final processContent;
   final saveValue;
-  // Function nextPage;
 
-  AddUserInfo({
+  const AddUserInfo({
     super.key,
     required this.process,
     required this.processContent,
     required this.saveValue,
-    // required this.nextPage,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
           Expanded(
@@ -64,14 +57,6 @@ class AddUserInfo extends HookConsumerWidget {
               ),
             ),
           ),
-          // InkWell(
-          //   onTap: () {
-          //     ref.read(profileProvider.notifier).processNextStep(process);
-          //     // showNext(process);
-          //   },
-          //   child: const ConfirmButton(text: "확인"),
-          // ),
-          // const SizedBox(height: 30),
         ],
       ),
     );

@@ -5,7 +5,7 @@ class GuideTextBox extends HookConsumerWidget {
   final String? guideTitle;
   final String? guideSubTitle;
 
-  GuideTextBox({super.key, this.guideTitle, this.guideSubTitle});
+  const GuideTextBox({super.key, this.guideTitle, this.guideSubTitle});
 
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
@@ -16,7 +16,11 @@ class GuideTextBox extends HookConsumerWidget {
           Center(
             child: Text(
               guideTitle!,
-              style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                color: Color(0xff0031AA),
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: 16),
@@ -24,6 +28,11 @@ class GuideTextBox extends HookConsumerWidget {
             child: Text(
               guideSubTitle!,
               textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0xff6B6B6B),
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
         ],

@@ -29,11 +29,13 @@ class AddProfile extends HookConsumerWidget {
 
     final process = useState(ProfileEditProcess.name);
     final processContent = useState<ProcessGuideText>(ProcessGuideText.of(process.value));
-
+    // 현제 페이지 번호
     final currentPage = useState<int>(0);
 
+    // 페이지 이동 컨트롤러
     final PageController pageController = PageController(initialPage: currentPage.value);
 
+    // 다음 페이지로 이동
     void moveNextStep(ValueNotifier index) {
       if (index.value == 0) pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
       if (index.value == 1) pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
@@ -77,12 +79,15 @@ class AddProfile extends HookConsumerWidget {
                   ],
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  ref.read(profileProvider.notifier).processNextStep(process);
-                  moveNextStep(currentPage);
-                },
-                child: const ConfirmButton(text: "확인"),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: InkWell(
+                  onTap: () {
+                    ref.read(profileProvider.notifier).processNextStep(process);
+                    moveNextStep(currentPage);
+                  },
+                  child: const ConfirmButton(text: "확인"),
+                ),
               ),
             ],
           ),

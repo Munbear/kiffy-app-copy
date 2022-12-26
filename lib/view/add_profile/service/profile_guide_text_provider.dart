@@ -20,12 +20,6 @@ class ProfileGuideText extends StateNotifier<String> {
       case ProfileEditProcess.birthday:
         step.value = ProfileEditProcess.gender;
         break;
-      // case ProfileEditProcess.gender:
-      //   step.value = ProfileEditProcess.media;
-      //   break;
-      // case ProfileEditProcess.media:
-      //   step.value = ProfileEditProcess.intro;
-      //   break;
     }
   }
 
