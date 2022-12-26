@@ -86,7 +86,7 @@ class AddProfile extends HookConsumerWidget {
                     ref.read(profileProvider.notifier).processNextStep(process);
                     moveNextStep(currentPage);
                   },
-                  child: const ConfirmButton(text: "확인"),
+                  child: const ConfirmButton(text: "Berikutnya"),
                 ),
               ),
             ],
