@@ -10,10 +10,18 @@ class PhotoCard extends HookConsumerWidget {
   PhotoCard({super.key});
 
   final picker = ImagePicker();
+  late String saveFile;
 
   Future addImage(ValueNotifier<File?> _image, ImageSource imageSource) async {
-    final image = await picker.pickImage(source: imageSource);
-    _image.value = File(image!.path);
+    final file = await picker.pickImage(source: imageSource);
+    // null 체크
+    if (file == null) {
+      return;
+    } else {
+      _image.value = File(file.path);
+      // 저장됨
+      saveFile = File(file.path).copySync('/Users/munbeaer/Downloads/24/test.jpg').toString();
+    }
   }
 
   @override
