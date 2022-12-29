@@ -11,6 +11,7 @@ class PhotoCard extends HookConsumerWidget {
 
   final picker = ImagePicker();
   late String saveFile;
+  late String imageName;
 
   Future addImage(ValueNotifier<File?> _image, ImageSource imageSource) async {
     final file = await picker.pickImage(source: imageSource);
@@ -19,8 +20,11 @@ class PhotoCard extends HookConsumerWidget {
       return;
     } else {
       _image.value = File(file.path);
-      // 저장됨
-      saveFile = File(file.path).copySync('/Users/munbeaer/Downloads/24/test.jpg').toString();
+      // 파일 이름 가지고 옴
+      imageName = File(file.name).toString();
+      print(imageName);
+      // 파일 저장됨
+      // File(file.path).copySync('/Users/munbeaer/Downloads/24/$imageName').toString();
     }
   }
 
