@@ -27,6 +27,7 @@ class AddBirthTextForm extends HookConsumerWidget {
           duration: const Duration(milliseconds: 200),
           height: isShowed ? 50 : 0,
           child: TextFormField(
+            keyboardType: TextInputType.datetime,
             autofocus: isShowed ? true : false,
             textAlign: TextAlign.center,
             textInputAction: TextInputAction.done,
