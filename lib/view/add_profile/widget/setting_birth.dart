@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddBirthTextForm extends HookConsumerWidget {
@@ -27,7 +28,12 @@ class AddBirthTextForm extends HookConsumerWidget {
           duration: const Duration(milliseconds: 200),
           height: isShowed ? 50 : 0,
           child: TextFormField(
-            keyboardType: TextInputType.datetime,
+            // 키보드 숫자만
+            keyboardType: TextInputType.number,
+            // Only numbers can be entered
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly,
+            ],
             autofocus: isShowed ? true : false,
             textAlign: TextAlign.center,
             textInputAction: TextInputAction.done,
