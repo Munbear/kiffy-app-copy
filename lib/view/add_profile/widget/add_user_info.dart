@@ -11,12 +11,15 @@ class AddUserInfo extends HookConsumerWidget {
   final processContent;
   final saveValue;
 
-  const AddUserInfo({
+  AddUserInfo({
     super.key,
     required this.process,
     required this.processContent,
     required this.saveValue,
   });
+
+  final TextEditingController userName = TextEditingController();
+  final TextEditingController userBirthDate = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,6 +43,7 @@ class AddUserInfo extends HookConsumerWidget {
 
                     // 생년월일
                     AddBirthTextForm(
+                      birthControlloer: userBirthDate,
                       hinText: "Birth day",
                       labelText: "Birth day",
                       isShowed: [ProfileEditProcess.gender, ProfileEditProcess.birthday].contains(process.value),
@@ -47,6 +51,7 @@ class AddUserInfo extends HookConsumerWidget {
 
                     // 닉네임 기본으로 보여줌
                     SettingNickName(
+                      nameController: userName,
                       saveValue: saveValue,
                       hinText: "NickName",
                       labelText: "NickName",

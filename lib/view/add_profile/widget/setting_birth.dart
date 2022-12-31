@@ -6,15 +6,15 @@ class AddBirthTextForm extends HookConsumerWidget {
   final String hinText;
   final String labelText;
   final bool isShowed;
+  final TextEditingController birthControlloer;
 
   AddBirthTextForm({
     super.key,
+    required this.birthControlloer,
     required this.hinText,
     required this.labelText,
     required this.isShowed,
   });
-
-  TextEditingController nameTextEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -37,7 +37,7 @@ class AddBirthTextForm extends HookConsumerWidget {
             autofocus: isShowed ? true : false,
             textAlign: TextAlign.center,
             textInputAction: TextInputAction.done,
-            controller: nameTextEditingController,
+            controller: birthControlloer,
             style: const TextStyle(
               color: Colors.black87,
               fontSize: 18,

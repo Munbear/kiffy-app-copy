@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:http/retry.dart';
 
 class SettingNickName extends HookConsumerWidget {
   final String hinText;
   final String labelText;
   final bool isShowed;
   final GlobalKey<FormState> saveValue;
+  final TextEditingController nameController;
 
   SettingNickName({
     super.key,
+    required this.nameController,
     required this.hinText,
     required this.labelText,
     required this.isShowed,
@@ -24,6 +27,7 @@ class SettingNickName extends HookConsumerWidget {
     return SizedBox(
       height: 50,
       child: TextFormField(
+        controller: nameController,
         //?
         onSaved: (value) {
           print(value);
