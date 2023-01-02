@@ -9,13 +9,11 @@ import 'guide_text_box.dart';
 class AddPhotos extends HookConsumerWidget {
   final process;
   final processContent;
-  final saveValue;
 
   const AddPhotos({
     super.key,
     required this.process,
     required this.processContent,
-    required this.saveValue,
   });
 
   Widget build(BuildContext context, WidgetRef ref) {

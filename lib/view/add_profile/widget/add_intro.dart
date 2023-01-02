@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AddIntroduction extends HookConsumerWidget {
+class AddIntro extends HookConsumerWidget {
   final processContent;
-  final saveValue;
 
-  const AddIntroduction({
+  const AddIntro({
     super.key,
     required this.processContent,
-    required this.saveValue,
   });
 
   @override

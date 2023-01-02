@@ -1,49 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:http/retry.dart';
+
+final textFieldProvider = StateProvider<String>((ref) => "");
 
 class SettingNickName extends HookConsumerWidget {
   final String hinText;
   final String labelText;
   final bool isShowed;
-  final GlobalKey<FormState> saveValue;
-  final TextEditingController nameController;
 
   SettingNickName({
     super.key,
-    required this.nameController,
     required this.hinText,
     required this.labelText,
     required this.isShowed,
-    required this.saveValue,
   });
-  TextEditingController nameTextEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var userName = useState<String>("");
-
     return SizedBox(
       height: 50,
       child: TextFormField(
-        controller: nameController,
-        //?
-        onSaved: (value) {
-          print(value);
-        },
-        // ?
-        onChanged: (valuee) {
-          userName.value = valuee;
-        },
-        // ?
-        validator: (value) {
-          if (value == null) return "텍스트를 입력해주세요";
-        },
         autofocus: isShowed ? false : true,
         textAlign: TextAlign.center,
         textInputAction: TextInputAction.done,
-        // controller: nameTextEditingController,
         style: const TextStyle(
           color: Colors.black87,
           fontSize: 18,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class UserProfileAdd {
+class CreateUserProfileModel {
 // final TextEditingController userNameController = TextEditingController();
 // final TextEditingController userBirthdayController = TextEditingController();
 // final TextEditingController userIntroductionController = TextEditingController();
@@ -11,7 +11,7 @@ class UserProfileAdd {
   String intro;
   List<Map<String, dynamic>> medias;
 
-  UserProfileAdd({
+  CreateUserProfileModel({
     required this.name,
     required this.birthDate,
     required this.gender,
@@ -19,7 +19,7 @@ class UserProfileAdd {
     required this.medias,
   });
 
-  UserProfileAdd.fromJson(Map<String, dynamic> json)
+  CreateUserProfileModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         birthDate = json['birthDate'],
         gender = json['gender'],

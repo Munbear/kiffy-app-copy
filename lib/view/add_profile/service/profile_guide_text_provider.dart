@@ -12,7 +12,7 @@ class ProfileGuideText extends StateNotifier<String> {
   final Ref ref;
 
   // 가이드 텍스트 변경 함수
-  void processNextStep(ValueNotifier step) {
+  void processNextStep(ValueNotifier step, ValueNotifier index, pageController) {
     switch (step.value) {
       case ProfileEditProcess.name:
         step.value = ProfileEditProcess.birthday;
@@ -20,13 +20,15 @@ class ProfileGuideText extends StateNotifier<String> {
       case ProfileEditProcess.birthday:
         step.value = ProfileEditProcess.gender;
         break;
+      case ProfileEditProcess.gender:
+        pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+        step.value = ProfileEditProcess.media;
+        break;
+      case ProfileEditProcess.media:
+        pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+        break;
     }
   }
-
-  // 텍스트 상태 관리
-
-  // 다음 페이지 이동 함수
-  // 텍스트 상태 저장 함수
 
   //
 }
