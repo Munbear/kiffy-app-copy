@@ -38,44 +38,54 @@ class AddProfile extends HookConsumerWidget {
       return process.value;
     });
 
+    final globalKey = GlobalKey<FormState>();
+
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView(
-                physics: const NeverScrollableScrollPhysics(), // 스크롤 막음
-                controller: pageController,
-                onPageChanged: ((index) => currentPage.value = index),
-                children: [
-                  // 닉넴임, 생년월일, 성별 선택 화면
-                  AddUserInfo(
-                    process: process,
-                    processContent: processContent,
-                  ),
+        child: Form(
+          key: globalKey,
+          child: Column(
+            children: [
+              Expanded(
+                child: PageView(
+                  physics: const NeverScrollableScrollPhysics(), // 스크롤 막음
+                  controller: pageController,
+                  onPageChanged: ((index) => currentPage.value = index),
+                  children: [
+                    // 닉넴임, 생년월일, 성별 선택 화면
 
-                  // 사진 선택 화면
-                  AddPhotos(
-                    process: process,
-                    processContent: processContent,
-                  ),
+                    AddUserInfo(
+                      globalKey: globalKey,
+                      process: process,
+                      processContent: processContent,
+                    ),
 
-                  // 자기소개 작성 화면
-                  AddIntro(processContent: processContent)
-                ],
+                    // 사진 선택 화면
+                    AddPhotos(
+                      process: process,
+                      processContent: processContent,
+                    ),
+
+                    // 자기소개 작성 화면
+                    AddIntro(processContent: processContent)
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: InkWell(
-                onTap: () {
-                  ref.read(profileProvider.notifier).processNextStep(process, currentPage, pageController);
-                },
-                child: const ConfirmButton(text: "Berikutnya"),
+              // 버튼
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: InkWell(
+                  onTap: () {
+                    print(globalKey.currentState!.validate());
+
+                    // ref.read(profileProvider.notifier).processNextStep(process, currentPage, pageController);
+                  },
+                  child: const ConfirmButton(text: "Berikutnya"),
+                ),
               ),
-            ),
-            const SizedBox(height: 20)
-          ],
+              const SizedBox(height: 20)
+            ],
+          ),
         ),
       ),
     );

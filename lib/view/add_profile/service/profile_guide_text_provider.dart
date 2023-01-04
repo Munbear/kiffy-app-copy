@@ -11,6 +11,8 @@ class ProfileGuideText extends StateNotifier<String> {
 
   final Ref ref;
 
+  final globalKey = GlobalKey<FormState>;
+
   // 가이드 텍스트 변경 함수
   void processNextStep(ValueNotifier step, ValueNotifier index, pageController) {
     switch (step.value) {
