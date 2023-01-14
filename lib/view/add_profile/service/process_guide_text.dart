@@ -1,4 +1,4 @@
-import '../screen/add_profile.dart';
+import '../screen/legacy_add_profile.dart';
 
 class ProcessGuideText {
   late String title;

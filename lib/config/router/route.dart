@@ -1,5 +1,5 @@
 import 'package:Kiffy/global/layout/bottom_nav.dart';
-import 'package:Kiffy/view/add_profile/screen/add_profile.dart';
+import 'package:Kiffy/view/add_profile/screen/legacy_add_profile.dart';
 import 'package:Kiffy/view/chat/screen/chat_screen.dart';
 import 'package:Kiffy/view/couter_screen.dart';
 import 'package:Kiffy/view/helper_screen.dart';
@@ -50,9 +50,9 @@ class RouterNotifier extends ChangeNotifier {
           builder: (context, _) => const SignScreen(),
         ),
         GoRoute(
-          name: AddProfile.routeName,
-          path: AddProfile.routeLocation,
-          builder: (context, _) => AddProfile(),
+          name: LegacyAddProfile.routeName,
+          path: LegacyAddProfile.routeLocation,
+          builder: (context, _) => LegacyAddProfile(),
         ),
         ShellRoute(
           builder: (context, state, child) {

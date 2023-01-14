@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'selected_gender.dart';
 import 'setting_birth.dart';
 import 'setting_nick_name.dart';
-import '../screen/add_profile.dart';
+import '../screen/legacy_add_profile.dart';
 
 class AddUserInfo extends HookConsumerWidget {
   final process;

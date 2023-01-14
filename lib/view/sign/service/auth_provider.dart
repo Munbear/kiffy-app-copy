@@ -2,7 +2,7 @@ import 'package:Kiffy/backend/auth_clinet.dart';
 import 'package:Kiffy/backend/user_client.dart';
 import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/view/add_profile/screen/add_profile.dart';
+import 'package:Kiffy/view/add_profile/screen/legacy_add_profile.dart';
 import 'package:Kiffy/view/home/screen/home_screen.dart';
 import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,7 +20,7 @@ class AuthState extends StateNotifier<AuthToken> {
 
   void _routeByAuthToken(AuthToken token) {
     if (token.userStatus == UserStatus.JOINER && token.authStatus == AuthStatus.SUCCESS) {
-      ref.read(routerProvider).replace(AddProfile.routeLocation);
+      ref.read(routerProvider).replace(LegacyAddProfile.routeLocation);
     }
 
     if (token.userStatus == UserStatus.APPROVED && token.authStatus == AuthStatus.SUCCESS) {

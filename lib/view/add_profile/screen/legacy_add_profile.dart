@@ -17,11 +17,11 @@ enum ProfileEditProcess {
   intro,
 }
 
-class AddProfile extends HookConsumerWidget {
-  static String get routeName => 'setting';
-  static String get routeLocation => '/setting';
+class LegacyAddProfile extends HookConsumerWidget {
+  static String get routeName => 'me_profile_add';
+  static String get routeLocation => '/me/profile/add';
 
-  const AddProfile({super.key});
+  const LegacyAddProfile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
