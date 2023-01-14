@@ -1,4 +1,4 @@
-import 'package:Kiffy/view/add_profile/widget/guide_text_box.dart';
+import 'package:Kiffy/view/legacy_add_profile/widget/guide_text_box.dart';
 
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'package:Kiffy/view/add_profile/widget/photo_card.dart';
+import 'package:Kiffy/view/legacy_add_profile/widget/photo_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

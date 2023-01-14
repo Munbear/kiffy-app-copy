@@ -1,5 +1,5 @@
 import 'package:Kiffy/global/layout/bottom_nav.dart';
-import 'package:Kiffy/view/add_profile/screen/legacy_add_profile.dart';
+import 'package:Kiffy/view/legacy_add_profile/screen/legacy_add_profile.dart';
 import 'package:Kiffy/view/chat/screen/chat_screen.dart';
 import 'package:Kiffy/view/couter_screen.dart';
 import 'package:Kiffy/view/helper_screen.dart';

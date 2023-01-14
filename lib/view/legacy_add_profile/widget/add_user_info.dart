@@ -1,4 +1,4 @@
-import 'package:Kiffy/view/add_profile/widget/process_guide_box.dart';
+import 'package:Kiffy/view/legacy_add_profile/widget/process_guide_box.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'selected_gender.dart';

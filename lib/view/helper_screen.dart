@@ -3,7 +3,7 @@ import 'package:Kiffy/view/couter_screen.dart';
 import 'package:Kiffy/view/test_provider.dart';
 import 'package:Kiffy/view/home/screen/home_screen.dart';
 import 'package:Kiffy/view/intro/screen/intro_screen.dart';
-import 'package:Kiffy/view/add_profile/screen/legacy_add_profile.dart';
+import 'package:Kiffy/view/legacy_add_profile/screen/legacy_add_profile.dart';
 import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
