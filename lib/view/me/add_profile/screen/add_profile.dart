@@ -15,6 +15,7 @@ class AddProfileScreen extends HookConsumerWidget {
   static String get routeLocation => '/me/profile/add';
 
   var inputListKey = GlobalKey<AnimatedListState>();
+  var inputFocus = FocusNode();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,18 +25,21 @@ class AddProfileScreen extends HookConsumerWidget {
         props: AddProfileInputTextProps(
           hintText: "hello",
           onChanged: (val) => print(val),
+          autoFocus: false,
         ),
       ),
       AddProfileInputText(
         props: AddProfileInputTextProps(
           hintText: "hello",
           onChanged: (val) => print(val),
+          autoFocus: false,
         ),
       ),
       AddProfileInputText(
         props: AddProfileInputTextProps(
-          hintText: "hello",
+          hintText: "이름",
           onChanged: (val) => print(val),
+          autoFocus: true,
         ),
       )
     ]);
@@ -43,6 +47,7 @@ class AddProfileScreen extends HookConsumerWidget {
 
     proceedInputProcess() {
       inputProcess.value = inputProcess.value - 1;
+      FocusScope.of(context).previousFocus();
     }
 
     return Scaffold(
@@ -55,7 +60,7 @@ class AddProfileScreen extends HookConsumerWidget {
                     .mapWithIndex(
                       (e, index) => AnimatedOpacity(
                         opacity: inputProcess.value <= index ? 1 : 0,
-                        duration: Duration(seconds: 1),
+                        duration: Duration(milliseconds: 500),
                         child: AnimatedContainer(
                           duration: Duration(milliseconds: 200),
                           height: inputProcess.value <= index ? 90 : 0,
