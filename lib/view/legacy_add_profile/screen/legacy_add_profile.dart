@@ -18,8 +18,8 @@ enum ProfileEditProcess {
 }
 
 class LegacyAddProfile extends HookConsumerWidget {
-  static String get routeName => 'me_profile_add';
-  static String get routeLocation => '/me/profile/add';
+  static String get routeName => 'legacy_me_profile_add';
+  static String get routeLocation => '/legacy/me/profile/add';
 
   const LegacyAddProfile({super.key});
 

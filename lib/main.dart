@@ -7,6 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+extension MapWithIndex<T> on List<T> {
+  List<R> mapWithIndex<R>(R Function(T, int i) callback) {
+    List<R> result = [];
+    for (int i = 0; i < this.length; i++) {
+      R item = callback(this[i], i);
+      result.add(item);
+    }
+    return result;
+  }
+}
+
 // 변경 라우팅 설정
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

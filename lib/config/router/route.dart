@@ -5,6 +5,7 @@ import 'package:Kiffy/view/couter_screen.dart';
 import 'package:Kiffy/view/helper_screen.dart';
 import 'package:Kiffy/view/home/screen/home_screen.dart';
 import 'package:Kiffy/view/intro/screen/intro_screen.dart';
+import 'package:Kiffy/view/me/add_profile/screen/add_profile.dart';
 import 'package:Kiffy/view/mypage/screen/mypage_screen.dart';
 import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +54,11 @@ class RouterNotifier extends ChangeNotifier {
           name: LegacyAddProfile.routeName,
           path: LegacyAddProfile.routeLocation,
           builder: (context, _) => LegacyAddProfile(),
+        ),
+        GoRoute(
+          name: AddProfileScreen.routeName,
+          path: AddProfileScreen.routeLocation,
+          builder: (context, _) => AddProfileScreen(),
         ),
         ShellRoute(
           builder: (context, state, child) {

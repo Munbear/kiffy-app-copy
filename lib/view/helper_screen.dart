@@ -1,5 +1,6 @@
 import 'package:Kiffy/global/service/geo_location.dart';
 import 'package:Kiffy/view/couter_screen.dart';
+import 'package:Kiffy/view/me/add_profile/screen/add_profile.dart';
 import 'package:Kiffy/view/test_provider.dart';
 import 'package:Kiffy/view/home/screen/home_screen.dart';
 import 'package:Kiffy/view/intro/screen/intro_screen.dart';
@@ -20,7 +21,8 @@ class HelperScreen extends HookConsumerWidget {
     IntroScreen.routeLocation,
     HomeScreen.routeLocation,
     SignScreen.routeLocation,
-    LegacyAddProfile.routeLocation
+    LegacyAddProfile.routeLocation,
+    AddProfileScreen.routeLocation,
   ];
 
   static String get routeName => 'helper';
