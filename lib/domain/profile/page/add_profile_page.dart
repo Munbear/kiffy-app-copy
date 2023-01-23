@@ -7,6 +7,7 @@ class AddProfilePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: Stack(
         children: [
@@ -16,8 +17,8 @@ class AddProfilePage extends HookConsumerWidget {
             child: Column(
               children: [
                 /**********************************************
-                     *                  Header
-                     **********************************************/
+                 *                  Header
+                 **********************************************/
                 Container(
                   padding: EdgeInsets.only(top: 72, bottom: 30),
                   child: Column(
