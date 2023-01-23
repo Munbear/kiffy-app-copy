@@ -79,6 +79,18 @@ class AddProfileInputState extends StateNotifier<AddProfileInput> {
     state.contact = AddProfileContact(contactId: contactId, contactType: contactType);
     return AddProfileInputItemValidation.success();
   }
+
+  AddProfileInputItemValidation setIntro(String intro) {
+    if (intro.isEmpty) {
+      return AddProfileInputItemValidation.fail("* 자기소개를 입력해주세요");
+    }
+    if (intro.length >= 500) {
+      return AddProfileInputItemValidation.fail("* 500자 이내로 작성해주세요");
+    }
+
+    state.intro = intro;
+    return AddProfileInputItemValidation.success();
+  }
 }
 
 class AddProfileInput {
