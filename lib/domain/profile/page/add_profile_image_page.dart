@@ -1,7 +1,8 @@
+import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AddProfileIntroPage extends HookConsumerWidget {
+class AddProfileImagePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -43,8 +44,8 @@ class AddProfileIntroPage extends HookConsumerWidget {
                   ),
                 ),
                 /**********************************************
-                 *             Input Intro
-                 **********************************************/
+                     *             Input Image
+                     **********************************************/
                 Container(
                   child: Column(
                     children: [
@@ -59,10 +60,9 @@ class AddProfileIntroPage extends HookConsumerWidget {
                                   child: Align(
                                     child: Text.rich(TextSpan(children: [
                                       TextSpan(
-                                        text: "Introduce yourself",
+                                        text: "Select your pictures",
                                         style: TextStyle(fontSize: 20),
                                       ),
-                                      TextSpan(text: "  (option)", style: TextStyle(fontSize: 14))
                                     ])),
                                     alignment: Alignment.centerLeft,
                                   ),
@@ -71,38 +71,45 @@ class AddProfileIntroPage extends HookConsumerWidget {
                                   width: 28,
                                   height: 18,
                                   padding: EdgeInsets.only(right: 10),
-                                  child: IconButton(onPressed: () {}, icon: Image.asset("assets/icons/alert_icon.png",), padding: EdgeInsets.all(0),),
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: Image.asset(
+                                      "assets/icons/alert_icon.png",
+                                    ),
+                                    padding: EdgeInsets.all(0),
+                                  ),
                                 )
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 13, bottom: 7),
-                              child: TextField(
-                                minLines: 5,
-                                maxLines: 5,
-                                style: TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
-                                decoration: InputDecoration(
-                                    hintText: "Please enter it.",
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
-                                      borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                          topRight: Radius.circular(15)),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
-                                      borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                          topRight: Radius.circular(15)),
-                                    ),
-                                    contentPadding: EdgeInsets.all(18)),
-                              ),
-                            ),
+                                padding: EdgeInsets.only(top: 13, bottom: 7),
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            Expanded(child: AddProfileInputImageCard()),
+                                            Expanded(child: AddProfileInputImageCard()),
+                                            Expanded(child: AddProfileInputImageCard()),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            Expanded(child: AddProfileInputImageCard()),
+                                            Expanded(child: AddProfileInputImageCard()),
+                                            Expanded(child: AddProfileInputImageCard()),
+                                          ],
+                                        ),
+                                      ),
+                                      ],
+                                  ),
+                                )),
                             Align(
                               child: Text(
-                                "* This will increase your matching probability.",
+                                "* You must select at least two sheets.",
                                 style: TextStyle(fontSize: 13, color: Color(0xFF0031AA)),
                               ),
                               alignment: Alignment.centerLeft,
