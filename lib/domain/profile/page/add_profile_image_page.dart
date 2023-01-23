@@ -1,3 +1,4 @@
+import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,33 +17,9 @@ class AddProfileImagePage extends HookConsumerWidget {
             child: Column(
               children: [
                 /**********************************************
-                     *                  Header
-                     **********************************************/
-                Container(
-                  padding: EdgeInsets.only(top: 72, bottom: 30),
-                  child: Column(
-                    children: const [
-                      Text(
-                        "Identify yourself",
-                        style: TextStyle(
-                          fontSize: 32,
-                          color: Color(0xff0031AA),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Text(
-                          "Enter information to be displayed in kiffy",
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Color(0xff494949),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                 *                  Header
+                 **********************************************/
+                AddProfileHeader(),
                 /**********************************************
                      *             Input Image
                      **********************************************/

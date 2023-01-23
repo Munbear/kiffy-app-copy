@@ -1,6 +1,7 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/core/model/ContactType.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -26,36 +27,12 @@ class AddProfileContactPage extends HookConsumerWidget {
             child: Column(
               children: [
                 /**********************************************
-                     *                  Header
-                     **********************************************/
-                Container(
-                  padding: EdgeInsets.only(top: 72, bottom: 30),
-                  child: Column(
-                    children: const [
-                      Text(
-                        "Identify yourself",
-                        style: TextStyle(
-                          fontSize: 32,
-                          color: Color(0xff0031AA),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Text(
-                          "Enter information to be displayed in kiffy",
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Color(0xff494949),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                 *                  Header
+                 **********************************************/
+                AddProfileHeader(),
                 /**********************************************
-                     *             Input Contact
-                     **********************************************/
+                 *             Input Contact
+                 **********************************************/
                 Container(
                   child: Column(
                     children: [
