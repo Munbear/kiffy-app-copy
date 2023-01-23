@@ -1,21 +1,39 @@
 import 'dart:io';
 
+import 'package:Kiffy/infra/media_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
+class AddProfileInputImageCardProps {
+  int index;
+  String? filePath;
+
+  ValueChanged<int> onDeleted;
+  ValueChanged<String> onAdded;
+
+  AddProfileInputImageCardProps({
+    required this.index,
+    required this.onDeleted,
+    required this.onAdded,
+    this.filePath,
+  });
+}
 
 class AddProfileInputImageCard extends HookConsumerWidget {
-  AddProfileInputImageCard({super.key});
+  AddProfileInputImageCardProps props;
+
+  AddProfileInputImageCard({
+    required this.props,
+  });
 
   // 이미지 불러오기
-  Future addImage(ValueNotifier<File?> imagePath, ValueNotifier<File?> imageFile, ImageSource imageSource) async {
+  Future addImage(ImageSource imageSource) async {
     final picker = ImagePicker();
     final file = await picker.pickImage(source: imageSource);
     if (file != null) {
-      imagePath.value = File(file.path);
-      imageFile.value = File(file.name);
+      props.onAdded(file.path);
     } else {
       return;
     }
@@ -31,18 +49,17 @@ class AddProfileInputImageCard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imagePath = useState<File?>(null);
     final imageFile = useState<File?>(null);
 
     return Stack(
       children: [
         Container(
             margin: const EdgeInsets.all(7),
-            height: 133,
+            height: 163,
             clipBehavior: Clip.hardEdge,
             padding: EdgeInsets.all(0),
             decoration: BoxDecoration(
-              border: imagePath.value == null
+              border: props.filePath == null
                   ? Border.all(color: const Color(0xFFCECECE), width: 2.0)
                   : null,
               borderRadius: BorderRadius.only(
@@ -51,9 +68,9 @@ class AddProfileInputImageCard extends HookConsumerWidget {
                 topRight: Radius.circular(15),
               ),
             ),
-            child: imagePath.value == null
+            child: props.filePath == null
                 ? InkWell(
-                    onTap: () => addImage(imagePath, imageFile, ImageSource.gallery),
+                    onTap: () => addImage(ImageSource.gallery),
                     child: Center(
                         child: Text(
                       "+",
@@ -64,7 +81,7 @@ class AddProfileInputImageCard extends HookConsumerWidget {
                     decoration: BoxDecoration(
                       color: Colors.grey,
                       image: DecorationImage(
-                        image: Image.file(File(imagePath.value!.path)).image,
+                        image: Image.file(File(props.filePath!)).image,
                         fit: BoxFit.cover
                       ),
                     ),
@@ -72,12 +89,12 @@ class AddProfileInputImageCard extends HookConsumerWidget {
             //      Image.file(File(imagePath.value!.path), fit: BoxFit.cover)
             ),
         Visibility(
-          visible: imageFile.value != null ? true : false,
+          visible: props.filePath != null ? true : false,
           child: Positioned(
             right: 15,
             top: 15,
             child: GestureDetector(
-              onTap: () => deleteImage(imagePath, imageFile),
+              onTap: () => props.onDeleted(props.index),
               child: Text(
                 "X",
                 style: TextStyle(fontSize: 14, color: Colors.white),
@@ -88,4 +105,5 @@ class AddProfileInputImageCard extends HookConsumerWidget {
       ],
     );
   }
+
 }

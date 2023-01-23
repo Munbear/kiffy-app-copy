@@ -91,6 +91,14 @@ class AddProfileInputState extends StateNotifier<AddProfileInput> {
     state.intro = intro;
     return AddProfileInputItemValidation.success();
   }
+
+  AddProfileInputItemValidation setMedias(List<AddProfileMedia> medias) {
+    if (medias.length < 2) {
+      return AddProfileInputItemValidation.fail("최소 2장 이상의 사진을 등록해주세요");
+    }
+
+    return AddProfileInputItemValidation.success();
+  }
 }
 
 class AddProfileInput {
