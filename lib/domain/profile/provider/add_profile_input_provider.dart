@@ -63,6 +63,7 @@ class AddProfileInputState extends StateNotifier<AddProfileInput> {
       return AddProfileInputItemValidation.fail("* 예시와 맞게 입력해주세요");
     }
 
+    state.birthDate = birthDate;
     return AddProfileInputItemValidation.success();
   }
 
@@ -75,6 +76,7 @@ class AddProfileInputState extends StateNotifier<AddProfileInput> {
       return AddProfileInputItemValidation.fail("* 연락처를 선택해주세요");
     }
 
+    state.contact = AddProfileContact(contactId: contactId, contactType: contactType);
     return AddProfileInputItemValidation.success();
   }
 }
