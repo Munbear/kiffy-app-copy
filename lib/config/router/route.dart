@@ -1,3 +1,4 @@
+import 'package:Kiffy/domain/profile/page/add_profile_complete_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_contact_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_image_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_intro_page.dart';
@@ -17,7 +18,7 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       refreshListenable: router,
       routes: router._routes,
-      initialLocation: "/profile/add_profile/image",
+      initialLocation: "/profile/add_profile/complete",
     );
   },
 );
@@ -66,10 +67,15 @@ class RouterNotifier extends ChangeNotifier {
           name: "profile_add_profile_intro",
           builder: (context, _) => AddProfileIntroPage(),
         ),
-    GoRoute(
+        GoRoute(
           path: "/profile/add_profile/image",
           name: "profile_add_profile_image",
           builder: (context, _) => AddProfileImagePage(),
+        ),
+        GoRoute(
+          path: "/profile/add_profile/complete",
+          name: "profile_add_profile_complete",
+          builder: (context, _) => AddProfileCompletePage(),
         ),
       ];
 }
