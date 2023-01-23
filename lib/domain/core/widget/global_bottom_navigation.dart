@@ -29,11 +29,19 @@ class GlobalBottomNavigation extends HookConsumerWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.only(left: 55, right: 55, top: 0, bottom: 0),
+      padding: const EdgeInsets.only(left: 55, right: 55, top: 5, bottom: 0),
       alignment: Alignment.center,
       decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              spreadRadius: 5,
+              blurRadius: 5
+            )
+          ]
+      ),
       child: Row(
         children: items.value
             .map(

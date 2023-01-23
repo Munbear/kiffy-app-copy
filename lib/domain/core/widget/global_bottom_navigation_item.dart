@@ -27,15 +27,40 @@ class GlobalBottomNavigationItem extends HookConsumerWidget {
 
     return Expanded(
       child: Container(
-        child: SizedBox(
-          width: 75,
-          height: 75,
-          child: IconButton(
-            icon: Image.asset(props.iconPath, color: isActive ? const Color(0xffB003FA) : Colors.black,),
-            onPressed: () {
-              ref.read(routerProvider).replace(props.routePath);
-            },
-          ),
+        alignment: Alignment.center,
+        child: Stack(
+          children: [
+            isActive
+                ? Positioned(
+                    left: 0,
+                    right: 0,
+                    top: 10,
+                    child: Container(
+                      width: 5,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: const Color(0xffB003FA),
+                      ),
+                    ),
+                  )
+                : null,
+            Positioned(
+              child: SizedBox(
+                width: 75,
+                height: 75,
+                child: IconButton(
+                  icon: Image.asset(
+                    props.iconPath,
+                    color: isActive ? const Color(0xffB003FA) : Colors.black,
+                  ),
+                  onPressed: () {
+                    ref.read(routerProvider).replace(props.routePath);
+                  },
+                ),
+              ),
+            ),
+          ].whereType<Widget>().toList(),
         ),
       ),
     );
