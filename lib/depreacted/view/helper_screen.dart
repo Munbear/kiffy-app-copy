@@ -1,6 +1,6 @@
 import 'package:Kiffy/global/service/geo_location.dart';
 import 'package:Kiffy/view/couter_screen.dart';
-import 'package:Kiffy/view/me/add_profile/screen/add_profile_page.dart';
+import 'package:Kiffy/view/me/add_profile/screen/add_profile_user_page.dart';
 import 'package:Kiffy/view/test_provider.dart';
 import 'package:Kiffy/view/home/screen/home_screen.dart';
 import 'package:Kiffy/view/intro/screen/intro_screen.dart';

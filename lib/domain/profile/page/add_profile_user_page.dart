@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AddProfilePage extends HookConsumerWidget {
-  AddProfilePage({super.key});
+class AddProfileUserPage extends HookConsumerWidget {
+  AddProfileUserPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -99,8 +99,8 @@ class AddProfilePage extends HookConsumerWidget {
                   ),
                 ),
                 /**********************************************
-                     *             Input Gender
-                     **********************************************/
+                 *             Input Gender
+                 **********************************************/
                 Container(
                   child: Column(
                     children: [
@@ -197,8 +197,8 @@ class AddProfilePage extends HookConsumerWidget {
                   ),
                 ),
                 /**********************************************
-                     *             Input Birthday
-                     **********************************************/
+                 *             Input Birthday
+                 **********************************************/
                 Container(
                   child: Column(
                     children: [
@@ -258,6 +258,9 @@ class AddProfilePage extends HookConsumerWidget {
               ],
             ),
           ),
+          /**********************************************
+           *               Next Button
+           **********************************************/
           Positioned(
             bottom: 0,
             left: 0,
