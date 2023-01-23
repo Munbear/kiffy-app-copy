@@ -1,13 +1,4 @@
-import 'package:Kiffy/global/layout/bottom_nav.dart';
-import 'package:Kiffy/view/legacy_add_profile/screen/legacy_add_profile.dart';
-import 'package:Kiffy/view/chat/screen/chat_screen.dart';
-import 'package:Kiffy/view/couter_screen.dart';
-import 'package:Kiffy/view/helper_screen.dart';
-import 'package:Kiffy/view/home/screen/home_screen.dart';
-import 'package:Kiffy/view/intro/screen/intro_screen.dart';
-import 'package:Kiffy/view/me/add_profile/screen/add_profile.dart';
-import 'package:Kiffy/view/mypage/screen/mypage_screen.dart';
-import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
+import 'package:Kiffy/domain/test/page/test_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,93 +9,39 @@ final routerProvider = Provider<GoRouter>(
     final router = RouterNotifier(ref);
 
     return GoRouter(
-      debugLogDiagnostics: true,
-      refreshListenable: router,
-      routes: router._routes,
-      initialLocation: HelperScreen.routeLocation,
-    );
+        debugLogDiagnostics: true, refreshListenable: router, routes: router._routes, initialLocation: "/test");
   },
 );
+
+// GoRoute(
+// name: IntroScreen.routeName,
+// path: IntroScreen.routeLocation,
+// builder: (context, _) => const IntroScreen(),
+// ),
 
 class RouterNotifier extends ChangeNotifier {
   RouterNotifier(ProviderRef<GoRouter> ref);
 
   List<RouteBase> get _routes => [
         GoRoute(
-          name: CounterScreen.routeName,
-          path: CounterScreen.routeLocation,
-          builder: (context, _) => CounterScreen(),
+          path: "/test",
+          name: "test",
+          builder: (context, _) => TestPage(),
         ),
         GoRoute(
-          name: HelperScreen.routeName,
-          path: HelperScreen.routeLocation,
-          builder: (context, _) => HelperScreen(),
+          path: "/mypage",
+          name: "mypage",
+          builder: (context, _) => TestPage(),
         ),
         GoRoute(
-          name: IntroScreen.routeName,
-          path: IntroScreen.routeLocation,
-          builder: (context, _) => const IntroScreen(),
+          path: "/explore",
+          name: "explore",
+          builder: (context, _) => TestPage(),
         ),
         GoRoute(
-          name: SignScreen.routeName,
-          path: SignScreen.routeLocation,
-          builder: (context, _) => const SignScreen(),
+          path: "/match",
+          name: "match",
+          builder: (context, _) => TestPage(),
         ),
-        GoRoute(
-          name: LegacyAddProfile.routeName,
-          path: LegacyAddProfile.routeLocation,
-          builder: (context, _) => LegacyAddProfile(),
-        ),
-        GoRoute(
-          name: AddProfileScreen.routeName,
-          path: AddProfileScreen.routeLocation,
-          builder: (context, _) => AddProfileScreen(),
-        ),
-        ShellRoute(
-          builder: (context, state, child) {
-            return Scaffold(
-              body: child,
-              bottomNavigationBar: KiffyBottomNavigationBar(),
-            );
-          },
-          routes: <RouteBase>[
-            GoRoute(
-              name: HomeScreen.routeName,
-              path: HomeScreen.routeLocation,
-              pageBuilder: (context, state) => CustomTransitionPage(
-                child: HomeScreen(),
-                transitionDuration: const Duration(milliseconds: 0),
-                transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-                  child: child,
-                ),
-              ),
-            ),
-            GoRoute(
-              name: MyPageScreen.routeName,
-              path: MyPageScreen.routeLocation,
-              pageBuilder: (context, state) => CustomTransitionPage(
-                child: MyPageScreen(),
-                transitionDuration: const Duration(milliseconds: 0),
-                transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-                  child: child,
-                ),
-              ),
-            ),
-            GoRoute(
-              name: ChatScreen.routeName,
-              path: ChatScreen.routeLocation,
-              pageBuilder: (context, state) => CustomTransitionPage(
-                child: ChatScreen(),
-                transitionDuration: const Duration(milliseconds: 0),
-                transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-                  child: child,
-                ),
-              ),
-            ),
-          ],
-        )
       ];
 }
