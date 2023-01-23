@@ -19,7 +19,6 @@ class SignScreen extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Image(width: 72, height: 63, image: AssetImage("assets/images/logo_purple.png")),
           const SizedBox(height: 46),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

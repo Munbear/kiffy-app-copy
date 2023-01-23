@@ -33,7 +33,7 @@ class GlobalBottomNavigationItem extends HookConsumerWidget {
           child: IconButton(
             icon: Image.asset(props.iconPath, color: isActive ? const Color(0xffB003FA) : Colors.black,),
             onPressed: () {
-              ref.read(routerProvider).go(props.routePath);
+              ref.read(routerProvider).replace(props.routePath);
             },
           ),
         ),
