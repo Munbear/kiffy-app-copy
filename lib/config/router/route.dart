@@ -18,10 +18,18 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       refreshListenable: router,
       routes: router._routes,
-      initialLocation: "/profile/add_profile/complete",
+      initialLocation: "/profile/add_profile/user",
     );
   },
 );
+
+CustomTransitionPage emptyTransitionPage(Widget child) => CustomTransitionPage(
+    child: child,
+    transitionDuration: const Duration(milliseconds: 0),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
+          opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+          child: child,
+        ));
 
 class RouterNotifier extends ChangeNotifier {
   RouterNotifier(ProviderRef<GoRouter> ref);
@@ -30,52 +38,52 @@ class RouterNotifier extends ChangeNotifier {
         GoRoute(
           path: "/test",
           name: "test",
-          builder: (context, _) => TestPage(),
+          pageBuilder: (context, _) => emptyTransitionPage(TestPage()),
         ),
         GoRoute(
           path: "/mypage",
           name: "mypage",
-          builder: (context, _) => TestPage(),
+          pageBuilder: (context, _) => emptyTransitionPage(TestPage()),
         ),
         GoRoute(
           path: "/explore",
           name: "explore",
-          builder: (context, _) => TestPage(),
+          pageBuilder: (context, _) => emptyTransitionPage(TestPage()),
         ),
         GoRoute(
           path: "/match",
           name: "match",
-          builder: (context, _) => TestPage(),
+          pageBuilder: (context, _) => emptyTransitionPage(TestPage()),
         ),
         GoRoute(
           path: "/sign",
           name: "sign",
-          builder: (context, _) => SignPage(),
+          pageBuilder: (context, _) => emptyTransitionPage(SignPage()),
         ),
         GoRoute(
           path: "/profile/add_profile/user",
           name: "profile_add_profile_user",
-          builder: (context, _) => AddProfileUserPage(),
+          pageBuilder: (context, _) => emptyTransitionPage(AddProfileUserPage()),
         ),
         GoRoute(
           path: "/profile/add_profile/contact",
           name: "profile_add_profile_contact",
-          builder: (context, _) => AddProfileContactPage(),
+          pageBuilder: (context, _) => emptyTransitionPage(AddProfileContactPage()),
         ),
         GoRoute(
           path: "/profile/add_profile/intro",
           name: "profile_add_profile_intro",
-          builder: (context, _) => AddProfileIntroPage(),
+          pageBuilder: (context, _) => emptyTransitionPage(AddProfileIntroPage()),
         ),
         GoRoute(
           path: "/profile/add_profile/image",
           name: "profile_add_profile_image",
-          builder: (context, _) => AddProfileImagePage(),
+          pageBuilder: (context, _) => emptyTransitionPage(AddProfileImagePage()),
         ),
         GoRoute(
           path: "/profile/add_profile/complete",
           name: "profile_add_profile_complete",
-          builder: (context, _) => AddProfileCompletePage(),
+          pageBuilder: (context, _) => emptyTransitionPage(AddProfileCompletePage()),
         ),
       ];
 }

@@ -1,4 +1,9 @@
+import 'package:Kiffy/config/router/route.dart';
+import 'package:Kiffy/domain/core/model/Gender.dart';
+import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddProfileUserPage extends HookConsumerWidget {
@@ -6,6 +11,17 @@ class AddProfileUserPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var input = ref.watch(addProfileInputProvider);
+
+    var inputName = useState("");
+    var inputNameValidation = useState(AddProfileInputItemValidation.success());
+
+    var inputGender = useState<Gender?>(null);
+    var inputGenderValidation = useState(AddProfileInputItemValidation.success());
+
+    var inputBirthDay = useState("");
+    var inputBirthdayValidation = useState(AddProfileInputItemValidation.success());
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -17,8 +33,8 @@ class AddProfileUserPage extends HookConsumerWidget {
             child: Column(
               children: [
                 /**********************************************
-                 *                  Header
-                 **********************************************/
+                     *                  Header
+                     **********************************************/
                 Container(
                   padding: EdgeInsets.only(top: 72, bottom: 30),
                   child: Column(
@@ -40,7 +56,7 @@ class AddProfileUserPage extends HookConsumerWidget {
                             color: Color(0xff494949),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -54,7 +70,7 @@ class AddProfileUserPage extends HookConsumerWidget {
                         padding: EdgeInsets.only(top: 40, left: 40, right: 40),
                         alignment: Alignment.centerLeft,
                         child: Column(
-                          children: const [
+                          children: [
                             Align(
                               child: Text(
                                 "Nickname",
@@ -65,6 +81,7 @@ class AddProfileUserPage extends HookConsumerWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 13, bottom: 7),
                               child: TextField(
+                                onChanged: (t) => inputName.value = t,
                                 style: TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
                                 decoration: InputDecoration(
                                     hintText: "Please enter it.",
@@ -86,11 +103,11 @@ class AddProfileUserPage extends HookConsumerWidget {
                               ),
                             ),
                             Align(
-                              child: Text(
-                                "* It cannot be changed",
-                                style: TextStyle(fontSize: 13, color: Color(0xFF0031AA)),
-                              ),
                               alignment: Alignment.centerLeft,
+                              child: AddProfileInputValidationText(
+                                normalText: "* It cannot be changed",
+                                validation: inputNameValidation.value,
+                              ),
                             )
                           ],
                         ),
@@ -99,8 +116,8 @@ class AddProfileUserPage extends HookConsumerWidget {
                   ),
                 ),
                 /**********************************************
-                 *             Input Gender
-                 **********************************************/
+                     *             Input Gender
+                     **********************************************/
                 Container(
                   child: Column(
                     children: [
@@ -129,9 +146,22 @@ class AddProfileUserPage extends HookConsumerWidget {
                                       child: Padding(
                                         padding: EdgeInsets.only(right: 5),
                                         child: ElevatedButton.icon(
-                                          onPressed: () {},
-                                          label: Text("Man"),
-                                          icon: Image.asset("assets/icons/man_icon.png", width: 18),
+                                          onPressed: () => inputGender.value = Gender.MALE,
+                                          label: Text(
+                                            "Man",
+                                            style: TextStyle(
+                                              color: inputGender.value == Gender.MALE
+                                                  ? Color(0xFF0031AA)
+                                                  : Color(0xff494949),
+                                            ),
+                                          ),
+                                          icon: Image.asset(
+                                            "assets/icons/man_icon.png",
+                                            width: 18,
+                                            color: inputGender.value == Gender.MALE
+                                                ? Color(0xFF0031AA)
+                                                : Color(0xff494949),
+                                          ),
                                           style: ElevatedButton.styleFrom(
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.only(
@@ -145,7 +175,9 @@ class AddProfileUserPage extends HookConsumerWidget {
                                             foregroundColor: Color(0xff494949),
                                             textStyle: TextStyle(fontSize: 18),
                                             side: BorderSide(
-                                              color: Color(0xffDCDCDC),
+                                              color: inputGender.value == Gender.MALE
+                                                  ? Color(0xFF0031AA)
+                                                  : Color(0xffDCDCDC),
                                               width: 2.0,
                                             ),
                                           ),
@@ -156,9 +188,22 @@ class AddProfileUserPage extends HookConsumerWidget {
                                       child: Padding(
                                         padding: EdgeInsets.only(right: 5),
                                         child: ElevatedButton.icon(
-                                          onPressed: () {},
-                                          label: Text("Woman"),
-                                          icon: Image.asset("assets/icons/woman_icon.png", width: 20),
+                                          onPressed: () => inputGender.value = Gender.FEMALE,
+                                          label: Text(
+                                            "Woman",
+                                            style: TextStyle(
+                                              color: inputGender.value == Gender.FEMALE
+                                                  ? Color(0xFF0031AA)
+                                                  : Color(0xff494949),
+                                            ),
+                                          ),
+                                          icon: Image.asset(
+                                            "assets/icons/woman_icon.png",
+                                            width: 20,
+                                            color: inputGender.value == Gender.FEMALE
+                                                ? Color(0xFF0031AA)
+                                                : Color(0xff494949),
+                                          ),
                                           style: ElevatedButton.styleFrom(
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.only(
@@ -172,7 +217,9 @@ class AddProfileUserPage extends HookConsumerWidget {
                                             foregroundColor: Color(0xff494949),
                                             textStyle: TextStyle(fontSize: 18),
                                             side: BorderSide(
-                                              color: Color(0xffDCDCDC),
+                                              color: inputGender.value == Gender.FEMALE
+                                                  ? Color(0xFF0031AA)
+                                                  : Color(0xffDCDCDC),
                                               width: 2.0,
                                             ),
                                           ),
@@ -184,9 +231,9 @@ class AddProfileUserPage extends HookConsumerWidget {
                               ),
                             ),
                             Align(
-                              child: Text(
-                                "* It cannot be changed",
-                                style: TextStyle(fontSize: 13, color: Color(0xFF0031AA)),
+                              child: AddProfileInputValidationText(
+                                normalText: "* It cannot be changed",
+                                validation: inputGenderValidation.value,
                               ),
                               alignment: Alignment.centerLeft,
                             )
@@ -197,8 +244,8 @@ class AddProfileUserPage extends HookConsumerWidget {
                   ),
                 ),
                 /**********************************************
-                 *             Input Birthday
-                 **********************************************/
+                     *             Input Birthday
+                     **********************************************/
                 Container(
                   child: Column(
                     children: [
@@ -206,7 +253,7 @@ class AddProfileUserPage extends HookConsumerWidget {
                         padding: EdgeInsets.only(top: 40, left: 40, right: 40),
                         alignment: Alignment.centerLeft,
                         child: Column(
-                          children: const [
+                          children: [
                             Align(
                               child: Text.rich(TextSpan(children: [
                                 TextSpan(
@@ -222,6 +269,7 @@ class AddProfileUserPage extends HookConsumerWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 13, bottom: 7),
                               child: TextField(
+                                onChanged: (t) => inputBirthDay.value = t,
                                 style: TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
                                 decoration: InputDecoration(
                                     hintText: "YYYYMMDD",
@@ -243,9 +291,9 @@ class AddProfileUserPage extends HookConsumerWidget {
                               ),
                             ),
                             Align(
-                              child: Text(
-                                "* It cannot be changed",
-                                style: TextStyle(fontSize: 13, color: Color(0xFF0031AA)),
+                              child: AddProfileInputValidationText(
+                                normalText: "* It cannot be changed",
+                                validation: inputBirthdayValidation.value,
                               ),
                               alignment: Alignment.centerLeft,
                             )
@@ -259,8 +307,8 @@ class AddProfileUserPage extends HookConsumerWidget {
             ),
           ),
           /**********************************************
-           *               Next Button
-           **********************************************/
+               *               Next Button
+               **********************************************/
           Positioned(
             bottom: 0,
             left: 0,
@@ -269,10 +317,22 @@ class AddProfileUserPage extends HookConsumerWidget {
               padding: EdgeInsets.all(36),
               child: ElevatedButton(
                 child: Text("Next"),
-                onPressed: () {},
+                onPressed: () {
+                  inputNameValidation.value = ref.read(addProfileInputProvider.notifier).setName(inputName.value);
+                  inputGenderValidation.value = ref.read(addProfileInputProvider.notifier).setGender(inputGender.value);
+                  inputBirthdayValidation.value =
+                      ref.read(addProfileInputProvider.notifier).setBirthDate(inputBirthDay.value);
+
+                  if (inputNameValidation.value.isValid && inputGenderValidation.value.isValid && inputBirthdayValidation.value.isValid) {
+                    ref.read(routerProvider).replace("/profile/add_profile/contact");
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.only(top: 15, bottom: 15),
-                  textStyle: TextStyle(fontSize: 20, color: Colors.white, ),
+                  textStyle: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
                   backgroundColor: Color(0xFF0031AA),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
