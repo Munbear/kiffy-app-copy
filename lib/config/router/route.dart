@@ -1,3 +1,4 @@
+import 'package:Kiffy/domain/sign/page/sign_page.dart';
 import 'package:Kiffy/domain/test/page/test_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,7 +10,11 @@ final routerProvider = Provider<GoRouter>(
     final router = RouterNotifier(ref);
 
     return GoRouter(
-        debugLogDiagnostics: true, refreshListenable: router, routes: router._routes, initialLocation: "/test");
+      debugLogDiagnostics: true,
+      refreshListenable: router,
+      routes: router._routes,
+      initialLocation: "/sign",
+    );
   },
 );
 
@@ -42,6 +47,11 @@ class RouterNotifier extends ChangeNotifier {
           path: "/match",
           name: "match",
           builder: (context, _) => TestPage(),
+        ),
+        GoRoute(
+          path: "/sign",
+          name: "sign",
+          builder: (context, _) => SignPage(),
         ),
       ];
 }
