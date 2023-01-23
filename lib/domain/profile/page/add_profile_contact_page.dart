@@ -1,9 +1,20 @@
+import 'package:Kiffy/config/router/route.dart';
+import 'package:Kiffy/domain/core/model/ContactType.dart';
+import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddProfileContactPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var inputContactValidation = useState(AddProfileInputItemValidation.success());
+
+    var inputContactId = useState("");
+    var inputContactType = useState<ContactType?>(null);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -66,6 +77,7 @@ class AddProfileContactPage extends HookConsumerWidget {
                                 children: [
                                   Expanded(
                                     child: TextField(
+                                      onChanged: (t) => inputContactId.value = t,
                                       style: TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
                                       decoration: InputDecoration(
                                           hintText: "Please enter it.",
@@ -88,10 +100,30 @@ class AddProfileContactPage extends HookConsumerWidget {
                                   ),
                                   Container(
                                     height: 55,
-                                    width: 70,
-                                    padding: EdgeInsets.only(left: 15),
+                                    width: 55,
+                                    margin: EdgeInsets.only(left:10),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: inputContactType.value == ContactType.LINE
+                                          ? GradientBoxBorder(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment(-0.94, 1.8),
+                                                colors: [
+                                                  Color(0xffBA00FF),
+                                                  Color(0xffB003FA),
+                                                  Color(0xff960AEE),
+                                                  Color(0xff6A15DB),
+                                                  Color(0xff2F25BF),
+                                                  Color(0xff0031AA),
+                                                ],
+                                              ),
+                                            )
+                                          : null,
+                                    ),
                                     child: IconButton(
-                                      onPressed: () {},
+                                      padding: EdgeInsets.all(5),
+                                      onPressed: () => inputContactType.value = ContactType.LINE,
                                       icon: Image.asset(
                                         "assets/icons/line_icon.png",
                                       ),
@@ -100,8 +132,29 @@ class AddProfileContactPage extends HookConsumerWidget {
                                   Container(
                                     height: 55,
                                     width: 55,
+                                    margin: EdgeInsets.only(left: 5),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: inputContactType.value == ContactType.WHATSAPP
+                                          ? GradientBoxBorder(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment(-0.94, 1.8),
+                                          colors: [
+                                            Color(0xffBA00FF),
+                                            Color(0xffB003FA),
+                                            Color(0xff960AEE),
+                                            Color(0xff6A15DB),
+                                            Color(0xff2F25BF),
+                                            Color(0xff0031AA),
+                                          ],
+                                        ),
+                                      )
+                                          : null,
+                                    ),
                                     child: IconButton(
-                                      onPressed: () {},
+                                      padding: EdgeInsets.all(5),
+                                      onPressed: () => inputContactType.value = ContactType.WHATSAPP,
                                       icon: Image.asset(
                                         "assets/icons/whatsapp_icon.png",
                                         width: 68,
@@ -113,11 +166,11 @@ class AddProfileContactPage extends HookConsumerWidget {
                               ),
                             ),
                             Align(
-                              child: Text(
-                                "* When a match is made, it’s shown to the woman.",
-                                style: TextStyle(fontSize: 13, color: Color(0xFF0031AA)),
-                              ),
                               alignment: Alignment.centerLeft,
+                              child: AddProfileInputValidationText(
+                                normalText: "* When a match is made, it’s shown to the woman.",
+                                validation: inputContactValidation.value,
+                              ),
                             )
                           ],
                         ),
@@ -139,7 +192,16 @@ class AddProfileContactPage extends HookConsumerWidget {
               padding: EdgeInsets.all(36),
               child: ElevatedButton(
                 child: Text("Next"),
-                onPressed: () {},
+                onPressed: () {
+                  inputContactValidation.value = ref.read(addProfileInputProvider.notifier).setContact(
+                        inputContactId.value,
+                        inputContactType.value,
+                      );
+
+                  if (inputContactValidation.value.isValid) {
+                    ref.read(routerProvider).replace("/profile/add_profile/intro");
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.only(top: 15, bottom: 15),
                   textStyle: TextStyle(

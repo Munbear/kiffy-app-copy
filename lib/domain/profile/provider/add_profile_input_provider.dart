@@ -1,3 +1,4 @@
+import 'package:Kiffy/domain/core/model/ContactType.dart';
 import 'package:Kiffy/domain/core/model/Gender.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -8,14 +9,18 @@ class AddProfileInputState extends StateNotifier<AddProfileInput> {
 
   AddProfileInputState(this.ref)
       : super(
-    AddProfileInput(
-      name: "",
-      gender: Gender.MALE,
-      birthDate: "",
-      intro: "",
-      medias: List.empty(),
-    ),
-  );
+          AddProfileInput(
+            name: "",
+            gender: Gender.MALE,
+            birthDate: "",
+            intro: "",
+            medias: List.empty(),
+            contact: AddProfileContact(
+              contactId: "",
+              contactType: ContactType.LINE,
+            )
+          ),
+        );
 
   AddProfileInputItemValidation setName(String name) {
     if (name.isEmpty) {
@@ -60,6 +65,18 @@ class AddProfileInputState extends StateNotifier<AddProfileInput> {
 
     return AddProfileInputItemValidation.success();
   }
+
+  AddProfileInputItemValidation setContact(String contactId, ContactType? contactType) {
+    if (contactId.isEmpty) {
+      return AddProfileInputItemValidation.fail("* 연락처를 입력해주세요");
+    }
+
+    if (contactType == null) {
+      return AddProfileInputItemValidation.fail("* 연락처를 선택해주세요");
+    }
+
+    return AddProfileInputItemValidation.success();
+  }
 }
 
 class AddProfileInput {
@@ -68,6 +85,7 @@ class AddProfileInput {
   String birthDate;
   String intro;
   List<AddProfileMedia> medias;
+  AddProfileContact contact;
 
   AddProfileInput({
     required this.name,
@@ -75,6 +93,7 @@ class AddProfileInput {
     required this.birthDate,
     required this.intro,
     required this.medias,
+    required this.contact,
   });
 }
 
@@ -85,6 +104,16 @@ class AddProfileMedia {
   AddProfileMedia({
     required this.id,
     required this.orderNum,
+  });
+}
+
+class AddProfileContact {
+  String contactId;
+  ContactType contactType;
+
+  AddProfileContact({
+    required this.contactId,
+    required this.contactType,
   });
 }
 
@@ -100,6 +129,5 @@ class AddProfileInputItemValidation {
   static AddProfileInputItemValidation fail(String message) =>
       AddProfileInputItemValidation(isValid: false, validationMessage: message);
 
-  static AddProfileInputItemValidation success() =>
-      AddProfileInputItemValidation(isValid: true, validationMessage: "");
+  static AddProfileInputItemValidation success() => AddProfileInputItemValidation(isValid: true, validationMessage: "");
 }
