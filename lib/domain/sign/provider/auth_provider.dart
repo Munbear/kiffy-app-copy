@@ -38,6 +38,7 @@ class AuthState extends StateNotifier<AuthToken> {
         final userStatus = await getUserStatus();
         state.authStatus = AuthStatus.SUCCESS;
         state.userStatus = userStatus.status;
+        FirebaseAuth.instance.signInWithEmailAndPassword(email: userStatus.email, password: savedAccessToken);
         _routeByAuthToken(state);
         return;
       } catch (e) {
@@ -59,10 +60,13 @@ class AuthState extends StateNotifier<AuthToken> {
       idToken: googleAuth?.idToken,
     );
 
+    var userCredentials = await FirebaseAuth.instance.signInWithCredential(credential);
+
     final token = googleAuth?.accessToken;
     var response = await signIn(SignProvider.GOOGLE, token!);
     await storage.write(key: Constants.SECURE_STORAGE_AUTHTOEKN, value: response.accessToken);
     final userStatus = await getUserStatus();
+    await userCredentials.user?.updatePassword(response.accessToken);
     state.authStatus = AuthStatus.SUCCESS;
     state.userStatus = userStatus.status;
     _routeByAuthToken(state);

@@ -26,9 +26,11 @@ enum UserStatus {
 
 class UserStatusResponse {
   late String id;
+  late String email;
   late UserStatus status;
 
   UserStatusResponse.fromJson(Map<String, dynamic> json)
       : id = json["id"],
+        email = json["email"],
         status = UserStatus.fromString(json["status"]);
 }

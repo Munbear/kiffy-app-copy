@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class SignPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(authProvider.notifier).autoAuth();
 
     void onPressedListener(SignProvider provider) {
       ref.read(authProvider.notifier).auth();
