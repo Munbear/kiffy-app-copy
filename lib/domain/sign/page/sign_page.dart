@@ -1,9 +1,16 @@
+import 'package:Kiffy/domain/sign/provider/auth_provider.dart';
+import 'package:Kiffy/infra/auth_client.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SignPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    void onPressedListener(SignProvider provider) {
+      ref.read(authProvider.notifier).auth();
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -18,7 +25,7 @@ class SignPage extends HookConsumerWidget {
                 width: 150,
               ),
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () => onPressedListener(SignProvider.GOOGLE),
                 label: Text("Continue with Google"),
                 icon: Image.asset("assets/images/google_logo.png", width: 20),
                 style: ElevatedButton.styleFrom(

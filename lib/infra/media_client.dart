@@ -1,11 +1,9 @@
 import 'package:Kiffy/config/constants/contstants.dart';
+import 'package:Kiffy/infra/api_client.dart';
 import 'package:dio/dio.dart';
 
 Future<UploadImageResponse> uploadImage(String path) async {
-  var baseOptions = BaseOptions(
-    baseUrl: Constants.API,
-  );
-  var dio = Dio(baseOptions);
+  var dio = ApiClient().dio;
 
   var formData = FormData.fromMap({
     "file": await MultipartFile.fromFile(path),
