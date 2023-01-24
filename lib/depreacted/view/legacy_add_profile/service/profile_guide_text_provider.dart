@@ -1,6 +1,8 @@
-import 'package:Kiffy/view/legacy_add_profile/screen/legacy_add_profile.dart';
+// import 'package:Kiffy/view/legacy_add_profile/screen/legacy_add_profile.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../screen/legacy_add_profile.dart';
 
 final profileProvider = StateNotifierProvider<ProfileGuideText, String>((ref) {
   return ProfileGuideText(ref);

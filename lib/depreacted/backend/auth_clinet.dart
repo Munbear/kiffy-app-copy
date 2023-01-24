@@ -1,14 +1,15 @@
 import 'dart:convert';
 
-import 'package:Kiffy/backend/api_client.dart';
+// import 'package:Kiffy/backend/api_client.dart';
+import 'package:Kiffy/depreacted/backend/api_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final AuthClientProvider = Provider((ref) => AuthClient());
 
 class AuthClient extends ApiBaseClient {
   Future<SignInResponse> signIn(SignProvider provider, String accessToken) async {
-    final response = await post(Uri.parse("$baseUrl/product/api/view/sign/v1/in/${provider.toCode()}"),
-        body: jsonEncode({"accessToken": accessToken}));
+    final response =
+        await post(Uri.parse("$baseUrl/product/api/view/sign/v1/in/${provider.toCode()}"), body: jsonEncode({"accessToken": accessToken}));
 
     return SignInResponse.fromJson(jsonDecode(response.body));
   }

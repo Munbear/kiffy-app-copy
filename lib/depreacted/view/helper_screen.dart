@@ -1,17 +1,26 @@
-import 'package:Kiffy/global/service/geo_location.dart';
-import 'package:Kiffy/view/couter_screen.dart';
-import 'package:Kiffy/view/me/add_profile/screen/add_profile_user_page.dart';
-import 'package:Kiffy/view/test_provider.dart';
-import 'package:Kiffy/view/home/screen/home_screen.dart';
-import 'package:Kiffy/view/intro/screen/intro_screen.dart';
-import 'package:Kiffy/view/legacy_add_profile/screen/legacy_add_profile.dart';
-import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
+// import 'package:Kiffy/global/service/geo_location.dart';
+// import 'package:Kiffy/view/couter_screen.dart';
+// import 'package:Kiffy/view/me/add_profile/screen/add_profile_user_page.dart';
+// import 'package:Kiffy/view/test_provider.dart';
+// import 'package:Kiffy/view/home/screen/home_screen.dart';
+// import 'package:Kiffy/view/intro/screen/intro_screen.dart';
+// import 'package:Kiffy/view/legacy_add_profile/screen/legacy_add_profile.dart';
+// import 'package:Kiffy/view/sign/screen/sign_in_screen.dart';
+import 'package:Kiffy/depreacted/global/service/geo_location.dart';
+import 'package:Kiffy/depreacted/view/couter_screen.dart';
+import 'package:Kiffy/depreacted/view/home/screen/home_screen.dart';
+import 'package:Kiffy/depreacted/view/intro/screen/intro_screen.dart';
+import 'package:Kiffy/depreacted/view/sign/screen/sign_in_screen.dart';
+import 'package:Kiffy/depreacted/view/test_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'legacy_add_profile/screen/legacy_add_profile.dart';
+import 'me/add_profile/screen/add_profile.dart';
 
 class HelperScreen extends HookConsumerWidget {
   HelperScreen({super.key});

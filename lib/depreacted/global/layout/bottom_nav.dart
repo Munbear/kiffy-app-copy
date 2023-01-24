@@ -1,11 +1,14 @@
 import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/view/chat/screen/chat_screen.dart';
-import 'package:Kiffy/view/home/screen/home_screen.dart';
-import 'package:Kiffy/view/mypage/screen/mypage_screen.dart';
+// import 'package:Kiffy/view/chat/screen/chat_screen.dart';
+// import 'package:Kiffy/view/home/screen/home_screen.dart';
+// import 'package:Kiffy/view/mypage/screen/mypage_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../view/chat/screen/chat_screen.dart';
+import '../../view/home/screen/home_screen.dart';
+import '../../view/mypage/screen/mypage_screen.dart';
 import 'bottom_nav_icon.dart';
 
 class KiffyBottomNavigationItem {

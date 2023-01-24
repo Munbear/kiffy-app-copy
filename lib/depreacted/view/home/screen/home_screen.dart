@@ -1,10 +1,12 @@
-import 'package:Kiffy/global/model/gender_type.dart';
-import 'package:Kiffy/view/home/widget/user_profile.dart';
+// import 'package:Kiffy/global/model/gender_type.dart';
+// import 'package:Kiffy/view/home/widget/user_profile.dart';
+import 'package:Kiffy/depreacted/view/home/widget/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../global/model/gender_type.dart';
 import '../../../global/model/media_type.dart';
 
 class HomeScreen extends HookConsumerWidget {

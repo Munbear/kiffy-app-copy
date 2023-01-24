@@ -1,8 +1,10 @@
-import 'package:Kiffy/global/model/gender_type.dart';
+// import 'package:Kiffy/global/model/gender_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../global/model/gender_type.dart';
 
 class AddProfileInputGenderProps {
   ValueChanged<Gender> onChanged;
@@ -40,9 +42,7 @@ class AddProfileInputGender extends HookConsumerWidget {
                   decoration: BoxDecoration(
                     color: selectedGender.value == Gender.female ? Colors.white : Colors.transparent,
                     borderRadius: BorderRadius.circular(7),
-                    border: Border.all(
-                        color: selectedGender == Gender.female ? const Color(0xff0031AA) : const Color(0xffbdbdbd),
-                        width: 1.5),
+                    border: Border.all(color: selectedGender == Gender.female ? const Color(0xff0031AA) : const Color(0xffbdbdbd), width: 1.5),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -71,9 +71,7 @@ class AddProfileInputGender extends HookConsumerWidget {
                   decoration: BoxDecoration(
                     color: selectedGender.value == Gender.male ? Colors.white : Colors.transparent,
                     borderRadius: BorderRadius.circular(7),
-                    border: Border.all(
-                        color: selectedGender == Gender.male ? const Color(0xff0031AA) : const Color(0xffbdbdbd),
-                        width: 1.5),
+                    border: Border.all(color: selectedGender == Gender.male ? const Color(0xff0031AA) : const Color(0xffbdbdbd), width: 1.5),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

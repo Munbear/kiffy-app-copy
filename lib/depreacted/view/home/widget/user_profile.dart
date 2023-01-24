@@ -1,7 +1,10 @@
-import 'package:Kiffy/global/model/gender_type.dart';
-import 'package:Kiffy/global/model/media_type.dart';
+import 'package:Kiffy/depreacted/global/model/media_type.dart';
+// import 'package:Kiffy/global/model/gender_type.dart';
+// import 'package:Kiffy/global/model/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../global/model/gender_type.dart';
 
 // 유저 프로필 사진
 class UserProfileMedia {
