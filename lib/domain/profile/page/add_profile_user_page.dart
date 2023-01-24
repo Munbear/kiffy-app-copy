@@ -12,7 +12,7 @@ class AddProfileUserPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var input = ref.watch(addProfileInputProvider);
+    ref.watch(addProfileInputProvider);
 
     var inputName = useState("");
     var inputNameValidation = useState(AddProfileInputItemValidation.success());
