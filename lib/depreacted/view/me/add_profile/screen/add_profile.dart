@@ -1,11 +1,14 @@
-import 'package:Kiffy/global/model/gender_type.dart';
+// import 'package:Kiffy/global/model/gender_type.dart';
 import 'package:Kiffy/main.dart';
-import 'package:Kiffy/view/legacy_add_profile/widget/confirm_button.dart';
-import 'package:Kiffy/view/me/add_profile/widget/AddProfileInputGender.dart';
-import 'package:Kiffy/view/me/add_profile/widget/AddProfileInputText.dart';
+// import 'package:Kiffy/view/legacy_add_profile/widget/confirm_button.dart';
+// import 'package:Kiffy/view/me/add_profile/widget/AddProfileInputGender.dart';
+// import 'package:Kiffy/view/me/add_profile/widget/AddProfileInputText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../legacy_add_profile/widget/confirm_button.dart';
+import '../widget/AddProfileInputText.dart';
 
 class AddProfileScreen extends HookConsumerWidget {
   AddProfileScreen({super.key});
@@ -127,11 +130,7 @@ class AddProfileInputValue {
   }
 
   bool isValidate() {
-    if (this.name != null &&
-        this.gender != null &&
-        this.birthDate != null &&
-        this.intro != null &&
-        this.medias.length > 1) {
+    if (this.name != null && this.gender != null && this.birthDate != null && this.intro != null && this.medias.length > 1) {
       return true;
     }
     return false;

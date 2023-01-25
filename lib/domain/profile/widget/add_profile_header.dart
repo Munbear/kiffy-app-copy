@@ -5,7 +5,7 @@ class AddProfileHeader extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      padding: EdgeInsets.only(top: 72, bottom: 30),
+      padding: const EdgeInsets.only(top: 72, bottom: 30),
       child: Column(
         children: const [
           Text(

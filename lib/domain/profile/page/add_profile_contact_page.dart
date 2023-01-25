@@ -37,7 +37,7 @@ class AddProfileContactPage extends HookConsumerWidget {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 40, left: 40, right: 40),
+                        padding: const EdgeInsets.only(top: 40, left: 40, right: 40),
                         alignment: Alignment.centerLeft,
                         child: Column(
                           children: [
@@ -55,22 +55,18 @@ class AddProfileContactPage extends HookConsumerWidget {
                                   Expanded(
                                     child: TextField(
                                       onChanged: (t) => inputContactId.value = t,
-                                      style: TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
-                                      decoration: InputDecoration(
+                                      style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
+                                      decoration: const InputDecoration(
                                           hintText: "Please enter it.",
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
                                             borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(15),
-                                                bottomRight: Radius.circular(15),
-                                                topRight: Radius.circular(15)),
+                                                bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
                                             borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(15),
-                                                bottomRight: Radius.circular(15),
-                                                topRight: Radius.circular(15)),
+                                                bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
                                           ),
                                           contentPadding: EdgeInsets.all(18)),
                                     ),
@@ -78,11 +74,11 @@ class AddProfileContactPage extends HookConsumerWidget {
                                   Container(
                                     height: 55,
                                     width: 55,
-                                    margin: EdgeInsets.only(left:10),
+                                    margin: const EdgeInsets.only(left: 10),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: inputContactType.value == ContactType.LINE
-                                          ? GradientBoxBorder(
+                                          ? const GradientBoxBorder(
                                               gradient: LinearGradient(
                                                 begin: Alignment.topLeft,
                                                 end: Alignment(-0.94, 1.8),
@@ -99,7 +95,7 @@ class AddProfileContactPage extends HookConsumerWidget {
                                           : null,
                                     ),
                                     child: IconButton(
-                                      padding: EdgeInsets.all(5),
+                                      padding: const EdgeInsets.all(5),
                                       onPressed: () => inputContactType.value = ContactType.LINE,
                                       icon: Image.asset(
                                         "assets/icons/line_icon.png",
@@ -109,28 +105,28 @@ class AddProfileContactPage extends HookConsumerWidget {
                                   Container(
                                     height: 55,
                                     width: 55,
-                                    margin: EdgeInsets.only(left: 5),
+                                    margin: const EdgeInsets.only(left: 5),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: inputContactType.value == ContactType.WHATSAPP
-                                          ? GradientBoxBorder(
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment(-0.94, 1.8),
-                                          colors: [
-                                            Color(0xffBA00FF),
-                                            Color(0xffB003FA),
-                                            Color(0xff960AEE),
-                                            Color(0xff6A15DB),
-                                            Color(0xff2F25BF),
-                                            Color(0xff0031AA),
-                                          ],
-                                        ),
-                                      )
+                                          ? const GradientBoxBorder(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment(-0.94, 1.8),
+                                                colors: [
+                                                  Color(0xffBA00FF),
+                                                  Color(0xffB003FA),
+                                                  Color(0xff960AEE),
+                                                  Color(0xff6A15DB),
+                                                  Color(0xff2F25BF),
+                                                  Color(0xff0031AA),
+                                                ],
+                                              ),
+                                            )
                                           : null,
                                     ),
                                     child: IconButton(
-                                      padding: EdgeInsets.all(5),
+                                      padding: const EdgeInsets.all(5),
                                       onPressed: () => inputContactType.value = ContactType.WHATSAPP,
                                       icon: Image.asset(
                                         "assets/icons/whatsapp_icon.png",
@@ -166,7 +162,7 @@ class AddProfileContactPage extends HookConsumerWidget {
             left: 0,
             right: 0,
             child: Padding(
-              padding: EdgeInsets.all(36),
+              padding: const EdgeInsets.all(36),
               child: ElevatedButton(
                 child: Text("Next"),
                 onPressed: () {
@@ -180,12 +176,12 @@ class AddProfileContactPage extends HookConsumerWidget {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.only(top: 15, bottom: 15),
-                  textStyle: TextStyle(
+                  padding: const EdgeInsets.only(top: 15, bottom: 15),
+                  textStyle: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                   ),
-                  backgroundColor: Color(0xFF0031AA),
+                  backgroundColor: const Color(0xFF0031AA),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

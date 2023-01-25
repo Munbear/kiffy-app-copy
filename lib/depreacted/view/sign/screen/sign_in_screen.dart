@@ -1,8 +1,9 @@
-import 'package:Kiffy/view/sign/service/auth_provider.dart';
+// import 'package:Kiffy/view/sign/service/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../domain/sign/provider/auth_provider.dart';
 import '../widget/white_circle.dart';
 
 class SignScreen extends HookConsumerWidget {
