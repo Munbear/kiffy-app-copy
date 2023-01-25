@@ -34,7 +34,7 @@ class GlobalBottomNavigationItem extends HookConsumerWidget {
                 ? Positioned(
                     left: 0,
                     right: 0,
-                    top: 10,
+                    top: 7,
                     child: Container(
                       width: 5,
                       height: 5,
@@ -46,10 +46,11 @@ class GlobalBottomNavigationItem extends HookConsumerWidget {
                   )
                 : null,
             Positioned(
-              child: SizedBox(
-                width: 75,
-                height: 75,
+              child: Container(
+                width: 70,
+                height: 70,
                 child: IconButton(
+                  padding: EdgeInsets.all(0),
                   icon: Image.asset(
                     props.iconPath,
                     color: isActive ? const Color(0xffB003FA) : Colors.black,

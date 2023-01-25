@@ -29,7 +29,7 @@ class GlobalBottomNavigation extends HookConsumerWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.only(left: 55, right: 55, top: 5, bottom: 0),
+      padding: const EdgeInsets.only(left: 40, right: 40, top: 5, bottom: 0),
       alignment: Alignment.center,
       decoration: const BoxDecoration(
           color: Colors.white,
