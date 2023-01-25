@@ -6,7 +6,7 @@ class ExploreWishedListItem extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      margin: EdgeInsets.only(right: 10),
+      margin: EdgeInsets.only(right: 13),
       child: Column(
         children: [
           Container(

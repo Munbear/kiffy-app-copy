@@ -1,5 +1,6 @@
 import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
 import 'package:Kiffy/domain/explore/widget/explore_wished_list_item.dart';
+import 'package:Kiffy/domain/explore/widget/explore_wished_list_more.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -23,9 +24,9 @@ class ExplorePage extends HookConsumerWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                height: 90,
+                height: 100,
                 child: ListView(
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                   scrollDirection: Axis.horizontal,
                   children: [
                     ExploreWishedListItem(),
@@ -33,7 +34,7 @@ class ExplorePage extends HookConsumerWidget {
                     ExploreWishedListItem(),
                     ExploreWishedListItem(),
                     ExploreWishedListItem(),
-                    ExploreWishedListItem(),
+                    ExploreWishedListMore(),
                   ],
                 ),
               ),
