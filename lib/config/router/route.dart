@@ -1,3 +1,4 @@
+import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_complete_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_contact_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_image_page.dart';
@@ -18,7 +19,7 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       refreshListenable: router,
       routes: router._routes,
-      initialLocation: "/sign",
+      initialLocation: "/explore",
     );
   },
 );
@@ -48,7 +49,7 @@ class RouterNotifier extends ChangeNotifier {
         GoRoute(
           path: "/explore",
           name: "explore",
-          pageBuilder: (context, _) => emptyTransitionPage(TestPage()),
+          pageBuilder: (context, _) => emptyTransitionPage(ExplorePage()),
         ),
         GoRoute(
           path: "/match",
