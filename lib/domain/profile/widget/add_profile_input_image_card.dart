@@ -24,9 +24,7 @@ class AddProfileInputImageCardProps {
 class AddProfileInputImageCard extends HookConsumerWidget {
   AddProfileInputImageCardProps props;
 
-  AddProfileInputImageCard({
-    required this.props,
-  });
+  AddProfileInputImageCard({required this.props});
 
   // 이미지 불러오기
   Future addImage(ImageSource imageSource) async {
@@ -57,12 +55,10 @@ class AddProfileInputImageCard extends HookConsumerWidget {
             margin: const EdgeInsets.all(7),
             height: 163,
             clipBehavior: Clip.hardEdge,
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
-              border: props.filePath == null
-                  ? Border.all(color: const Color(0xFFCECECE), width: 2.0)
-                  : null,
-              borderRadius: BorderRadius.only(
+              border: props.filePath == null ? Border.all(color: const Color(0xFFCECECE), width: 2.0) : null,
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(15),
                 bottomRight: Radius.circular(15),
                 topRight: Radius.circular(15),
@@ -71,19 +67,12 @@ class AddProfileInputImageCard extends HookConsumerWidget {
             child: props.filePath == null
                 ? InkWell(
                     onTap: () => addImage(ImageSource.gallery),
-                    child: Center(
-                        child: Text(
-                      "+",
-                      style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)),
-                    )),
+                    child: const Center(child: Text("+", style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)))),
                   )
                 : Container(
                     decoration: BoxDecoration(
                       color: Colors.grey,
-                      image: DecorationImage(
-                        image: Image.file(File(props.filePath!)).image,
-                        fit: BoxFit.cover
-                      ),
+                      image: DecorationImage(image: Image.file(File(props.filePath!)).image, fit: BoxFit.cover),
                     ),
                   )
             //      Image.file(File(imagePath.value!.path), fit: BoxFit.cover)
@@ -95,15 +84,11 @@ class AddProfileInputImageCard extends HookConsumerWidget {
             top: 15,
             child: GestureDetector(
               onTap: () => props.onDeleted(props.index),
-              child: Text(
-                "X",
-                style: TextStyle(fontSize: 14, color: Colors.white),
-              ),
+              child: const Text("X", style: TextStyle(fontSize: 14, color: Colors.white)),
             ),
           ),
         ),
       ],
     );
   }
-
 }
