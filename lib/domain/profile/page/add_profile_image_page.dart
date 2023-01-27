@@ -1,12 +1,18 @@
+import 'dart:developer';
+
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:Kiffy/infra/media_client.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:http/http.dart';
+
+import '../../../infra/user_client.dart';
 
 class AddProfileInputImageItem {
   String filePath;
@@ -28,6 +34,7 @@ class AddProfileImagePage extends HookConsumerWidget {
     final inputImageMaxLength = 6;
     var inputImages = useState<List<AddProfileInputImageItem>>(List.empty());
     var inputImagesValidation = useState(AddProfileInputItemValidation.success());
+    var userProfile = ref.read(addProfileInputProvider);
 
     void onAddedListener(String path) {
       uploadImage(path).then((res) => inputImages.value = [
@@ -68,7 +75,7 @@ class AddProfileImagePage extends HookConsumerWidget {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 40, left: 40, right: 40),
+                        padding: const EdgeInsets.only(top: 40, left: 40, right: 40),
                         alignment: Alignment.centerLeft,
                         child: Column(
                           children: [
@@ -76,31 +83,35 @@ class AddProfileImagePage extends HookConsumerWidget {
                               children: [
                                 Expanded(
                                   child: Align(
-                                    child: Text.rich(TextSpan(children: [
+                                    child: Text.rich(
                                       TextSpan(
-                                        text: "Select your pictures",
-                                        style: TextStyle(fontSize: 20),
+                                        children: [
+                                          TextSpan(
+                                            text: "Select your pictures",
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ],
                                       ),
-                                    ])),
+                                    ),
                                     alignment: Alignment.centerLeft,
                                   ),
                                 ),
                                 Container(
                                   width: 28,
                                   height: 18,
-                                  padding: EdgeInsets.only(right: 10),
+                                  padding: const EdgeInsets.only(right: 10),
                                   child: IconButton(
                                     onPressed: () {},
                                     icon: Image.asset(
                                       "assets/icons/alert_icon.png",
                                     ),
-                                    padding: EdgeInsets.all(0),
+                                    padding: const EdgeInsets.all(0),
                                   ),
                                 )
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 13, bottom: 7),
+                              padding: const EdgeInsets.only(top: 13, bottom: 7),
                               child: GridView.builder(
                                 shrinkWrap: true,
                                 itemCount: inputImageMaxLength,
@@ -115,9 +126,7 @@ class AddProfileImagePage extends HookConsumerWidget {
                                     index: index,
                                     onDeleted: (idx) => onDeletedListener(idx),
                                     onAdded: (path) => onAddedListener(path),
-                                    filePath: inputImages.value.length > index
-                                        ? inputImages.value.elementAt(index).filePath
-                                        : null,
+                                    filePath: inputImages.value.length > index ? inputImages.value.elementAt(index).filePath : null,
                                   ),
                                 ),
                               ),
@@ -146,15 +155,27 @@ class AddProfileImagePage extends HookConsumerWidget {
             left: 0,
             right: 0,
             child: Padding(
-              padding: EdgeInsets.all(36),
+              padding: const EdgeInsets.all(36),
               child: ElevatedButton(
                 child: Text("Next"),
                 onPressed: () {
-                  inputImagesValidation.value = ref.read(addProfileInputProvider.notifier).setMedias(inputImages.value
-                      .map((image) => AddProfileMedia(id: image.id, orderNum: image.orderNum))
-                      .toList());
+                  inputImagesValidation.value = ref.read(addProfileInputProvider.notifier).setMedias(
+                        inputImages.value.map((image) => AddProfileMedia(id: image.id, orderNum: image.orderNum)).toList(),
+                      );
 
                   if (inputImagesValidation.value.isValid) {
+                    try {
+                      postUserProfile(
+                        userProfile.name,
+                        userProfile.gender,
+                        userProfile.birthDate,
+                        userProfile.intro,
+                        userProfile.medias,
+                      );
+                    } on DioError catch (e) {
+                      log(e.message);
+                    }
+
                     ref.read(routerProvider).replace("/profile/add_profile/complete");
                   }
                 },

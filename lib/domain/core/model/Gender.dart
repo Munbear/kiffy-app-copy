@@ -6,11 +6,9 @@ enum Gender {
     if (gender.toLowerCase() == "male") {
       return Gender.MALE;
     }
-
     if (gender.toLowerCase() == "female") {
       return Gender.FEMALE;
     }
-
     throw ArgumentError();
   }
 }
