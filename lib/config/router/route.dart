@@ -1,4 +1,5 @@
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
+import 'package:Kiffy/domain/my_page/page/my_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_complete_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_contact_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_image_page.dart';
@@ -44,7 +45,7 @@ class RouterNotifier extends ChangeNotifier {
         GoRoute(
           path: "/mypage",
           name: "mypage",
-          pageBuilder: (context, _) => emptyTransitionPage(TestPage()),
+          pageBuilder: (context, _) => emptyTransitionPage(MyPage()),
         ),
         GoRoute(
           path: "/explore",

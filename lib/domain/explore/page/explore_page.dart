@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
 import 'package:Kiffy/domain/explore/widget/explore_wished_list_item.dart';
 import 'package:Kiffy/domain/explore/widget/explore_wished_list_more.dart';
+import 'package:Kiffy/infra/user_client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ExplorePage extends HookConsumerWidget {
