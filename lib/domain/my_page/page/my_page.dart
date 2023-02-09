@@ -1,5 +1,8 @@
 import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
+import 'package:Kiffy/domain/my_page/widget/my_page_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MyPage extends HookConsumerWidget {
@@ -25,64 +28,60 @@ class MyPage extends HookConsumerWidget {
         title: Image.asset("assets/images/kiffy_logo_purple.png", width: 50),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                height: 240,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                // 유저 프로필 사진
+                Container(
+                  height: 320,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SizedBox.expand(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: const Image(fit: BoxFit.cover, image: AssetImage("assets/images/test_image.png")),
+                    ),
+                  ),
                 ),
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 240,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: ShaderMask(
-                          shaderCallback: (Rect bound) {
-                            return LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Colors.black, Colors.transparent],
-                              stops: [0.7, 1.5],
-                            ).createShader(bound);
-                          },
-                          blendMode: BlendMode.dstIn,
-                          child: Image(
-                            fit: BoxFit.cover,
-                            image: AssetImage("assets/images/example_for_dev.png"),
-                          ),
+
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        "Dowon",
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
                         ),
                       ),
-                    ),
-
-                    // Container(
-                    //   width: MediaQuery.of(context).size.width,
-                    //   height: 50,
-                    //   decoration: BoxDecoration(
-                    //     gradient: LinearGradient(colors: [
-                    //       Colors.white.withOpacity(0.5),
-                    //       Colors.white,
-                    //     ]),
-                    //     borderRadius: BorderRadius.only(
-                    //       bottomLeft: Radius.circular(12),
-                    //       bottomRight: Radius.circular(12),
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
+                      Text(
+                        "25",
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Spacer(),
-              GlobalBottomNavigation(),
-            ],
-          ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            MyPageButton(text: "프로필 수정하기"),
+            const SizedBox(height: 8),
+            MyPageButton(text: "연락처 추가하기"),
+            const SizedBox(height: 8),
+            MyPageButton(text: "설정"),
+            const Spacer(),
+            GlobalBottomNavigation(),
+          ],
         ),
       ),
     );

@@ -58,6 +58,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/translations/
+    - assets/svg/
 #    - assets/svg/
-  #   - family:
-  #     fonts:
+#   - family:
+#     fonts:
