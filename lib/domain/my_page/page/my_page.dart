@@ -20,68 +20,87 @@ class MyPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Image.asset("assets/images/kiffy_logo_purple.png", width: 50),
-      ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                // 유저 프로필 사진
-                Container(
-                  height: 320,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SizedBox.expand(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: const Image(fit: BoxFit.cover, image: AssetImage("assets/images/test_image.png")),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Stack(
+                alignment: Alignment.bottomLeft,
+                children: [
+                  // 유저 프로필 사진
+                  Container(
+                    height: 390,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                    // margin: const EdgeInsets.symmetric(horizontal: 16),
+                    child: SizedBox.expand(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: const Image(fit: BoxFit.cover, image: AssetImage("assets/images/test_image.png")),
+                      ),
                     ),
                   ),
-                ),
 
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "Dowon",
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                  Container(
+                    padding: const EdgeInsets.only(left: 37, bottom: 27),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Dowon",
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "25",
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                        SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Text(
+                              "25",
+                              style: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(width: 16),
+                            Text(
+                              "Jakarta",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            MyPageButton(text: "프로필 수정하기"),
-            const SizedBox(height: 8),
-            MyPageButton(text: "연락처 추가하기"),
-            const SizedBox(height: 8),
-            MyPageButton(text: "설정"),
-            const Spacer(),
-            GlobalBottomNavigation(),
-          ],
+                ],
+              ),
+              const SizedBox(height: 18),
+              Row(
+                children: [
+                  const MyPageButton(
+                    text: "프로필 수정하기",
+                    iconPath: "assets/images/modify_x3.png",
+                  ),
+                  const SizedBox(width: 22),
+                  MyPageButton(
+                    text: "연락처 추가하기",
+                    iconPath: "assets/images/setting_x3.png",
+                  ),
+                ],
+              ),
+              const Spacer(),
+              // GlobalBottomNavigation(),
+            ],
+          ),
         ),
       ),
     );

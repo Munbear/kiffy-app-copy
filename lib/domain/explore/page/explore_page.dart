@@ -12,6 +12,7 @@ class ExplorePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           child: Column(
@@ -19,14 +20,17 @@ class ExplorePage extends HookConsumerWidget {
               /**********************************************
                *                  Logo
                **********************************************/
-              Container(
-                padding: EdgeInsets.all(5),
-                alignment: Alignment.center,
-                child: Image.asset(
-                  "assets/images/kiffy_logo_purple.png",
-                  width: 50,
-                ),
-              ),
+              // Container(
+              //   padding: EdgeInsets.all(5),
+              //   alignment: Alignment.center,
+              //   child: Image.asset(
+              //     "assets/images/kiffy_logo_purple.png",
+              //     width: 50,
+              //   ),
+              // ),
+              /******************************************
+               *         좋아요 보낸 유저 리스트 
+               * *************************************** */
               Container(
                 height: 100,
                 child: ListView(
@@ -42,6 +46,10 @@ class ExplorePage extends HookConsumerWidget {
                   ],
                 ),
               ),
+
+              /**************************************
+               *        유저 프로필 카드  
+               * *********************************** */
               Expanded(
                 child: Container(
                   padding: EdgeInsets.only(top: 5, left: 20, right: 20, bottom: 20),
@@ -62,7 +70,7 @@ class ExplorePage extends HookConsumerWidget {
                           ],
                         ),
                         child: Image.asset(
-                          "assets/images/example_for_dev.png",
+                          "assets/images/test_image.png",
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -154,7 +162,7 @@ class ExplorePage extends HookConsumerWidget {
                   ),
                 ),
               ),
-              GlobalBottomNavigation()
+              // GlobalBottomNavigation()
             ],
           ),
         ),

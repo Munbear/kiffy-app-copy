@@ -7,8 +7,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../infra/user_client.dart';
 
-class TestPage extends HookConsumerWidget {
-  TestPage({super.key});
+class MatchingPage extends HookConsumerWidget {
+  const MatchingPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,12 +26,12 @@ class TestPage extends HookConsumerWidget {
           color: Colors.blueAccent,
           child: Stack(
             children: [
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: GlobalBottomNavigation(),
-              ),
+              // Positioned(
+              //   bottom: 0,
+              //   left: 0,
+              //   right: 0,
+              //   child: GlobalBottomNavigation(),
+              // ),
             ],
           ),
         ),

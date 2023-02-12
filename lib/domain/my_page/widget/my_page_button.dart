@@ -4,39 +4,51 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MyPageButton extends HookConsumerWidget {
   final String text;
+  final String iconPath;
 
-  MyPageButton({super.key, required this.text});
+  const MyPageButton({
+    super.key,
+    required this.text,
+    required this.iconPath,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Color(0xff0031AA)),
-        color: Colors.white,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black.withOpacity(0.14),
-        //     blurRadius: 20,
-        //     offset: Offset(0, 8),
-        //   ),
-        // ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            text,
-            style: const TextStyle(
-              color: Color(0xff0031AA),
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-            ),
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          print("onclick");
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 17),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: const Color(0xffcecece)),
+            color: Colors.white,
           ),
-          SvgPicture.asset("assets/svg/arrow_more_grey.svg", color: Color(0xff0031AA)),
-        ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Image(
+                    width: 33,
+                    height: 33,
+                    image: AssetImage(iconPath),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 42),
+              Text(
+                "Modify Profile",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
