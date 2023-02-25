@@ -11,9 +11,19 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ExplorePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    useEffect(() {
+      var res = getTest().then((value) {
+        log("=========================");
+        log("호출호출호출");
+        // log(value.toString());
+        log("=========================");
+      });
+    }, []);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
+        bottom: false,
         child: Container(
           child: Column(
             children: [
@@ -34,7 +44,7 @@ class ExplorePage extends HookConsumerWidget {
               Container(
                 height: 100,
                 child: ListView(
-                  padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                   scrollDirection: Axis.horizontal,
                   children: [
                     ExploreWishedListItem(),
@@ -52,7 +62,7 @@ class ExplorePage extends HookConsumerWidget {
                * *********************************** */
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(top: 5, left: 20, right: 20, bottom: 20),
+                  padding: const EdgeInsets.only(top: 5, left: 20, right: 20, bottom: 20),
                   child: Stack(
                     children: [
                       Container(
@@ -63,7 +73,7 @@ class ExplorePage extends HookConsumerWidget {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.7),
-                              offset: Offset(0, 5),
+                              offset: const Offset(0, 5),
                               blurRadius: 4,
                               spreadRadius: 3,
                             ),
@@ -162,7 +172,8 @@ class ExplorePage extends HookConsumerWidget {
                   ),
                 ),
               ),
-              // GlobalBottomNavigation()
+              // 커스텀 바텀 네비게이션
+              CustomBottomNavigationBar()
             ],
           ),
         ),

@@ -38,9 +38,9 @@ class GlobalBottomNavigationItem extends HookConsumerWidget {
                     child: Container(
                       width: 5,
                       height: 5,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: const Color(0xffB003FA),
+                        color: Color(0xffB003FA),
                       ),
                     ),
                   )

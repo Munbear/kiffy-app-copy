@@ -22,18 +22,25 @@ class MatchingPage extends HookConsumerWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          color: Colors.blueAccent,
-          child: Stack(
-            children: [
-              // Positioned(
-              //   bottom: 0,
-              //   left: 0,
-              //   right: 0,
-              //   child: GlobalBottomNavigation(),
-              // ),
-            ],
-          ),
+        bottom: false,
+        child: Column(
+          children: [
+            Container(
+              color: Colors.blueAccent,
+              child: Stack(
+                children: [
+                  // Positioned(
+                  //   bottom: 0,
+                  //   left: 0,
+                  //   right: 0,
+                  //   child: GlobalBottomNavigation(),
+                  // ),
+                ],
+              ),
+            ),
+            // 커스텀 바텀 네비게이션 바
+            CustomBottomNavigationBar()
+          ],
         ),
       ),
     );

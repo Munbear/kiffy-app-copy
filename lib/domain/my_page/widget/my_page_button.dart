@@ -1,15 +1,19 @@
+import 'package:Kiffy/config/router/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MyPageButton extends HookConsumerWidget {
   final String text;
   final String iconPath;
+  final String routePathName;
 
-  const MyPageButton({
+  MyPageButton({
     super.key,
     required this.text,
     required this.iconPath,
+    required this.routePathName,
   });
 
   @override
@@ -17,7 +21,7 @@ class MyPageButton extends HookConsumerWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          print("onclick");
+          ref.read(routerProvider).pushNamed(routePathName);
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 17),
@@ -41,10 +45,8 @@ class MyPageButton extends HookConsumerWidget {
               ),
               const SizedBox(height: 42),
               Text(
-                "Modify Profile",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
+                text,
+                style: TextStyle(fontSize: 18),
               ),
             ],
           ),

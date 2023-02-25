@@ -6,8 +6,10 @@ import 'package:Kiffy/domain/profile/page/add_profile_contact_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_image_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_intro_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_user_page.dart';
+import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
 import 'package:Kiffy/domain/sign/page/sign_page.dart';
 import 'package:Kiffy/domain/matching/page/matching_page.dart';
+import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -38,11 +40,6 @@ class RouterNotifier extends ChangeNotifier {
   RouterNotifier(ProviderRef<GoRouter> ref);
 
   List<RouteBase> get _routes => [
-        // GoRoute(
-        //   path: "/test",
-        //   name: "test",
-        //   pageBuilder: (context, _) => emptyTransitionPage(TestPage()),
-        // ),
         GoRoute(
           // 메인 페이지
           path: "/mainPage",
@@ -54,6 +51,18 @@ class RouterNotifier extends ChangeNotifier {
           path: "/mypage",
           name: "mypage",
           pageBuilder: (context, _) => emptyTransitionPage(MyPage()),
+        ),
+        GoRoute(
+          // 설정 화면
+          path: "/setting",
+          name: "setting",
+          pageBuilder: (context, _) => emptyTransitionPage(SettingPage()),
+        ),
+        GoRoute(
+          // 회원 탈퇴 화면
+          path: "/withdraw",
+          name: "withdraw",
+          pageBuilder: (context, _) => emptyTransitionPage(WithdrawPage()),
         ),
         GoRoute(
           // 탐색 탭
