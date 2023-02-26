@@ -1,3 +1,4 @@
+import 'package:Kiffy/domain/check_list/page/liked_list_page.dart';
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:Kiffy/domain/main_page/page/main_screen.dart';
 import 'package:Kiffy/domain/matching_detail/page/matching_detail_page.dart';
@@ -79,6 +80,12 @@ class RouterNotifier extends ChangeNotifier {
           path: "/matchingDetail",
           name: "matchingDetail",
           pageBuilder: (context, _) => emptyTransitionPage(const MatchingDetailPage()),
+        ),
+        GoRoute(
+          // 좋아요 보낸 사람 리스트
+          path: "/likedListPage",
+          name: "likedListPage",
+          pageBuilder: (context, _) => emptyTransitionPage(const LikedListPage()),
         ),
         // GoRoute(
         //   // 회원 가입 및 로그인 페이지

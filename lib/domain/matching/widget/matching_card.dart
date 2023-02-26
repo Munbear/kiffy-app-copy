@@ -55,6 +55,8 @@ class MatchingCard extends HookConsumerWidget {
                   ],
                 ),
               ),
+
+              // 매칭 된 유저가 끌올 한 횟수
               Positioned(
                 top: 12,
                 right: 8,

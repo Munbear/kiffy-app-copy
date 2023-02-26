@@ -44,7 +44,7 @@ class MatchingPage extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /**********************************************
-                               liked preview 
+                            라이크 보낸 유저 리스트 
               **********************************************/
             Stack(
               children: [
@@ -64,14 +64,13 @@ class MatchingPage extends HookConsumerWidget {
                 ),
 
                 // 유저 성별에 따라사 보여지는 텍스트가 달라짐
-                LockBulr(mainText: "It's still being implemented.", subText: "It's still being implemented.")
+                // const LockBulr(mainText: "It's still being implemented.", subText: "It's still being implemented.")
               ],
             ),
             //***********************************
             //        매칭 된 리스트
             //***********************************/
-            Padding(
-              // padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+            const Padding(
               padding: EdgeInsets.only(left: 24, top: 12),
               child: Text(
                 "Matches",
@@ -104,8 +103,8 @@ class MatchingPage extends HookConsumerWidget {
               ),
             ),
 
-            const Spacer(),
             // 커스텀 바텀 네비게이션 바
+            const Spacer(),
             const CustomBottomNavigationBar()
           ],
         ),

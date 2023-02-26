@@ -39,9 +39,12 @@ class MatchingDetailPage extends HookConsumerWidget {
                       const MathcingUserProfileCard(),
                       const SizedBox(height: 8),
 
-                      // male 유저 아이디
+                      // 남여 분기 처리
                       const Text(
+                        // 여성 유저한테 보여지는 텍스트
                         "✉️ His ID for contact",
+                        // 나성 유저한테 보여지는 텍스트
+                        //"👀 Number of profile checks"
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
@@ -59,9 +62,13 @@ class MatchingDetailPage extends HookConsumerWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            // 여상 유저한테만 보여짐
                             Image(image: AssetImage("assets/images/line_image.png"), width: 29, height: 29),
                             const SizedBox(width: 8),
+
+                            // 여성 유저한테만 보여짐
                             Text(
+                              // 남성 유저는 여성 유저가 마지막으로 프로필 확인한 시간이 보여짐
                               "Kiffy123",
                               style: TextStyle(
                                 fontSize: 16,
@@ -75,7 +82,10 @@ class MatchingDetailPage extends HookConsumerWidget {
 
                       // 코칭 메세지 텍스트
                       const Text(
+                        // 여성 유저한테 보여질 텍스트
                         "✔️ Send it yo him like this!",
+                        // 남성 유저한테 보여질 텍스트
+                        // ✔️ Wait for her contact!
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
@@ -86,7 +96,10 @@ class MatchingDetailPage extends HookConsumerWidget {
                       const Padding(
                         padding: EdgeInsets.only(left: 28),
                         child: Text(
+                          // 여성 유저한테 보여질 텍스트
                           "If you send him like this, he'll recognize you",
+                          // 남성 유저한테 보여질 텍스트
+                          // "She'll get a message like this."
                           style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -114,6 +127,8 @@ class MatchingDetailPage extends HookConsumerWidget {
                         ),
                       ),
                       const SizedBox(height: 3),
+
+                      // 여성 유저한테만 보여짐
                       const Padding(
                         padding: EdgeInsets.only(left: 34),
                         child: Text(
