@@ -158,27 +158,29 @@ class AddProfileImagePage extends HookConsumerWidget {
               padding: const EdgeInsets.all(36),
               child: ElevatedButton(
                 child: Text("Next"),
-                onPressed: () {
-                  inputImagesValidation.value = ref.read(addProfileInputProvider.notifier).setMedias(
-                        inputImages.value.map((image) => AddProfileMedia(id: image.id, orderNum: image.orderNum)).toList(),
-                      );
+                onPressed: () {},
+                // 500에러 수정시 주석 품
+                // onPressed: () {
+                //   inputImagesValidation.value = ref.read(addProfileInputProvider.notifier).setMedias(
+                //         inputImages.value.map((image) => AddProfileMedia(id: image.id, orderNum: image.orderNum)).toList(),
+                //       );
 
-                  if (inputImagesValidation.value.isValid) {
-                    try {
-                      postUserProfile(
-                        userProfile.name,
-                        userProfile.gender,
-                        userProfile.birthDate,
-                        userProfile.intro,
-                        userProfile.medias,
-                      );
-                    } on DioError catch (e) {
-                      log(e.message);
-                    }
+                //   if (inputImagesValidation.value.isValid) {
+                //     try {
+                //       postUserProfile(
+                //         userProfile.name,
+                //         userProfile.gender,
+                //         userProfile.birthDate,
+                //         userProfile.intro,
+                //         userProfile.medias,
+                //       );
+                //     } on DioError catch (e) {
+                //       log(e.message);
+                //     }
 
-                    ref.read(routerProvider).replace("/profile/add_profile/complete");
-                  }
-                },
+                //     ref.read(routerProvider).replace("/profile/add_profile/complete");
+                //   }
+                // },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.only(top: 15, bottom: 15),
                   textStyle: TextStyle(

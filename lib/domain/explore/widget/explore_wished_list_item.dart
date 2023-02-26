@@ -1,3 +1,4 @@
+import 'package:Kiffy/domain/common/style/border._style.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -6,30 +7,31 @@ class ExploreWishedListItem extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      margin: EdgeInsets.only(right: 13),
+      margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 6),
       child: Column(
         children: [
           Container(
             width: 60,
             height: 60,
             clipBehavior: Clip.hardEdge,
-            padding: EdgeInsets.all(2),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(2),
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               border: GradientBoxBorder(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment(1.9, 0.1),
-                    colors: [
-                      Color(0xffBA00FF),
-                      Color(0xffB003FA),
-                      Color(0xff960AEE),
-                      Color(0xff6A15DB),
-                      Color(0xff2F25BF),
-                      Color(0xff0031AA),
-                    ],
-                  ),
-                  width: 3),
+                width: 1,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment(1.9, 0.1),
+                  colors: [
+                    Color(0xffBA00FF),
+                    Color(0xffB003FA),
+                    Color(0xff960AEE),
+                    Color(0xff6A15DB),
+                    Color(0xff2F25BF),
+                    Color(0xff0031AA),
+                  ],
+                ),
+              ),
             ),
             child: Container(
               decoration: const BoxDecoration(shape: BoxShape.circle),
@@ -40,11 +42,8 @@ class ExploreWishedListItem extends HookConsumerWidget {
               ),
             ),
           ),
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.only(top: 5),
-            child: Text("kiffy"),
-          )
+          const SizedBox(height: 5),
+          Text("kiffy"),
         ],
       ),
     );

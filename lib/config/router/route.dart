@@ -1,5 +1,6 @@
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:Kiffy/domain/main_page/page/main_screen.dart';
+import 'package:Kiffy/domain/matching_detail/page/matching_detail_page.dart';
 import 'package:Kiffy/domain/my_page/page/my_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_complete_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_contact_page.dart';
@@ -20,10 +21,7 @@ final routerProvider = Provider<GoRouter>(
     final router = RouterNotifier(ref);
 
     return GoRouter(
-      debugLogDiagnostics: true,
-      refreshListenable: router,
-      routes: router._routes,
-      initialLocation: "/mainPage",
+      debugLogDiagnostics: true, refreshListenable: router, routes: router._routes, initialLocation: "/matching", //"/mainPage",
     );
   },
 );
@@ -40,12 +38,12 @@ class RouterNotifier extends ChangeNotifier {
   RouterNotifier(ProviderRef<GoRouter> ref);
 
   List<RouteBase> get _routes => [
-        GoRoute(
-          // 메인 페이지
-          path: "/mainPage",
-          name: "mainPage",
-          pageBuilder: (context, _) => emptyTransitionPage(MainScreen()),
-        ),
+        // GoRoute(
+        //   // 메인 페이지
+        //   path: "/mainPage",
+        //   name: "mainPage",
+        //   pageBuilder: (context, _) => emptyTransitionPage(MainScreen()),
+        // ),
         GoRoute(
           // 마이페이지 탭
           path: "/mypage",
@@ -64,24 +62,30 @@ class RouterNotifier extends ChangeNotifier {
           name: "withdraw",
           pageBuilder: (context, _) => emptyTransitionPage(WithdrawPage()),
         ),
+        // GoRoute(
+        //   // 탐색 탭
+        //   path: "/explore",
+        //   name: "explore",
+        //   pageBuilder: (context, _) => emptyTransitionPage(ExplorePage()),
+        // ),
         GoRoute(
-          // 탐색 탭
-          path: "/explore",
-          name: "explore",
-          pageBuilder: (context, _) => emptyTransitionPage(ExplorePage()),
+          // 매칭 탭 화면
+          path: "/matching",
+          name: "matching",
+          pageBuilder: (context, _) => emptyTransitionPage(MatchingPage()),
         ),
         GoRoute(
-          // 매칭 탭
-          path: "/match",
-          name: "match",
-          pageBuilder: (context, _) => emptyTransitionPage(const MatchingPage()),
+          // 매칭 디테일 화면
+          path: "/matchingDetail",
+          name: "matchingDetail",
+          pageBuilder: (context, _) => emptyTransitionPage(const MatchingDetailPage()),
         ),
-        GoRoute(
-          // 회원 가입 및 로그인 페이지
-          path: "/sign",
-          name: "sign",
-          pageBuilder: (context, _) => emptyTransitionPage(SignPage()),
-        ),
+        // GoRoute(
+        //   // 회원 가입 및 로그인 페이지
+        //   path: "/sign",
+        //   name: "sign",
+        //   pageBuilder: (context, _) => emptyTransitionPage(SignPage()),
+        // ),
         GoRoute(
           // 유저 프로필 닉네입, 나이, 등록 페이지
           path: "/profile/add_profile/user",

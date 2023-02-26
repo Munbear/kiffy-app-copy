@@ -22,13 +22,13 @@ class CustomBottomNavigationBar extends HookConsumerWidget {
     var curRoute = ref.watch(routerProvider);
     var items = useState([
       GlobalNavigationPaths(iconPath: "assets/icons/explore_icon.png", routePath: "/explore"),
-      GlobalNavigationPaths(iconPath: "assets/icons/match_icon.png", routePath: "/match"),
+      GlobalNavigationPaths(iconPath: "assets/icons/match_icon.png", routePath: "/matching"),
       GlobalNavigationPaths(iconPath: "assets/icons/mypage_icon.png", routePath: "/mypage"),
     ]);
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.only(left: 40, right: 40, top: 5, bottom: 0),
+      padding: const EdgeInsets.only(left: 40, right: 40, top: 5, bottom: 25),
       alignment: Alignment.center,
       decoration: const BoxDecoration(
           color: Colors.white,

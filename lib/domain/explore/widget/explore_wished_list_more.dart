@@ -7,18 +7,18 @@ class ExploreWishedListMore extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      margin: EdgeInsets.only(right: 0),
+      margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 6),
       child: Column(
         children: [
           Container(
             width: 60,
             height: 60,
             clipBehavior: Clip.hardEdge,
-            padding: EdgeInsets.all(2),
+            padding: const EdgeInsets.all(2),
             decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.7),
-                offset: Offset(0, 0),
+                color: Colors.grey.withOpacity(0.14),
+                offset: const Offset(0, 0),
                 blurRadius: 1,
                 spreadRadius: 1,
               ),
@@ -29,16 +29,16 @@ class ExploreWishedListMore extends HookConsumerWidget {
                 color: Colors.white,
               ),
               clipBehavior: Clip.hardEdge,
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: SvgPicture.asset(
                 "assets/icons/arrow_right_icon.svg",
-                color: Color(0xFFB5B5B5),
+                color: const Color(0xFFB5B5B5),
               ),
             ),
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(top: 5),
+            margin: const EdgeInsets.only(top: 5),
             child: Text(
               "see more",
               style: TextStyle(color: Color(0xFF6C6C6C)),
