@@ -38,26 +38,40 @@ class GlobalBottomNavigationItem extends HookConsumerWidget {
                     child: Container(
                       width: 5,
                       height: 5,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: const Color(0xffB003FA),
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color(0xffBA00FF),
+                            Color(0xff0031AA),
+                          ],
+                        ),
                       ),
                     ),
                   )
                 : null,
             Positioned(
-              child: Container(
+              child: SizedBox(
                 width: 70,
                 height: 70,
-                child: IconButton(
-                  padding: EdgeInsets.all(0),
-                  icon: Image.asset(
-                    props.iconPath,
-                    color: isActive ? const Color(0xffB003FA) : Colors.black,
-                  ),
-                  onPressed: () {
-                    ref.read(routerProvider).replace(props.routePath);
+                child: ShaderMask(
+                  blendMode: BlendMode.srcATop,
+                  shaderCallback: (Rect bound) {
+                    return LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        isActive ? const Color(0xffBA00FF) : Colors.black,
+                        isActive ? const Color(0xff0031AA) : Colors.black,
+                      ],
+                    ).createShader(bound);
                   },
+                  child: IconButton(
+                    onPressed: () => ref.read(routerProvider).replace(props.routePath),
+                    icon: Image.asset(props.iconPath),
+                  ),
                 ),
               ),
             ),
