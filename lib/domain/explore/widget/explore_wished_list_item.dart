@@ -1,4 +1,3 @@
-import 'package:Kiffy/domain/common/style/border._style.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

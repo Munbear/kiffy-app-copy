@@ -20,6 +20,7 @@ class CustomBottomNavigationBar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var curRoute = ref.watch(routerProvider);
+
     var items = useState([
       GlobalNavigationPaths(iconPath: "assets/icons/explore_icon.png", routePath: "/explore"),
       GlobalNavigationPaths(iconPath: "assets/icons/match_icon.png", routePath: "/matching"),

@@ -8,6 +8,10 @@
 // import 'package:flutter_hooks/flutter_hooks.dart';
 // import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+// import '../../common/custom_bottom_nav_bar.dart';
+// import '../../common/custom_bottom_navigation.dart';
+// import '../../core/widget/global_bottom_navigation.dart';
+
 // class MainScreen extends HookConsumerWidget {
 //   @override
 //   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,8 +19,11 @@
 //     var pageIndex = useState(0);
 
 //     List<Widget> tapPageWidgets = <Widget>[
+//       // 탐색 탭
 //       ExplorePage(),
-//       const MatchingPage(),
+//       // 매칭 탭
+//       MatchingPage(),
+//       // 마이페이지
 //       MyPage(),
 //     ];
 
@@ -25,58 +32,16 @@
 //       appBar: AppBar(
 //         automaticallyImplyLeading: false,
 //         centerTitle: true,
+//         elevation: 0.5,
 //         backgroundColor: Colors.white,
-//         elevation: 0,
-//         title: Image.asset("assets/images/kiffy_logo_purple.png", width: 70),
+//         title: Image.asset(
+//           width: 70,
+//           height: 55,
+//           "assets/images/kiffy_logo_purple.png",
+//         ),
 //       ),
 //       body: tapPageWidgets.elementAt(pageIndex.value),
-//       // bottomNavigationBar: Container(
-//       //   height: 115,
-//       //   decoration: BoxDecoration(
-//       //     boxShadow: [
-//       //       BoxShadow(
-//       //         color: Colors.black.withOpacity(0.14),
-//       //         blurRadius: 20,
-//       //         offset: const Offset(8, 0),
-//       //       ),
-//       //     ],
-//       //   ),
-//       //   child: ClipRRect(
-//       //     borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
-//       //     child: BottomNavigationBar(
-//       //       currentIndex: pageIndex.value,
-//       //       onTap: (index) {
-//       //         pageIndex.value = index;
-//       //       },
-//       //       // backgroundColor: Colors.blue,
-//       //       showSelectedLabels: false,
-//       //       showUnselectedLabels: false,
-//       //       items: [
-//       //         BottomNavigationBarItem(
-//       //           icon: BottomTapItem(
-//       //             iconPath: "assets/icons/explore_icon.png",
-//       //             isFocus: pageIndex.value == 0,
-//       //           ),
-//       //           label: "explore",
-//       //         ),
-//       //         BottomNavigationBarItem(
-//       //           icon: BottomTapItem(
-//       //             iconPath: "assets/icons/match_icon.png",
-//       //             isFocus: pageIndex.value == 1,
-//       //           ),
-//       //           label: "matching",
-//       //         ),
-//       //         BottomNavigationBarItem(
-//       //           icon: BottomTapItem(
-//       //             iconPath: "assets/icons/mypage_icon.png",
-//       //             isFocus: pageIndex.value == 2,
-//       //           ),
-//       //           label: "myPages",
-//       //         ),
-//       //       ],
-//       //     ),
-//       //   ),
-//       // ),
+//       bottomNavigationBar: CustomBottomNavBar(),
 //     );
 //   }
 // }

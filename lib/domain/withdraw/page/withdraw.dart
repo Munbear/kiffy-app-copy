@@ -1,4 +1,6 @@
+import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
+import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
 import 'package:Kiffy/domain/withdraw/service/withdraw_reason.dart';
 import 'package:Kiffy/domain/withdraw/service/withdrawal_provider.dart';
@@ -25,59 +27,60 @@ class WithdrawPage extends HookConsumerWidget {
           fontSize: 20,
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: 18),
-          const Text(
-            "What is the reason for your withdrdawal?",
-            style: TextStyle(
-              fontSize: 18,
-              color: Color(0xff6c6c6c),
-              fontWeight: FontWeight.w400,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 18),
+            Text(
+              "What is the reason for your withdrdawal?",
+              style: TextStyle(
+                fontSize: 18,
+                color: Color(0xff6c6c6c),
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
-          const SizedBox(height: 35),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: WithDrawalReason.values.map((reason) {
-              return GestureDetector(
-                onTap: () {
-                  selectedReason.value = WithDrawalReason.enumToString(reason);
-                },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 5),
-                  padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 21),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: selectedReason.value == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xffcecece),
+            const SizedBox(height: 35),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: WithDrawalReason.values.map((reason) {
+                return GestureDetector(
+                  onTap: () {
+                    selectedReason.value = WithDrawalReason.enumToString(reason);
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 21),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: selectedReason.value == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xffcecece),
+                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    WithDrawalReason.enumToString(reason),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: selectedReason.value == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xff6c6c6c),
-                      fontWeight: FontWeight.w400,
+                    child: Text(
+                      WithDrawalReason.enumToString(reason),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: selectedReason.value == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xff6c6c6c),
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
-                ),
-              );
-            }).toList(),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 35),
-            child: ElevatedButton(
+                );
+              }).toList(),
+            ),
+            const Spacer(),
+            ElevatedButton(
               onPressed: () {
-                selectedReasonValidation.value = ref.read(withdrawalProvider.notifier).setReason(selectedReason.value);
-                if (selectedReasonValidation.value.isValid) {
-                  print("hellp");
-                } else {
-                  print("fail");
-                }
+                ref.read(routerProvider).replace("/withdrawText");
+                // selectedReasonValidation.value = ref.read(withdrawalProvider.notifier).setReason(selectedReason.value);
+                // if (selectedReasonValidation.value.isValid) {
+                //   print("hellp");
+                // } else {
+                //   print("fail");
+                // }
               },
               child: Text(
                 "Next",
@@ -91,11 +94,11 @@ class WithdrawPage extends HookConsumerWidget {
                 backgroundColor: const Color(0xff0031AA),
               ),
             ),
-          ),
-          const SizedBox(height: 26),
-          const CustomBottomNavigationBar(),
-        ],
+            const SizedBox(height: 26),
+          ],
+        ),
       ),
+      bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
     );
   }
 }
