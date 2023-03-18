@@ -1,3 +1,4 @@
+import 'package:Kiffy/config/router/route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -52,7 +53,10 @@ class UncheckedProfileCircle extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        lockMessageFullScreenPopup(context);
+        // 매칭 10번 이하 유저한테만 적용
+        // lockMessageFullScreenPopup(context);
+        // 매칭 10번 이상 유저 한테 적용
+        ref.read(routerProvider).pushNamed("unmatchUserProfile");
       },
       child: Column(
         children: [

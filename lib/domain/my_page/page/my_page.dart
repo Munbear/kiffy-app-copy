@@ -7,6 +7,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../common/custom_bottom_nav_bar.dart';
+
 class MyPage extends HookConsumerWidget {
   final innerDecoration = BoxDecoration(
     color: Colors.white,
@@ -24,95 +26,105 @@ class MyPage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Stack(
-              alignment: Alignment.bottomLeft,
-              children: [
-                // 유저 프로필 사진
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  height: 390,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                  // margin: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SizedBox.expand(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: const Image(fit: BoxFit.cover, image: AssetImage("assets/images/test_image.png")),
-                    ),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        title: Image.asset(
+          width: 70,
+          height: 55,
+          "assets/images/kiffy_logo_purple.png",
+        ),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 14),
+          Stack(
+            alignment: Alignment.bottomLeft,
+            children: [
+              // 유저 프로필 사진
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                height: 390,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                // margin: const EdgeInsets.symmetric(horizontal: 16),
+                child: SizedBox.expand(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: const Image(fit: BoxFit.cover, image: AssetImage("assets/images/test_image.png")),
                   ),
                 ),
+              ),
 
-                Container(
-                  padding: const EdgeInsets.only(left: 37, bottom: 27),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Dowon",
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+              Container(
+                padding: const EdgeInsets.only(left: 37, bottom: 27),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Dowon",
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Text(
+                          "25",
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Text(
-                            "25",
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
+                        SizedBox(width: 16),
+                        Text(
+                          "Jakarta",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
                           ),
-                          SizedBox(width: 16),
-                          Text(
-                            "Jakarta",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 18),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                MyPageButton(
+                  text: "Modify Profile",
+                  iconPath: "assets/images/modify_x3.png",
+                  routePathName: "resetProfile",
+                ),
+                const SizedBox(width: 22),
+                MyPageButton(
+                  text: "Setting",
+                  iconPath: "assets/images/setting_x3.png",
+                  routePathName: "setting",
                 ),
               ],
             ),
-            const SizedBox(height: 18),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  MyPageButton(
-                    text: "Modify Profile",
-                    iconPath: "assets/images/modify_x3.png",
-                    routePathName: "setting",
-                  ),
-                  const SizedBox(width: 22),
-                  MyPageButton(
-                    text: "Setting",
-                    iconPath: "assets/images/setting_x3.png",
-                    routePathName: "setting",
-                  ),
-                ],
-              ),
-            ),
-            const Spacer(),
+          ),
+          // const Spacer(),
 
-            /// 커스텀 bottom banigation bar
-            CustomBottomNavigationBar(),
-          ],
-        ),
+          /// 커스텀 bottom banigation bar
+          // CustomBottomNavigationBar(),
+        ],
       ),
+      bottomNavigationBar: CustomBottomNavBar(currentPath: "/mypage"),
     );
   }
 }

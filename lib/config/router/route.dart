@@ -11,10 +11,15 @@ import 'package:Kiffy/domain/profile/page/add_profile_user_page.dart';
 import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
 import 'package:Kiffy/domain/sign/page/sign_page.dart';
 import 'package:Kiffy/domain/matching/page/matching_page.dart';
+import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
+import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
+import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../domain/reset_profile/reset_profile.dart';
 
 // 라우팅 변경
 final routerProvider = Provider<GoRouter>(
@@ -22,8 +27,11 @@ final routerProvider = Provider<GoRouter>(
     final router = RouterNotifier(ref);
 
     return GoRouter(
-      debugLogDiagnostics: true, refreshListenable: router, routes: router._routes, initialLocation: "/matching", //"/mainPage",
-    );
+        debugLogDiagnostics: true,
+        refreshListenable: router,
+        routes: router._routes,
+        initialLocation: "/explore" //"/mainPage" //"/matching", //"/mainPage",
+        );
   },
 );
 
@@ -58,17 +66,23 @@ class RouterNotifier extends ChangeNotifier {
           pageBuilder: (context, _) => emptyTransitionPage(SettingPage()),
         ),
         GoRoute(
+          // 프로필 수정
+          path: "/resetProfile",
+          name: "resetProfile",
+          pageBuilder: (context, _) => emptyTransitionPage(const ResetProfile()),
+        ),
+        GoRoute(
           // 회원 탈퇴 화면
           path: "/withdraw",
           name: "withdraw",
           pageBuilder: (context, _) => emptyTransitionPage(WithdrawPage()),
         ),
-        // GoRoute(
-        //   // 탐색 탭
-        //   path: "/explore",
-        //   name: "explore",
-        //   pageBuilder: (context, _) => emptyTransitionPage(ExplorePage()),
-        // ),
+        GoRoute(
+          // 탐색 탭
+          path: "/explore",
+          name: "explore",
+          pageBuilder: (context, _) => emptyTransitionPage(ExplorePage()),
+        ),
         GoRoute(
           // 매칭 탭 화면
           path: "/matching",
@@ -86,6 +100,24 @@ class RouterNotifier extends ChangeNotifier {
           path: "/likedListPage",
           name: "likedListPage",
           pageBuilder: (context, _) => emptyTransitionPage(const LikedListPage()),
+        ),
+        GoRoute(
+          // 좋아요 받은 유저 상세 프로필
+          path: "/unmatchUserProfile",
+          name: "unmatchUserProfile",
+          pageBuilder: (context, _) => emptyTransitionPage(const UnmatchUserProfile()),
+        ),
+        GoRoute(
+          // 회원 탈퇴 이유 텍스트
+          path: "/withdrawText",
+          name: "withdrawText",
+          pageBuilder: (context, _) => emptyTransitionPage(const WithdrawText()),
+        ),
+        GoRoute(
+          // 회원 탈퇴 최종
+          path: "/withdrawFinal",
+          name: "withdrawFinal",
+          pageBuilder: (context, _) => emptyTransitionPage(const WithdrawFinal()),
         ),
         // GoRoute(
         //   // 회원 가입 및 로그인 페이지

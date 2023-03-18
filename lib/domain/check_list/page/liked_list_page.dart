@@ -6,6 +6,8 @@ import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../common/custom_bottom_nav_bar.dart';
+
 class LikedListPage extends HookConsumerWidget {
   const LikedListPage();
 
@@ -19,8 +21,8 @@ class LikedListPage extends HookConsumerWidget {
         elevation: 0.5,
         title: const CustomAppBarImageTitle(),
       ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -59,7 +61,7 @@ class LikedListPage extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // 확인 안한 프로필 타이틀
+                  // 확인한 유저 프로필
                   const Text(
                     "Ckecked Profile",
                     style: TextStyle(
@@ -85,11 +87,12 @@ class LikedListPage extends HookConsumerWidget {
                 ],
               ),
             ),
-            const Spacer(),
-            const CustomBottomNavigationBar(),
+            // const Spacer(),
+            // const CustomBottomNavigationBar(),
           ],
         ),
       ),
+      bottomNavigationBar: CustomBottomNavBar(currentPath: "/explore"),
     );
   }
 }

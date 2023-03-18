@@ -1,5 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
+import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
 import 'package:Kiffy/domain/setting_page/widget/setting_button.dart';
 import 'package:flutter/material.dart';
@@ -28,17 +29,17 @@ class SettingPage extends HookConsumerWidget {
         children: [
           const SizedBox(height: 20),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 28),
+            padding: const EdgeInsets.symmetric(horizontal: 28),
             child: GestureDetector(
               onTap: () {
-                ref.read(routerProvider).pushNamed("modify");
+                ref.read(routerProvider).pushNamed("resetProfile");
               },
               child: SettingButton(IconPath: "assets/images/log_out.png", text: "Log out"),
             ),
           ),
           const SizedBox(height: 30),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 28),
+            padding: const EdgeInsets.symmetric(horizontal: 28),
             child: GestureDetector(
               onTap: () {
                 ref.read(routerProvider).pushNamed("withdraw");
@@ -47,9 +48,9 @@ class SettingPage extends HookConsumerWidget {
             ),
           ),
           const Spacer(),
-          CustomBottomNavigationBar()
         ],
       ),
+      bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
     );
   }
 }
