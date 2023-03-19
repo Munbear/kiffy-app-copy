@@ -27,11 +27,11 @@ final routerProvider = Provider<GoRouter>(
     final router = RouterNotifier(ref);
 
     return GoRouter(
-        debugLogDiagnostics: true,
-        refreshListenable: router,
-        routes: router._routes,
-        initialLocation: "/explore" //"/mainPage" //"/matching", //"/mainPage",
-        );
+      debugLogDiagnostics: true,
+      refreshListenable: router,
+      routes: router._routes,
+      initialLocation: "/sign",
+    );
   },
 );
 
@@ -119,12 +119,12 @@ class RouterNotifier extends ChangeNotifier {
           name: "withdrawFinal",
           pageBuilder: (context, _) => emptyTransitionPage(const WithdrawFinal()),
         ),
-        // GoRoute(
-        //   // 회원 가입 및 로그인 페이지
-        //   path: "/sign",
-        //   name: "sign",
-        //   pageBuilder: (context, _) => emptyTransitionPage(SignPage()),
-        // ),
+        GoRoute(
+          // 회원 가입 및 로그인 페이지
+          path: "/sign",
+          name: "sign",
+          pageBuilder: (context, _) => emptyTransitionPage(SignPage()),
+        ),
         GoRoute(
           // 유저 프로필 닉네입, 나이, 등록 페이지
           path: "/profile/add_profile/user",

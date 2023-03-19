@@ -1,4 +1,3 @@
-import 'package:Kiffy/depreacted/view/legacy_add_profile/widget/selected_gender.dart';
 import 'package:Kiffy/domain/withdraw/service/withdraw_reason.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
