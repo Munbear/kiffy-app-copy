@@ -52,31 +52,30 @@ class AddProfileInputImageCard extends HookConsumerWidget {
     return Stack(
       children: [
         Container(
-            margin: const EdgeInsets.all(7),
-            height: 163,
-            clipBehavior: Clip.hardEdge,
-            padding: const EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              border: props.filePath == null ? Border.all(color: const Color(0xFFCECECE), width: 2.0) : null,
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(15),
-                bottomRight: Radius.circular(15),
-                topRight: Radius.circular(15),
-              ),
+          height: 163,
+          clipBehavior: Clip.hardEdge,
+          padding: const EdgeInsets.all(0),
+          decoration: BoxDecoration(
+            border: props.filePath == null ? Border.all(color: const Color(0xFFCECECE), width: 2.0) : null,
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              bottomRight: Radius.circular(15),
+              topRight: Radius.circular(15),
             ),
-            child: props.filePath == null
-                ? InkWell(
-                    onTap: () => addImage(ImageSource.gallery),
-                    child: const Center(child: Text("+", style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)))),
-                  )
-                : Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      image: DecorationImage(image: Image.file(File(props.filePath!)).image, fit: BoxFit.cover),
-                    ),
-                  )
-            //      Image.file(File(imagePath.value!.path), fit: BoxFit.cover)
-            ),
+          ),
+          child: props.filePath == null
+              ? InkWell(
+                  onTap: () => addImage(ImageSource.gallery),
+                  child: const Center(child: Text("+", style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)))),
+                )
+              : Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    image: DecorationImage(image: Image.file(File(props.filePath!)).image, fit: BoxFit.cover),
+                  ),
+                ),
+          // Image.file(File(imagePath.value!.path), fit: BoxFit.cover),
+        ),
         Visibility(
           visible: props.filePath != null ? true : false,
           child: Positioned(
