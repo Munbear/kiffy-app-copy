@@ -28,6 +28,26 @@ class BorderGradientBorderRadius10 {
   );
 }
 
+class BorderGradientCircleShape {
+  static BoxDecoration innerDecoration = BoxDecoration(
+    color: Colors.white,
+    shape: BoxShape.circle,
+  );
+
+  static BoxDecoration outlineGradientBoxDecoration = BoxDecoration(
+    border: Border.all(color: Colors.transparent, width: 2),
+    shape: BoxShape.circle,
+    gradient: const LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xffBA00FF),
+        Color(0xff0031AA),
+      ],
+    ),
+  );
+}
+
 class BorderGradientBorderRadius50 {
   static BoxDecoration innerDecoration = BoxDecoration(
     color: Colors.white,

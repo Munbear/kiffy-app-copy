@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 
 enum ContactType {
-  LINE, WHATSAPP;
+  LINE,
+  WHATSAPP;
+  // TELEGRAM;
 
   static ContactType of(String contactType) {
     if (contactType.toLowerCase() == "line") {
@@ -12,5 +15,18 @@ enum ContactType {
     }
 
     throw ArgumentError();
+  }
+
+  static contactAppIcon(contactApp) {
+    switch (contactApp) {
+      case ContactType.LINE:
+        return Image.asset("assets/icons/line_icon.png");
+      case ContactType.WHATSAPP:
+        return Image.asset("assets/icons/whatsapp_icon.png");
+      // case ContactType.TELEGRAM:
+      //   return Image.asset("텔리그렘 아이콘");
+      default:
+        return "";
+    }
   }
 }
