@@ -3,9 +3,11 @@ import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:Kiffy/domain/main_page/page/main_screen.dart';
 import 'package:Kiffy/domain/matching_detail/page/matching_detail_page.dart';
 import 'package:Kiffy/domain/my_page/page/my_page.dart';
+import 'package:Kiffy/domain/profile/page/add_profiile_auth_phone_number.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_complete_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_contact_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_image_page.dart';
+import 'package:Kiffy/domain/profile/page/add_profile_input_auth_code_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_intro_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_user_page.dart';
 import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
@@ -30,7 +32,7 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       refreshListenable: router,
       routes: router._routes,
-      initialLocation: "/profile/add_profile/image",
+      initialLocation: "/profile/add_profile/input_auth_code",
     );
   },
 );
@@ -154,6 +156,18 @@ class RouterNotifier extends ChangeNotifier {
           path: "/profile/add_profile/complete",
           name: "profile_add_profile_complete",
           pageBuilder: (context, _) => emptyTransitionPage(AddProfileCompletePage()),
+        ),
+        GoRoute(
+          // 전화번호 입력 페이지
+          path: "/profile/add_profile/auth_phone_number",
+          name: "profile/add_profile/auth_phone_number",
+          pageBuilder: (context, _) => emptyTransitionPage(const AddProfilePhoneNumberPage()),
+        ),
+        GoRoute(
+          // 코드 입력 페이지
+          path: "/profile/add_profile/input_auth_code",
+          name: "profile/add_profile/input_auth_code",
+          pageBuilder: (context, _) => emptyTransitionPage(const AddProfileInputAuthCodePage()),
         ),
       ];
 }

@@ -45,10 +45,6 @@ class AddProfileImagePage extends HookConsumerWidget {
         maxHeight: MediaQuery.of(context).size.height / 2,
       ),
       builder: (BuildContext context) {
-        changePage(page) {
-          pageController.animateToPage(page, duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
-        }
-
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 24),
           child: Column(
@@ -66,8 +62,6 @@ class AddProfileImagePage extends HookConsumerWidget {
               ),
               Expanded(
                 child: PageView(
-                  controller: pageController,
-                  onPageChanged: (page) => changePage(page),
                   children: items
                       .map(
                         (item) => Column(
@@ -105,7 +99,7 @@ class AddProfileImagePage extends HookConsumerWidget {
                                   ),
                                   IconButton(
                                     onPressed: () {
-                                      changePage(pageController.initialPage);
+                                      // pageController.animateToPage(nextPage, duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
                                     },
                                     icon: SvgPicture.asset('assets/svg/arrow_next.svg'),
                                   ),
