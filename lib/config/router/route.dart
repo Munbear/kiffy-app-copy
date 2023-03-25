@@ -30,7 +30,7 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       refreshListenable: router,
       routes: router._routes,
-      initialLocation: "/profile/add_profile/intro",
+      initialLocation: "/profile/add_profile/image",
     );
   },
 );

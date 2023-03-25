@@ -52,7 +52,8 @@ class AddProfileInputImageCard extends HookConsumerWidget {
     return Stack(
       children: [
         Container(
-          height: 163,
+          width: 93,
+          height: 133,
           clipBehavior: Clip.hardEdge,
           padding: const EdgeInsets.all(0),
           decoration: BoxDecoration(
