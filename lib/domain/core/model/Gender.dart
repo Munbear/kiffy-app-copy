@@ -11,4 +11,13 @@ enum Gender {
     }
     throw ArgumentError();
   }
+
+  static genderToString(gender) {
+    switch (gender) {
+      case Gender.MALE:
+        return "Man";
+      case Gender.FEMALE:
+        return "Woman";
+    }
+  }
 }

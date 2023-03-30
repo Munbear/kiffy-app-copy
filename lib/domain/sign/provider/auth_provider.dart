@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/infra/auth_client.dart';
@@ -7,23 +9,37 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+enum AuthStatus {
+  SUCCESS,
+  FAIL,
+  NONE;
+}
+
+class AuthToken {
+  AuthStatus authStatus = AuthStatus.NONE;
+  UserStatus userStatus = UserStatus.JOINER;
+}
+
 final authProvider = StateNotifierProvider<AuthState, AuthToken>((ref) => AuthState(ref));
 
 class AuthState extends StateNotifier<AuthToken> {
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   final Ref ref;
 
   AuthState(this.ref) : super(AuthToken());
 
   void _routeByAuthToken(AuthToken token) {
+    // 신규 회원이면 프로필 등록 화면으로
     if (token.userStatus == UserStatus.JOINER && token.authStatus == AuthStatus.SUCCESS) {
       ref.read(routerProvider).replace("/profile/add_profile/user");
     }
 
+    // 회원 가입한 회우너이면 탐색 텝으로 보내기
     if (token.userStatus == UserStatus.APPROVED && token.authStatus == AuthStatus.SUCCESS) {
       ref.read(routerProvider).replace("/explore");
     }
 
+    // 실패시 다시 돌리
     if (token.authStatus == AuthStatus.NONE || token.authStatus == AuthStatus.FAIL) {
       ref.read(routerProvider).replace("/sign");
     }
@@ -71,15 +87,4 @@ class AuthState extends StateNotifier<AuthToken> {
     state.userStatus = userStatus.status;
     _routeByAuthToken(state);
   }
-}
-
-enum AuthStatus {
-  SUCCESS,
-  FAIL,
-  NONE;
-}
-
-class AuthToken {
-  AuthStatus authStatus = AuthStatus.NONE;
-  UserStatus userStatus = UserStatus.JOINER;
 }
