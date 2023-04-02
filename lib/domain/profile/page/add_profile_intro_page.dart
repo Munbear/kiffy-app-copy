@@ -4,18 +4,13 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
+import 'package:Kiffy/domain/profile/widget/example_intro_tips_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddProfileIntroPage extends HookConsumerWidget {
-  List<String> example = [
-    "My MBTI is..",
-    "My MBTI is..",
-    "My MBTI is..",
-    "My MBTI is..",
-  ];
+  const AddProfileIntroPage({super.key});
 
   // example bottom sheet
   exmapleBottomSheet(context) {
@@ -26,60 +21,7 @@ class AddProfileIntroPage extends HookConsumerWidget {
         maxHeight: MediaQuery.of(context).size.height / 2,
       ),
       builder: (BuildContext lcontext) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 39, vertical: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // const SizedBox(height: 17),
-              Center(
-                child: Container(
-                  height: 5,
-                  width: 84,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xffcecece),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              Column(
-                children: example
-                    .map(
-                      (item) => Container(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        margin: EdgeInsets.only(bottom: 10),
-                        decoration: BoxDecoration(
-                          color: const Color(0xfff5f5f5),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(child: Text(item)),
-                      ),
-                    )
-                    .toList(),
-              ),
-              const Spacer(),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: const BorderSide(color: Color(0xff0031AA))),
-                  backgroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                ),
-                child: const Text(
-                  "Okay",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Color(0xff0031AA),
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              )
-            ],
-          ),
-        );
+        return ExampleIntroTipsBottomSheet();
       },
     );
   }
@@ -96,7 +38,10 @@ class AddProfileIntroPage extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // 해더 텍스트
             AddProfileHeader(),
+
+            // 타이틀
             Row(
               children: [
                 const Text(
@@ -124,6 +69,8 @@ class AddProfileIntroPage extends HookConsumerWidget {
               ],
             ),
             const SizedBox(height: 16),
+
+            // 자기소개 입력 폼
             TextField(
               onChanged: (t) => inputIntro.value = t,
               minLines: 5,
@@ -142,11 +89,15 @@ class AddProfileIntroPage extends HookConsumerWidget {
                   contentPadding: EdgeInsets.all(18)),
             ),
             const SizedBox(height: 8),
+
+            // 유효성 안내 텍스트
             AddProfileInputValidationText(
               normalText: "* This will increase your matching probability.",
               validation: inputIntroValidation.value,
             ),
             const Spacer(),
+
+            // 다음 버튼
             ElevatedButton(
               onPressed: () {
                 inputIntroValidation.value = ref.read(addProfileInputProvider.notifier).setIntro(inputIntro.value);

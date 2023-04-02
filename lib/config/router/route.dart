@@ -143,7 +143,7 @@ class RouterNotifier extends ChangeNotifier {
           // 프로필 등록 자기소개 페이지
           path: "/profile/add_profile/intro",
           name: "profile_add_profile_intro",
-          pageBuilder: (context, _) => emptyTransitionPage(AddProfileIntroPage()),
+          pageBuilder: (context, _) => emptyTransitionPage(const AddProfileIntroPage()),
         ),
         GoRoute(
           // 프로필 이미지 등록 페이지

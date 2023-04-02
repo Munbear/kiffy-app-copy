@@ -72,6 +72,7 @@ class AddProfileContactPage extends HookConsumerWidget {
               style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 10),
+
             // 아이디 입력 폼
             TextFormField(
               onChanged: (t) => inputContactId.value = t,
@@ -90,11 +91,13 @@ class AddProfileContactPage extends HookConsumerWidget {
             ),
             const SizedBox(height: 8),
 
+            // 유호성 안내 텍스
             AddProfileInputValidationText(
               normalText: "* When a match is made, it’s shown to the woman.",
               validation: inputContactValidation.value,
             ),
             const Spacer(),
+
             // 다음 버튼
             ElevatedButton(
               onPressed: () {

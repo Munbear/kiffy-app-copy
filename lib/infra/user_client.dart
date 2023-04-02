@@ -26,6 +26,7 @@ Future<UserProfileUpload> postUserProfile(
     "medias": medias,
   });
 
+  // 여기서 문제
   final profileUpload = await ApiClient().dio.put("/api/view/user/v1/my/profile", data: requests);
   return UserProfileUpload.fromJson(profileUpload.data);
 }

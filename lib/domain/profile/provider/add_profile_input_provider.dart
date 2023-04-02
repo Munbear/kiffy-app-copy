@@ -138,8 +138,8 @@ class AddProfileMedia {
 
   Map<String, dynamic> toJson() {
     return {
-      "id": this.id,
-      "orderNum": this.orderNum,
+      "id": id,
+      "orderNum": orderNum,
     };
   }
 }
