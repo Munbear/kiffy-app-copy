@@ -26,8 +26,8 @@ Future<UserProfileUpload> postUserProfile(
     "medias": medias,
   });
 
-  // 여기서 문제
-  final profileUpload = await ApiClient().dio.put("/api/view/user/v1/my/profile", data: requests);
+// 여기서 문제
+  final profileUpload = await ApiClient().dio.post("/api/view/user/v1/my/profile", data: requests);
   return UserProfileUpload.fromJson(profileUpload.data);
 }
 
@@ -81,12 +81,12 @@ enum MediaType {
 // 응답
 class UserProfileUpload {
   late String id;
-  late UserStatus status;
   late String name;
-  late String intro;
   late Gender gender;
   late DateTime birthDate;
+  late String intro;
   late List<UserProfileMediaView> medias;
+  late UserStatus status;
 
   UserProfileUpload({
     required this.id,
