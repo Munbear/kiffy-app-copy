@@ -32,7 +32,7 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       refreshListenable: router,
       routes: router._routes,
-      initialLocation: "/profile/add_profile/complete", //"/sign",
+      initialLocation: "/sign",
     );
   },
 );

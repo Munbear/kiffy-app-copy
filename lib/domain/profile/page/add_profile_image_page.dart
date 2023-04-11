@@ -31,6 +31,7 @@ class AddProfileInputImageItem {
 class AddProfileImagePage extends HookConsumerWidget {
   PageController pageController = PageController(initialPage: 0);
 
+  // profile foto tip
   fotoTipBottomSheet(context) {
     return showModalBottomSheet(
       context: context,
@@ -47,6 +48,7 @@ class AddProfileImagePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inputImageMaxLength = 6;
+
     var inputImages = useState<List<AddProfileInputImageItem>>(List.empty());
     var inputImagesValidation = useState(AddProfileInputItemValidation.success());
     var userProfile = ref.read(addProfileInputProvider);
@@ -59,7 +61,7 @@ class AddProfileImagePage extends HookConsumerWidget {
             filePath: path,
             url: res.url,
             id: res.id,
-            orderNum: inputImages.value.length - 1,
+            orderNum: inputImages.value.length,
           )
         ],
       );
