@@ -1,4 +1,4 @@
-import 'package:Kiffy/domain/core/model/Gender.dart';
+import 'package:Kiffy/domain/core/model/gender_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_create_command.freezed.dart';

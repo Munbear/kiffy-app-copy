@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:Kiffy/config/router/route.dart';
+import 'package:Kiffy/domain/core/model/user_status.dart';
 import 'package:Kiffy/infra/auth_client.dart';
 import 'package:Kiffy/infra/user_client.dart';
 import 'package:firebase_auth/firebase_auth.dart';

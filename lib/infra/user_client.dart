@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:Kiffy/domain/core/model/gender_type.dart';
+import 'package:Kiffy/domain/core/model/user_status.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/infra/api_client.dart';
-
-import '../domain/core/model/Gender.dart';
 
 Future<UserStatusResponse> getUserStatus() async {
   final response = await ApiClient().dio.get("/api/view/user/v1/my/status");
@@ -40,27 +40,27 @@ Future<UserProfileUpload> getTest() async {
   return UserProfileUpload.fromJson(res.data);
 }
 
-enum UserStatus {
-  JOINER,
-  APPROVED,
-  PENDING,
-  REJECTED;
+// enum UserStatus {
+//   JOINER,
+//   APPROVED,
+//   PENDING,
+//   REJECTED;
 
-  static UserStatus fromString(String status) {
-    switch (status) {
-      case "JOINER":
-        return UserStatus.JOINER;
-      case "APPROVED":
-        return UserStatus.APPROVED;
-      case "PENDING":
-        return UserStatus.PENDING;
-      case "REJECTED":
-        return UserStatus.REJECTED;
-      default:
-        return UserStatus.JOINER;
-    }
-  }
-}
+//   static UserStatus fromString(String status) {
+//     switch (status) {
+//       case "JOINER":
+//         return UserStatus.JOINER;
+//       case "APPROVED":
+//         return UserStatus.APPROVED;
+//       case "PENDING":
+//         return UserStatus.PENDING;
+//       case "REJECTED":
+//         return UserStatus.REJECTED;
+//       default:
+//         return UserStatus.JOINER;
+//     }
+//   }
+// }
 
 enum MediaType {
   image,

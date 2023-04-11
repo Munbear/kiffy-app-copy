@@ -1,5 +1,5 @@
-import 'package:Kiffy/domain/core/model/ContactType.dart';
-import 'package:Kiffy/domain/core/model/Gender.dart';
+import 'package:Kiffy/domain/core/model/contact_type.dart';
+import 'package:Kiffy/domain/core/model/gender_type.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 var addProfileInputProvider = StateNotifierProvider<AddProfileInputState, AddProfileInput>((ref) => AddProfileInputState(ref));
