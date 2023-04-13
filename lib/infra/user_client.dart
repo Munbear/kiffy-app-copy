@@ -5,18 +5,20 @@ import 'package:Kiffy/domain/core/model/gender_type.dart';
 import 'package:Kiffy/domain/core/model/user_status.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/infra/api_client.dart';
+import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
+import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 
 Future<UserStatusResponse> getUserStatus() async {
   final response = await ApiClient().dio.get("/api/view/user/v1/my/status");
   return UserStatusResponse.fromJson(response.data);
 }
 
-Future<UserProfileUpload> postUserProfile(
+Future<UserProfileView> postUserProfile(
   String name,
   Gender gender,
-  String birthDate,
+  DateTime birthDate,
   String intro,
-  List<AddProfileMedia> medias,
+  UserProfileCreateAndEditCommandProfileMedia medias,
 ) async {
   var requests = jsonEncode({
     "name": name,
@@ -28,7 +30,7 @@ Future<UserProfileUpload> postUserProfile(
 
 // 여기서 문제
   final profileUpload = await ApiClient().dio.post("/api/view/user/v1/my/profile", data: requests);
-  return UserProfileUpload.fromJson(profileUpload.data);
+  return UserProfileView.fromJson(profileUpload.data);
 }
 
 Future<UserProfileUpload> getTest() async {

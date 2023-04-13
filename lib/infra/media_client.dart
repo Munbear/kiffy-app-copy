@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:Kiffy/infra/api_client.dart';
+import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:dio/dio.dart';
 
 Future<UploadImageResponse> uploadImage(String path) async {
@@ -11,6 +10,7 @@ Future<UploadImageResponse> uploadImage(String path) async {
 
   Response response = await dio.post("/api/view/media/v1/upload/image", data: formData);
 
+  // return response.data.map<MediaView>(() => MediaView).toList();
   return UploadImageResponse.fromMap(response.data!);
 }
 

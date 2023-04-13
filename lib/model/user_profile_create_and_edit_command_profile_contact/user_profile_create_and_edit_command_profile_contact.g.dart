@@ -11,14 +11,14 @@ _$_UserProfileCreateAndEditCommanProfileContact
             Map<String, dynamic> json) =>
         _$_UserProfileCreateAndEditCommanProfileContact(
           contactId: json['contactId'] as String,
-          orderNum: $enumDecode(_$ContactTypeEnumMap, json['orderNum']),
+          contactType: $enumDecode(_$ContactTypeEnumMap, json['contactType']),
         );
 
 Map<String, dynamic> _$$_UserProfileCreateAndEditCommanProfileContactToJson(
         _$_UserProfileCreateAndEditCommanProfileContact instance) =>
     <String, dynamic>{
       'contactId': instance.contactId,
-      'orderNum': _$ContactTypeEnumMap[instance.orderNum]!,
+      'contactType': _$ContactTypeEnumMap[instance.contactType]!,
     };
 
 const _$ContactTypeEnumMap = {

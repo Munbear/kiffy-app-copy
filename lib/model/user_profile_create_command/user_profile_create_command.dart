@@ -1,4 +1,6 @@
 import 'package:Kiffy/domain/core/model/gender_type.dart';
+import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact/user_profile_create_and_edit_command_profile_contact.dart';
+import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_create_command.freezed.dart';
@@ -11,8 +13,8 @@ class UserProfileCreateCommand with _$UserProfileCreateCommand {
     required Gender gender,
     required DateTime birthDate,
     required String intro,
-    required List<Map<String, dynamic>> medias,
-    required List<Map<String, dynamic>> contacts,
+    required UserProfileCreateAndEditCommandProfileMedia medias,
+    required UserProfileCreateAndEditCommanProfileContact contacts,
   }) = _UserProfileCreateCommand;
 
   factory UserProfileCreateCommand.fromJson(Map<String, dynamic> json) => _$UserProfileCreateCommandFromJson(json);

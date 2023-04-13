@@ -22,7 +22,7 @@ MediaView _$MediaViewFromJson(Map<String, dynamic> json) {
 mixin _$MediaView {
   MediaType get type => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get uri => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $MediaViewCopyWith<$Res> {
   factory $MediaViewCopyWith(MediaView value, $Res Function(MediaView) then) =
       _$MediaViewCopyWithImpl<$Res, MediaView>;
   @useResult
-  $Res call({MediaType type, String id, String uri});
+  $Res call({MediaType type, String id, String url});
 }
 
 /// @nodoc
@@ -53,7 +53,7 @@ class _$MediaViewCopyWithImpl<$Res, $Val extends MediaView>
   $Res call({
     Object? type = null,
     Object? id = null,
-    Object? uri = null,
+    Object? url = null,
   }) {
     return _then(_value.copyWith(
       type: null == type
@@ -64,9 +64,9 @@ class _$MediaViewCopyWithImpl<$Res, $Val extends MediaView>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      uri: null == uri
-          ? _value.uri
-          : uri // ignore: cast_nullable_to_non_nullable
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -79,7 +79,7 @@ abstract class _$$_MediaViewCopyWith<$Res> implements $MediaViewCopyWith<$Res> {
       __$$_MediaViewCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MediaType type, String id, String uri});
+  $Res call({MediaType type, String id, String url});
 }
 
 /// @nodoc
@@ -95,7 +95,7 @@ class __$$_MediaViewCopyWithImpl<$Res>
   $Res call({
     Object? type = null,
     Object? id = null,
-    Object? uri = null,
+    Object? url = null,
   }) {
     return _then(_$_MediaView(
       type: null == type
@@ -106,9 +106,9 @@ class __$$_MediaViewCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      uri: null == uri
-          ? _value.uri
-          : uri // ignore: cast_nullable_to_non_nullable
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -117,7 +117,7 @@ class __$$_MediaViewCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MediaView implements _MediaView {
-  _$_MediaView({required this.type, required this.id, required this.uri});
+  _$_MediaView({required this.type, required this.id, required this.url});
 
   factory _$_MediaView.fromJson(Map<String, dynamic> json) =>
       _$$_MediaViewFromJson(json);
@@ -127,11 +127,11 @@ class _$_MediaView implements _MediaView {
   @override
   final String id;
   @override
-  final String uri;
+  final String url;
 
   @override
   String toString() {
-    return 'MediaView(type: $type, id: $id, uri: $uri)';
+    return 'MediaView(type: $type, id: $id, url: $url)';
   }
 
   @override
@@ -141,12 +141,12 @@ class _$_MediaView implements _MediaView {
             other is _$_MediaView &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.uri, uri) || other.uri == uri));
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, type, id, uri);
+  int get hashCode => Object.hash(runtimeType, type, id, url);
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +166,7 @@ abstract class _MediaView implements MediaView {
   factory _MediaView(
       {required final MediaType type,
       required final String id,
-      required final String uri}) = _$_MediaView;
+      required final String url}) = _$_MediaView;
 
   factory _MediaView.fromJson(Map<String, dynamic> json) =
       _$_MediaView.fromJson;
@@ -176,7 +176,7 @@ abstract class _MediaView implements MediaView {
   @override
   String get id;
   @override
-  String get uri;
+  String get url;
   @override
   @JsonKey(ignore: true)
   _$$_MediaViewCopyWith<_$_MediaView> get copyWith =>

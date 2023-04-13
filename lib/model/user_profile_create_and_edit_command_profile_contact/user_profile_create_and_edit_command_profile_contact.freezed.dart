@@ -23,7 +23,7 @@ UserProfileCreateAndEditCommanProfileContact
 /// @nodoc
 mixin _$UserProfileCreateAndEditCommanProfileContact {
   String get contactId => throw _privateConstructorUsedError;
-  ContactType get orderNum => throw _privateConstructorUsedError;
+  ContactType get contactType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +40,7 @@ abstract class $UserProfileCreateAndEditCommanProfileContactCopyWith<$Res> {
       _$UserProfileCreateAndEditCommanProfileContactCopyWithImpl<$Res,
           UserProfileCreateAndEditCommanProfileContact>;
   @useResult
-  $Res call({String contactId, ContactType orderNum});
+  $Res call({String contactId, ContactType contactType});
 }
 
 /// @nodoc
@@ -59,16 +59,16 @@ class _$UserProfileCreateAndEditCommanProfileContactCopyWithImpl<$Res,
   @override
   $Res call({
     Object? contactId = null,
-    Object? orderNum = null,
+    Object? contactType = null,
   }) {
     return _then(_value.copyWith(
       contactId: null == contactId
           ? _value.contactId
           : contactId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderNum: null == orderNum
-          ? _value.orderNum
-          : orderNum // ignore: cast_nullable_to_non_nullable
+      contactType: null == contactType
+          ? _value.contactType
+          : contactType // ignore: cast_nullable_to_non_nullable
               as ContactType,
     ) as $Val);
   }
@@ -83,7 +83,7 @@ abstract class _$$_UserProfileCreateAndEditCommanProfileContactCopyWith<$Res>
       __$$_UserProfileCreateAndEditCommanProfileContactCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String contactId, ContactType orderNum});
+  $Res call({String contactId, ContactType contactType});
 }
 
 /// @nodoc
@@ -100,16 +100,16 @@ class __$$_UserProfileCreateAndEditCommanProfileContactCopyWithImpl<$Res>
   @override
   $Res call({
     Object? contactId = null,
-    Object? orderNum = null,
+    Object? contactType = null,
   }) {
     return _then(_$_UserProfileCreateAndEditCommanProfileContact(
       contactId: null == contactId
           ? _value.contactId
           : contactId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderNum: null == orderNum
-          ? _value.orderNum
-          : orderNum // ignore: cast_nullable_to_non_nullable
+      contactType: null == contactType
+          ? _value.contactType
+          : contactType // ignore: cast_nullable_to_non_nullable
               as ContactType,
     ));
   }
@@ -120,7 +120,7 @@ class __$$_UserProfileCreateAndEditCommanProfileContactCopyWithImpl<$Res>
 class _$_UserProfileCreateAndEditCommanProfileContact
     implements _UserProfileCreateAndEditCommanProfileContact {
   _$_UserProfileCreateAndEditCommanProfileContact(
-      {required this.contactId, required this.orderNum});
+      {required this.contactId, required this.contactType});
 
   factory _$_UserProfileCreateAndEditCommanProfileContact.fromJson(
           Map<String, dynamic> json) =>
@@ -129,11 +129,11 @@ class _$_UserProfileCreateAndEditCommanProfileContact
   @override
   final String contactId;
   @override
-  final ContactType orderNum;
+  final ContactType contactType;
 
   @override
   String toString() {
-    return 'UserProfileCreateAndEditCommanProfileContact(contactId: $contactId, orderNum: $orderNum)';
+    return 'UserProfileCreateAndEditCommanProfileContact(contactId: $contactId, contactType: $contactType)';
   }
 
   @override
@@ -143,13 +143,13 @@ class _$_UserProfileCreateAndEditCommanProfileContact
             other is _$_UserProfileCreateAndEditCommanProfileContact &&
             (identical(other.contactId, contactId) ||
                 other.contactId == contactId) &&
-            (identical(other.orderNum, orderNum) ||
-                other.orderNum == orderNum));
+            (identical(other.contactType, contactType) ||
+                other.contactType == contactType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, contactId, orderNum);
+  int get hashCode => Object.hash(runtimeType, contactId, contactType);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +173,7 @@ abstract class _UserProfileCreateAndEditCommanProfileContact
     implements UserProfileCreateAndEditCommanProfileContact {
   factory _UserProfileCreateAndEditCommanProfileContact(
           {required final String contactId,
-          required final ContactType orderNum}) =
+          required final ContactType contactType}) =
       _$_UserProfileCreateAndEditCommanProfileContact;
 
   factory _UserProfileCreateAndEditCommanProfileContact.fromJson(
@@ -183,7 +183,7 @@ abstract class _UserProfileCreateAndEditCommanProfileContact
   @override
   String get contactId;
   @override
-  ContactType get orderNum;
+  ContactType get contactType;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileCreateAndEditCommanProfileContactCopyWith<

@@ -25,8 +25,10 @@ mixin _$UserProfileCreateCommand {
   Gender get gender => throw _privateConstructorUsedError;
   DateTime get birthDate => throw _privateConstructorUsedError;
   String get intro => throw _privateConstructorUsedError;
-  List<Map<String, dynamic>> get medias => throw _privateConstructorUsedError;
-  List<Map<String, dynamic>> get contacts => throw _privateConstructorUsedError;
+  UserProfileCreateAndEditCommandProfileMedia get medias =>
+      throw _privateConstructorUsedError;
+  UserProfileCreateAndEditCommanProfileContact get contacts =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,8 +47,11 @@ abstract class $UserProfileCreateCommandCopyWith<$Res> {
       Gender gender,
       DateTime birthDate,
       String intro,
-      List<Map<String, dynamic>> medias,
-      List<Map<String, dynamic>> contacts});
+      UserProfileCreateAndEditCommandProfileMedia medias,
+      UserProfileCreateAndEditCommanProfileContact contacts});
+
+  $UserProfileCreateAndEditCommandProfileMediaCopyWith<$Res> get medias;
+  $UserProfileCreateAndEditCommanProfileContactCopyWith<$Res> get contacts;
 }
 
 /// @nodoc
@@ -90,12 +95,30 @@ class _$UserProfileCreateCommandCopyWithImpl<$Res,
       medias: null == medias
           ? _value.medias
           : medias // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as UserProfileCreateAndEditCommandProfileMedia,
       contacts: null == contacts
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as UserProfileCreateAndEditCommanProfileContact,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserProfileCreateAndEditCommandProfileMediaCopyWith<$Res> get medias {
+    return $UserProfileCreateAndEditCommandProfileMediaCopyWith<$Res>(
+        _value.medias, (value) {
+      return _then(_value.copyWith(medias: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserProfileCreateAndEditCommanProfileContactCopyWith<$Res> get contacts {
+    return $UserProfileCreateAndEditCommanProfileContactCopyWith<$Res>(
+        _value.contacts, (value) {
+      return _then(_value.copyWith(contacts: value) as $Val);
+    });
   }
 }
 
@@ -113,8 +136,13 @@ abstract class _$$_UserProfileCreateCommandCopyWith<$Res>
       Gender gender,
       DateTime birthDate,
       String intro,
-      List<Map<String, dynamic>> medias,
-      List<Map<String, dynamic>> contacts});
+      UserProfileCreateAndEditCommandProfileMedia medias,
+      UserProfileCreateAndEditCommanProfileContact contacts});
+
+  @override
+  $UserProfileCreateAndEditCommandProfileMediaCopyWith<$Res> get medias;
+  @override
+  $UserProfileCreateAndEditCommanProfileContactCopyWith<$Res> get contacts;
 }
 
 /// @nodoc
@@ -154,13 +182,13 @@ class __$$_UserProfileCreateCommandCopyWithImpl<$Res>
           : intro // ignore: cast_nullable_to_non_nullable
               as String,
       medias: null == medias
-          ? _value._medias
+          ? _value.medias
           : medias // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as UserProfileCreateAndEditCommandProfileMedia,
       contacts: null == contacts
-          ? _value._contacts
+          ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as UserProfileCreateAndEditCommanProfileContact,
     ));
   }
 }
@@ -173,10 +201,8 @@ class _$_UserProfileCreateCommand implements _UserProfileCreateCommand {
       required this.gender,
       required this.birthDate,
       required this.intro,
-      required final List<Map<String, dynamic>> medias,
-      required final List<Map<String, dynamic>> contacts})
-      : _medias = medias,
-        _contacts = contacts;
+      required this.medias,
+      required this.contacts});
 
   factory _$_UserProfileCreateCommand.fromJson(Map<String, dynamic> json) =>
       _$$_UserProfileCreateCommandFromJson(json);
@@ -189,21 +215,10 @@ class _$_UserProfileCreateCommand implements _UserProfileCreateCommand {
   final DateTime birthDate;
   @override
   final String intro;
-  final List<Map<String, dynamic>> _medias;
   @override
-  List<Map<String, dynamic>> get medias {
-    if (_medias is EqualUnmodifiableListView) return _medias;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_medias);
-  }
-
-  final List<Map<String, dynamic>> _contacts;
+  final UserProfileCreateAndEditCommandProfileMedia medias;
   @override
-  List<Map<String, dynamic>> get contacts {
-    if (_contacts is EqualUnmodifiableListView) return _contacts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_contacts);
-  }
+  final UserProfileCreateAndEditCommanProfileContact contacts;
 
   @override
   String toString() {
@@ -220,20 +235,15 @@ class _$_UserProfileCreateCommand implements _UserProfileCreateCommand {
             (identical(other.birthDate, birthDate) ||
                 other.birthDate == birthDate) &&
             (identical(other.intro, intro) || other.intro == intro) &&
-            const DeepCollectionEquality().equals(other._medias, _medias) &&
-            const DeepCollectionEquality().equals(other._contacts, _contacts));
+            (identical(other.medias, medias) || other.medias == medias) &&
+            (identical(other.contacts, contacts) ||
+                other.contacts == contacts));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      gender,
-      birthDate,
-      intro,
-      const DeepCollectionEquality().hash(_medias),
-      const DeepCollectionEquality().hash(_contacts));
+      runtimeType, name, gender, birthDate, intro, medias, contacts);
 
   @JsonKey(ignore: true)
   @override
@@ -252,13 +262,13 @@ class _$_UserProfileCreateCommand implements _UserProfileCreateCommand {
 
 abstract class _UserProfileCreateCommand implements UserProfileCreateCommand {
   factory _UserProfileCreateCommand(
-          {required final String name,
-          required final Gender gender,
-          required final DateTime birthDate,
-          required final String intro,
-          required final List<Map<String, dynamic>> medias,
-          required final List<Map<String, dynamic>> contacts}) =
-      _$_UserProfileCreateCommand;
+      {required final String name,
+      required final Gender gender,
+      required final DateTime birthDate,
+      required final String intro,
+      required final UserProfileCreateAndEditCommandProfileMedia medias,
+      required final UserProfileCreateAndEditCommanProfileContact
+          contacts}) = _$_UserProfileCreateCommand;
 
   factory _UserProfileCreateCommand.fromJson(Map<String, dynamic> json) =
       _$_UserProfileCreateCommand.fromJson;
@@ -272,9 +282,9 @@ abstract class _UserProfileCreateCommand implements UserProfileCreateCommand {
   @override
   String get intro;
   @override
-  List<Map<String, dynamic>> get medias;
+  UserProfileCreateAndEditCommandProfileMedia get medias;
   @override
-  List<Map<String, dynamic>> get contacts;
+  UserProfileCreateAndEditCommanProfileContact get contacts;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileCreateCommandCopyWith<_$_UserProfileCreateCommand>

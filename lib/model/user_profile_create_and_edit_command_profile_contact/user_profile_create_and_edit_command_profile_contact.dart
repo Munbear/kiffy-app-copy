@@ -8,7 +8,7 @@ part 'user_profile_create_and_edit_command_profile_contact.g.dart';
 class UserProfileCreateAndEditCommanProfileContact with _$UserProfileCreateAndEditCommanProfileContact {
   factory UserProfileCreateAndEditCommanProfileContact({
     required String contactId,
-    required ContactType orderNum,
+    required ContactType contactType,
   }) = _UserProfileCreateAndEditCommanProfileContact;
 
   factory UserProfileCreateAndEditCommanProfileContact.fromJson(Map<String, dynamic> json) =>

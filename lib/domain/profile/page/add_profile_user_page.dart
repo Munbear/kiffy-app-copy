@@ -4,7 +4,6 @@ import 'package:Kiffy/domain/core/model/gender_type.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,12 +15,15 @@ class AddProfileUserPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(addProfileInputProvider);
 
+    // 유저 닉네임
     var inputName = useState("");
     var inputNameValidation = useState(AddProfileInputItemValidation.success());
 
+    // 유저 성별
     var inputGender = useState<Gender?>(null);
     var inputGenderValidation = useState(AddProfileInputItemValidation.success());
 
+    // 유저 생년월일
     var inputBirthDay = useState("");
     var inputBirthdayValidation = useState(AddProfileInputItemValidation.success());
 
@@ -78,7 +80,6 @@ class AddProfileUserPage extends HookConsumerWidget {
                                 padding: const EdgeInsets.only(right: 5),
                                 child: ElevatedButton.icon(
                                   onPressed: () {
-                                    print(gender);
                                     inputGender.value = gender;
                                   },
                                   label: Text(

@@ -7,6 +7,8 @@ import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:Kiffy/domain/profile/widget/example_profile_foto_tip_bottom_sheet.dart';
 import 'package:Kiffy/infra/media_client.dart';
+import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact/user_profile_create_and_edit_command_profile_contact.dart';
+import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -49,7 +51,7 @@ class AddProfileImagePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final inputImageMaxLength = 6;
 
-    var inputImages = useState<List<AddProfileInputImageItem>>(List.empty());
+    var inputImages = useState<List<AddProfileInputImageItem>>([]);
     var inputImagesValidation = useState(AddProfileInputItemValidation.success());
     var userProfile = ref.read(addProfileInputProvider);
 
@@ -128,7 +130,7 @@ class AddProfileImagePage extends HookConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 inputImagesValidation.value = ref.read(addProfileInputProvider.notifier).setMedias(
-                      inputImages.value.map((image) => AddProfileMedia(id: image.id, orderNum: image.orderNum)).toList(),
+                      inputImages.value.map((image) => UserProfileCreateAndEditCommandProfileMedia(id: image.id, orderNum: image.orderNum)).toList(),
                     );
 
                 if (inputImagesValidation.value.isValid) {
