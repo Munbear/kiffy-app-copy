@@ -32,9 +32,9 @@ class AddProfileInputState extends StateNotifier<UserProfileCreateCommand> {
           UserProfileCreateCommand(
             name: "",
             gender: Gender.MALE,
-            birthDate: DateTime.now(),
+            birthDate: "",
             intro: "",
-            medias: UserProfileCreateAndEditCommandProfileMedia(id: "", orderNum: -1),
+            medias: UserProfileCreateAndEditCommandProfileMedia(id: "", orderNum: 0),
             contacts: UserProfileCreateAndEditCommanProfileContact(contactId: "", contactType: ContactType.LINE),
           ),
         );
@@ -88,6 +88,7 @@ class AddProfileInputState extends StateNotifier<UserProfileCreateCommand> {
     }
 
     // state.birthDate = birthDate;
+    state.birthDate;
     return AddProfileInputItemValidation.success();
   }
 
@@ -116,6 +117,7 @@ class AddProfileInputState extends StateNotifier<UserProfileCreateCommand> {
     }
 
     // state.intro = intro;
+    state.intro;
     return AddProfileInputItemValidation.success();
   }
 

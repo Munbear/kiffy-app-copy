@@ -11,7 +11,7 @@ class UserProfileCreateCommand with _$UserProfileCreateCommand {
   factory UserProfileCreateCommand({
     required String name,
     required Gender gender,
-    required DateTime birthDate,
+    required String birthDate,
     required String intro,
     required UserProfileCreateAndEditCommandProfileMedia medias,
     required UserProfileCreateAndEditCommanProfileContact contacts,

@@ -1,5 +1,4 @@
-import 'package:Kiffy/domain/core/model/contact_type.dart';
-import 'package:Kiffy/infra/user_client.dart';
+import 'package:Kiffy/domain/core/model/media_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'media_view.freezed.dart';

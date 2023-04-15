@@ -13,7 +13,7 @@ _$_UserProfileView _$$_UserProfileViewFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       intro: json['intro'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
-      birthDate: DateTime.parse(json['birthDate'] as String),
+      birthDate: json['birthDate'] as String,
       medias: $enumDecode(_$MediaTypeEnumMap, json['medias']),
     );
 
@@ -24,7 +24,7 @@ Map<String, dynamic> _$$_UserProfileViewToJson(_$_UserProfileView instance) =>
       'name': instance.name,
       'intro': instance.intro,
       'gender': _$GenderEnumMap[instance.gender]!,
-      'birthDate': instance.birthDate.toIso8601String(),
+      'birthDate': instance.birthDate,
       'medias': _$MediaTypeEnumMap[instance.medias]!,
     };
 

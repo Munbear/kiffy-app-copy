@@ -25,7 +25,7 @@ mixin _$UserProfileView {
   String get name => throw _privateConstructorUsedError;
   String get intro => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
-  DateTime get birthDate => throw _privateConstructorUsedError;
+  String get birthDate => throw _privateConstructorUsedError;
   MediaType get medias => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $UserProfileViewCopyWith<$Res> {
       String name,
       String intro,
       Gender gender,
-      DateTime birthDate,
+      String birthDate,
       MediaType medias});
 }
 
@@ -95,7 +95,7 @@ class _$UserProfileViewCopyWithImpl<$Res, $Val extends UserProfileView>
       birthDate: null == birthDate
           ? _value.birthDate
           : birthDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       medias: null == medias
           ? _value.medias
           : medias // ignore: cast_nullable_to_non_nullable
@@ -118,7 +118,7 @@ abstract class _$$_UserProfileViewCopyWith<$Res>
       String name,
       String intro,
       Gender gender,
-      DateTime birthDate,
+      String birthDate,
       MediaType medias});
 }
 
@@ -165,7 +165,7 @@ class __$$_UserProfileViewCopyWithImpl<$Res>
       birthDate: null == birthDate
           ? _value.birthDate
           : birthDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       medias: null == medias
           ? _value.medias
           : medias // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ class _$_UserProfileView implements _UserProfileView {
   @override
   final Gender gender;
   @override
-  final DateTime birthDate;
+  final String birthDate;
   @override
   final MediaType medias;
 
@@ -250,7 +250,7 @@ abstract class _UserProfileView implements UserProfileView {
       required final String name,
       required final String intro,
       required final Gender gender,
-      required final DateTime birthDate,
+      required final String birthDate,
       required final MediaType medias}) = _$_UserProfileView;
 
   factory _UserProfileView.fromJson(Map<String, dynamic> json) =
@@ -267,7 +267,7 @@ abstract class _UserProfileView implements UserProfileView {
   @override
   Gender get gender;
   @override
-  DateTime get birthDate;
+  String get birthDate;
   @override
   MediaType get medias;
   @override

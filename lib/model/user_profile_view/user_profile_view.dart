@@ -1,7 +1,6 @@
-import 'package:Kiffy/domain/core/model/contact_type.dart';
 import 'package:Kiffy/domain/core/model/gender_type.dart';
+import 'package:Kiffy/domain/core/model/media_type.dart';
 import 'package:Kiffy/domain/core/model/user_status.dart';
-import 'package:Kiffy/infra/user_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_view.freezed.dart';
@@ -15,7 +14,7 @@ class UserProfileView with _$UserProfileView {
     required String name,
     required String intro,
     required Gender gender,
-    required DateTime birthDate,
+    required String birthDate,
     required MediaType medias,
   }) = _UserProfileView;
 

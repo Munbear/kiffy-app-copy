@@ -11,7 +11,7 @@ _$_UserProfileCreateCommand _$$_UserProfileCreateCommandFromJson(
     _$_UserProfileCreateCommand(
       name: json['name'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
-      birthDate: DateTime.parse(json['birthDate'] as String),
+      birthDate: json['birthDate'] as String,
       intro: json['intro'] as String,
       medias: UserProfileCreateAndEditCommandProfileMedia.fromJson(
           json['medias'] as Map<String, dynamic>),
@@ -24,7 +24,7 @@ Map<String, dynamic> _$$_UserProfileCreateCommandToJson(
     <String, dynamic>{
       'name': instance.name,
       'gender': _$GenderEnumMap[instance.gender]!,
-      'birthDate': instance.birthDate.toIso8601String(),
+      'birthDate': instance.birthDate,
       'intro': instance.intro,
       'medias': instance.medias,
       'contacts': instance.contacts,

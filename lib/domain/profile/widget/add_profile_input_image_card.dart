@@ -32,8 +32,6 @@ class AddProfileInputImageCard extends HookConsumerWidget {
     final file = await picker.pickImage(source: imageSource);
     if (file != null) {
       props.onAdded(file.path);
-    } else {
-      return;
     }
   }
 
@@ -47,8 +45,6 @@ class AddProfileInputImageCard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imageFile = useState<File?>(null);
-
     return Stack(
       children: [
         Container(
@@ -66,7 +62,9 @@ class AddProfileInputImageCard extends HookConsumerWidget {
           ),
           child: props.filePath == null
               ? InkWell(
-                  onTap: () => addImage(ImageSource.gallery),
+                  onTap: () {
+                    addImage(ImageSource.gallery);
+                  },
                   child: const Center(child: Text("+", style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)))),
                 )
               : Container(

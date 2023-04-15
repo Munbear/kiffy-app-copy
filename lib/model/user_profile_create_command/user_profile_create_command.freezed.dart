@@ -23,7 +23,7 @@ UserProfileCreateCommand _$UserProfileCreateCommandFromJson(
 mixin _$UserProfileCreateCommand {
   String get name => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
-  DateTime get birthDate => throw _privateConstructorUsedError;
+  String get birthDate => throw _privateConstructorUsedError;
   String get intro => throw _privateConstructorUsedError;
   UserProfileCreateAndEditCommandProfileMedia get medias =>
       throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $UserProfileCreateCommandCopyWith<$Res> {
   $Res call(
       {String name,
       Gender gender,
-      DateTime birthDate,
+      String birthDate,
       String intro,
       UserProfileCreateAndEditCommandProfileMedia medias,
       UserProfileCreateAndEditCommanProfileContact contacts});
@@ -87,7 +87,7 @@ class _$UserProfileCreateCommandCopyWithImpl<$Res,
       birthDate: null == birthDate
           ? _value.birthDate
           : birthDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       intro: null == intro
           ? _value.intro
           : intro // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ abstract class _$$_UserProfileCreateCommandCopyWith<$Res>
   $Res call(
       {String name,
       Gender gender,
-      DateTime birthDate,
+      String birthDate,
       String intro,
       UserProfileCreateAndEditCommandProfileMedia medias,
       UserProfileCreateAndEditCommanProfileContact contacts});
@@ -176,7 +176,7 @@ class __$$_UserProfileCreateCommandCopyWithImpl<$Res>
       birthDate: null == birthDate
           ? _value.birthDate
           : birthDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       intro: null == intro
           ? _value.intro
           : intro // ignore: cast_nullable_to_non_nullable
@@ -212,7 +212,7 @@ class _$_UserProfileCreateCommand implements _UserProfileCreateCommand {
   @override
   final Gender gender;
   @override
-  final DateTime birthDate;
+  final String birthDate;
   @override
   final String intro;
   @override
@@ -264,7 +264,7 @@ abstract class _UserProfileCreateCommand implements UserProfileCreateCommand {
   factory _UserProfileCreateCommand(
       {required final String name,
       required final Gender gender,
-      required final DateTime birthDate,
+      required final String birthDate,
       required final String intro,
       required final UserProfileCreateAndEditCommandProfileMedia medias,
       required final UserProfileCreateAndEditCommanProfileContact
@@ -278,7 +278,7 @@ abstract class _UserProfileCreateCommand implements UserProfileCreateCommand {
   @override
   Gender get gender;
   @override
-  DateTime get birthDate;
+  String get birthDate;
   @override
   String get intro;
   @override
