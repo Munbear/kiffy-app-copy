@@ -11,6 +11,7 @@ Future<UploadImageResponse> uploadImage(String path) async {
   Response response = await dio.post("/api/view/media/v1/upload/image", data: formData);
 
   // return response.data.map<MediaView>(() => MediaView).toList();
+  // :: 나중에 MediaView 로 변경
   return UploadImageResponse.fromMap(response.data!);
 }
 

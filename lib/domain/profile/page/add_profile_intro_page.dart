@@ -103,6 +103,7 @@ class AddProfileIntroPage extends HookConsumerWidget {
                 inputIntroValidation.value = ref.read(addProfileInputProvider.notifier).setIntro(inputIntro.value);
 
                 if (inputIntroValidation.value.isValid) {
+                  ref.read(addProfileInputProvider.notifier).updateIntro(inputIntro.value);
                   ref.read(routerProvider).replace("/profile/add_profile/image");
                 }
               },

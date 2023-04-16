@@ -15,34 +15,34 @@ Future<UserStatusView> getUserStatus() async {
   return UserStatusView.fromJson(response.data);
 }
 
-Future<UserProfileView> postUserProfile(
-  String name,
-  Gender gender,
-  String birthDate,
-  String intro,
-  UserProfileCreateAndEditCommandProfileMedia medias,
-) async {
-  var requests = jsonEncode({
-    "name": name,
-    "gender": gender.name.toString(),
-    "birthDate": birthDate,
-    "intro": intro,
-    "medias": medias,
-  });
+// Future<UserProfileView> postUserProfile(
+//   String name,
+//   Gender gender,
+//   String birthDate,
+//   String intro,
+//   UserProfileCreateAndEditCommandProfileMedia medias,
+// ) async {
+//   var requests = jsonEncode({
+//     "name": name,
+//     "gender": gender.name.toString(),
+//     "birthDate": birthDate,
+//     "intro": intro,
+//     "medias": medias,
+//   });
 
-// 여기서 문제
-  final profileUpload = await ApiClient().dio.post("/api/view/user/v1/my/profile", data: requests);
-  return UserProfileView.fromJson(profileUpload.data);
-}
+// // 여기서 문제
+//   final profileUpload = await ApiClient().dio.put("/api/view/user/v1/my/profile", data: requests);
+//   return UserProfileView.fromJson(profileUpload.data);
+// }
 
-Future<UserProfileView> getTest() async {
-  final res = await ApiClient().dio.get("/api/view/user/v1/my/profile");
+// Future<UserProfileView> getTest() async {
+//   final res = await ApiClient().dio.get("/api/view/user/v1/my/profile");
 
-  log(res.data["medias"].toString());
-  log((res.data["medias"] is String).toString());
+//   log(res.data["medias"].toString());
+//   log((res.data["medias"] is String).toString());
 
-  return UserProfileView.fromJson(res.data);
-}
+//   return UserProfileView.fromJson(res.data);
+// }
 
 // enum UserStatus {
 //   JOINER,

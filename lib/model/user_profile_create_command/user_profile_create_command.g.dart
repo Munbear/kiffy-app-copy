@@ -13,10 +13,14 @@ _$_UserProfileCreateCommand _$$_UserProfileCreateCommandFromJson(
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       birthDate: json['birthDate'] as String,
       intro: json['intro'] as String,
-      medias: UserProfileCreateAndEditCommandProfileMedia.fromJson(
-          json['medias'] as Map<String, dynamic>),
-      contacts: UserProfileCreateAndEditCommanProfileContact.fromJson(
-          json['contacts'] as Map<String, dynamic>),
+      medias: (json['medias'] as List<dynamic>)
+          .map((e) => UserProfileCreateAndEditCommandProfileMedia.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      contacts: (json['contacts'] as List<dynamic>)
+          .map((e) => UserProfileCreateAndEditCommanProfileContact.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_UserProfileCreateCommandToJson(

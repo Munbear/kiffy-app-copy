@@ -16,16 +16,16 @@ class AddProfileUserPage extends HookConsumerWidget {
     ref.watch(addProfileInputProvider);
 
     // 유저 닉네임
-    var inputName = useState("");
-    var inputNameValidation = useState(AddProfileInputItemValidation.success());
+    ValueNotifier<String> inputName = useState("");
+    ValueNotifier<AddProfileInputItemValidation> inputNameValidation = useState(AddProfileInputItemValidation.success());
 
     // 유저 성별
-    var inputGender = useState<Gender?>(null);
-    var inputGenderValidation = useState(AddProfileInputItemValidation.success());
+    ValueNotifier<Gender?> inputGender = useState<Gender?>(null);
+    ValueNotifier<AddProfileInputItemValidation> inputGenderValidation = useState(AddProfileInputItemValidation.success());
 
     // 유저 생년월일
-    var inputBirthDay = useState("");
-    var inputBirthdayValidation = useState(AddProfileInputItemValidation.success());
+    ValueNotifier<String> inputBirthDay = useState("");
+    ValueNotifier<AddProfileInputItemValidation> inputBirthdayValidation = useState(AddProfileInputItemValidation.success());
 
     return Scaffold(
       body: SafeArea(
@@ -41,9 +41,9 @@ class AddProfileUserPage extends HookConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // 닉네임 입력
                       const Text("Nickname", style: TextStyle(fontSize: 20)),
                       const SizedBox(height: 8),
+                      // 닉네임 입력
                       TextFormField(
                         onChanged: (t) => inputName.value = t,
                         style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
@@ -78,10 +78,9 @@ class AddProfileUserPage extends HookConsumerWidget {
                             return Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 5),
+                                // 성별 선택
                                 child: ElevatedButton.icon(
-                                  onPressed: () {
-                                    inputGender.value = gender;
-                                  },
+                                  onPressed: () => inputGender.value = gender,
                                   label: Text(
                                     Gender.genderToString(gender),
                                     style: TextStyle(
@@ -135,6 +134,7 @@ class AddProfileUserPage extends HookConsumerWidget {
                         ],
                       ),
                       const SizedBox(height: 8),
+                      // 생년월일 입력
                       TextFormField(
                         keyboardType: TextInputType.number,
                         onChanged: (t) => inputBirthDay.value = t,
@@ -171,6 +171,9 @@ class AddProfileUserPage extends HookConsumerWidget {
                   inputBirthdayValidation.value = ref.read(addProfileInputProvider.notifier).setBirthDate(inputBirthDay.value);
 
                   if (inputNameValidation.value.isValid && inputGenderValidation.value.isValid && inputBirthdayValidation.value.isValid) {
+                    ref.read(addProfileInputProvider.notifier).updateName(inputName.value);
+                    ref.read(addProfileInputProvider.notifier).updateGender(inputGender.value);
+                    ref.read(addProfileInputProvider.notifier).updateBirthdDate(inputBirthDay.value);
                     ref.read(routerProvider).replace("/profile/add_profile/contact");
                   }
                 },

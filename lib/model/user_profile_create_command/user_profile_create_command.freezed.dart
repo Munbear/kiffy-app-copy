@@ -25,9 +25,9 @@ mixin _$UserProfileCreateCommand {
   Gender get gender => throw _privateConstructorUsedError;
   String get birthDate => throw _privateConstructorUsedError;
   String get intro => throw _privateConstructorUsedError;
-  UserProfileCreateAndEditCommandProfileMedia get medias =>
+  List<UserProfileCreateAndEditCommandProfileMedia> get medias =>
       throw _privateConstructorUsedError;
-  UserProfileCreateAndEditCommanProfileContact get contacts =>
+  List<UserProfileCreateAndEditCommanProfileContact> get contacts =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,11 +47,8 @@ abstract class $UserProfileCreateCommandCopyWith<$Res> {
       Gender gender,
       String birthDate,
       String intro,
-      UserProfileCreateAndEditCommandProfileMedia medias,
-      UserProfileCreateAndEditCommanProfileContact contacts});
-
-  $UserProfileCreateAndEditCommandProfileMediaCopyWith<$Res> get medias;
-  $UserProfileCreateAndEditCommanProfileContactCopyWith<$Res> get contacts;
+      List<UserProfileCreateAndEditCommandProfileMedia> medias,
+      List<UserProfileCreateAndEditCommanProfileContact> contacts});
 }
 
 /// @nodoc
@@ -95,30 +92,12 @@ class _$UserProfileCreateCommandCopyWithImpl<$Res,
       medias: null == medias
           ? _value.medias
           : medias // ignore: cast_nullable_to_non_nullable
-              as UserProfileCreateAndEditCommandProfileMedia,
+              as List<UserProfileCreateAndEditCommandProfileMedia>,
       contacts: null == contacts
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
-              as UserProfileCreateAndEditCommanProfileContact,
+              as List<UserProfileCreateAndEditCommanProfileContact>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserProfileCreateAndEditCommandProfileMediaCopyWith<$Res> get medias {
-    return $UserProfileCreateAndEditCommandProfileMediaCopyWith<$Res>(
-        _value.medias, (value) {
-      return _then(_value.copyWith(medias: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserProfileCreateAndEditCommanProfileContactCopyWith<$Res> get contacts {
-    return $UserProfileCreateAndEditCommanProfileContactCopyWith<$Res>(
-        _value.contacts, (value) {
-      return _then(_value.copyWith(contacts: value) as $Val);
-    });
   }
 }
 
@@ -136,13 +115,8 @@ abstract class _$$_UserProfileCreateCommandCopyWith<$Res>
       Gender gender,
       String birthDate,
       String intro,
-      UserProfileCreateAndEditCommandProfileMedia medias,
-      UserProfileCreateAndEditCommanProfileContact contacts});
-
-  @override
-  $UserProfileCreateAndEditCommandProfileMediaCopyWith<$Res> get medias;
-  @override
-  $UserProfileCreateAndEditCommanProfileContactCopyWith<$Res> get contacts;
+      List<UserProfileCreateAndEditCommandProfileMedia> medias,
+      List<UserProfileCreateAndEditCommanProfileContact> contacts});
 }
 
 /// @nodoc
@@ -182,13 +156,13 @@ class __$$_UserProfileCreateCommandCopyWithImpl<$Res>
           : intro // ignore: cast_nullable_to_non_nullable
               as String,
       medias: null == medias
-          ? _value.medias
+          ? _value._medias
           : medias // ignore: cast_nullable_to_non_nullable
-              as UserProfileCreateAndEditCommandProfileMedia,
+              as List<UserProfileCreateAndEditCommandProfileMedia>,
       contacts: null == contacts
-          ? _value.contacts
+          ? _value._contacts
           : contacts // ignore: cast_nullable_to_non_nullable
-              as UserProfileCreateAndEditCommanProfileContact,
+              as List<UserProfileCreateAndEditCommanProfileContact>,
     ));
   }
 }
@@ -201,8 +175,11 @@ class _$_UserProfileCreateCommand implements _UserProfileCreateCommand {
       required this.gender,
       required this.birthDate,
       required this.intro,
-      required this.medias,
-      required this.contacts});
+      required final List<UserProfileCreateAndEditCommandProfileMedia> medias,
+      required final List<UserProfileCreateAndEditCommanProfileContact>
+          contacts})
+      : _medias = medias,
+        _contacts = contacts;
 
   factory _$_UserProfileCreateCommand.fromJson(Map<String, dynamic> json) =>
       _$$_UserProfileCreateCommandFromJson(json);
@@ -215,10 +192,21 @@ class _$_UserProfileCreateCommand implements _UserProfileCreateCommand {
   final String birthDate;
   @override
   final String intro;
+  final List<UserProfileCreateAndEditCommandProfileMedia> _medias;
   @override
-  final UserProfileCreateAndEditCommandProfileMedia medias;
+  List<UserProfileCreateAndEditCommandProfileMedia> get medias {
+    if (_medias is EqualUnmodifiableListView) return _medias;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_medias);
+  }
+
+  final List<UserProfileCreateAndEditCommanProfileContact> _contacts;
   @override
-  final UserProfileCreateAndEditCommanProfileContact contacts;
+  List<UserProfileCreateAndEditCommanProfileContact> get contacts {
+    if (_contacts is EqualUnmodifiableListView) return _contacts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_contacts);
+  }
 
   @override
   String toString() {
@@ -235,15 +223,20 @@ class _$_UserProfileCreateCommand implements _UserProfileCreateCommand {
             (identical(other.birthDate, birthDate) ||
                 other.birthDate == birthDate) &&
             (identical(other.intro, intro) || other.intro == intro) &&
-            (identical(other.medias, medias) || other.medias == medias) &&
-            (identical(other.contacts, contacts) ||
-                other.contacts == contacts));
+            const DeepCollectionEquality().equals(other._medias, _medias) &&
+            const DeepCollectionEquality().equals(other._contacts, _contacts));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, gender, birthDate, intro, medias, contacts);
+      runtimeType,
+      name,
+      gender,
+      birthDate,
+      intro,
+      const DeepCollectionEquality().hash(_medias),
+      const DeepCollectionEquality().hash(_contacts));
 
   @JsonKey(ignore: true)
   @override
@@ -266,8 +259,8 @@ abstract class _UserProfileCreateCommand implements UserProfileCreateCommand {
       required final Gender gender,
       required final String birthDate,
       required final String intro,
-      required final UserProfileCreateAndEditCommandProfileMedia medias,
-      required final UserProfileCreateAndEditCommanProfileContact
+      required final List<UserProfileCreateAndEditCommandProfileMedia> medias,
+      required final List<UserProfileCreateAndEditCommanProfileContact>
           contacts}) = _$_UserProfileCreateCommand;
 
   factory _UserProfileCreateCommand.fromJson(Map<String, dynamic> json) =
@@ -282,9 +275,9 @@ abstract class _UserProfileCreateCommand implements UserProfileCreateCommand {
   @override
   String get intro;
   @override
-  UserProfileCreateAndEditCommandProfileMedia get medias;
+  List<UserProfileCreateAndEditCommandProfileMedia> get medias;
   @override
-  UserProfileCreateAndEditCommanProfileContact get contacts;
+  List<UserProfileCreateAndEditCommanProfileContact> get contacts;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileCreateCommandCopyWith<_$_UserProfileCreateCommand>

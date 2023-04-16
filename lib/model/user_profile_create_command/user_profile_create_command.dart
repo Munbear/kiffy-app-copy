@@ -13,8 +13,8 @@ class UserProfileCreateCommand with _$UserProfileCreateCommand {
     required Gender gender,
     required String birthDate,
     required String intro,
-    required UserProfileCreateAndEditCommandProfileMedia medias,
-    required UserProfileCreateAndEditCommanProfileContact contacts,
+    required List<UserProfileCreateAndEditCommandProfileMedia> medias,
+    required List<UserProfileCreateAndEditCommanProfileContact> contacts,
   }) = _UserProfileCreateCommand;
 
   factory UserProfileCreateCommand.fromJson(Map<String, dynamic> json) => _$UserProfileCreateCommandFromJson(json);

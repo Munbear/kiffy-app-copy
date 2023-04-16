@@ -1,4 +1,5 @@
 import 'package:Kiffy/domain/common/border._style.dart';
+import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -58,7 +59,10 @@ class AddProfileCompletePage extends HookConsumerWidget {
               ),
               // start button
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  print(ref.watch(addProfileInputProvider.notifier).state);
+                  // ref.read(addUserProfileInfoProvider);
+                },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.only(top: 15, bottom: 15),
                   textStyle: const TextStyle(fontSize: 20, color: Colors.white),

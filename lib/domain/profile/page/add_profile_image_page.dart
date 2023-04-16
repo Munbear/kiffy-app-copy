@@ -130,18 +130,15 @@ class AddProfileImagePage extends HookConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 inputImagesValidation.value = ref.read(addProfileInputProvider.notifier).setMedias(
-                      inputImages.value.map((image) => UserProfileCreateAndEditCommandProfileMedia(id: image.id, orderNum: image.orderNum)).toList(),
+                      inputImages.value.map((image) {
+                        ref.read(addProfileInputProvider.notifier).updateMedia(image.id, image.orderNum);
+                        return UserProfileCreateAndEditCommandProfileMedia(id: image.id, orderNum: image.orderNum);
+                      }).toList(),
                     );
 
                 if (inputImagesValidation.value.isValid) {
                   try {
-                    postUserProfile(
-                      userProfile.name,
-                      userProfile.gender,
-                      userProfile.birthDate,
-                      userProfile.intro,
-                      userProfile.medias,
-                    );
+                    ref.watch(addProfileInputProvider.notifier).addProfile();
                   } on DioError catch (e) {
                     log(e.message);
                   }

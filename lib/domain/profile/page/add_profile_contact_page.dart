@@ -107,6 +107,7 @@ class AddProfileContactPage extends HookConsumerWidget {
                     );
 
                 if (inputContactValidation.value.isValid) {
+                  ref.read(addProfileInputProvider.notifier).updateContact(inputContactId.value, inputContactType.value);
                   ref.read(routerProvider).replace("/profile/add_profile/intro");
                 }
               },
