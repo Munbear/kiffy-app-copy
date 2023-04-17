@@ -140,7 +140,7 @@ class AddProfileImagePage extends HookConsumerWidget {
                   try {
                     ref.watch(addProfileInputProvider.notifier).addProfile();
                   } on DioError catch (e) {
-                    log(e.message);
+                    log(e.message ?? "");
                   }
 
                   ref.read(routerProvider).replace("/profile/add_profile/complete");

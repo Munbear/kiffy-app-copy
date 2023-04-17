@@ -16,9 +16,9 @@ class ApiClient {
   static Dio createDio() {
     var dio = Dio(BaseOptions(
       baseUrl: Constants.API,
-      receiveTimeout: 15000, // 15 seconds
-      connectTimeout: 15000,
-      sendTimeout: 15000,
+      receiveTimeout: Duration(seconds: 15), // 15 seconds
+      connectTimeout: Duration(seconds: 15),
+      sendTimeout: Duration(seconds: 15),
     ));
     final _storage = FlutterSecureStorage();
 
