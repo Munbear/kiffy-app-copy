@@ -14,7 +14,9 @@ _$_UserProfileView _$$_UserProfileViewFromJson(Map<String, dynamic> json) =>
       intro: json['intro'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       birthDate: json['birthDate'] as String,
-      medias: $enumDecode(_$MediaTypeEnumMap, json['medias']),
+      medias: (json['medias'] as List<dynamic>)
+          .map((e) => MediaView.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_UserProfileViewToJson(_$_UserProfileView instance) =>
@@ -25,7 +27,7 @@ Map<String, dynamic> _$$_UserProfileViewToJson(_$_UserProfileView instance) =>
       'intro': instance.intro,
       'gender': _$GenderEnumMap[instance.gender]!,
       'birthDate': instance.birthDate,
-      'medias': _$MediaTypeEnumMap[instance.medias]!,
+      'medias': instance.medias,
     };
 
 const _$UserStatusEnumMap = {
@@ -38,9 +40,4 @@ const _$UserStatusEnumMap = {
 const _$GenderEnumMap = {
   Gender.MALE: 'MALE',
   Gender.FEMALE: 'FEMALE',
-};
-
-const _$MediaTypeEnumMap = {
-  MediaType.image: 'image',
-  MediaType.video: 'video',
 };

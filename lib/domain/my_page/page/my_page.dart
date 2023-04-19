@@ -1,5 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
+import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/domain/my_page/widget/my_page_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -23,6 +24,8 @@ class MyPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void test1() => ref.read(routerProvider).pushNamed("setting");
+
+    final myProfile = ref.watch(myProfileProvider).getMyProfile("1");
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -72,7 +75,7 @@ class MyPage extends HookConsumerWidget {
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         Text(
@@ -83,7 +86,7 @@ class MyPage extends HookConsumerWidget {
                             color: Colors.white,
                           ),
                         ),
-                        SizedBox(width: 16),
+                        const SizedBox(width: 16),
                         Text(
                           "Jakarta",
                           style: TextStyle(

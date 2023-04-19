@@ -26,7 +26,7 @@ mixin _$UserProfileView {
   String get intro => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   String get birthDate => throw _privateConstructorUsedError;
-  MediaType get medias => throw _privateConstructorUsedError;
+  List<MediaView> get medias => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +47,7 @@ abstract class $UserProfileViewCopyWith<$Res> {
       String intro,
       Gender gender,
       String birthDate,
-      MediaType medias});
+      List<MediaView> medias});
 }
 
 /// @nodoc
@@ -99,7 +99,7 @@ class _$UserProfileViewCopyWithImpl<$Res, $Val extends UserProfileView>
       medias: null == medias
           ? _value.medias
           : medias // ignore: cast_nullable_to_non_nullable
-              as MediaType,
+              as List<MediaView>,
     ) as $Val);
   }
 }
@@ -119,7 +119,7 @@ abstract class _$$_UserProfileViewCopyWith<$Res>
       String intro,
       Gender gender,
       String birthDate,
-      MediaType medias});
+      List<MediaView> medias});
 }
 
 /// @nodoc
@@ -167,9 +167,9 @@ class __$$_UserProfileViewCopyWithImpl<$Res>
           : birthDate // ignore: cast_nullable_to_non_nullable
               as String,
       medias: null == medias
-          ? _value.medias
+          ? _value._medias
           : medias // ignore: cast_nullable_to_non_nullable
-              as MediaType,
+              as List<MediaView>,
     ));
   }
 }
@@ -184,7 +184,8 @@ class _$_UserProfileView implements _UserProfileView {
       required this.intro,
       required this.gender,
       required this.birthDate,
-      required this.medias});
+      required final List<MediaView> medias})
+      : _medias = medias;
 
   factory _$_UserProfileView.fromJson(Map<String, dynamic> json) =>
       _$$_UserProfileViewFromJson(json);
@@ -201,8 +202,13 @@ class _$_UserProfileView implements _UserProfileView {
   final Gender gender;
   @override
   final String birthDate;
+  final List<MediaView> _medias;
   @override
-  final MediaType medias;
+  List<MediaView> get medias {
+    if (_medias is EqualUnmodifiableListView) return _medias;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_medias);
+  }
 
   @override
   String toString() {
@@ -221,13 +227,13 @@ class _$_UserProfileView implements _UserProfileView {
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.birthDate, birthDate) ||
                 other.birthDate == birthDate) &&
-            (identical(other.medias, medias) || other.medias == medias));
+            const DeepCollectionEquality().equals(other._medias, _medias));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, status, name, intro, gender, birthDate, medias);
+  int get hashCode => Object.hash(runtimeType, id, status, name, intro, gender,
+      birthDate, const DeepCollectionEquality().hash(_medias));
 
   @JsonKey(ignore: true)
   @override
@@ -251,7 +257,7 @@ abstract class _UserProfileView implements UserProfileView {
       required final String intro,
       required final Gender gender,
       required final String birthDate,
-      required final MediaType medias}) = _$_UserProfileView;
+      required final List<MediaView> medias}) = _$_UserProfileView;
 
   factory _UserProfileView.fromJson(Map<String, dynamic> json) =
       _$_UserProfileView.fromJson;
@@ -269,7 +275,7 @@ abstract class _UserProfileView implements UserProfileView {
   @override
   String get birthDate;
   @override
-  MediaType get medias;
+  List<MediaView> get medias;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileViewCopyWith<_$_UserProfileView> get copyWith =>

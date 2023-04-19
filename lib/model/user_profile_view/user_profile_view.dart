@@ -1,6 +1,7 @@
 import 'package:Kiffy/domain/core/model/gender_type.dart';
 import 'package:Kiffy/domain/core/model/media_type.dart';
 import 'package:Kiffy/domain/core/model/user_status.dart';
+import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_view.freezed.dart';
@@ -15,7 +16,7 @@ class UserProfileView with _$UserProfileView {
     required String intro,
     required Gender gender,
     required String birthDate,
-    required MediaType medias,
+    required List<MediaView> medias,
   }) = _UserProfileView;
 
   factory UserProfileView.fromJson(Map<String, dynamic> json) => _$UserProfileViewFromJson(json);
