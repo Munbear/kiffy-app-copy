@@ -5,6 +5,7 @@ import 'package:Kiffy/domain/common/preview_liked_list.dart';
 import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
 import 'package:Kiffy/domain/explore/widget/explore_wished_list_item.dart';
 import 'package:Kiffy/domain/explore/widget/explore_wished_list_more.dart';
+import 'package:Kiffy/infra/explore_client.dart';
 import 'package:Kiffy/infra/user_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -25,6 +26,10 @@ class ExplorePage extends HookConsumerWidget {
     //     log("=========================");
     //   });
     // }, []);
+
+    useEffect(() {
+      getExploreUserProfiles().then((value) => print(value));
+    }, []);
 
     return Scaffold(
       backgroundColor: Colors.white,
