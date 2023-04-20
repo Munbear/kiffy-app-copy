@@ -31,7 +31,7 @@ class MatchingPage extends HookConsumerWidget {
     useEffect(() {
       getApiAndSetStates(init: true)
         .then((value) {
-
+        print("matchedUsersList = ${matchedUsersList.value}");
       });
     }, []);
 
