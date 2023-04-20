@@ -33,6 +33,7 @@ class MyPage extends HookConsumerWidget {
       final getProfile = await ref.read(myProfileProvider).getMyProfile();
 
       profile.value = getProfile;
+      print(profile.value!.medias.first.url);
     }
 
     useEffect(() {
@@ -65,15 +66,10 @@ class MyPage extends HookConsumerWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   height: 390,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                  // margin: const EdgeInsets.symmetric(horizontal: 16),
                   child: SizedBox.expand(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      // child: Image.network(profile.value!.medias.first.toString()),
-                      // child: Image.asset(
-                      //   "assets/images/example_for_dev.png",
-                      //   fit: BoxFit.cover,
-                      // ),
+                      child: Image.network(profile.value!.medias.first.url, fit: BoxFit.cover),
                     ),
                   ),
                 ),
@@ -98,7 +94,7 @@ class MyPage extends HookConsumerWidget {
                       children: [
                         if (profile.value != null)
                           Text(
-                            profile.value!.birthDate ?? "",
+                            profile.value!.birthDate,
                             style: const TextStyle(
                               fontSize: 26,
                               fontWeight: FontWeight.w700,
@@ -146,7 +142,7 @@ class MyPage extends HookConsumerWidget {
           // CustomBottomNavigationBar(),
         ],
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: "/mypage"),
+      bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
     );
   }
 }
