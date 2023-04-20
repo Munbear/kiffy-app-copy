@@ -20,6 +20,6 @@ Map<String, dynamic> _$$_MediaViewToJson(_$_MediaView instance) =>
     };
 
 const _$MediaTypeEnumMap = {
-  MediaType.image: 'image',
-  MediaType.video: 'video',
+  MediaType.IMAGE: 'IMAGE',
+  MediaType.VIDEO: 'VIDEO',
 };

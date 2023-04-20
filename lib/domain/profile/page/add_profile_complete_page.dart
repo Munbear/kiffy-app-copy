@@ -1,11 +1,17 @@
 import 'package:Kiffy/domain/common/border._style.dart';
+import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddProfileCompletePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // UserProfileView myProfile = useState(ref.read(myProfileProvider).getMyProfile());
+    var aaa = ref.read(myProfileProvider).getMyProfile();
+    print(aaa);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -35,7 +41,9 @@ class AddProfileCompletePage extends HookConsumerWidget {
                           padding: const EdgeInsets.all(7),
                           decoration: BorderGradientCircleShape.innerDecoration,
                           child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100), child: Image.asset("assets/images/example_for_dev.png", fit: BoxFit.cover)),
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.asset("assets/images/example_for_dev.png", fit: BoxFit.cover),
+                          ),
                         ),
                       ),
                     ),

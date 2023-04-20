@@ -1,15 +1,15 @@
 enum MediaType {
-  image,
-  video;
+  IMAGE,
+  VIDEO;
 
   static MediaType fromString(String media) {
     switch (media) {
       case "IMAGE":
-        return MediaType.image;
+        return MediaType.IMAGE;
       case "VIDEO":
-        return MediaType.video;
+        return MediaType.VIDEO;
       default:
-        return MediaType.image;
+        return MediaType.IMAGE;
     }
   }
 }

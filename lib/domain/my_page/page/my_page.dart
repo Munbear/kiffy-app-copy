@@ -2,6 +2,8 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
 import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/domain/my_page/widget/my_page_button.dart';
+import 'package:Kiffy/model/media_view/media_view.dart';
+import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/custom_bottom_nav_bar.dart';
+import '../../profile/provider/add_profile_input_provider.dart';
 
 class MyPage extends HookConsumerWidget {
   final innerDecoration = BoxDecoration(
@@ -23,9 +26,18 @@ class MyPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    void test1() => ref.read(routerProvider).pushNamed("setting");
+    final profile = useState<UserProfileView?>(null);
+    final myProfileImage = useState<MediaView?>(null);
 
-    final myProfile = ref.watch(myProfileProvider).getMyProfile("1");
+    getApiAndSetState() async {
+      final getProfile = await ref.read(myProfileProvider).getMyProfile();
+
+      profile.value = getProfile;
+    }
+
+    useEffect(() {
+      getApiAndSetState();
+    }, []);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -48,18 +60,23 @@ class MyPage extends HookConsumerWidget {
             alignment: Alignment.bottomLeft,
             children: [
               // 유저 프로필 사진
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                height: 390,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                // margin: const EdgeInsets.symmetric(horizontal: 16),
-                child: SizedBox.expand(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: const Image(fit: BoxFit.cover, image: AssetImage("assets/images/test_image.png")),
+              if (profile.value != null)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  height: 390,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                  // margin: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SizedBox.expand(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      // child: Image.network(profile.value!.medias.first.toString()),
+                      // child: Image.asset(
+                      //   "assets/images/example_for_dev.png",
+                      //   fit: BoxFit.cover,
+                      // ),
+                    ),
                   ),
                 ),
-              ),
 
               Container(
                 padding: const EdgeInsets.only(left: 37, bottom: 27),
@@ -67,34 +84,36 @@ class MyPage extends HookConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Dowon",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                    if (profile.value != null)
+                      Text(
+                        profile.value!.name,
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
                     const SizedBox(height: 10),
                     Row(
                       children: [
-                        Text(
-                          "25",
-                          style: TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                        if (profile.value != null)
+                          Text(
+                            profile.value!.birthDate ?? "",
+                            style: const TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 16),
-                        Text(
-                          "Jakarta",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
-                        ),
+                        // const SizedBox(width: 16),
+                        // Text(
+                        //   profile.value.,
+                        //   style: TextStyle(
+                        //     fontSize: 20,
+                        //     fontWeight: FontWeight.w400,
+                        //     color: Colors.white,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ],

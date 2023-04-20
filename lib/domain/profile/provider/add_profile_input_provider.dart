@@ -4,6 +4,7 @@ import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact/user_profile_create_and_edit_command_profile_contact.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:Kiffy/model/user_profile_create_command/user_profile_create_command.dart';
+import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -150,6 +151,6 @@ class AddProfileInputState extends StateNotifier<UserProfileCreateCommand> {
         .toJson();
     Response response = await ApiClient().dio.post("/api/view/user/v1/my/profile", data: userProfile);
 
-    return response.data.map<UserProfileCreateCommand>((profile) => UserProfileCreateCommand.fromJson(profile));
+    return response.data.map<UserProfileView>((profile) => UserProfileView.fromJson(profile));
   }
 }

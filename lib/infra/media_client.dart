@@ -3,7 +3,7 @@ import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:dio/dio.dart';
 
-Future<UploadImageResponse> uploadImage(String path) async {
+Future<MediaView> uploadImage(String path) async {
   var dio = ApiClient().dio;
 
   var formData = FormData.fromMap({"file": await MultipartFile.fromFile(path)});
@@ -12,7 +12,7 @@ Future<UploadImageResponse> uploadImage(String path) async {
 
   // return response.data.map<MediaView>(() => MediaView).toList();
   // :: 나중에 MediaView 로 변경
-  return UploadImageResponse.fromMap(response.data!);
+  return response.data.map<MediaView>((medias) => MediaView.fromJson(medias));
 }
 
 class UploadImageResponse {

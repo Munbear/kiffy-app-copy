@@ -4,7 +4,6 @@ import 'package:Kiffy/infra/api_client.dart';
 
 Future<SignInResponse> signIn(SignProvider provider, String accessToken) async {
   final response = await ApiClient().dio.post("/api/view/sign/v1/in/${provider.toCode()}", data: jsonEncode({"accessToken": accessToken}));
-  // final response = await ApiClient().dio.post("/api/view/sign/v1/in", queryParameters: {"accessTocken": provider.toCode()});
 
   return SignInResponse.fromJson(response.data);
 }

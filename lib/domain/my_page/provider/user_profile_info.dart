@@ -12,11 +12,9 @@ class MyProfileHandler {
 
   MyProfileHandler(this.ref) : dio = ApiClient().dio;
 
-  Future<UserProfileView> getMyProfile(id) async {
+  Future<UserProfileView> getMyProfile() async {
     final res = await dio.get("/api/view/user/v1/my/profile");
 
-    final profile = UserProfileView.fromJson(res.data);
-
-    return profile;
+    return UserProfileView.fromJson(res.data);
   }
 }
