@@ -1,8 +1,11 @@
+import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ExploreWishedListItem extends HookConsumerWidget {
+  final UserProfileView profile;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
@@ -35,16 +38,20 @@ class ExploreWishedListItem extends HookConsumerWidget {
             child: Container(
               decoration: const BoxDecoration(shape: BoxShape.circle),
               clipBehavior: Clip.hardEdge,
-              child: Image.asset(
-                "assets/images/example_for_dev.png",
+              child: Image.network(
+                profile.medias[0].url,
                 fit: BoxFit.cover,
               ),
             ),
           ),
           const SizedBox(height: 5),
-          Text("kiffy"),
+          Text(profile.name),
         ],
       ),
     );
   }
+
+  const ExploreWishedListItem({
+    required this.profile,
+  });
 }

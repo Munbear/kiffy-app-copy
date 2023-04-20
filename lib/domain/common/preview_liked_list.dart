@@ -36,11 +36,7 @@ class PreviewLikedList extends HookConsumerWidget {
             padding: const EdgeInsets.only(left: 20),
             scrollDirection: Axis.horizontal,
             children: [
-              ExploreWishedListItem(),
-              ExploreWishedListItem(),
-              ExploreWishedListItem(),
-              ExploreWishedListItem(),
-              ExploreWishedListItem(),
+              ...wishOtherProfiles.value.map((wishOtherProfile) => ExploreWishedListItem(profile: wishOtherProfile,)),
               // 자세히 보기
               ExploreWishedListMore(),
             ],
