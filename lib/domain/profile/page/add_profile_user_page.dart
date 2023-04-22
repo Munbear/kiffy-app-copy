@@ -140,7 +140,7 @@ class AddProfileUserPage extends HookConsumerWidget {
                         onChanged: (t) => inputBirthDay.value = t,
                         style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
                         decoration: const InputDecoration(
-                            hintText: "YYYY/MM/DD",
+                            hintText: "YYYYMMDD",
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
                               borderRadius:
