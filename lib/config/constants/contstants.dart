@@ -1,4 +1,3 @@
-
 enum Environment { Local, Prod }
 
 class Constants {
@@ -29,12 +28,10 @@ class _Config {
   static const SECURE_STORAGE_AUTHTOEKN = "SECURE_STORAGE_AUTHTOEKN";
 
   static Map<String, dynamic> localConstants = {
-    API: "http://localhost:8080",
+    API: "http://api-dev.kiffy.club",
+    // API: "http://localhost:8080",
     SECURE_STORAGE_AUTHTOEKN: "kiffy:accessToken"
   };
 
-  static Map<String, dynamic> prodConstants = {
-    API: "http://api-dev.kiffy.club",
-    SECURE_STORAGE_AUTHTOEKN: "kiffy:accessToken"
-  };
+  static Map<String, dynamic> prodConstants = {API: "http://api-dev.kiffy.club", SECURE_STORAGE_AUTHTOEKN: "kiffy:accessToken"};
 }
