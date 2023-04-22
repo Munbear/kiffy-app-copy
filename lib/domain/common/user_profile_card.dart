@@ -1,3 +1,4 @@
+import 'package:Kiffy/infra/wish_client.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/cupertino.dart';
@@ -70,7 +71,7 @@ class UserProfileCard extends HookConsumerWidget {
                                   )
                                 ],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ],
@@ -126,7 +127,7 @@ class UserProfileCard extends HookConsumerWidget {
                       child: IconButton(
                         padding: const EdgeInsets.only(top: 13),
                         onPressed: () {
-                          print('heart!');
+                          approveWish(userId: userProfile.id);
                         },
                         icon: Image.asset(
                           "assets/icons/heart_icon.png",
