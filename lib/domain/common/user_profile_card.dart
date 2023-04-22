@@ -1,7 +1,6 @@
 import 'package:Kiffy/infra/wish_client.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,7 +16,6 @@ class UserProfileCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final imageIndex = useState(0);
-
 
     return Expanded(
       child: Container(
@@ -62,12 +60,11 @@ class UserProfileCard extends HookConsumerWidget {
                                 children: [
                                   TextSpan(
                                     text: userProfile.name,
-                                    style: TextStyle(color: Colors.white, fontSize: 28),
+                                    style: const TextStyle(color: Colors.white, fontSize: 28),
                                   ),
                                   TextSpan(
-                                    text: BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userProfile.birthDate))
-                                        .toString(),
-                                    style: TextStyle(color: Colors.grey, fontSize: 20),
+                                    text: BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userProfile.birthDate)).toString(),
+                                    style: const TextStyle(color: Colors.grey, fontSize: 20),
                                   )
                                 ],
                               ),
@@ -79,61 +76,81 @@ class UserProfileCard extends HookConsumerWidget {
                   ),
                 ),
                 Positioned(
-                  child: Container(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            child: Container(
-                              color: Colors.transparent,
-                            ),
-                            onTap: () {
-                              if (imageIndex.value > 0) {
-                                imageIndex.value -= 1;
-                              }
-
-                            },
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          child: Container(
+                            color: Colors.transparent,
                           ),
+                          onTap: () {
+                            if (imageIndex.value > 0) {
+                              imageIndex.value -= 1;
+                            }
+                          },
                         ),
-                        Expanded(
-                          child: GestureDetector(
-                            child: Container(
-                              color: Colors.transparent,
-                            ),
-                            onTap: () {
-                              if (imageIndex.value < userProfile.medias.length - 1) {
-                                imageIndex.value += 1;
-                              }
-                            },
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          child: Container(
+                            color: Colors.transparent,
                           ),
+                          onTap: () {
+                            if (imageIndex.value < userProfile.medias.length - 1) {
+                              imageIndex.value += 1;
+                            }
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
+
+                // 위시 수락 및 거절 위치
                 Positioned(
-                  right: 0,
-                  bottom: 0,
-                  child: Container(
-                    margin: EdgeInsets.all(25),
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 55,
-                      width: 55,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 2.0),
-                      ),
-                      child: IconButton(
-                        padding: const EdgeInsets.only(top: 13),
-                        onPressed: () {
-                          approveWish(userId: userProfile.id);
-                        },
-                        icon: Image.asset(
-                          "assets/icons/heart_icon.png",
+                  right: 25,
+                  bottom: 20,
+                  child: Column(
+                    children: [
+                      // 위시 거절하기
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 2.0)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () => rejectWish(userId: userProfile.id),
+                                child: const Icon(Icons.close, color: Colors.white, size: 40),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      const SizedBox(height: 12),
+                      // 위지 보내기
+                      Container(
+                        decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 2.0)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () => approveWish(userId: userProfile.id),
+                                child: Container(margin: const EdgeInsets.only(top: 13), child: Image.asset("assets/icons/heart_icon.png")),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

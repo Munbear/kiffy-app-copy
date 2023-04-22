@@ -16,6 +16,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/custom_app_bar_image_title.dart';
 import '../../common/custom_bottom_nav_bar.dart';
+import '../widget/no_user_profile_card.dart';
 
 class ExplorePage extends HookConsumerWidget {
   @override
@@ -36,7 +37,7 @@ class ExplorePage extends HookConsumerWidget {
     getApiAndSetState() async {
       final response = await getExploreUserProfiles();
       print(response.list);
-      userProfiles.value = [... response.list];
+      userProfiles.value = [...response.list];
     }
 
     useEffect(() {
@@ -63,12 +64,12 @@ class ExplorePage extends HookConsumerWidget {
             /******************************************
              *         좋아요 보낸 유저 리스트 
              * *************************************** */
-            PreviewLikedList(),
+            const PreviewLikedList(),
 
             /**************************************
              *        유저 프로필 카드  
              * *********************************** */
-            userProfiles.value.isNotEmpty ? UserProfileCard(userProfile: userProfiles.value[0]) : SizedBox(),
+            userProfiles.value.isNotEmpty ? UserProfileCard(userProfile: userProfiles.value[0]) : const NoUserProfileCard(),
             // 커스텀 바텀 네비게이션
             // CustomBottomNavigationBar()
           ],
