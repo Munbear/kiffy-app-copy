@@ -93,7 +93,7 @@ class MatchingPage extends HookConsumerWidget {
                   crossAxisSpacing: 18,
                   mainAxisSpacing: 6,
                   childAspectRatio: 0.75,
-                  children: matchedUsersList.value.map((matchedUSer) => MatchingCard()).toList(),
+                  children: matchedUsersList.value.map((matchedUser) => MatchingCard(userProfile: matchedUser)).toList(),
                 ),
               ),
             ),

@@ -29,7 +29,7 @@ class _Config {
   static const SECURE_STORAGE_AUTHTOEKN = "SECURE_STORAGE_AUTHTOEKN";
 
   static Map<String, dynamic> localConstants = {
-    API: "http://api-dev.kiffy.club",
+    API: "http://localhost:8080",
     SECURE_STORAGE_AUTHTOEKN: "kiffy:accessToken"
   };
 

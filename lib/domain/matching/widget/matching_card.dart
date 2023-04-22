@@ -1,11 +1,17 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/border._style.dart';
+import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
+import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MatchingCard extends HookConsumerWidget {
-  const MatchingCard({super.key});
+  final UserProfileView userProfile;
+
+  const MatchingCard({
+    required this.userProfile,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,9 +31,9 @@ class MatchingCard extends HookConsumerWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: const Image(
+                child: Image.network(
+                  userProfile.medias.first.url,
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/test_image.png"),
                 ),
               ),
               Positioned(
@@ -36,7 +42,7 @@ class MatchingCard extends HookConsumerWidget {
                 child: Row(
                   children: [
                     Text(
-                      "Kiffy",
+                      userProfile.name,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -45,7 +51,7 @@ class MatchingCard extends HookConsumerWidget {
                     ),
                     const SizedBox(width: 7),
                     Text(
-                      "24",
+                      BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userProfile.birthDate)).toString(),
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
