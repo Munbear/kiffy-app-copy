@@ -1,5 +1,5 @@
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
-import 'package:Kiffy/domain/core/model/contact_type.dart';
+import 'package:Kiffy/domain/core/enum/contact_type.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_image_page.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';

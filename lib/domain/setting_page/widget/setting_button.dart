@@ -6,7 +6,7 @@ class SettingButton extends HookConsumerWidget {
   final String IconPath;
   final String text;
 
-  SettingButton({required this.IconPath, required this.text});
+  const SettingButton({required this.IconPath, required this.text});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,11 +16,7 @@ class SettingButton extends HookConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image(
-              width: 22,
-              height: 22,
-              image: AssetImage(IconPath),
-            ),
+            Image(width: 22, height: 22, image: AssetImage(IconPath)),
             const SizedBox(width: 14),
             Text(text),
           ],

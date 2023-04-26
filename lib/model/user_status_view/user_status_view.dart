@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:Kiffy/domain/core/model/user_status.dart';
+import 'package:Kiffy/domain/core/enum/user_status.dart';
 
 part 'user_status_view.freezed.dart';
 part 'user_status_view.g.dart';

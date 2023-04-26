@@ -1,4 +1,4 @@
-import 'package:Kiffy/domain/core/model/gender_type.dart';
+import 'package:Kiffy/domain/core/enum/gender_type.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact/user_profile_create_and_edit_command_profile_contact.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

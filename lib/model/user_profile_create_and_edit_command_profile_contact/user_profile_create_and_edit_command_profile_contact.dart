@@ -1,4 +1,4 @@
-import 'package:Kiffy/domain/core/model/contact_type.dart';
+import 'package:Kiffy/domain/core/enum/contact_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_create_and_edit_command_profile_contact.freezed.dart';

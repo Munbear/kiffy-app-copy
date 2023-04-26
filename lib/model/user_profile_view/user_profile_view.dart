@@ -1,6 +1,6 @@
-import 'package:Kiffy/domain/core/model/gender_type.dart';
-import 'package:Kiffy/domain/core/model/media_type.dart';
-import 'package:Kiffy/domain/core/model/user_status.dart';
+import 'package:Kiffy/domain/core/enum/gender_type.dart';
+import 'package:Kiffy/domain/core/enum/media_type.dart';
+import 'package:Kiffy/domain/core/enum/user_status.dart';
 import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

@@ -1,6 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 
-import 'package:Kiffy/domain/core/model/gender_type.dart';
+import 'package:Kiffy/domain/core/enum/gender_type.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';

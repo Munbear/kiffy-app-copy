@@ -1,5 +1,5 @@
-import 'package:Kiffy/domain/core/model/contact_type.dart';
-import 'package:Kiffy/domain/core/model/gender_type.dart';
+import 'package:Kiffy/domain/core/enum/contact_type.dart';
+import 'package:Kiffy/domain/core/enum/gender_type.dart';
 import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact/user_profile_create_and_edit_command_profile_contact.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
