@@ -34,7 +34,7 @@ class BottomTapItem extends HookConsumerWidget {
                   ),
                 ),
               )
-            : SizedBox(),
+            : const SizedBox(),
         ShaderMask(
           blendMode: BlendMode.srcATop,
           shaderCallback: (Rect bound) {
