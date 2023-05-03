@@ -31,11 +31,135 @@ final routerProvider = Provider<GoRouter>(
     return GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: router,
-      routes: router._routes,
+      routes: _routes,
       initialLocation: "/sign",
     );
   },
 );
+
+List<RouteBase> get _routes => [
+      // GoRoute(
+      //   // 메인 페이지
+      //   path: "/mainPage",
+      //   name: "mainPage",
+      //   pageBuilder: (context, _) => emptyTransitionPage(MainScreen()),
+      // ),
+      GoRoute(
+          // 마이페이지 탭
+          path: "/mypage",
+          name: "mypage",
+          builder: (context, _) => MyPage()),
+      GoRoute(
+        // 설정 화면
+        path: "/setting",
+        name: "setting",
+        pageBuilder: (context, _) => emptyTransitionPage(SettingPage()),
+      ),
+      GoRoute(
+        // 프로필 수정
+        path: "/resetProfile",
+        name: "resetProfile",
+        pageBuilder: (context, _) => emptyTransitionPage(const ResetProfile()),
+      ),
+      GoRoute(
+        // 회원 탈퇴 화면
+        path: "/withdraw",
+        name: "withdraw",
+        pageBuilder: (context, _) => emptyTransitionPage(WithdrawPage()),
+      ),
+      GoRoute(
+        // 탐색 탭
+        path: "/explore",
+        name: "explore",
+        pageBuilder: (context, _) => emptyTransitionPage(ExplorePage()),
+      ),
+      GoRoute(
+        // 매칭 탭 화면
+        path: "/matching",
+        name: "matching",
+        pageBuilder: (context, _) => emptyTransitionPage(MatchingPage()),
+      ),
+      GoRoute(
+        // 매칭 디테일 화면
+        path: "/matchingDetail",
+        name: "matchingDetail",
+        pageBuilder: (context, _) => emptyTransitionPage(const MatchingDetailPage()),
+      ),
+      GoRoute(
+        // 좋아요 보낸 사람 리스트
+        path: "/likedListPage",
+        name: "likedListPage",
+        pageBuilder: (context, _) => emptyTransitionPage(const LikedListPage()),
+      ),
+      GoRoute(
+        // 좋아요 받은 유저 상세 프로필
+        path: "/unmatchUserProfile",
+        name: "unmatchUserProfile",
+        pageBuilder: (context, _) => emptyTransitionPage(const UnmatchUserProfile()),
+      ),
+      GoRoute(
+        // 회원 탈퇴 이유 텍스트
+        path: "/withdrawText",
+        name: "withdrawText",
+        pageBuilder: (context, _) => emptyTransitionPage(const WithdrawText()),
+      ),
+      GoRoute(
+        // 회원 탈퇴 최종
+        path: "/withdrawFinal",
+        name: "withdrawFinal",
+        pageBuilder: (context, _) => emptyTransitionPage(const WithdrawFinal()),
+      ),
+      GoRoute(
+        // 회원 가입 및 로그인 페이지
+        path: "/sign",
+        name: "sign",
+        pageBuilder: (context, _) => emptyTransitionPage(SignPage()),
+      ),
+      GoRoute(
+        // 유저 프로필 닉네입, 나이, 등록 페이지
+        path: "/profile/add_profile/user",
+        name: "profile_add_profile_user",
+        pageBuilder: (context, _) => emptyTransitionPage(AddProfileUserPage()),
+      ),
+      GoRoute(
+        // 프로필 연락처 추가 화면
+        path: "/profile/add_profile/contact",
+        name: "profile_add_profile_contact",
+        pageBuilder: (context, _) => emptyTransitionPage(AddProfileContactPage()),
+      ),
+      GoRoute(
+        // 프로필 등록 자기소개 페이지
+        path: "/profile/add_profile/intro",
+        name: "profile_add_profile_intro",
+        pageBuilder: (context, _) => emptyTransitionPage(const AddProfileIntroPage()),
+      ),
+      GoRoute(
+        // 프로필 이미지 등록 페이지
+        path: "/profile/add_profile/image",
+        name: "profile_add_profile_image",
+        pageBuilder: (context, _) => emptyTransitionPage(AddProfileImagePage()),
+      ),
+      GoRoute(
+        // 프로필 등록 완료 페이지
+        path: "/profile/add_profile/complete",
+        name: "profile_add_profile_complete",
+        pageBuilder: (context, _) => emptyTransitionPage(AddProfileCompletePage()),
+      ),
+      GoRoute(
+        // 전화번호 입력 페이지
+        path: "/profile/add_profile/auth_phone_number",
+        name: "profile/add_profile/auth_phone_number",
+        pageBuilder: (context, _) => emptyTransitionPage(const AddProfilePhoneNumberPage()),
+      ),
+      GoRoute(
+        // 코드 입력 페이지
+        path: "/profile/add_profile/input_auth_code",
+        name: "profile/add_profile/input_auth_code",
+        pageBuilder: (context, _) => emptyTransitionPage(const AddProfileInputAuthCodePage()),
+      ),
+    ];
+
+///////////////////////
 
 CustomTransitionPage emptyTransitionPage(Widget child) => CustomTransitionPage(
     child: child,
@@ -47,127 +171,4 @@ CustomTransitionPage emptyTransitionPage(Widget child) => CustomTransitionPage(
 
 class RouterNotifier extends ChangeNotifier {
   RouterNotifier(ProviderRef<GoRouter> ref);
-
-  List<RouteBase> get _routes => [
-        // GoRoute(
-        //   // 메인 페이지
-        //   path: "/mainPage",
-        //   name: "mainPage",
-        //   pageBuilder: (context, _) => emptyTransitionPage(MainScreen()),
-        // ),
-        GoRoute(
-          // 마이페이지 탭
-          path: "/mypage",
-          name: "mypage",
-          pageBuilder: (context, _) => emptyTransitionPage(MyPage()),
-        ),
-        GoRoute(
-          // 설정 화면
-          path: "/setting",
-          name: "setting",
-          pageBuilder: (context, _) => emptyTransitionPage(SettingPage()),
-        ),
-        GoRoute(
-          // 프로필 수정
-          path: "/resetProfile",
-          name: "resetProfile",
-          pageBuilder: (context, _) => emptyTransitionPage(const ResetProfile()),
-        ),
-        GoRoute(
-          // 회원 탈퇴 화면
-          path: "/withdraw",
-          name: "withdraw",
-          pageBuilder: (context, _) => emptyTransitionPage(WithdrawPage()),
-        ),
-        GoRoute(
-          // 탐색 탭
-          path: "/explore",
-          name: "explore",
-          pageBuilder: (context, _) => emptyTransitionPage(ExplorePage()),
-        ),
-        GoRoute(
-          // 매칭 탭 화면
-          path: "/matching",
-          name: "matching",
-          pageBuilder: (context, _) => emptyTransitionPage(MatchingPage()),
-        ),
-        GoRoute(
-          // 매칭 디테일 화면
-          path: "/matchingDetail",
-          name: "matchingDetail",
-          pageBuilder: (context, _) => emptyTransitionPage(const MatchingDetailPage()),
-        ),
-        GoRoute(
-          // 좋아요 보낸 사람 리스트
-          path: "/likedListPage",
-          name: "likedListPage",
-          pageBuilder: (context, _) => emptyTransitionPage(const LikedListPage()),
-        ),
-        GoRoute(
-          // 좋아요 받은 유저 상세 프로필
-          path: "/unmatchUserProfile",
-          name: "unmatchUserProfile",
-          pageBuilder: (context, _) => emptyTransitionPage(const UnmatchUserProfile()),
-        ),
-        GoRoute(
-          // 회원 탈퇴 이유 텍스트
-          path: "/withdrawText",
-          name: "withdrawText",
-          pageBuilder: (context, _) => emptyTransitionPage(const WithdrawText()),
-        ),
-        GoRoute(
-          // 회원 탈퇴 최종
-          path: "/withdrawFinal",
-          name: "withdrawFinal",
-          pageBuilder: (context, _) => emptyTransitionPage(const WithdrawFinal()),
-        ),
-        GoRoute(
-          // 회원 가입 및 로그인 페이지
-          path: "/sign",
-          name: "sign",
-          pageBuilder: (context, _) => emptyTransitionPage(SignPage()),
-        ),
-        GoRoute(
-          // 유저 프로필 닉네입, 나이, 등록 페이지
-          path: "/profile/add_profile/user",
-          name: "profile_add_profile_user",
-          pageBuilder: (context, _) => emptyTransitionPage(AddProfileUserPage()),
-        ),
-        GoRoute(
-          // 프로필 연락처 추가 화면
-          path: "/profile/add_profile/contact",
-          name: "profile_add_profile_contact",
-          pageBuilder: (context, _) => emptyTransitionPage(AddProfileContactPage()),
-        ),
-        GoRoute(
-          // 프로필 등록 자기소개 페이지
-          path: "/profile/add_profile/intro",
-          name: "profile_add_profile_intro",
-          pageBuilder: (context, _) => emptyTransitionPage(const AddProfileIntroPage()),
-        ),
-        GoRoute(
-          // 프로필 이미지 등록 페이지
-          path: "/profile/add_profile/image",
-          name: "profile_add_profile_image",
-          pageBuilder: (context, _) => emptyTransitionPage(AddProfileImagePage()),
-        ),
-        GoRoute(
-          // 프로필 등록 완료 페이지
-          path: "/profile/add_profile/complete",
-          name: "profile_add_profile_complete",
-          pageBuilder: (context, _) => emptyTransitionPage(AddProfileCompletePage()),
-        ),
-        GoRoute(
-          // 전화번호 입력 페이지
-          path: "/profile/add_profile/auth_phone_number",
-          name: "profile/add_profile/auth_phone_number",
-          pageBuilder: (context, _) => emptyTransitionPage(const AddProfilePhoneNumberPage()),
-        ),
-        GoRoute(
-          // 코드 입력 페이지
-          path: "/profile/add_profile/input_auth_code",
-          name: "profile/add_profile/input_auth_code",
-          pageBuilder: (context, _) => emptyTransitionPage(const AddProfileInputAuthCodePage()),
-        ),
-      ];
 }
