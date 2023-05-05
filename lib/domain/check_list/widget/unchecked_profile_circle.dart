@@ -1,13 +1,17 @@
 import 'package:Kiffy/config/router/route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/border._style.dart';
 
-class UncheckedProfileCircle extends HookConsumerWidget {
+class UncheckedProfileCircle extends ConsumerStatefulWidget {
   const UncheckedProfileCircle({super.key});
 
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _UncheckedProfileCircleState();
+}
+
+class _UncheckedProfileCircleState extends ConsumerState<UncheckedProfileCircle> {
   lockMessageFullScreenPopup(context) {
     return showDialog(
       barrierColor: Colors.white.withOpacity(0.7),
@@ -50,7 +54,7 @@ class UncheckedProfileCircle extends HookConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         // 매칭 10번 이하 유저한테만 적용

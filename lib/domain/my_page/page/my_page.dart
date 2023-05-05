@@ -14,32 +14,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../common/custom_bottom_nav_bar.dart';
 import '../../profile/provider/add_profile_input_provider.dart';
 
-class MyPage extends HookConsumerWidget {
-  final innerDecoration = BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(90),
-  );
-  final gradientBoxDecoration = BoxDecoration(
-    border: Border.all(color: Colors.transparent, width: 2),
-    borderRadius: BorderRadius.circular(90),
-    gradient: const LinearGradient(colors: [Color(0xffBA00FF), Color(0xff0031AA)]),
-  );
+class MyPage extends ConsumerStatefulWidget {
+  static String get routeLocation => "/myPage";
+  static String get routeName => "myPage";
+
+  const MyPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final profile = useState<UserProfileView?>(null);
-    final myProfileImage = useState<MediaView?>(null);
+  ConsumerState<ConsumerStatefulWidget> createState() => _MyPageState();
+}
 
-    getApiAndSetState() async {
-      final getProfile = await ref.read(myProfileProvider).getMyProfile();
-
-      profile.value = getProfile;
-      print(profile.value!.medias.first.url);
-    }
-
-    useEffect(() {
-      getApiAndSetState();
-    }, []);
+class _MyPageState extends ConsumerState<MyPage> {
+  @override
+  Widget build(BuildContext context) {
+    final myProfile = ref.watch(myProfileProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -54,85 +42,86 @@ class MyPage extends HookConsumerWidget {
           "assets/images/kiffy_logo_purple.png",
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: 14),
-          Stack(
-            alignment: Alignment.bottomLeft,
+      body: myProfile.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Text("Error : $err"),
+        data: (myProfile) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // 유저 프로필 사진
-              if (profile.value != null)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  height: 390,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                  child: SizedBox.expand(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.network(profile.value!.medias.first.url, fit: BoxFit.cover),
+              const SizedBox(height: 14),
+              Stack(
+                alignment: Alignment.bottomLeft,
+                children: [
+                  // 유저 프로필 사진
+                  // if (user.value != null)
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    height: 390,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                    child: SizedBox.expand(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.network(myProfile.medias.first.url, fit: BoxFit.cover),
+                      ),
                     ),
                   ),
-                ),
 
-              Container(
-                padding: const EdgeInsets.only(left: 37, bottom: 27),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (profile.value != null)
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: profile.value!.name,
-                              style: const TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
+                  Container(
+                    padding: const EdgeInsets.only(left: 37, bottom: 27),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: myProfile.name,
+                                style: const TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                            TextSpan(
-                              text: " ${BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(profile.value!.birthDate)).toString()}",
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white70,
+                              TextSpan(
+                                text: " ${BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(myProfile.birthDate)).toString()}",
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white70,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 18),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    MyPageButton(
+                      text: "Modify Profile",
+                      iconPath: "assets/images/modify_x3.png",
+                      routePathName: "resetProfile",
+                    ),
+                    const SizedBox(width: 22),
+                    MyPageButton(
+                      text: "Setting",
+                      iconPath: "assets/images/setting_x3.png",
+                      routePathName: "setting",
+                    ),
                   ],
                 ),
               ),
             ],
-          ),
-          const SizedBox(height: 18),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                MyPageButton(
-                  text: "Modify Profile",
-                  iconPath: "assets/images/modify_x3.png",
-                  routePathName: "resetProfile",
-                ),
-                const SizedBox(width: 22),
-                MyPageButton(
-                  text: "Setting",
-                  iconPath: "assets/images/setting_x3.png",
-                  routePathName: "setting",
-                ),
-              ],
-            ),
-          ),
-          // const Spacer(),
-
-          /// 커스텀 bottom banigation bar
-          // CustomBottomNavigationBar(),
-        ],
+          );
+        },
       ),
       bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
     );

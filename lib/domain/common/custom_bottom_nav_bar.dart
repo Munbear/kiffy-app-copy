@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../config/router/route.dart';
 import '../main_page/widget/bottom_tap_item.dart';
-import 'custom_bottom_nav_bar_item.dart';
 
 // 아이콘 및 라우트path
 class GlobalNavigationPaths {
@@ -19,31 +18,22 @@ class GlobalNavigationPaths {
   });
 }
 
-// class GlobalBottomNavigationItemProps {
-//   String iconPath;
-//   String routePath;
-//   String curRoutePath;
-
-//   GlobalBottomNavigationItemProps({
-//     required this.iconPath,
-//     required this.routePath,
-//     required this.curRoutePath,
-//   });
-// }
-
-class CustomBottomNavBar extends HookConsumerWidget {
+//////////
+class CustomBottomNavBar extends ConsumerStatefulWidget {
   final String currentPath;
 
-  const CustomBottomNavBar({
-    super.key,
-    required this.currentPath,
-  });
+  const CustomBottomNavBar({super.key, required this.currentPath});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _CustomBottomNavBarState();
+}
+
+class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
+  @override
+  Widget build(BuildContext context) {
     var curRoute = ref.watch(routerProvider);
 
-    var items = useState([
+    var items = [
       GlobalNavigationPaths(
         iconPath: "assets/icons/explore_icon.png",
         routePath: "/explore",
@@ -59,8 +49,7 @@ class CustomBottomNavBar extends HookConsumerWidget {
         routePath: "/mypage",
         curRoutePath: curRoute.location,
       ),
-    ]);
-
+    ];
     return Container(
       height: 115,
       decoration: BoxDecoration(
@@ -77,11 +66,11 @@ class CustomBottomNavBar extends HookConsumerWidget {
         child: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          items: items.value.map((path) {
+          items: items.map((path) {
             return BottomNavigationBarItem(
               icon: BottomTapItem(
                 iconPath: path.iconPath,
-                isFocus: path.routePath == currentPath,
+                isFocus: path.routePath == widget.currentPath,
                 // isFocus: items.value.contains(currentPage),
                 onRouting: () => ref.read(routerProvider).replace(path.routePath),
               ),

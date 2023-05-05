@@ -4,11 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class UnmatchUserProfile extends HookConsumerWidget {
-  const UnmatchUserProfile({super.key});
+import '../../matching/page/matching_page.dart';
+
+class UnMatchUserProfile extends ConsumerStatefulWidget {
+  static String get routeLocation => "/unmatchUserProfile";
+  static String get routeName => "unmatchUserProfile";
+
+  const UnMatchUserProfile({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _UnMatchUserProfileState();
+}
+
+class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -106,7 +116,7 @@ class UnmatchUserProfile extends HookConsumerWidget {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: "/matching"),
+      bottomNavigationBar: CustomBottomNavBar(currentPath: MatchingPage.routeLocation),
     );
   }
 }

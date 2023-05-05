@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class BottomTapItem extends HookConsumerWidget {
+class BottomTapItem extends ConsumerStatefulWidget {
   final String iconPath;
   final bool? isFocus;
   Function()? onRouting;
 
   BottomTapItem({
+    super.key,
     required this.iconPath,
     this.isFocus,
     required this.onRouting,
   });
-  // dfdf
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _BottomTapItemState();
+}
+
+class _BottomTapItemState extends ConsumerState<BottomTapItem> {
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        isFocus!
+        widget.isFocus!
             ? Container(
                 width: 5,
                 height: 5,
@@ -42,19 +47,19 @@ class BottomTapItem extends HookConsumerWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                isFocus! ? const Color(0xffBA00FF) : Colors.black,
-                isFocus! ? const Color(0xff0031AA) : Colors.black,
+                widget.isFocus! ? const Color(0xffBA00FF) : Colors.black,
+                widget.isFocus! ? const Color(0xff0031AA) : Colors.black,
               ],
             ).createShader(bound);
           },
           child: GestureDetector(
             onTap: () {
-              onRouting!();
+              widget.onRouting!();
             },
             child: Image(
               width: 60,
               height: 45,
-              image: AssetImage(iconPath),
+              image: AssetImage(widget.iconPath),
             ),
           ),
         ),

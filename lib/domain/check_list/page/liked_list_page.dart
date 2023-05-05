@@ -1,18 +1,24 @@
 import 'package:Kiffy/domain/check_list/widget/checked_profile_circle.dart';
 import 'package:Kiffy/domain/check_list/widget/unchecked_profile_circle.dart';
-import 'package:Kiffy/domain/common/border._style.dart';
 import 'package:Kiffy/domain/common/custom_app_bar_image_title.dart';
-import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
+import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/custom_bottom_nav_bar.dart';
 
-class LikedListPage extends HookConsumerWidget {
-  const LikedListPage();
+class LikedListPage extends ConsumerStatefulWidget {
+  static String get routeLocation => "/likedListPage";
+  static String get routeName => "likedListPage";
+  const LikedListPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _LikedListPageState();
+}
+
+class _LikedListPageState extends ConsumerState<LikedListPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -92,7 +98,7 @@ class LikedListPage extends HookConsumerWidget {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: "/explore"),
+      bottomNavigationBar: CustomBottomNavBar(currentPath: ExplorePage.routeLocation),
     );
   }
 }

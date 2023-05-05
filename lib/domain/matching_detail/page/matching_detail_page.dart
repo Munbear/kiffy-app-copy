@@ -1,18 +1,22 @@
-import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_app_bar_image_title.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
-import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
+import 'package:Kiffy/domain/matching/page/matching_page.dart';
 import 'package:Kiffy/domain/matching_detail/widget/matching_user_profile_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:http/retry.dart';
 
-class MatchingDetailPage extends HookConsumerWidget {
+class MatchingDetailPage extends ConsumerStatefulWidget {
+  static String get routeLocation => "/matchingDetail";
+  static String get routeName => "matchingDetail";
   const MatchingDetailPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _MatchingDetailPageState();
+}
+
+class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -166,7 +170,7 @@ class MatchingDetailPage extends HookConsumerWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: "/matching"),
+      bottomNavigationBar: CustomBottomNavBar(currentPath: MatchingPage.routeLocation),
     );
   }
 }

@@ -5,17 +5,25 @@ import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AddProfileContactPage extends HookConsumerWidget {
+class AddProfileContactPage extends ConsumerStatefulWidget {
+  static String get routeLocation => "/profile/add_profile/contact";
+  static String get routeName => "profile_add_profile_contact";
+  const AddProfileContactPage({super.key});
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    var inputContactValidation = useState(AddProfileInputItemValidation.success());
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddProfileContactPageState();
+}
 
-    var inputContactId = useState("");
-    var inputContactType = useState<ContactType?>(null);
+class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
+  AddProfileInputItemValidation inputContactValidation = AddProfileInputItemValidation.success();
 
+  String inputContactId = "";
+  ContactType? inputContactType;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Padding(
@@ -24,7 +32,7 @@ class AddProfileContactPage extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // header //
-            AddProfileHeader(),
+            const AddProfileHeader(),
 
             const Text(
               "Messenger for KIFFY",
@@ -37,13 +45,14 @@ class AddProfileContactPage extends HookConsumerWidget {
               children: ContactType.values.map((contactApp) {
                 return GestureDetector(
                   onTap: () {
-                    inputContactType.value = contactApp;
+                    inputContactType = contactApp;
+                    setState(() {});
                   },
                   child: Container(
                     height: 55,
                     width: 55,
                     margin: const EdgeInsets.only(right: 10),
-                    decoration: contactApp == inputContactType.value ? BorderGradientCircleShape.outlineGradientBoxDecoration : null,
+                    decoration: contactApp == inputContactType ? BorderGradientCircleShape.outlineGradientBoxDecoration : null,
                     child: Container(
                       padding: const EdgeInsets.all(4),
                       decoration: BorderGradientCircleShape.innerDecoration,
@@ -54,7 +63,7 @@ class AddProfileContactPage extends HookConsumerWidget {
                           Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: inputContactType.value == contactApp ? null : Colors.white.withOpacity(0.7),
+                              color: inputContactType == contactApp ? null : Colors.white.withOpacity(0.7),
                             ),
                           )
                         ],
@@ -75,7 +84,7 @@ class AddProfileContactPage extends HookConsumerWidget {
 
             // 아이디 입력 폼
             TextFormField(
-              onChanged: (t) => inputContactId.value = t,
+              onChanged: (t) => inputContactId = t,
               style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
               decoration: const InputDecoration(
                   hintText: "Please enter it.",
@@ -94,20 +103,21 @@ class AddProfileContactPage extends HookConsumerWidget {
             // 유호성 안내 텍스
             AddProfileInputValidationText(
               normalText: "* When a match is made, it’s shown to the woman.",
-              validation: inputContactValidation.value,
+              validation: inputContactValidation,
             ),
             const Spacer(),
 
             // 다음 버튼
             ElevatedButton(
               onPressed: () {
-                inputContactValidation.value = ref.read(addProfileInputProvider.notifier).setContact(
-                      inputContactId.value,
-                      inputContactType.value,
+                inputContactValidation = ref.read(addProfileInputProvider.notifier).setContact(
+                      inputContactId,
+                      inputContactType,
                     );
+                setState(() {});
 
-                if (inputContactValidation.value.isValid) {
-                  ref.read(addProfileInputProvider.notifier).updateContact(inputContactId.value, inputContactType.value);
+                if (inputContactValidation.isValid) {
+                  ref.read(addProfileInputProvider.notifier).updateContact(inputContactId, inputContactType);
                   ref.read(routerProvider).replace("/profile/add_profile/intro");
                 }
               },

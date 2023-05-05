@@ -2,11 +2,18 @@ import 'package:Kiffy/domain/common/main_blue_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AddProfileInputAuthCodePage extends HookConsumerWidget {
+class AddProfileInputAuthCodePage extends ConsumerStatefulWidget {
+  static String get routeLocation => "/profile/add_profile/input_auth_code";
+  static String get routeName => "profile_add_profile_input_auth_code";
   const AddProfileInputAuthCodePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddProfileInputAuthCodePageState();
+}
+
+class _AddProfileInputAuthCodePageState extends ConsumerState<AddProfileInputAuthCodePage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(

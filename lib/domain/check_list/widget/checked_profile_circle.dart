@@ -3,11 +3,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/border._style.dart';
 
-class CheckedProfileCircle extends HookConsumerWidget {
+class CheckedProfileCircle extends ConsumerStatefulWidget {
   const CheckedProfileCircle({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _CheckedProfileCircleState();
+}
+
+class _CheckedProfileCircleState extends ConsumerState<CheckedProfileCircle> {
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Container(

@@ -3,8 +3,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ExampleProfileFotoTipBottomSheet extends HookConsumerWidget {
+class ExampleProfileFotoTipBottomSheet extends ConsumerWidget {
   ExampleProfileFotoTipBottomSheet({super.key});
+
+  PageController controller = PageController(initialPage: 0);
 
   List<String> items = [
     "assets/images/dummy_image.jpg",
@@ -12,12 +14,10 @@ class ExampleProfileFotoTipBottomSheet extends HookConsumerWidget {
     "assets/images/dummy_image.jpg",
   ];
 
-  PageController controller = PageController(initialPage: 0);
+  int currentPage = 0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var currentPage = useState<int>(0);
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24),
       child: Column(
@@ -37,7 +37,7 @@ class ExampleProfileFotoTipBottomSheet extends HookConsumerWidget {
             child: PageView(
               controller: controller,
               onPageChanged: (page) {
-                currentPage.value = page;
+                currentPage = page;
               },
               children: items
                   .map(
@@ -59,7 +59,7 @@ class ExampleProfileFotoTipBottomSheet extends HookConsumerWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              currentPage.value == 0
+                              currentPage == 0
                                   ? const SizedBox(width: 50)
                                   : IconButton(
                                       onPressed: () {
@@ -76,7 +76,7 @@ class ExampleProfileFotoTipBottomSheet extends HookConsumerWidget {
                                   height: 200,
                                 ),
                               ),
-                              currentPage.value == 2
+                              currentPage == 2
                                   ? const SizedBox(width: 50)
                                   : IconButton(
                                       onPressed: () {

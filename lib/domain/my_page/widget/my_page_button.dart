@@ -1,15 +1,13 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MyPageButton extends HookConsumerWidget {
+class MyPageButton extends ConsumerWidget {
   final String text;
   final String iconPath;
   final String routePathName;
 
-  MyPageButton({
+  const MyPageButton({
     super.key,
     required this.text,
     required this.iconPath,

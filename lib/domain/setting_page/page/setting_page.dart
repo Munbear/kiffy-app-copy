@@ -3,12 +3,23 @@ import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/setting_page/widget/setting_button.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SettingPage extends HookConsumerWidget {
+import '../../my_page/page/my_page.dart';
+
+class SettingPage extends ConsumerStatefulWidget {
+  static String get routeLocation => "/setting";
+  static String get routeName => "setting";
+
+  const SettingPage({super.key});
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _SettingPageState();
+}
+
+class _SettingPageState extends ConsumerState<SettingPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -36,19 +47,18 @@ class SettingPage extends HookConsumerWidget {
             ),
           ),
           const SizedBox(height: 30),
+          // 회원 탈퇴 화면으로
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 28),
             child: GestureDetector(
-              onTap: () {
-                ref.read(routerProvider).pushNamed("withdraw");
-              },
-              child: SettingButton(IconPath: "assets/images/withdrawal_img.png", text: "Withdrawal"),
+              onTap: () => ref.read(routerProvider).pushNamed("withdraw"),
+              child: const SettingButton(IconPath: "assets/images/withdrawal_img.png", text: "Withdrawal"),
             ),
           ),
           const Spacer(),
         ],
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
+      bottomNavigationBar: CustomBottomNavBar(currentPath: "/mypage"),
     );
   }
 }

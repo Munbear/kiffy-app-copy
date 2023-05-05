@@ -4,7 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ExploreWishedListMore extends HookConsumerWidget {
+class ExploreWishedListMore extends ConsumerWidget {
+  const ExploreWishedListMore({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(

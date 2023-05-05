@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MathcingUserProfileCard extends HookConsumerWidget {
+class MathcingUserProfileCard extends ConsumerStatefulWidget {
   const MathcingUserProfileCard({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _MathcingUserProfileCardState();
+}
+
+class _MathcingUserProfileCardState extends ConsumerState<MathcingUserProfileCard> {
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 14),
       child: Container(
         height: 390,
         decoration: BoxDecoration(
-          color: Colors.red,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(

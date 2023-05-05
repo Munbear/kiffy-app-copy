@@ -2,11 +2,18 @@ import 'package:Kiffy/domain/common/main_blue_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AddProfilePhoneNumberPage extends HookConsumerWidget {
+class AddProfilePhoneNumberPage extends ConsumerStatefulWidget {
+  static String get routeLocation => "/profile/add_profile/auth_phone_number";
+  static String get routeName => "profile_add_profile_auth_phone_number";
   const AddProfilePhoneNumberPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddProfilePhoneNumberPageState();
+}
+
+class _AddProfilePhoneNumberPageState extends ConsumerState<AddProfilePhoneNumberPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(

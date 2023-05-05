@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SettingButton extends HookConsumerWidget {
+class SettingButton extends ConsumerWidget {
   final String IconPath;
   final String text;
 
-  const SettingButton({required this.IconPath, required this.text});
+  const SettingButton({
+    super.key,
+    required this.IconPath,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

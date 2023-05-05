@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ExploreWishedListItem extends HookConsumerWidget {
+class ExploreWishedListItem extends ConsumerStatefulWidget {
   final UserProfileView profile;
+  const ExploreWishedListItem({super.key, required this.profile});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _ExploreWishedListItemState();
+}
+
+class _ExploreWishedListItemState extends ConsumerState<ExploreWishedListItem> {
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 6),
       child: Column(
@@ -39,19 +45,15 @@ class ExploreWishedListItem extends HookConsumerWidget {
               decoration: const BoxDecoration(shape: BoxShape.circle),
               clipBehavior: Clip.hardEdge,
               child: Image.network(
-                profile.medias[0].url,
+                widget.profile.medias[0].url,
                 fit: BoxFit.cover,
               ),
             ),
           ),
           const SizedBox(height: 5),
-          Text(profile.name),
+          Text(widget.profile.name),
         ],
       ),
     );
   }
-
-  const ExploreWishedListItem({
-    required this.profile,
-  });
 }

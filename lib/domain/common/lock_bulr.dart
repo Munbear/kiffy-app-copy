@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class LockBulr extends HookConsumerWidget {
+class LockBulr extends ConsumerWidget {
   final String mainText;
   final String subText;
 
-  const LockBulr({required this.mainText, required this.subText});
+  const LockBulr({super.key, required this.mainText, required this.subText});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
