@@ -5,50 +5,57 @@ import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:Kiffy/infra/media_client.dart';
-import 'package:Kiffy/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../common/custom_app_bar.dart';
 
-class ResetProfile extends HookConsumerWidget {
+class ResetProfile extends ConsumerStatefulWidget {
+  static String get routeLocation => "/resetProfile";
+  static String get routeNmae => "resetProfile";
+
   const ResetProfile({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final inputImageMaxLength = 6;
-    var inputImages = useState<List<AddProfileInputImageItem>>(List.empty());
-    var inputImagesValidation = useState(AddProfileInputItemValidation.success());
+  ConsumerState<ConsumerStatefulWidget> createState() => _ResetProfileState();
+}
+
+class _ResetProfileState extends ConsumerState<ResetProfile> {
+  int inputImageMaxLength = 6;
+  List<AddProfileInputImageItem> inputImages = List.empty();
+  var inputImagesValidation = AddProfileInputItemValidation.success();
+
+  void onAddedListener(String path) {
+    uploadImage(path).then((res) => inputImages = [
+          ...inputImages,
+          AddProfileInputImageItem(
+            filePath: path,
+            url: res.url,
+            id: res.id,
+            orderNum: inputImages.length - 1,
+          )
+        ]);
+  }
+
+  void onDeletedListener(int index) {
+    var copiedList = inputImages.getRange(0, inputImages.length).toList();
+    copiedList.removeAt(index);
+    inputImages = copiedList;
+  }
+
+  var inputIntroValidation = AddProfileInputItemValidation.success();
+  String inputIntro = "";
+
+  String inputContactId = "";
+  ContactType? inputContactType = null;
+
+  var inputContactValidation = AddProfileInputItemValidation.success();
+
+  @override
+  Widget build(BuildContext context) {
     var userProfile = ref.read(addProfileInputProvider);
-
-    void onAddedListener(String path) {
-      uploadImage(path).then((res) => inputImages.value = [
-            ...inputImages.value,
-            AddProfileInputImageItem(
-              filePath: path,
-              url: res.url,
-              id: res.id,
-              orderNum: inputImages.value.length - 1,
-            )
-          ]);
-    }
-
-    void onDeletedListener(int index) {
-      var copiedList = inputImages.value.getRange(0, inputImages.value.length).toList();
-      copiedList.removeAt(index);
-      inputImages.value = copiedList;
-    }
-
-    var inputIntroValidation = useState(AddProfileInputItemValidation.success());
-    var inputIntro = useState("");
-
-    var inputContactId = useState("");
-    var inputContactType = useState<ContactType?>(null);
-
-    var inputContactValidation = useState(AddProfileInputItemValidation.success());
 
     return Scaffold(
       appBar: AppBar(
@@ -104,7 +111,7 @@ class ResetProfile extends HookConsumerWidget {
                     index: index,
                     onDeleted: (idx) => onDeletedListener(idx),
                     onAdded: (path) => onAddedListener(path),
-                    filePath: inputImages.value.length > index ? inputImages.value.elementAt(index).filePath : null,
+                    filePath: inputImages.length > index ? inputImages.elementAt(index).filePath : null,
                   ),
                 ),
               ),
@@ -115,7 +122,7 @@ class ResetProfile extends HookConsumerWidget {
                 alignment: Alignment.centerLeft,
                 child: AddProfileInputValidationText(
                   normalText: "* You must select at least two sheets.",
-                  validation: inputImagesValidation.value,
+                  validation: inputImagesValidation,
                 ),
               ),
               const SizedBox(height: 30),
@@ -146,7 +153,7 @@ class ResetProfile extends HookConsumerWidget {
               ),
               const SizedBox(height: 10),
               TextFormField(
-                onChanged: (t) => inputIntro.value = t,
+                onChanged: (t) => inputIntro = t,
                 minLines: 5,
                 maxLines: 5,
                 style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
@@ -169,7 +176,7 @@ class ResetProfile extends HookConsumerWidget {
                 alignment: Alignment.centerLeft,
                 child: AddProfileInputValidationText(
                   normalText: "* This will increase your matching probability.",
-                  validation: inputIntroValidation.value,
+                  validation: inputIntroValidation,
                 ),
               ),
               const SizedBox(height: 20),
@@ -191,7 +198,7 @@ class ResetProfile extends HookConsumerWidget {
                     margin: const EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: inputContactType.value == ContactType.LINE
+                      border: inputContactType == ContactType.LINE
                           ? const GradientBoxBorder(
                               gradient: LinearGradient(
                                 begin: Alignment.topLeft,
@@ -210,7 +217,7 @@ class ResetProfile extends HookConsumerWidget {
                     ),
                     child: IconButton(
                       padding: const EdgeInsets.all(5),
-                      onPressed: () => inputContactType.value = ContactType.LINE,
+                      onPressed: () => inputContactType = ContactType.LINE,
                       icon: Image.asset(
                         "assets/icons/line_icon.png",
                       ),
@@ -222,7 +229,7 @@ class ResetProfile extends HookConsumerWidget {
                     margin: const EdgeInsets.only(left: 5),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: inputContactType.value == ContactType.WHATSAPP
+                      border: inputContactType == ContactType.WHATSAPP
                           ? const GradientBoxBorder(
                               gradient: LinearGradient(
                                 begin: Alignment.topLeft,
@@ -241,7 +248,7 @@ class ResetProfile extends HookConsumerWidget {
                     ),
                     child: IconButton(
                       padding: const EdgeInsets.all(5),
-                      onPressed: () => inputContactType.value = ContactType.WHATSAPP,
+                      onPressed: () => inputContactType = ContactType.WHATSAPP,
                       icon: Image.asset(
                         "assets/icons/whatsapp_icon.png",
                         width: 68,
@@ -264,7 +271,7 @@ class ResetProfile extends HookConsumerWidget {
               const SizedBox(height: 10),
               // 아이디 입력 폼
               TextField(
-                onChanged: (t) => inputContactId.value = t,
+                onChanged: (t) => inputContactId = t,
                 style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
                 decoration: const InputDecoration(
                     hintText: "Please enter it.",
@@ -285,7 +292,7 @@ class ResetProfile extends HookConsumerWidget {
                 alignment: Alignment.centerLeft,
                 child: AddProfileInputValidationText(
                   normalText: "* When a match is made, it’s shown to the woman.",
-                  validation: inputContactValidation.value,
+                  validation: inputContactValidation,
                 ),
               ),
 

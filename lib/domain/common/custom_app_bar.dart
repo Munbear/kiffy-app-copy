@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CustomAppBar extends HookConsumerWidget {
+class CustomAppBar extends ConsumerWidget {
   final String title;
   final Color titleColor;
   final double fontSize;

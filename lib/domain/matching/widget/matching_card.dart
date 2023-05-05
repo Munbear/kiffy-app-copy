@@ -3,15 +3,13 @@ import 'package:Kiffy/domain/common/border._style.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MatchingCard extends HookConsumerWidget {
+class MatchingCard extends ConsumerWidget {
   final UserProfileView userProfile;
 
-  const MatchingCard({
-    required this.userProfile,
-  });
+  const MatchingCard({super.key, required this.userProfile});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

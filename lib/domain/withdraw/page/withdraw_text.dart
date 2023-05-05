@@ -4,11 +4,19 @@ import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class WithdrawText extends HookConsumerWidget {
+class WithdrawText extends ConsumerStatefulWidget {
+  static String get routeLocation => "/withdrawText";
+  static String get routeName => "withdrawText";
+
   const WithdrawText({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _WithdrawTextState();
+}
+
+class _WithdrawTextState extends ConsumerState<WithdrawText> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

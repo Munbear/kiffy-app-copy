@@ -21,17 +21,96 @@ class AddProfileInputImageCardProps {
   });
 }
 
-class AddProfileInputImageCard extends HookConsumerWidget {
+// class AddProfileInputImageCard extends HookConsumerWidget {
+//   AddProfileInputImageCardProps props;
+
+//   AddProfileInputImageCard({required this.props});
+
+//   // 이미지 불러오기
+//   Future addImage(ImageSource imageSource) async {
+//     final picker = ImagePicker();
+//     final file = await picker.pickImage(source: imageSource);
+//     if (file != null) {
+//       props.onAdded(file.path);
+//     }
+//   }
+
+//   // 이미지 삭제
+//   Future deleteImage(ValueNotifier<File?> imagePath, ValueNotifier<File?> imageFile) async {
+//     if (imagePath.value != null) {
+//       imagePath.value = null;
+//       imageFile.value = null;
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     return Stack(
+//       children: [
+//         Container(
+//           width: 93,
+//           height: 133,
+//           clipBehavior: Clip.hardEdge,
+//           padding: const EdgeInsets.all(0),
+//           decoration: BoxDecoration(
+//             border: props.filePath == null ? Border.all(color: const Color(0xFFCECECE), width: 2.0) : null,
+//             borderRadius: const BorderRadius.only(
+//               bottomLeft: Radius.circular(15),
+//               bottomRight: Radius.circular(15),
+//               topRight: Radius.circular(15),
+//             ),
+//           ),
+//           child: props.filePath == null
+//               ? InkWell(
+//                   onTap: () {
+//                     addImage(ImageSource.gallery);
+//                   },
+//                   child: const Center(child: Text("+", style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)))),
+//                 )
+//               : Container(
+//                   decoration: BoxDecoration(
+//                     color: Colors.grey,
+//                     image: DecorationImage(image: Image.file(File(props.filePath!)).image, fit: BoxFit.cover),
+//                   ),
+//                 ),
+//           // Image.file(File(imagePath.value!.path), fit: BoxFit.cover),
+//         ),
+//         Visibility(
+//           visible: props.filePath != null ? true : false,
+//           child: Positioned(
+//             right: 15,
+//             top: 15,
+//             child: GestureDetector(
+//               onTap: () => props.onDeleted(props.index),
+//               child: const Text("X", style: TextStyle(fontSize: 14, color: Colors.white)),
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+/////////////////
+///
+///
+
+class AddProfileInputImageCard extends ConsumerStatefulWidget {
   AddProfileInputImageCardProps props;
 
-  AddProfileInputImageCard({required this.props});
+  AddProfileInputImageCard({super.key, required this.props});
 
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddProfileInputImageCardState();
+}
+
+class _AddProfileInputImageCardState extends ConsumerState<AddProfileInputImageCard> {
   // 이미지 불러오기
   Future addImage(ImageSource imageSource) async {
     final picker = ImagePicker();
     final file = await picker.pickImage(source: imageSource);
     if (file != null) {
-      props.onAdded(file.path);
+      widget.props.onAdded(file.path);
     }
   }
 
@@ -44,7 +123,7 @@ class AddProfileInputImageCard extends HookConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
@@ -53,14 +132,14 @@ class AddProfileInputImageCard extends HookConsumerWidget {
           clipBehavior: Clip.hardEdge,
           padding: const EdgeInsets.all(0),
           decoration: BoxDecoration(
-            border: props.filePath == null ? Border.all(color: const Color(0xFFCECECE), width: 2.0) : null,
+            border: widget.props.filePath == null ? Border.all(color: const Color(0xFFCECECE), width: 2.0) : null,
             borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(15),
               bottomRight: Radius.circular(15),
               topRight: Radius.circular(15),
             ),
           ),
-          child: props.filePath == null
+          child: widget.props.filePath == null
               ? InkWell(
                   onTap: () {
                     addImage(ImageSource.gallery);
@@ -70,18 +149,18 @@ class AddProfileInputImageCard extends HookConsumerWidget {
               : Container(
                   decoration: BoxDecoration(
                     color: Colors.grey,
-                    image: DecorationImage(image: Image.file(File(props.filePath!)).image, fit: BoxFit.cover),
+                    image: DecorationImage(image: Image.file(File(widget.props.filePath!)).image, fit: BoxFit.cover),
                   ),
                 ),
           // Image.file(File(imagePath.value!.path), fit: BoxFit.cover),
         ),
         Visibility(
-          visible: props.filePath != null ? true : false,
+          visible: widget.props.filePath != null ? true : false,
           child: Positioned(
             right: 15,
             top: 15,
             child: GestureDetector(
-              onTap: () => props.onDeleted(props.index),
+              onTap: () => widget.props.onDeleted(widget.props.index),
               child: const Text("X", style: TextStyle(fontSize: 14, color: Colors.white)),
             ),
           ),

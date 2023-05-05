@@ -1,18 +1,25 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
-import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
 import 'package:Kiffy/domain/withdraw/service/withdraw_reason.dart';
-import 'package:Kiffy/domain/withdraw/service/withdrawal_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class WithdrawPage extends HookConsumerWidget {
+class WithdrawPage extends ConsumerStatefulWidget {
+  static String get routeLocation => "/withdraw";
+  static String get routeName => "withdraw";
+
+  const WithdrawPage({super.key});
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    var selectedReason = useState<String>("");
-    var selectedReasonValidation = useState(SelecteWithdrawalReason.success());
+  ConsumerState<ConsumerStatefulWidget> createState() => _WithdrawPageState();
+}
+
+class _WithdrawPageState extends ConsumerState<WithdrawPage> {
+  String selectedReason = "";
+  // var selectedReasonValidation = useState(SelecteWithdrawalReason.success());
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -33,7 +40,7 @@ class WithdrawPage extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 18),
-            Text(
+            const Text(
               "What is the reason for your withdrdawal?",
               style: TextStyle(
                 fontSize: 18,
@@ -47,7 +54,7 @@ class WithdrawPage extends HookConsumerWidget {
               children: WithDrawalReason.values.map((reason) {
                 return GestureDetector(
                   onTap: () {
-                    selectedReason.value = WithDrawalReason.enumToString(reason);
+                    selectedReason = WithDrawalReason.enumToString(reason);
                   },
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 5),
@@ -55,7 +62,7 @@ class WithdrawPage extends HookConsumerWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: selectedReason.value == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xffcecece),
+                        color: selectedReason == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xffcecece),
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -63,7 +70,7 @@ class WithdrawPage extends HookConsumerWidget {
                       WithDrawalReason.enumToString(reason),
                       style: TextStyle(
                         fontSize: 20,
-                        color: selectedReason.value == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xff6c6c6c),
+                        color: selectedReason == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xff6c6c6c),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -74,7 +81,7 @@ class WithdrawPage extends HookConsumerWidget {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                ref.read(routerProvider).replace("/withdrawText");
+                ref.read(routerProvider).pushNamed("withdrawText");
                 // selectedReasonValidation.value = ref.read(withdrawalProvider.notifier).setReason(selectedReason.value);
                 // if (selectedReasonValidation.value.isValid) {
                 //   print("hellp");

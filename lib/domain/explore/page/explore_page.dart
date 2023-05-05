@@ -1,49 +1,42 @@
-import 'dart:developer';
-
-import 'package:Kiffy/domain/common/main_app_bar.dart';
 import 'package:Kiffy/domain/common/preview_liked_list.dart';
 import 'package:Kiffy/domain/common/user_profile_card.dart';
-import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
-import 'package:Kiffy/domain/explore/widget/explore_wished_list_item.dart';
-import 'package:Kiffy/domain/explore/widget/explore_wished_list_more.dart';
 import 'package:Kiffy/infra/explore_client.dart';
-import 'package:Kiffy/infra/user_client.dart';
-import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
+import 'package:Kiffy/infra/wish_client.dart';
+import 'package:Kiffy/model/wish_other_profiles_view/wish_other_profiles_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../common/custom_app_bar_image_title.dart';
 import '../../common/custom_bottom_nav_bar.dart';
 import '../widget/no_user_profile_card.dart';
 
-class ExplorePage extends HookConsumerWidget {
+class ExplorePage extends ConsumerStatefulWidget {
+  static String get routeName => "explore";
+  static String get routeLocation => "/explore";
+
+  const ExplorePage({super.key});
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // useEffect(() {
-    //   var res = getTest().then((value) {
-    //     log("=========================");
-    //     log("호출호출호출");
-    //     // log(value.toString());
-    //     log("=========================");
-    //   });
-    // }, []);
+  ConsumerState<ConsumerStatefulWidget> createState() => _ExplorePageState();
+}
 
-    final userProfiles = useState<List<UserProfileView>>([]);
-    final hasNext = useState<bool>(false);
-    final next = useState<String?>(null);
+class _ExplorePageState extends ConsumerState<ExplorePage> {
+  late List<WishOtherProfilesView>? wishUsers;
 
-    getApiAndSetState() async {
-      final response = await getExploreUserProfiles();
-      print(response.list);
-      userProfiles.value = [...response.list];
-    }
+  @override
+  void initState() {
+    super.initState();
 
-    useEffect(() {
-      getApiAndSetState();
-    }, []);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // 탐색할 사용자 리스트 불러오기
+      ref.watch(exploreProvider).getExploreUserProfiles();
+      // 나에게 위시한 사용자 불러오기
+      ref.watch(wishClientProvider).getWishOthersProfiles();
+    });
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    final userProfiles = ref.watch(useruserProfilesProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -61,21 +54,15 @@ class ExplorePage extends HookConsumerWidget {
         bottom: false,
         child: Column(
           children: [
-            /******************************************
-             *         좋아요 보낸 유저 리스트 
-             * *************************************** */
+            // 나에게 위시 보낸 유저 리스트
             const PreviewLikedList(),
 
-            /**************************************
-             *        유저 프로필 카드  
-             * *********************************** */
-            userProfiles.value.isNotEmpty ? UserProfileCard(userProfile: userProfiles.value[0]) : const NoUserProfileCard(),
-            // 커스텀 바텀 네비게이션
-            // CustomBottomNavigationBar()
+            // 유저 프로필 카드
+            if (userProfiles != null) userProfiles.list.isNotEmpty ? UserProfileCard(userProfile: userProfiles.list[0]) : const NoUserProfileCard(),
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentPath: "/explore"),
+      bottomNavigationBar: CustomBottomNavBar(currentPath: ExplorePage.routeLocation),
     );
   }
 }

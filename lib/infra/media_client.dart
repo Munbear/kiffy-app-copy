@@ -12,7 +12,8 @@ Future<MediaView> uploadImage(String path) async {
 
   // return response.data.map<MediaView>(() => MediaView).toList();
   // :: 나중에 MediaView 로 변경
-  return response.data.map<MediaView>((medias) => MediaView.fromJson(medias));
+  // return response.data.map<MediaView>((medias) => MediaView.fromJson(medias));
+  return MediaView.fromJson(response.data);
 }
 
 class UploadImageResponse {

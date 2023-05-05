@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CustomAppBarImageTitle extends HookConsumerWidget {
+class CustomAppBarImageTitle extends ConsumerWidget {
   const CustomAppBarImageTitle({super.key});
 
+  @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         const SizedBox(width: 20),
         GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
+          onTap: () => Navigator.pop(context),
           child: SvgPicture.asset("assets/svg/arrow_back.svg"),
         ),
         const Spacer(),

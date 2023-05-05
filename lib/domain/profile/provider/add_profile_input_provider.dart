@@ -151,6 +151,7 @@ class AddProfileInputState extends StateNotifier<UserProfileCreateCommand> {
         .toJson();
     Response response = await ApiClient().dio.post("/api/view/user/v1/my/profile", data: userProfile);
 
-    return response.data.map<UserProfileView>((profile) => UserProfileView.fromJson(profile));
+    // return response.data.map<UserProfileView>((profile) => UserProfileView.fromJson(profile));
+    return UserProfileView.fromJson(response.data);
   }
 }

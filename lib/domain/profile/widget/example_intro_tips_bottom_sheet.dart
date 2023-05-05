@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ExampleIntroTipsBottomSheet extends HookConsumerWidget {
+class ExampleIntroTipsBottomSheet extends ConsumerWidget {
   ExampleIntroTipsBottomSheet({super.key});
 
   List<String> example = [

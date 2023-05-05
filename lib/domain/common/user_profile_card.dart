@@ -2,20 +2,23 @@ import 'package:Kiffy/infra/wish_client.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class UserProfileCard extends HookConsumerWidget {
+class UserProfileCard extends ConsumerStatefulWidget {
   final UserProfileView userProfile;
-
-  const UserProfileCard({
-    required this.userProfile,
-  });
+  const UserProfileCard({super.key, required this.userProfile});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final imageIndex = useState(0);
+  ConsumerState<ConsumerStatefulWidget> createState() => _UserProfileCardState();
+}
+
+class _UserProfileCardState extends ConsumerState<UserProfileCard> {
+  int imageIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    ref.watch(wishClientProvider);
 
     return Expanded(
       child: Container(
@@ -37,7 +40,7 @@ class UserProfileCard extends HookConsumerWidget {
                 ],
               ),
               child: Image.network(
-                userProfile.medias[imageIndex.value].url,
+                widget.userProfile.medias[imageIndex].url,
                 fit: BoxFit.cover,
               ),
             ),
@@ -59,11 +62,11 @@ class UserProfileCard extends HookConsumerWidget {
                               text: TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: userProfile.name,
+                                    text: widget.userProfile.name,
                                     style: const TextStyle(color: Colors.white, fontSize: 28),
                                   ),
                                   TextSpan(
-                                    text: BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userProfile.birthDate)).toString(),
+                                    text: BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(widget.userProfile.birthDate)).toString(),
                                     style: const TextStyle(color: Colors.grey, fontSize: 20),
                                   )
                                 ],
@@ -84,8 +87,9 @@ class UserProfileCard extends HookConsumerWidget {
                             color: Colors.transparent,
                           ),
                           onTap: () {
-                            if (imageIndex.value > 0) {
-                              imageIndex.value -= 1;
+                            if (imageIndex > 0) {
+                              setState(() => imageIndex -= 1);
+                              // imageIndex -= 1;
                             }
                           },
                         ),
@@ -96,8 +100,9 @@ class UserProfileCard extends HookConsumerWidget {
                             color: Colors.transparent,
                           ),
                           onTap: () {
-                            if (imageIndex.value < userProfile.medias.length - 1) {
-                              imageIndex.value += 1;
+                            if (imageIndex < widget.userProfile.medias.length - 1) {
+                              setState(() => imageIndex += 1);
+                              // imageIndex += 1;
                             }
                           },
                         ),
@@ -124,7 +129,8 @@ class UserProfileCard extends HookConsumerWidget {
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
-                                onTap: () => rejectWish(userId: userProfile.id),
+                                // onTap: () => rejectWish(userId: userProfile.id),
+                                onTap: () => ref.read(wishClientProvider).rejectWish(userId: widget.userProfile.id),
                                 child: const Icon(Icons.close, color: Colors.white, size: 40),
                               ),
                             ),
@@ -143,7 +149,8 @@ class UserProfileCard extends HookConsumerWidget {
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
-                                onTap: () => approveWish(userId: userProfile.id),
+                                // onTap: () => approveWish(userId: userProfile.id),
+                                onTap: () => ref.read(wishClientProvider).approveWish(userId: widget.userProfile.id),
                                 child: Container(margin: const EdgeInsets.only(top: 13), child: Image.asset("assets/icons/heart_icon.png")),
                               ),
                             ),

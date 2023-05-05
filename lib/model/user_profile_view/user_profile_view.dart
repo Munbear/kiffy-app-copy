@@ -2,6 +2,7 @@ import 'package:Kiffy/domain/core/enum/gender_type.dart';
 import 'package:Kiffy/domain/core/enum/media_type.dart';
 import 'package:Kiffy/domain/core/enum/user_status.dart';
 import 'package:Kiffy/model/media_view/media_view.dart';
+import 'package:Kiffy/model/user_status_view/user_status_view.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_view.freezed.dart';

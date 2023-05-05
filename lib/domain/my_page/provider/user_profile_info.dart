@@ -4,17 +4,30 @@ import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 유저 프로필 정보
-final myProfileProvider = Provider<MyProfileHandler>((ref) => MyProfileHandler(ref));
+final userInfoProvider = Provider<MyProfileHandler>((ref) => MyProfileHandler(ref));
 
+// 내 프로필 핸들러
 class MyProfileHandler {
   final Ref ref;
   Dio dio;
 
   MyProfileHandler(this.ref) : dio = ApiClient().dio;
 
-  Future<UserProfileView> getMyProfile() async {
-    final res = await dio.get("/api/view/user/v1/my/profile");
+  // 수정 필요
 
-    return UserProfileView.fromJson(res.data);
-  }
+  // Future<UserProfileView> getMyProfile() async {
+  //   final res = await dio.get("/api/view/user/v1/my/profile");
+
+  //   final item = UserProfileView.fromJson(res.data);
+
+  //   return ref.watch(myProfileProvider.notifier).update((state) => state = item);
+  // }
 }
+
+// ::수정 필요
+// 내 프로필 불러오기
+final myProfileProvider = FutureProvider((ref) async {
+  final res = await ApiClient().dio.get("/api/view/user/v1/my/profile");
+
+  return UserProfileView.fromJson(res.data);
+});

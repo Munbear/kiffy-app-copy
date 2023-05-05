@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MainAppBar extends HookConsumerWidget {
-  MainAppBar({super.key});
+class MainAppBar extends ConsumerWidget {
+  const MainAppBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
