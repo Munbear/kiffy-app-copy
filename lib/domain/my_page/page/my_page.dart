@@ -54,7 +54,6 @@ class _MyPageState extends ConsumerState<MyPage> {
                 alignment: Alignment.bottomLeft,
                 children: [
                   // 유저 프로필 사진
-                  // if (user.value != null)
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     height: 390,

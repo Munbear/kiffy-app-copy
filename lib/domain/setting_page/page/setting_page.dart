@@ -2,6 +2,7 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/setting_page/widget/setting_button.dart';
+import 'package:Kiffy/domain/sign/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,6 +21,7 @@ class SettingPage extends ConsumerStatefulWidget {
 class _SettingPageState extends ConsumerState<SettingPage> {
   @override
   Widget build(BuildContext context) {
+    ref.watch(authProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -42,6 +44,7 @@ class _SettingPageState extends ConsumerState<SettingPage> {
             child: GestureDetector(
               onTap: () {
                 // 로그아웃 함수 추가
+                ref.watch(authProvider.notifier).logout();
               },
               child: const SettingButton(IconPath: "assets/images/log_out.png", text: "Log out"),
             ),

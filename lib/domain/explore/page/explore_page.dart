@@ -2,8 +2,8 @@ import 'package:Kiffy/domain/common/preview_liked_list.dart';
 import 'package:Kiffy/domain/common/user_profile_card.dart';
 import 'package:Kiffy/infra/explore_client.dart';
 import 'package:Kiffy/infra/wish_client.dart';
-import 'package:Kiffy/model/wish_other_profiles_view/wish_other_profiles_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/custom_bottom_nav_bar.dart';
@@ -20,7 +20,7 @@ class ExplorePage extends ConsumerStatefulWidget {
 }
 
 class _ExplorePageState extends ConsumerState<ExplorePage> {
-  late List<WishOtherProfilesView>? wishUsers;
+  final CardSwiperController controller = CardSwiperController();
 
   @override
   void initState() {
@@ -28,15 +28,27 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // 탐색할 사용자 리스트 불러오기
-      ref.watch(exploreProvider).getExploreUserProfiles();
+      await ref.read(exploreProvider).getExpolreUserCard();
+
       // 나에게 위시한 사용자 불러오기
-      ref.watch(wishClientProvider).getWishOthersProfiles();
+      await ref.read(wishClientProvider).getWishOthersProfiles();
     });
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final userProfiles = ref.watch(useruserProfilesProvider);
+    final userCards = ref.watch(userCardsProvider);
+    final isLoading = ref.watch(userCardLoading);
+    ref.watch(wishCount);
+
+    print(userCards.length);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -57,8 +69,31 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
             // 나에게 위시 보낸 유저 리스트
             const PreviewLikedList(),
 
-            // 유저 프로필 카드
-            if (userProfiles != null) userProfiles.list.isNotEmpty ? UserProfileCard(userProfile: userProfiles.list[0]) : const NoUserProfileCard(),
+            isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : userCards.isNotEmpty
+                    ? Expanded(
+                        child: CardSwiper(
+                          controller: controller,
+                          isHorizontalSwipingEnabled: false,
+                          isVerticalSwipingEnabled: false,
+                          isLoop: false,
+                          padding: EdgeInsets.zero,
+                          initialIndex: 0,
+                          onEnd: () {
+                            if (ref.watch(wishCount) >= 3) ref.read(exploreProvider).getExpolreUserCard();
+                          },
+                          numberOfCardsDisplayed: userCards.length <= 1 ? 1 : 5,
+                          cardsCount: userCards.length,
+                          cardBuilder: (context, index) {
+                            return UserProfileCard(
+                              userProfile: userCards[index],
+                              controller: controller,
+                            );
+                          },
+                        ),
+                      )
+                    : const NoUserProfileCard(),
           ],
         ),
       ),

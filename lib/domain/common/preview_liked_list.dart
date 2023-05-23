@@ -31,7 +31,7 @@ class _PreviewLikedListState extends ConsumerState<PreviewLikedList> {
                 ),
               // 자세히 보기
               if (wishOtherProfiles != null)
-                wishOtherProfiles.list.isEmpty ? const Center(child: Text("아직 위시를 받은 적이 없습니다.")) : const ExploreWishedListMore(),
+                wishOtherProfiles.list.isNotEmpty ? const ExploreWishedListMore() : const Center(child: Text("아직 위시를 받은 적이 없습니다.")),
             ],
           ),
         ),
