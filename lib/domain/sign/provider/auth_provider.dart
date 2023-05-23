@@ -3,10 +3,13 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/core/enum/user_status.dart';
 import 'package:Kiffy/infra/auth_client.dart';
 import 'package:Kiffy/infra/user_client.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../page/sign_page.dart';
 
 enum AuthStatus {
   SUCCESS,
@@ -33,7 +36,7 @@ class AuthState extends StateNotifier<AuthToken> {
       ref.read(routerProvider).replace("/profile/add_profile/user");
     }
 
-    // 회원 가입한 회우너이면 탐색 텝으로 보내기
+    // 회원 가입한 회원이면 탐색 텝으로 보내기
     if (token.userStatus == UserStatus.APPROVED && token.authStatus == AuthStatus.SUCCESS) {
       ref.read(routerProvider).replace("/explore");
     }
@@ -61,6 +64,19 @@ class AuthState extends StateNotifier<AuthToken> {
       }
     }
     _routeByAuthToken(state);
+  }
+
+  logout() async {
+    await storage.delete(key: Constants.SECURE_STORAGE_AUTHTOEKN);
+
+    try {
+      await GoogleSignIn().signOut();
+    } catch (e) {
+      print(e);
+    }
+
+    ref.read(routerProvider).replace(SignPage.routeLoaction);
+    print("출력 출력 출력");
   }
 
   void auth() async {
