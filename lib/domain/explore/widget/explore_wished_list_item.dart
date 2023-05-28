@@ -1,3 +1,5 @@
+import 'package:Kiffy/config/router/route.dart';
+import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
@@ -14,45 +16,61 @@ class ExploreWishedListItem extends ConsumerStatefulWidget {
 class _ExploreWishedListItemState extends ConsumerState<ExploreWishedListItem> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 6),
-      child: Column(
-        children: [
-          Container(
-            width: 60,
-            height: 60,
-            clipBehavior: Clip.hardEdge,
-            padding: const EdgeInsets.all(2),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              border: GradientBoxBorder(
-                width: 1,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment(1.9, 0.1),
-                  colors: [
-                    Color(0xffBA00FF),
-                    Color(0xffB003FA),
-                    Color(0xff960AEE),
-                    Color(0xff6A15DB),
-                    Color(0xff2F25BF),
-                    Color(0xff0031AA),
-                  ],
+    return GestureDetector(
+      // 디테일 화면으로 이동
+      onTap: () {
+        print(widget.profile.medias);
+        print(widget.profile);
+        ref.read(routerProvider).pushNamed(
+          UnMatchUserProfile.routeName,
+          queryParams: {
+            "userImages": widget.profile.medias[0].url,
+            "userName": widget.profile.name,
+            "userAge": widget.profile.birthDate,
+            "userId": widget.profile.id,
+          },
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 6),
+        child: Column(
+          children: [
+            Container(
+              width: 60,
+              height: 60,
+              clipBehavior: Clip.hardEdge,
+              padding: const EdgeInsets.all(2),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                border: GradientBoxBorder(
+                  width: 1,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment(1.9, 0.1),
+                    colors: [
+                      Color(0xffBA00FF),
+                      Color(0xffB003FA),
+                      Color(0xff960AEE),
+                      Color(0xff6A15DB),
+                      Color(0xff2F25BF),
+                      Color(0xff0031AA),
+                    ],
+                  ),
+                ),
+              ),
+              child: Container(
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                clipBehavior: Clip.hardEdge,
+                child: Image.network(
+                  widget.profile.medias[0].url,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-            child: Container(
-              decoration: const BoxDecoration(shape: BoxShape.circle),
-              clipBehavior: Clip.hardEdge,
-              child: Image.network(
-                widget.profile.medias[0].url,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          const SizedBox(height: 5),
-          Text(widget.profile.name),
-        ],
+            const SizedBox(height: 5),
+            Text(widget.profile.name),
+          ],
+        ),
       ),
     );
   }
