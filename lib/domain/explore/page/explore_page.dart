@@ -69,6 +69,7 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
             // 나에게 위시 보낸 유저 리스트
             const PreviewLikedList(),
 
+            // 유저 카드
             isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : userCards.isNotEmpty
@@ -83,7 +84,7 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
                           onEnd: () {
                             if (ref.watch(wishCount) >= 3) ref.read(exploreProvider).getExpolreUserCard();
                           },
-                          numberOfCardsDisplayed: userCards.length <= 1 ? 1 : 5,
+                          numberOfCardsDisplayed: userCards.length >= 1 ? 1 : 5,
                           cardsCount: userCards.length,
                           cardBuilder: (context, index) {
                             return UserProfileCard(

@@ -86,7 +86,14 @@ List<RouteBase> get _routes => [
         // 좋아요 받은 유저 상세 프로필
         path: UnMatchUserProfile.routeLocation,
         name: UnMatchUserProfile.routeName,
-        builder: (context, _) => const UnMatchUserProfile(),
+        builder: (context, state) {
+          return UnMatchUserProfile(
+            userImages: state.queryParams["userImages"] ?? "",
+            userName: state.queryParams["userName"] ?? "",
+            userAge: state.queryParams["userAge"] ?? "",
+            userId: state.queryParams["userId"] ?? "",
+          );
+        },
       ),
       GoRoute(
         // 회원 탈퇴 이유 텍스트
