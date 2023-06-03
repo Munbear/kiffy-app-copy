@@ -23,8 +23,6 @@ class ExploreHandler {
 
     List<UserProfileView>? items = ExploreUserProfilesView.fromJson(response.data).list;
 
-    print(items);
-
     ref.read(userCardsProvider.notifier).update((state) => items);
 
     ref.read(userCardLoading.notifier).update((state) => false);

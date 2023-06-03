@@ -50,6 +50,7 @@ class AuthState extends StateNotifier<AuthToken> {
   void autoAuth() async {
     // 자동 로그인 검사 (이미 SecureStorage 에 액세스토큰이 저장되어있다면 그것을 사용함)
     String? savedAccessToken = await storage.read(key: Constants.SECURE_STORAGE_AUTHTOEKN);
+    print(savedAccessToken);
 
     if (savedAccessToken != null) {
       try {

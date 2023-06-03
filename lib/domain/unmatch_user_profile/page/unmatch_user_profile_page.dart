@@ -6,6 +6,7 @@ import 'package:Kiffy/infra/wish_client.dart';
 import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -16,15 +17,12 @@ class UnMatchUserProfile extends ConsumerStatefulWidget {
   static String get routeLocation => "/unmatchUserProfile";
   static String get routeName => "unmatchUserProfile";
 
-  // final List<MediaView> userImages;
-  final String userImages;
   final String userName;
   final String userAge;
   final String userId;
 
   const UnMatchUserProfile({
     super.key,
-    required this.userImages,
     required this.userName,
     required this.userAge,
     required this.userId,
@@ -35,8 +33,26 @@ class UnMatchUserProfile extends ConsumerStatefulWidget {
 }
 
 class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
+  PageController controller = PageController(initialPage: 0);
+  int imageIndex = 0;
+  void nextImage(imageLength) {
+    if (imageIndex < imageLength - 1) {
+      imageIndex++;
+      controller.animateToPage(imageIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+  void prevImage() {
+    if (imageIndex > 0) {
+      imageIndex--;
+      controller.animateToPage(imageIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userImages = ref.read(mediaDetailProvider);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -53,16 +69,55 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Stack(
+                  alignment: Alignment.center,
                   fit: StackFit.expand,
                   children: [
-                    // 프로필 이미지
-                    Image.asset(
-                      fit: BoxFit.cover,
-                      "assets/images/dummy_image.jpg",
+                    Container(
+                      height: double.infinity,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.7),
+                            offset: const Offset(0, 5),
+                            blurRadius: 4,
+                            spreadRadius: 3,
+                          ),
+                        ],
+                      ),
+                      child: PageView(
+                        controller: controller,
+                        onPageChanged: (int page) {
+                          setState(() => imageIndex = page);
+                        },
+                        children: userImages.map(
+                          (foto) {
+                            return Image.network(
+                              foto.url,
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        ).toList(),
+                      ),
                     ),
-                    Image.network(
-                      widget.userImages,
-                      fit: BoxFit.cover,
+
+                    Positioned(
+                      top: 15,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          width: 100,
+                          height: 3,
+                          color: Colors.white.withOpacity(0.5),
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            width: 100 / userImages.length,
+                            height: 3,
+                            color: Colors.white,
+                          ).animate().slideX(begin: 0.0, end: imageIndex.toDouble()),
+                        ),
+                      ),
                     ),
 
                     // 유저 이름, 나이, 지역
@@ -94,6 +149,31 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                               style: const TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           )
+                        ],
+                      ),
+                    ),
+
+                    Positioned(
+                      child: Row(
+                        children: [
+                          // 이전 사진으로
+                          Expanded(
+                            child: GestureDetector(
+                              child: Container(
+                                color: Colors.transparent,
+                              ),
+                              onTap: () => prevImage(),
+                            ),
+                          ),
+                          // 다음 사진으로
+                          Expanded(
+                            child: GestureDetector(
+                              child: Container(
+                                color: Colors.transparent,
+                              ),
+                              onTap: () => nextImage(userImages.length),
+                            ),
+                          ),
                         ],
                       ),
                     ),

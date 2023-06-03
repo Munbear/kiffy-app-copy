@@ -16,6 +16,7 @@ import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page
 import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
+import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -87,8 +88,9 @@ List<RouteBase> get _routes => [
         path: UnMatchUserProfile.routeLocation,
         name: UnMatchUserProfile.routeName,
         builder: (context, state) {
+          print("sdlkfsd :::: ${state.queryParams["userName"] ?? ""}");
           return UnMatchUserProfile(
-            userImages: state.queryParams["userImages"] ?? "",
+            // userImages:,
             userName: state.queryParams["userName"] ?? "",
             userAge: state.queryParams["userAge"] ?? "",
             userId: state.queryParams["userId"] ?? "",
