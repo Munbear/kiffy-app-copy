@@ -47,8 +47,6 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
     final isLoading = ref.watch(userCardLoading);
     ref.watch(wishCount);
 
-    print(userCards.length);
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

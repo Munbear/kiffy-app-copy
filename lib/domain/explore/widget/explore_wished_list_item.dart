@@ -1,5 +1,7 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page.dart';
+import 'package:Kiffy/infra/wish_client.dart';
+import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
@@ -14,17 +16,18 @@ class ExploreWishedListItem extends ConsumerStatefulWidget {
 }
 
 class _ExploreWishedListItemState extends ConsumerState<ExploreWishedListItem> {
+  List<String> test = [];
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       // 디테일 화면으로 이동
+
       onTap: () {
-        print(widget.profile.medias);
-        print(widget.profile);
+        ref.read(mediaDetailProvider.notifier).update((state) => state = widget.profile.medias);
         ref.read(routerProvider).pushNamed(
           UnMatchUserProfile.routeName,
           queryParams: {
-            "userImages": widget.profile.medias[0].url,
             "userName": widget.profile.name,
             "userAge": widget.profile.birthDate,
             "userId": widget.profile.id,
