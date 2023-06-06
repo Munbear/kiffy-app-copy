@@ -1,5 +1,6 @@
 import 'package:Kiffy/domain/common/preview_liked_list.dart';
 import 'package:Kiffy/domain/matching/widget/matching_card.dart';
+import 'package:Kiffy/domain/my_page/widget/matching_more_button.dart';
 import 'package:Kiffy/infra/match_client.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -28,7 +29,10 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
 
   @override
   Widget build(BuildContext context) {
+    // 매칭 리스트
     final matchedUserList = ref.watch(matchedUserListProvider);
+    // 로딩
+    final isLoading = ref.watch(isMatchedUserLoadedProvider);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -44,10 +48,8 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /**********************************************
-                              라이크 보낸 유저 리스트 
-                **********************************************/
-          PreviewLikedList(),
+          // 위시 리스트
+          const PreviewLikedList(),
 
           // 매칭 된 리스트 타이틀
           const Padding(
@@ -62,30 +64,33 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
             ),
           ),
 
-          /******************
-               *    매칭 된 리스트  
-               * ************** */
-          matchedUserList != null
-              ? Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 24, right: 24),
-                    child: NotificationListener<ScrollUpdateNotification>(
-                      onNotification: (ScrollUpdateNotification notification) {
-                        print(notification);
-                        return false;
-                      },
-                      child: GridView.count(
-                        scrollDirection: Axis.vertical,
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 18,
-                        mainAxisSpacing: 6,
-                        childAspectRatio: 0.75,
-                        children: matchedUserList.list.map((matchedUser) => MatchingCard(userProfile: matchedUser)).toList(),
-                      ),
-                    ),
-                  ),
+          // 매칭 리스트
+          isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
                 )
-              : const Expanded(child: Center(child: Text("아직 매칭된 유져가 없습니다")))
+              : matchedUserList.isNotEmpty
+                  ? Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 24, right: 24),
+                        child: GridView.count(
+                          scrollDirection: Axis.vertical,
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 18,
+                          mainAxisSpacing: 6,
+                          childAspectRatio: 0.75,
+                          children: matchedUserList.map((matchedUser) => MatchingCard(userProfile: matchedUser)).toList(),
+                        ),
+                      ),
+                    )
+                  : const Expanded(child: Center(child: Text("아직 매칭된 유져가 없습니다"))),
+
+          // 더보기 버튼
+          ref.read(isMatchedUserListMoreProvider.notifier).state
+              ? MatchingMoreButton(
+                  onClick: () => ref.read(matchedUserProfileProvider).getMatchedUsers(),
+                )
+              : const SizedBox()
         ],
       ),
       bottomNavigationBar: const CustomBottomNavBar(currentPath: "/matching"),

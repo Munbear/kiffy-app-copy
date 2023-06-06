@@ -88,9 +88,7 @@ List<RouteBase> get _routes => [
         path: UnMatchUserProfile.routeLocation,
         name: UnMatchUserProfile.routeName,
         builder: (context, state) {
-          print("sdlkfsd :::: ${state.queryParams["userName"] ?? ""}");
           return UnMatchUserProfile(
-            // userImages:,
             userName: state.queryParams["userName"] ?? "",
             userAge: state.queryParams["userAge"] ?? "",
             userId: state.queryParams["userId"] ?? "",
