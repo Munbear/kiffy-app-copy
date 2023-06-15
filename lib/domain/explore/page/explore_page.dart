@@ -1,5 +1,6 @@
 import 'package:Kiffy/domain/common/preview_liked_list.dart';
 import 'package:Kiffy/domain/common/user_profile_card.dart';
+import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/infra/explore_client.dart';
 import 'package:Kiffy/infra/wish_client.dart';
 import 'package:flutter/material.dart';
@@ -33,12 +34,6 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
       // 나에게 위시한 사용자 불러오기
       await ref.read(wishClientProvider).getWishOthersProfiles();
     });
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 
   @override

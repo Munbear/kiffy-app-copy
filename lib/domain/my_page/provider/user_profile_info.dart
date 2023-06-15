@@ -14,15 +14,14 @@ class MyProfileHandler {
   MyProfileHandler(this.ref) : dio = ApiClient().dio;
 
   // 수정 필요
+  getMyProfile() async {
+    final res = await dio.get("/api/view/user/v1/my/profile");
 
-  // Future<UserProfileView> getMyProfile() async {
-  //   final res = await dio.get("/api/view/user/v1/my/profile");
-
-  //   final item = UserProfileView.fromJson(res.data);
-
-  //   return ref.watch(myProfileProvider.notifier).update((state) => state = item);
-  // }
+    return ref.read(myProfileInfo.notifier).update((state) => state = UserProfileView.fromJson(res.data));
+  }
 }
+
+final myProfileInfo = StateProvider<UserProfileView?>((ref) => null);
 
 // ::수정 필요
 // 내 프로필 불러오기

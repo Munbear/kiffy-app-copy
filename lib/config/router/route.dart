@@ -17,6 +17,7 @@ import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
 import 'package:Kiffy/model/media_view/media_view.dart';
+import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -75,7 +76,7 @@ List<RouteBase> get _routes => [
         // 매칭 디테일 화면
         path: MatchingDetailPage.routeLocation,
         name: MatchingDetailPage.routeName,
-        builder: (context, _) => const MatchingDetailPage(),
+        builder: (context, state) => const MatchingDetailPage(),
       ),
       GoRoute(
         // 좋아요 보낸 사람 리스트

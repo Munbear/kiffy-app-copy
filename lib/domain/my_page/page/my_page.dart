@@ -27,7 +27,7 @@ class MyPage extends ConsumerStatefulWidget {
 class _MyPageState extends ConsumerState<MyPage> {
   @override
   Widget build(BuildContext context) {
-    final myProfile = ref.watch(myProfileProvider);
+    final myProfile = ref.read(myProfileInfo);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -42,86 +42,163 @@ class _MyPageState extends ConsumerState<MyPage> {
           "assets/images/kiffy_logo_purple.png",
         ),
       ),
-      body: myProfile.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Text("Error : $err"),
-        data: (myProfile) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 14),
+          Stack(
+            alignment: Alignment.bottomLeft,
             children: [
-              const SizedBox(height: 14),
-              Stack(
-                alignment: Alignment.bottomLeft,
-                children: [
-                  // 유저 프로필 사진
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    height: 390,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                    child: SizedBox.expand(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network(myProfile.medias.first.url, fit: BoxFit.cover),
-                      ),
-                    ),
-                  ),
-
-                  Container(
-                    padding: const EdgeInsets.only(left: 37, bottom: 27),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: myProfile.name,
-                                style: const TextStyle(
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " ${BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(myProfile.birthDate)).toString()}",
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white70,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 18),
-              Padding(
+              // 유저 프로필 사진
+              Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    MyPageButton(
-                      text: "Modify Profile",
-                      iconPath: "assets/images/modify_x3.png",
-                      routePathName: "resetProfile",
+                height: 390,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                child: SizedBox.expand(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      myProfile!.medias[0].url,
+                      fit: BoxFit.cover,
                     ),
-                    const SizedBox(width: 22),
-                    MyPageButton(
-                      text: "Setting",
-                      iconPath: "assets/images/setting_x3.png",
-                      routePathName: "setting",
+                  ),
+                ),
+              ),
+
+              Container(
+                padding: const EdgeInsets.only(left: 37, bottom: 27),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: myProfile.name,
+                            style: const TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextSpan(
+                            text: " ${BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(myProfile.birthDate)).toString()}",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white70,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
             ],
-          );
-        },
+          ),
+          const SizedBox(height: 18),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                MyPageButton(
+                  text: "Modify Profile",
+                  iconPath: "assets/images/modify_x3.png",
+                  routePathName: "resetProfile",
+                ),
+                const SizedBox(width: 22),
+                MyPageButton(
+                  text: "Setting",
+                  iconPath: "assets/images/setting_x3.png",
+                  routePathName: "setting",
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
+      // body: myProfile.when(
+      //   loading: () => const Center(child: CircularProgressIndicator()),
+      //   error: (err, stack) => Text("Error : $err"),
+      //   data: (myProfile) {
+      //     return Column(
+      //       crossAxisAlignment: CrossAxisAlignment.stretch,
+      //       children: [
+      //         const SizedBox(height: 14),
+      //         Stack(
+      //           alignment: Alignment.bottomLeft,
+      //           children: [
+      //             // 유저 프로필 사진
+      //             Container(
+      //               padding: const EdgeInsets.symmetric(horizontal: 16),
+      //               height: 390,
+      //               decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+      //               child: SizedBox.expand(
+      //                 child: ClipRRect(
+      //                   borderRadius: BorderRadius.circular(12),
+      //                   child: Image.network(myProfile.medias.first.url, fit: BoxFit.cover),
+      //                 ),
+      //               ),
+      //             ),
+
+      //             Container(
+      //               padding: const EdgeInsets.only(left: 37, bottom: 27),
+      //               child: Column(
+      //                 mainAxisAlignment: MainAxisAlignment.start,
+      //                 crossAxisAlignment: CrossAxisAlignment.start,
+      //                 children: [
+      //                   RichText(
+      //                     text: TextSpan(
+      //                       children: [
+      //                         TextSpan(
+      //                           text: myProfile.name,
+      //                           style: const TextStyle(
+      //                             fontSize: 26,
+      //                             fontWeight: FontWeight.w700,
+      //                             color: Colors.white,
+      //                           ),
+      //                         ),
+      //                         TextSpan(
+      //                           text: " ${BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(myProfile.birthDate)).toString()}",
+      //                           style: const TextStyle(
+      //                             fontSize: 18,
+      //                             fontWeight: FontWeight.w700,
+      //                             color: Colors.white70,
+      //                           ),
+      //                         ),
+      //                       ],
+      //                     ),
+      //                   ),
+      //                 ],
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //         const SizedBox(height: 18),
+      //         Padding(
+      //           padding: const EdgeInsets.symmetric(horizontal: 16),
+      //           child: Row(
+      //             children: [
+      //               MyPageButton(
+      //                 text: "Modify Profile",
+      //                 iconPath: "assets/images/modify_x3.png",
+      //                 routePathName: "resetProfile",
+      //               ),
+      //               const SizedBox(width: 22),
+      //               MyPageButton(
+      //                 text: "Setting",
+      //                 iconPath: "assets/images/setting_x3.png",
+      //                 routePathName: "setting",
+      //               ),
+      //             ],
+      //           ),
+      //         ),
+      //       ],
+      //     );
+      //   },
+      // ),
       bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
     );
   }

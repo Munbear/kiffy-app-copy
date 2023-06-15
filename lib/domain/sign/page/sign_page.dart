@@ -20,6 +20,7 @@ class _SignPageState extends ConsumerState<SignPage> {
   @override
   Widget build(BuildContext context) {
     ref.read(authProvider.notifier).autoAuth();
+
     return Scaffold(
       body: Container(
         width: double.infinity,

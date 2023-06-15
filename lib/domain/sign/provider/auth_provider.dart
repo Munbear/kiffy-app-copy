@@ -1,8 +1,11 @@
 import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/core/enum/user_status.dart';
+import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/infra/auth_client.dart';
 import 'package:Kiffy/infra/user_client.dart';
+import 'package:Kiffy/infra/user_info.dart';
+import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -59,6 +62,7 @@ class AuthState extends StateNotifier<AuthToken> {
         state.userStatus = userStatus.status;
         FirebaseAuth.instance.signInWithEmailAndPassword(email: userStatus.email, password: savedAccessToken);
         _routeByAuthToken(state);
+        ref.read(userInfoProvider).getMyProfile();
         return;
       } catch (e) {
         _routeByAuthToken(state);
