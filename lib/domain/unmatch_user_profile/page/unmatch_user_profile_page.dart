@@ -198,7 +198,6 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                           WishCircleButton(
                             onClick: () async {
                               ref.read(wishClientProvider).approveWish(userId: widget.userId);
-                              print("수락 수락");
                               Navigator.pop(context);
                               // print("수락수락");
                             },

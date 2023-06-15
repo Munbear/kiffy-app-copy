@@ -1,6 +1,7 @@
 import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/model/explore_user_profiles_view/explore_user_profiles_view.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final exploreProvider = Provider<ExploreHandler>((ref) => ExploreHandler(ref));
@@ -34,3 +35,7 @@ final userCardsProvider = StateProvider<List<UserProfileView>>((ref) => []);
 final userCardLoading = StateProvider<bool>((ref) => false);
 
 final wishCount = StateProvider<int>((ref) => 0);
+
+final currentPictureIndex = StateProvider.autoDispose<int>((ref) => 0);
+
+// final profilePicturePageController = StateProvider.autoDispose<PageController>((ref) => PageController(initialPage: 0));

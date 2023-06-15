@@ -26,7 +26,7 @@ class MatchedUserProfileHandler {
 }
 
 // 매칭된 유저 리스트
-final matchedUserListProvider = StateProvider<List<UserProfileView>>((ref) => []);
+final matchedUserListProvider = StateProvider.autoDispose<List<UserProfileView>>((ref) => []);
 
 // 로딩 상태
 final isMatchedUserLoadedProvider = StateProvider<bool>((ref) => true);
