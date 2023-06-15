@@ -6,3 +6,8 @@ Future<UserStatusView> getUserStatus() async {
 
   return UserStatusView.fromJson(response.data);
 }
+
+// Future<UserProfileView> getMyProfile() async {
+//   final res = await ApiClient().dio.get("/api/view/user/v1/my/profile");
+  
+// }

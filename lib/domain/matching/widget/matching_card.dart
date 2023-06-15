@@ -1,5 +1,7 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/border._style.dart';
+import 'package:Kiffy/domain/matching_detail/page/matching_detail_page.dart';
+import 'package:Kiffy/infra/match_client.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +16,10 @@ class MatchingCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () {
-        ref.read(routerProvider).pushNamed("matchingDetail");
+      onTap: () async {
+        ref.read(matchedUserDetailProvider.notifier).update((state) => state = userProfile);
+
+        await ref.read(routerProvider).pushNamed(MatchingDetailPage.routeName);
       },
       child: Container(
         height: 205,
@@ -41,7 +45,7 @@ class MatchingCard extends ConsumerWidget {
                   children: [
                     Text(
                       userProfile.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
@@ -50,7 +54,7 @@ class MatchingCard extends ConsumerWidget {
                     const SizedBox(width: 7),
                     Text(
                       BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userProfile.birthDate)).toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
@@ -60,19 +64,20 @@ class MatchingCard extends ConsumerWidget {
                 ),
               ),
 
-              // 매칭 된 유저가 끌올 한 횟수
+              // 리마인드 정보
               Positioned(
                 top: 12,
                 right: 8,
                 child: Row(
-                  children: [
-                    // SvgPicture.asset("assets/svg/remind_icon.svg"),
+                  children: const [
                     Image(
                       width: 13,
                       height: 13,
                       image: AssetImage("assets/images/remind_image.png"),
                     ),
-                    const SizedBox(width: 3),
+                    SizedBox(width: 3),
+
+                    // 리마인드 횟수
                     Text(
                       "99",
                       style: TextStyle(
