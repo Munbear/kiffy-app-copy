@@ -28,6 +28,22 @@ class ExploreHandler {
 
     ref.read(userCardLoading.notifier).update((state) => false);
   }
+
+  // 다음 카드
+  void nextImage(int currentIndex, PageController pageController, int mediasLength) {
+    if (currentIndex < mediasLength - 1) {
+      currentIndex++;
+      pageController.animateToPage(currentIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+  // 이전 카드
+  void prevImage(int currentIndex, PageController pageController) {
+    if (currentIndex > 0) {
+      currentIndex--;
+      pageController.animateToPage(currentIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
 }
 
 final userCardsProvider = StateProvider<List<UserProfileView>>((ref) => []);
