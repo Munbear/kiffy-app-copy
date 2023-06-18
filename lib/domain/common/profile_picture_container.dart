@@ -6,12 +6,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ProfilePictureContainer extends ConsumerStatefulWidget {
   final List<MediaView> userProfilePictures;
   final PageController pageController;
+  final double height;
 
-  const ProfilePictureContainer({
-    super.key,
-    required this.userProfilePictures,
-    required this.pageController,
-  });
+  const ProfilePictureContainer({super.key, required this.userProfilePictures, required this.pageController, required this.height});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ProfilePictureContainerState();
@@ -21,7 +18,7 @@ class _ProfilePictureContainerState extends ConsumerState<ProfilePictureContaine
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
+      height: widget.height,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),

@@ -41,6 +41,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
           ProfilePictureContainer(
             userProfilePictures: widget.userProfile.medias,
             pageController: pageController,
+            height: MediaQuery.of(context).size.height,
           ),
 
           // 프로필 사진 인디케이터
