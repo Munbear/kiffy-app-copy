@@ -51,11 +51,11 @@ class _MyPageState extends ConsumerState<MyPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 14),
+            // const SizedBox(height: 14),
             Stack(
               alignment: Alignment.center,
               children: [
@@ -78,41 +78,29 @@ class _MyPageState extends ConsumerState<MyPage> {
                 ),
 
                 // 프로필 카드 버튼
-                PageControllerButton(
-                  prevButton: () => ref.read(exploreProvider).prevImage(currentImageIndex, pageController),
-                  nextButton: () => ref.read(exploreProvider).nextImage(currentImageIndex, pageController, myProfile.medias.length),
+                Positioned.fill(
+                  child: PageControllerButton(
+                    prevButton: () => ref.read(exploreProvider).prevImage(currentImageIndex, pageController),
+                    nextButton: () => ref.read(exploreProvider).nextImage(currentImageIndex, pageController, myProfile.medias.length),
+                  ),
                 ),
-                // Container(
-                //   color: Colors.red,
-                //   width: 300,
-                //   height: 300,
-                //   child: PageControllerButton(
-                //     prevButton: () => ref.read(exploreProvider).prevImage(currentImageIndex, pageController),
-                //     nextButton: () => ref.read(exploreProvider).nextImage(currentImageIndex, pageController, myProfile.medias.length),
-                //   ),
-                // ),
-
-                // 사진 인디케이터
               ],
             ),
             const SizedBox(height: 18),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  MyPageButton(
-                    text: "Modify Profile",
-                    iconPath: "assets/images/modify_x3.png",
-                    routePathName: "resetProfile",
-                  ),
-                  const SizedBox(width: 22),
-                  MyPageButton(
-                    text: "Setting",
-                    iconPath: "assets/images/setting_x3.png",
-                    routePathName: "setting",
-                  ),
-                ],
-              ),
+            const Row(
+              children: [
+                MyPageButton(
+                  text: "Modify Profile",
+                  iconPath: "assets/images/modify_x3.png",
+                  routePathName: "resetProfile",
+                ),
+                SizedBox(width: 22),
+                MyPageButton(
+                  text: "Setting",
+                  iconPath: "assets/images/setting_x3.png",
+                  routePathName: "setting",
+                ),
+              ],
             ),
           ],
         ),

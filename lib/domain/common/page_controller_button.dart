@@ -14,8 +14,8 @@ class PageControllerButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Row(
+      mainAxisSize: MainAxisSize.max,
       children: [
-        // 이전 사진으로
         Expanded(
           child: GestureDetector(
             child: Container(
