@@ -19,7 +19,9 @@ class MatchedUserProfileHandler {
     // 더보기 버튼 유출 여부
     if (item.paging.next == null) ref.read(isMatchedUserListMoreProvider.notifier).state = false;
 
-    ref.read(matchedUserListProvider.notifier).update((state) => state = [...state, ...item.list]);
+    if (item.paging.next != null) ref.read(matchedUserListProvider.notifier).update((state) => state = [...state, ...item.list]);
+
+    if (item.paging.next == null) ref.read(matchedUserListProvider.notifier).update((state) => state = item.list);
 
     ref.read(isMatchedUserLoadedProvider.notifier).state = false;
   }

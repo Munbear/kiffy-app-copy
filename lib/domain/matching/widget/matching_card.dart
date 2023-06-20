@@ -16,10 +16,9 @@ class MatchingCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () async {
+      onTap: () {
         ref.read(matchedUserDetailProvider.notifier).update((state) => state = userProfile);
-
-        await ref.read(routerProvider).pushNamed(MatchingDetailPage.routeName);
+        ref.read(routerProvider).pushNamed(MatchingDetailPage.routeName);
       },
       child: Container(
         height: 205,
@@ -31,6 +30,7 @@ class MatchingCard extends ConsumerWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
+              // 유저 사진
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
@@ -38,6 +38,8 @@ class MatchingCard extends ConsumerWidget {
                   fit: BoxFit.cover,
                 ),
               ),
+
+              // 유저 닉네임
               Positioned(
                 bottom: 14,
                 left: 12,
@@ -65,35 +67,35 @@ class MatchingCard extends ConsumerWidget {
               ),
 
               // 리마인드 정보
-              Positioned(
-                top: 12,
-                right: 8,
-                child: Row(
-                  children: const [
-                    Image(
-                      width: 13,
-                      height: 13,
-                      image: AssetImage("assets/images/remind_image.png"),
-                    ),
-                    SizedBox(width: 3),
+              // Positioned(
+              //   top: 12,
+              //   right: 8,
+              //   child: Row(
+              //     children: const [
+              //       Image(
+              //         width: 13,
+              //         height: 13,
+              //         image: AssetImage("assets/images/remind_image.png"),
+              //       ),
+              //       SizedBox(width: 3),
 
-                    // 리마인드 횟수
-                    Text(
-                      "99",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Icon(
-                      Icons.add,
-                      size: 15,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              )
+              //       // 리마인드 횟수
+              //       Text(
+              //         "99",
+              //         style: TextStyle(
+              //           fontSize: 15,
+              //           color: Colors.white,
+              //           fontWeight: FontWeight.w400,
+              //         ),
+              //       ),
+              //       Icon(
+              //         Icons.add,
+              //         size: 15,
+              //         color: Colors.white,
+              //       ),
+              //     ],
+              //   ),
+              // )
             ],
           ),
         ),

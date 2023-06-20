@@ -31,6 +31,7 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
   Widget build(BuildContext context) {
     // 매칭 리스트
     final matchedUserList = ref.watch(matchedUserListProvider);
+    // print(matchedUserList);
     // 로딩
     final isLoading = ref.watch(isMatchedUserLoadedProvider);
     return Scaffold(

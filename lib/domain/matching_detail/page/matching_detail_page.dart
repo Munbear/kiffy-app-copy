@@ -26,9 +26,6 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
     final userDetailInfo = ref.read(matchedUserDetailProvider);
     final myProfileState = ref.read(myProfileInfo);
 
-    print("매칭 id : ${userDetailInfo!.id}");
-    // final matchEmogi = ref.watch(testEmoji);
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -146,10 +143,8 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: Text(
-                        "Hey I'm ${userDetailInfo.name}",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
+                        userDetailInfo?.name != null ? "Hey I'm ${userDetailInfo?.name}" : "",
+                        style: const TextStyle(fontSize: 18),
                       ),
                     ),
                   ),

@@ -1,23 +1,14 @@
-import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/profile_picture_container.dart';
 import 'package:Kiffy/domain/common/profile_text_infro_container.dart';
-import 'package:Kiffy/domain/core/widget/global_bottom_navigation.dart';
 import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/domain/my_page/widget/my_page_button.dart';
-import 'package:Kiffy/model/media_view/media_view.dart';
-import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
-import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../infra/explore_client.dart';
 import '../../common/custom_bottom_nav_bar.dart';
 import '../../common/page_controller_button.dart';
 import '../../common/profile_foto_indicator.dart';
-import '../../profile/provider/add_profile_input_provider.dart';
 
 class MyPage extends ConsumerStatefulWidget {
   static String get routeLocation => "/myPage";
@@ -66,12 +57,13 @@ class _MyPageState extends ConsumerState<MyPage> {
                   height: 390,
                 ),
 
-                // 유저 이름, 나
+                // 유저 이름, 나이
                 ProfileTextInfoContainer(
                   userName: myProfile.name,
                   userAge: myProfile.birthDate,
                 ),
 
+                // 인디케이터
                 Positioned(
                   top: 15,
                   child: ProfileFotoIndicator(mediasLength: myProfile.medias.length, endIndex: currentImageIndex.toDouble()),
