@@ -1,11 +1,15 @@
 import 'package:Kiffy/domain/common/custom_app_bar_image_title.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
+import 'package:Kiffy/domain/common/user_profile_card.dart';
+import 'package:Kiffy/domain/core/enum/contact_type.dart';
 import 'package:Kiffy/domain/core/enum/gender_type.dart';
 import 'package:Kiffy/domain/matching/page/matching_page.dart';
+import 'package:Kiffy/domain/matching_detail/widget/contact_info_container.dart';
 import 'package:Kiffy/domain/matching_detail/widget/matching_user_profile_card.dart';
 import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/infra/match_client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../provider/coaching_emoticon_provider.dart';
@@ -25,6 +29,8 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
   Widget build(BuildContext context) {
     final userDetailInfo = ref.read(matchedUserDetailProvider);
     final myProfileState = ref.read(myProfileInfo);
+
+    print(userDetailInfo);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -56,31 +62,7 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
                     ),
 
                   // SNS 연락처 아이디 (여성 유저한테만 보임 )
-                  if (myProfileState.gender == Gender.FEMALE)
-                    Container(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      margin: const EdgeInsets.only(left: 28, top: 10, right: 60, bottom: 30),
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: Color(0xff6c6c6c)),
-                        ),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          // 여상 유저한테만 보여짐
-                          Image(image: AssetImage("assets/images/line_image.png"), width: 29, height: 29),
-                          SizedBox(width: 8),
-
-                          // 여성 유저한테만 보여짐
-                          Text(
-                            "라인 아이디",
-                            style: TextStyle(fontSize: 16, color: Color(0xff6c6c6c)),
-                          )
-                        ],
-                      ),
-                    ),
-                  // const SizedBox(height: 30),
+                  if (myProfileState.gender == Gender.FEMALE) const ContactInfoContainer(),
 
                   // 코칭 메세지 텍스트
                   Text(
@@ -105,34 +87,11 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
                   const SizedBox(height: 10),
 
                   // 코칭 이모지
-                  // matchEmogi.when(
-                  //     loading: () => const Center(child: CircularProgressIndicator()),
-                  //     error: (err, stack) => Text("Error: $err"),
-                  //     data: (data) {
-                  //       return GestureDetector(
-                  //         onTap: () {
-                  //           print("* Click to Copy!");
-                  //         },
-                  //         child: Container(
-                  //           margin: const EdgeInsets.only(left: 24),
-                  //           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                  //           decoration: BoxDecoration(
-                  //             // color: Colors.red,
-                  //             color: const Color(0xffEEEEEE),
-                  //             borderRadius: BorderRadius.circular(50),
-                  //           ),
-                  //           child: Text(
-                  //             "Hello 😊😘👻🐭",
-                  //             style: TextStyle(
-                  //               fontSize: 18,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       );
-                  //     }),
                   GestureDetector(
                     onTap: () {
-                      print("* Click to Copy!");
+                      Clipboard.setData(ClipboardData(text: myProfileState.name)).then((value) {
+                        return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("it has been copied")));
+                      });
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 24),
@@ -143,7 +102,7 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: Text(
-                        userDetailInfo?.name != null ? "Hey I'm ${userDetailInfo?.name}" : "",
+                        userDetailInfo?.name != null ? "Hey I'm ${myProfileState.name}" : "",
                         style: const TextStyle(fontSize: 18),
                       ),
                     ),

@@ -17,6 +17,9 @@ _$_UserProfileView _$$_UserProfileViewFromJson(Map<String, dynamic> json) =>
       medias: (json['medias'] as List<dynamic>)
           .map((e) => MediaView.fromJson(e as Map<String, dynamic>))
           .toList(),
+      contacts: (json['contacts'] as List<dynamic>)
+          .map((e) => UserProfileContact.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_UserProfileViewToJson(_$_UserProfileView instance) =>
@@ -28,6 +31,7 @@ Map<String, dynamic> _$$_UserProfileViewToJson(_$_UserProfileView instance) =>
       'gender': _$GenderEnumMap[instance.gender]!,
       'birthDate': instance.birthDate,
       'medias': instance.medias,
+      'contacts': instance.contacts,
     };
 
 const _$UserStatusEnumMap = {

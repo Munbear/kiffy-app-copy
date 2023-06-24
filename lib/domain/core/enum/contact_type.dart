@@ -17,8 +17,8 @@ enum ContactType {
     throw ArgumentError();
   }
 
-  static contactAppIcon(contactApp) {
-    switch (contactApp) {
+  static contactAppIcon(contactType) {
+    switch (contactType) {
       case ContactType.LINE:
         return Image.asset("assets/icons/line_icon.png");
       case ContactType.WHATSAPP:

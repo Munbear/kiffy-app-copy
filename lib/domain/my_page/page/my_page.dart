@@ -52,21 +52,21 @@ class _MyPageState extends ConsumerState<MyPage> {
               children: [
                 // 유저 사진
                 ProfilePictureContainer(
-                  userProfilePictures: myProfile!.medias,
+                  userProfilePictures: myProfile?.medias ?? [],
                   pageController: pageController,
                   height: 390,
                 ),
 
                 // 유저 이름, 나이
                 ProfileTextInfoContainer(
-                  userName: myProfile.name,
-                  userAge: myProfile.birthDate,
+                  userName: myProfile?.name ?? "",
+                  userAge: myProfile?.birthDate ?? "",
                 ),
 
                 // 인디케이터
                 Positioned(
                   top: 15,
-                  child: ProfileFotoIndicator(mediasLength: myProfile.medias.length, endIndex: currentImageIndex.toDouble()),
+                  child: ProfileFotoIndicator(mediasLength: myProfile!.medias.length, endIndex: currentImageIndex.toDouble()),
                 ),
 
                 // 프로필 카드 버튼
