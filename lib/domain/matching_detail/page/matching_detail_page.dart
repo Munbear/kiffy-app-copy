@@ -30,8 +30,6 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
     final userDetailInfo = ref.read(matchedUserDetailProvider);
     final myProfileState = ref.read(myProfileInfo);
 
-    print(userDetailInfo);
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

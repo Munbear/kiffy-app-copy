@@ -12,16 +12,16 @@ class MatchedUserProfileHandler {
 
   // 매칭된 유저 리스트
   getMatchedUsers() async {
-    final res = await ApiClient().dio.get("/api/match/v1/users?offset=${ref.read(matchedUserListProvider.notifier).state.length}&limit=4");
+    final res = await ApiClient()
+        .dio
+        .get("/api/match/v1/users", queryParameters: {"offset": ref.read(matchedUserListProvider.notifier).state.length, "limit": 4});
 
     MatchedUserProfilesView item = MatchedUserProfilesView.fromJson(res.data);
 
     // 더보기 버튼 유출 여부
     if (item.paging.next == null) ref.read(isMatchedUserListMoreProvider.notifier).state = false;
 
-    if (item.paging.next != null) ref.read(matchedUserListProvider.notifier).update((state) => state = [...state, ...item.list]);
-
-    if (item.paging.next == null) ref.read(matchedUserListProvider.notifier).update((state) => state = item.list);
+    ref.read(matchedUserListProvider.notifier).update((state) => state = [...state, ...item.list]);
 
     ref.read(isMatchedUserLoadedProvider.notifier).state = false;
   }

@@ -6,8 +6,6 @@ import 'package:Kiffy/domain/sign/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../my_page/page/my_page.dart';
-
 class SettingPage extends ConsumerStatefulWidget {
   static String get routeLocation => "/setting";
   static String get routeName => "setting";

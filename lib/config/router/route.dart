@@ -16,8 +16,6 @@ import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page
 import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
-import 'package:Kiffy/model/media_view/media_view.dart';
-import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -157,17 +155,3 @@ List<RouteBase> get _routes => [
         builder: (context, _) => const AddProfileInputAuthCodePage(),
       ),
     ];
-
-///////////////////////
-
-// CustomTransitionPage emptyTransitionPage(Widget child) => CustomTransitionPage(
-//     child: child,
-//     transitionDuration: const Duration(milliseconds: 0),
-//     transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
-//           opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-//           child: child,
-//         ));
-
-// class RouterNotifier extends ChangeNotifier {
-//   RouterNotifier(ProviderRef<GoRouter> ref);
-// }

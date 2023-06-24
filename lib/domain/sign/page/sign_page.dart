@@ -13,14 +13,20 @@ class SignPage extends ConsumerStatefulWidget {
 }
 
 class _SignPageState extends ConsumerState<SignPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(authProvider.notifier).autoAuth();
+    });
+  }
+
   void onPressedListener(SignProvider provider) {
     ref.read(authProvider.notifier).auth();
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.read(authProvider.notifier).autoAuth();
-
     return Scaffold(
       body: Container(
         width: double.infinity,
