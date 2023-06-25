@@ -23,7 +23,7 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      ref.read(matchedUserProfileProvider).getMatchedUsers();
+      ref.read(matchedUserProfileProvider).getMatchedUsers(0, 6);
     });
   }
 
@@ -99,7 +99,7 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
           // ref.read(isMatchedUserListMoreProvider.notifier).state
           isMore
               ? MatchingMoreButton(
-                  onClick: () => ref.read(matchedUserProfileProvider).getMatchedUsers(),
+                  onClick: () => ref.read(matchedUserProfileProvider).getMatchedUsers(matchedUserList.length, 6),
                 )
               : const SizedBox()
         ],

@@ -30,9 +30,6 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // 탐색할 사용자 리스트 불러오기
       await ref.read(exploreProvider).getExpolreUserCard();
-
-      // 나에게 위시한 사용자 불러오기
-      await ref.read(wishClientProvider).getWishOthersProfiles();
     });
   }
 

@@ -11,10 +11,10 @@ class MatchedUserProfileHandler {
   MatchedUserProfileHandler(this.ref);
 
   // 매칭된 유저 리스트
-  getMatchedUsers() async {
-    final offset = ref.read(matchedUserListProvider.notifier).state.length;
+  getMatchedUsers(offset, limit) async {
+    // final offset = ref.read(matchedUserListProvider.notifier).state.length;
 
-    final res = await ApiClient().dio.get("/api/match/v1/users", queryParameters: {"offset": offset, "limit": 6});
+    final res = await ApiClient().dio.get("/api/match/v1/users", queryParameters: {"offset": offset, "limit": limit});
 
     MatchedUserProfilesView item = MatchedUserProfilesView.fromJson(res.data);
 
