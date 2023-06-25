@@ -28,12 +28,18 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // 매칭 리스트
     final matchedUserList = ref.watch(matchedUserListProvider);
-
     // 로딩
     final isLoading = ref.watch(isMatchedUserLoadedProvider);
+    // 더보기 버튼
+    final isMore = ref.read(isMatchedUserListMoreProvider);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -65,11 +71,12 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
             ),
           ),
 
-          // 매칭 리스트
+          // 로딩
           isLoading
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
+              // 매칭 리스트
               : matchedUserList.isNotEmpty
                   ? Expanded(
                       child: Padding(
@@ -80,14 +87,17 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
                           crossAxisSpacing: 18,
                           mainAxisSpacing: 6,
                           childAspectRatio: 0.75,
-                          children: matchedUserList.map((matchedUser) => MatchingCard(userProfile: matchedUser)).toList(),
+                          children: matchedUserList.map((matchedUser) {
+                            return MatchingCard(userProfile: matchedUser);
+                          }).toList(),
                         ),
                       ),
                     )
                   : const Expanded(child: Center(child: Text("아직 매칭된 유져가 없습니다"))),
 
           // 더보기 버튼
-          ref.read(isMatchedUserListMoreProvider.notifier).state
+          // ref.read(isMatchedUserListMoreProvider.notifier).state
+          isMore
               ? MatchingMoreButton(
                   onClick: () => ref.read(matchedUserProfileProvider).getMatchedUsers(),
                 )

@@ -12,14 +12,14 @@ class MatchedUserProfileHandler {
 
   // 매칭된 유저 리스트
   getMatchedUsers() async {
-    final res = await ApiClient()
-        .dio
-        .get("/api/match/v1/users", queryParameters: {"offset": ref.read(matchedUserListProvider.notifier).state.length, "limit": 4});
+    final offset = ref.read(matchedUserListProvider.notifier).state.length;
+
+    final res = await ApiClient().dio.get("/api/match/v1/users", queryParameters: {"offset": offset, "limit": 6});
 
     MatchedUserProfilesView item = MatchedUserProfilesView.fromJson(res.data);
 
     // 더보기 버튼 유출 여부
-    if (item.paging.next == null) ref.read(isMatchedUserListMoreProvider.notifier).state = false;
+    if (item.paging.next == null) ref.read(isMatchedUserListMoreProvider.notifier).update((state) => state = false);
 
     ref.read(matchedUserListProvider.notifier).update((state) => state = [...state, ...item.list]);
 
@@ -28,7 +28,7 @@ class MatchedUserProfileHandler {
 }
 
 // 매칭된 유저 리스트
-final matchedUserListProvider = StateProvider.autoDispose<List<UserProfileView>>((ref) => []);
+final matchedUserListProvider = StateProvider<List<UserProfileView>>((ref) => []);
 
 // 로딩 상태
 final isMatchedUserLoadedProvider = StateProvider<bool>((ref) => true);
