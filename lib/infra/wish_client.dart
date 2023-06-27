@@ -26,11 +26,14 @@ class WishClientHandler {
   getWishOthersProfiles({String? next}) async {
     if (next != null) {
       final response = await ApiClient().dio.get(next);
-      WishOtherProfilesView? items = ref.watch(wishMeUsersProvider.notifier).update((state) => WishOtherProfilesView.fromJson(response.data));
+      final items = WishOtherProfilesView.fromJson(response.data);
+      ref.read(wishMeUsersProvider.notifier).update((state) => items);
       return items;
     } else {
       final response = await ApiClient().dio.get("/api/wish/v1/wish/other");
-      WishOtherProfilesView? items = ref.watch(wishMeUsersProvider.notifier).update((state) => WishOtherProfilesView.fromJson(response.data));
+      final items = WishOtherProfilesView.fromJson(response.data);
+      ref.read(wishMeUsersProvider.notifier).update((state) => null);
+      ref.read(wishMeUsersProvider.notifier).update((state) => items);
       return items;
     }
   }

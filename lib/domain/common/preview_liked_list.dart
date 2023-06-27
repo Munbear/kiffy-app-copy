@@ -14,14 +14,12 @@ class PreviewLikedList extends ConsumerStatefulWidget {
 }
 
 class _PreviewLikedListState extends ConsumerState<PreviewLikedList> {
-  List<UserProfileView> wishMeUserList = [];
-
   @override
   void initState() {
     super.initState();
     // 나에게 위시한 사용자 불러오기
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await ref.read(wishClientProvider).getWishOthersProfiles();
+      // await ref.read(wishClientProvider).getWishOthersProfiles();
     });
   }
 
@@ -34,13 +32,6 @@ class _PreviewLikedListState extends ConsumerState<PreviewLikedList> {
   Widget build(BuildContext context) {
     final wishOtherProfiles = ref.watch(wishMeUsersProvider);
 
-    ref.listen<WishOtherProfilesView?>(wishMeUsersProvider, (previous, next) {
-      setState(() {
-        next;
-      });
-      print("@@@@@@@@@@@@@@@@ $next @@@@@@@@@@@@@@@@@@@@");
-      print("#################### $previous ##############");
-    });
     return Stack(
       children: [
         SizedBox(

@@ -30,6 +30,8 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // 탐색할 사용자 리스트 불러오기
       await ref.read(exploreProvider).getExpolreUserCard();
+
+      await ref.read(wishClientProvider).getWishOthersProfiles();
     });
   }
 
@@ -38,6 +40,7 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
     final userCards = ref.watch(userCardsProvider);
     final isLoading = ref.watch(userCardLoading);
     ref.watch(wishCount);
+    setState(() {});
 
     return Scaffold(
       backgroundColor: Colors.white,
