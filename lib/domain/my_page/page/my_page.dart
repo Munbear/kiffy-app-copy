@@ -58,10 +58,25 @@ class _MyPageState extends ConsumerState<MyPage> {
                 ),
 
                 // 유저 이름, 나이
-                ProfileTextInfoContainer(
-                  userName: myProfile?.name ?? "",
-                  userAge: myProfile?.birthDate ?? "",
-                ),
+                if ((myProfile != null) && currentImageIndex != (myProfile.medias.length - 1))
+                  ProfileTextInfoContainer(
+                    userName: myProfile.name,
+                    userAge: myProfile.birthDate,
+                  ),
+
+                // 자기소개
+                if ((myProfile != null) && currentImageIndex == (myProfile.medias.length - 1))
+                  Positioned(
+                    left: 25,
+                    bottom: 25,
+                    child: Text(
+                      myProfile.intro,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
 
                 // 인디케이터
                 Positioned(
