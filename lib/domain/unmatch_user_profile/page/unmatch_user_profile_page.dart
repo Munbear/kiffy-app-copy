@@ -1,16 +1,16 @@
 import 'package:Kiffy/domain/common/custom_app_bar_image_title.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
+import 'package:Kiffy/domain/common/page_controller_button.dart';
+import 'package:Kiffy/domain/common/profile_foto_indicator.dart';
+import 'package:Kiffy/domain/common/profile_text_infro_container.dart';
 import 'package:Kiffy/domain/common/reject_circle_button.dart';
 import 'package:Kiffy/domain/common/wish_circle_button.dart';
 import 'package:Kiffy/infra/wish_client.dart';
-import 'package:Kiffy/model/media_view/media_view.dart';
-import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../util/BirthDateUtil.dart';
+import '../../../infra/explore_client.dart';
+import '../../common/profile_picture_container.dart';
 import '../../matching/page/matching_page.dart';
 
 class UnMatchUserProfile extends ConsumerStatefulWidget {
@@ -20,12 +20,14 @@ class UnMatchUserProfile extends ConsumerStatefulWidget {
   final String userName;
   final String userAge;
   final String userId;
+  final String userIntro;
 
   const UnMatchUserProfile({
     super.key,
     required this.userName,
     required this.userAge,
     required this.userId,
+    required this.userIntro,
   });
 
   @override
@@ -33,25 +35,13 @@ class UnMatchUserProfile extends ConsumerStatefulWidget {
 }
 
 class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
-  PageController controller = PageController(initialPage: 0);
-  int imageIndex = 0;
-  void nextImage(imageLength) {
-    if (imageIndex < imageLength - 1) {
-      imageIndex++;
-      controller.animateToPage(imageIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-    }
-  }
-
-  void prevImage() {
-    if (imageIndex > 0) {
-      imageIndex--;
-      controller.animateToPage(imageIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-    }
-  }
+  PageController pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
     final userImages = ref.read(mediaDetailProvider);
+
+    final currentImageIndex = ref.watch(currentPictureIndex);
 
     return Scaffold(
       appBar: AppBar(
@@ -72,110 +62,45 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                   alignment: Alignment.center,
                   fit: StackFit.expand,
                   children: [
-                    Container(
-                      height: double.infinity,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.7),
-                            offset: const Offset(0, 5),
-                            blurRadius: 4,
-                            spreadRadius: 3,
-                          ),
-                        ],
-                      ),
-                      child: PageView(
-                        controller: controller,
-                        onPageChanged: (int page) {
-                          setState(() => imageIndex = page);
-                        },
-                        children: userImages.map(
-                          (foto) {
-                            return Image.network(
-                              foto.url,
-                              fit: BoxFit.cover,
-                            );
-                          },
-                        ).toList(),
-                      ),
+                    // 유저 사진
+                    ProfilePictureContainer(
+                      userProfilePictures: userImages,
+                      pageController: pageController,
+                      height: MediaQuery.of(context).size.height,
                     ),
 
+                    // 프로필 사진 인디케이터
                     Positioned(
                       top: 15,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          width: 100,
-                          height: 3,
-                          color: Colors.white.withOpacity(0.5),
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                            width: 100 / userImages.length,
-                            height: 3,
-                            color: Colors.white,
-                          ).animate().slideX(begin: 0.0, end: imageIndex.toDouble()),
+                      child: ProfileFotoIndicator(mediasLength: userImages.length, endIndex: currentImageIndex.toDouble()),
+                    ),
+
+                    // 유저 닉네임, 유저 나이
+                    if (currentImageIndex != (userImages.length - 1))
+                      ProfileTextInfoContainer(
+                        userName: widget.userName,
+                        userAge: widget.userAge,
+                      ),
+
+                    // 자기소개
+                    if (currentImageIndex == (userImages.length - 1))
+                      Positioned(
+                        left: 25,
+                        bottom: 25,
+                        child: Text(
+                          widget.userIntro,
+                          style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                       ),
-                    ),
 
-                    // 유저 이름, 나이, 지역
+                    // 이미지 페이지 컨트롤
                     Positioned(
-                      bottom: 35,
-                      left: 20,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              // 온라인 상태 분기 처리
-                              SvgPicture.asset("assets/svg/online_state_circle.svg"),
-                              const SizedBox(width: 10),
-                              // 유저 이름
-                              Text(
-                                widget.userName,
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(color: Colors.white, fontSize: 35),
-                              ),
-                            ],
+                      child: PageControllerButton(
+                          prevButton: () => ref.read(exploreProvider).prevImage(currentImageIndex, pageController), //prevImage(currentImageIndex),
+                          nextButton: () => ref
+                              .read(exploreProvider)
+                              .nextImage(currentImageIndex, pageController, userImages.length) //nextImage(currentImageIndex),
                           ),
-                          // 유저 위치
-                          Padding(
-                            padding: const EdgeInsets.only(left: 24, top: 4),
-                            child: Text(
-                              BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(widget.userAge)).toString(),
-                              textAlign: TextAlign.left,
-                              style: const TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-
-                    Positioned(
-                      child: Row(
-                        children: [
-                          // 이전 사진으로
-                          Expanded(
-                            child: GestureDetector(
-                              child: Container(
-                                color: Colors.transparent,
-                              ),
-                              onTap: () => prevImage(),
-                            ),
-                          ),
-                          // 다음 사진으로
-                          Expanded(
-                            child: GestureDetector(
-                              child: Container(
-                                color: Colors.transparent,
-                              ),
-                              onTap: () => nextImage(userImages.length),
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
 
                     // 버튼 위치

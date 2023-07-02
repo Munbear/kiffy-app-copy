@@ -1,7 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page.dart';
 import 'package:Kiffy/infra/wish_client.dart';
-import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
@@ -31,6 +30,7 @@ class _ExploreWishedListItemState extends ConsumerState<ExploreWishedListItem> {
             "userName": widget.profile.name,
             "userAge": widget.profile.birthDate,
             "userId": widget.profile.id,
+            "userIntro": widget.profile.intro,
           },
         );
       },

@@ -91,6 +91,7 @@ List<RouteBase> get _routes => [
             userName: state.queryParams["userName"] ?? "",
             userAge: state.queryParams["userAge"] ?? "",
             userId: state.queryParams["userId"] ?? "",
+            userIntro: state.queryParams["userIntro"] ?? "",
           );
         },
       ),
