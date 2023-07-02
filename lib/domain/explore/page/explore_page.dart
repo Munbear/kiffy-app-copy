@@ -62,10 +62,10 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
             // 나에게 위시 보낸 유저 리스트
             const PreviewLikedList(),
 
-            // 유저 카드
             isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : userCards.isNotEmpty
+                    // 유저 카드
                     ? Expanded(
                         child: CardSwiper(
                           controller: controller,

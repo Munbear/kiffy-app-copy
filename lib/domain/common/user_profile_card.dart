@@ -15,7 +15,7 @@ class UserProfileCard extends ConsumerStatefulWidget {
   final UserProfileView userProfile;
   final CardSwiperController controller;
 
-  UserProfileCard({
+  const UserProfileCard({
     super.key,
     required this.userProfile,
     required this.controller,

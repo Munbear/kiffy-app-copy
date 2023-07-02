@@ -65,37 +65,6 @@ class MatchingCard extends ConsumerWidget {
                   ],
                 ),
               ),
-
-              // 리마인드 정보
-              // Positioned(
-              //   top: 12,
-              //   right: 8,
-              //   child: Row(
-              //     children: const [
-              //       Image(
-              //         width: 13,
-              //         height: 13,
-              //         image: AssetImage("assets/images/remind_image.png"),
-              //       ),
-              //       SizedBox(width: 3),
-
-              //       // 리마인드 횟수
-              //       Text(
-              //         "99",
-              //         style: TextStyle(
-              //           fontSize: 15,
-              //           color: Colors.white,
-              //           fontWeight: FontWeight.w400,
-              //         ),
-              //       ),
-              //       Icon(
-              //         Icons.add,
-              //         size: 15,
-              //         color: Colors.white,
-              //       ),
-              //     ],
-              //   ),
-              // )
             ],
           ),
         ),

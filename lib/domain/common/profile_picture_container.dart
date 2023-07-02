@@ -21,6 +21,7 @@ class _ProfilePictureContainerState extends ConsumerState<ProfilePictureContaine
       height: widget.height,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(

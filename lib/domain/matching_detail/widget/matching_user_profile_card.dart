@@ -50,44 +50,61 @@ class _MathcingUserProfileCardState extends ConsumerState<MathcingUserProfileCar
               ),
             ),
 
-            Positioned(
-              left: 28,
-              bottom: 59,
-              child: Row(
-                children: [
-                  // 온라인 상태
-                  SvgPicture.asset("assets/svg/online_circle.svg"),
-                  const SizedBox(width: 14),
-                  // 유저 닉네임
-                  Text(
-                    userDetailInfo.name,
-                    style: const TextStyle(
-                      fontSize: 35,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Positioned(
+            //   left: 28,
+            //   bottom: 59,
+            //   child: Text(
+            //     userDetailInfo.name,
+            //     style: const TextStyle(
+            //       fontSize: 35,
+            //       color: Colors.white,
+            //       fontWeight: FontWeight.w300,
+            //     ),
+            //   ),
+            // ),
 
             // 유저 나이 및 지역
-            Positioned(
-              left: 54,
-              bottom: 29,
-              child: Row(
-                children: [
-                  Text(
-                    BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userDetailInfo.birthDate)).toString(),
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
+            if (currentImageIndex != (userDetailInfo.medias.length - 1))
+              Positioned(
+                left: 28,
+                bottom: 29,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      userDetailInfo.name,
+                      style: const TextStyle(
+                        fontSize: 35,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
-                  ),
-                ],
+                    Text(
+                      BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userDetailInfo.birthDate)).toString(),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+
+            //자기 소개
+            if (currentImageIndex == (userDetailInfo.medias.length - 1))
+              Positioned(
+                left: 28,
+                bottom: 29,
+                child: Text(
+                  userDetailInfo.intro,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
 
             // 이미지 컨트롤
             Positioned(
