@@ -5,7 +5,6 @@ import 'package:Kiffy/infra/explore_client.dart';
 import 'package:Kiffy/infra/match_client.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MathcingUserProfileCard extends ConsumerStatefulWidget {

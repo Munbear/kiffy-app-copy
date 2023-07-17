@@ -1,7 +1,6 @@
 import 'package:Kiffy/domain/common/preview_liked_list.dart';
 import 'package:Kiffy/domain/common/user_profile_card.dart';
 import 'package:Kiffy/infra/explore_client.dart';
-import 'package:Kiffy/infra/wish_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -28,9 +27,9 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // 탐색할 사용자 리스트 불러오기
-      await ref.read(exploreProvider).getExpolreUserCard();
-
-      await ref.read(wishClientProvider).getWishOthersProfiles();
+      ref.read(exploreProvider).getExpolreUserCard();
+      // 위시 받은 리스트 불러오기
+      // ref.read(wishClientProvider).getWishOthersProfiles();
     });
   }
 
@@ -39,7 +38,6 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
     final userCards = ref.watch(userCardsProvider);
     final isLoading = ref.watch(userCardLoading);
     ref.watch(wishCount);
-    setState(() {});
 
     return Scaffold(
       backgroundColor: Colors.white,

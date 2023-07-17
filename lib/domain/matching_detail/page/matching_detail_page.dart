@@ -1,7 +1,5 @@
 import 'package:Kiffy/domain/common/custom_app_bar_image_title.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
-import 'package:Kiffy/domain/common/user_profile_card.dart';
-import 'package:Kiffy/domain/core/enum/contact_type.dart';
 import 'package:Kiffy/domain/core/enum/gender_type.dart';
 import 'package:Kiffy/domain/matching/page/matching_page.dart';
 import 'package:Kiffy/domain/matching_detail/widget/contact_info_container.dart';
@@ -11,8 +9,6 @@ import 'package:Kiffy/infra/match_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../provider/coaching_emoticon_provider.dart';
 
 class MatchingDetailPage extends ConsumerStatefulWidget {
   static String get routeLocation => "/matchingDetail";

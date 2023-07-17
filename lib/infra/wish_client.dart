@@ -12,35 +12,27 @@ class WishClientHandler {
 
   WishClientHandler(this.ref);
 
-// 위시 보내기
-  Future<void> approveWish({required String userId}) async {
+  // 위시 보내기
+  approveWish({required String userId}) async {
     await ApiClient().dio.put("/api/wish/v1/wish/approve", data: {"toUserId": userId});
   }
 
   // 위시 거절
-  Future<void> rejectWish({required String userId}) async {
+  rejectWish({required String userId}) async {
     await ApiClient().dio.put("/api/wish/v1/wish/reject", data: {"toUserId": userId});
   }
 
 // 나에게 위시한 사용자들 가져오기
   getWishOthersProfiles({String? next}) async {
-    if (next != null) {
-      final response = await ApiClient().dio.get(next);
-      final items = WishOtherProfilesView.fromJson(response.data);
-      ref.read(wishMeUsersProvider.notifier).update((state) => items);
-      return items;
-    } else {
-      final response = await ApiClient().dio.get("/api/wish/v1/wish/other");
-      final items = WishOtherProfilesView.fromJson(response.data);
-      ref.read(wishMeUsersProvider.notifier).update((state) => null);
-      ref.read(wishMeUsersProvider.notifier).update((state) => items);
-      return items;
-    }
+    Response res = await ApiClient().dio.get("/api/wish/v1/wish/other");
+    final items = WishOtherProfilesView.fromJson(res.data);
+    ref.read(wishMeUsersProvider.notifier).update((state) => items.list);
   }
 }
 
 final mediaDetailProvider = StateProvider<List<MediaView>>((ref) => []);
 
-final wishMeUsersProvider = StateProvider<WishOtherProfilesView?>((ref) => null);
+// 받은 위시 리스트
+final wishMeUsersProvider = StateProvider<List<UserProfileView>?>((ref) => []);
 
 final wishMeListLoaded = StateProvider<bool>((ref) => false);

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../common/border._style.dart';
-
 class CheckedProfileCircle extends ConsumerStatefulWidget {
   const CheckedProfileCircle({super.key});
 

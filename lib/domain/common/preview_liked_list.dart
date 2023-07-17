@@ -17,15 +17,9 @@ class _PreviewLikedListState extends ConsumerState<PreviewLikedList> {
   @override
   void initState() {
     super.initState();
-    // 나에게 위시한 사용자 불러오기
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      // await ref.read(wishClientProvider).getWishOthersProfiles();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(wishClientProvider).getWishOthersProfiles();
     });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
@@ -41,13 +35,14 @@ class _PreviewLikedListState extends ConsumerState<PreviewLikedList> {
             scrollDirection: Axis.horizontal,
             children: [
               if (wishOtherProfiles != null)
-                ...wishOtherProfiles.list.map(
+                ...wishOtherProfiles.map(
                   (wishOtherProfile) => ExploreWishedListItem(
                     profile: wishOtherProfile,
                   ),
                 ),
               // 자세히 보기
-              if (wishOtherProfiles != null && wishOtherProfiles.list.isEmpty) const Center(child: Text("아직 위시를 받은 적이 없습니다."))
+              if (wishOtherProfiles != null && wishOtherProfiles.isEmpty) const Center(child: Text("아직 위시를 받은 적이 없습니다."))
+              // 위시 받은 유저 리스트
               // wishOtherProfiles.list.isNotEmpty ? const ExploreWishedListMore() : const Center(child: Text("아직 위시를 받은 적이 없습니다.")),
             ],
           ),

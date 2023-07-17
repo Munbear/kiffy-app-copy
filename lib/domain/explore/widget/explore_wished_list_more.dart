@@ -1,7 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ExploreWishedListMore extends ConsumerWidget {
@@ -45,7 +44,7 @@ class ExploreWishedListMore extends ConsumerWidget {
           Container(
             alignment: Alignment.center,
             margin: const EdgeInsets.only(top: 5),
-            child: Text(
+            child: const Text(
               "see more",
               style: TextStyle(color: Color(0xFF6C6C6C)),
             ),

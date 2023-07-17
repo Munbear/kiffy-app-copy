@@ -113,7 +113,9 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                           // 거절 버튼
                           RejectCircleButton(
                             onClick: () async {
+                              // 위시 거절
                               ref.read(wishClientProvider).rejectWish(userId: widget.userId);
+                              // 돌아가기
                               Navigator.pop(context);
                             },
                           ),
@@ -121,7 +123,9 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                           // 수락 버튼
                           WishCircleButton(
                             onClick: () async {
+                              // 위시 수락
                               ref.read(wishClientProvider).approveWish(userId: widget.userId);
+                              // 돌아 가기
                               Navigator.pop(context);
                               // print("수락수락");
                             },

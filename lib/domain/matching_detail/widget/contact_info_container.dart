@@ -24,7 +24,7 @@ class ContactInfoContainer extends ConsumerWidget {
           // 여상 유저한테만 보여짐
           if (userDetailInfo!.contacts.first.contactType == ContactType.LINE.name)
             const Image(image: AssetImage("assets/images/line_image.png"), width: 29, height: 29),
-          if (userDetailInfo!.contacts.first.contactType == ContactType.WHATSAPP.name)
+          if (userDetailInfo.contacts.first.contactType == ContactType.WHATSAPP.name)
             const Image(image: AssetImage("assets/icons/whatsapp_icon.png"), width: 29, height: 29),
           const SizedBox(width: 8),
 

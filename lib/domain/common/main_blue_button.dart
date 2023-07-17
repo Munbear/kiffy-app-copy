@@ -3,9 +3,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MainBlueButton extends ConsumerWidget {
   final String text;
-  Function()? onClick;
+  final Function()? onClick;
 
-  MainBlueButton({super.key, required this.text, required onClick});
+  const MainBlueButton({super.key, required this.text, required this.onClick});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

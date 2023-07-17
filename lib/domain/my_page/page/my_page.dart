@@ -25,7 +25,7 @@ class _MyPageState extends ConsumerState<MyPage> {
 
   @override
   Widget build(BuildContext context) {
-    final myProfile = ref.read(myProfileInfo);
+    final myProfile = ref.watch(myProfileInfo);
     final currentImageIndex = ref.watch(currentPictureIndex);
 
     return Scaffold(
@@ -79,18 +79,20 @@ class _MyPageState extends ConsumerState<MyPage> {
                   ),
 
                 // 인디케이터
-                Positioned(
-                  top: 15,
-                  child: ProfileFotoIndicator(mediasLength: myProfile!.medias.length, endIndex: currentImageIndex.toDouble()),
-                ),
-
-                // 프로필 카드 버튼
-                Positioned.fill(
-                  child: PageControllerButton(
-                    prevButton: () => ref.read(exploreProvider).prevImage(currentImageIndex, pageController),
-                    nextButton: () => ref.read(exploreProvider).nextImage(currentImageIndex, pageController, myProfile.medias.length),
+                if (myProfile != null)
+                  Positioned(
+                    top: 15,
+                    child: ProfileFotoIndicator(mediasLength: myProfile.medias.length, endIndex: currentImageIndex.toDouble()),
                   ),
-                ),
+
+                if (myProfile != null)
+                  // 프로필 카드 버튼
+                  Positioned.fill(
+                    child: PageControllerButton(
+                      prevButton: () => ref.read(exploreProvider).prevImage(currentImageIndex, pageController),
+                      nextButton: () => ref.read(exploreProvider).nextImage(currentImageIndex, pageController, myProfile.medias.length),
+                    ),
+                  ),
               ],
             ),
             const SizedBox(height: 18),
