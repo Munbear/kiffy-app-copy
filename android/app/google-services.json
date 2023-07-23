@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "788804351569",
-    "project_id": "kiffy-cbf6d",
-    "storage_bucket": "kiffy-cbf6d.appspot.com"
+    "project_number": "858024060821",
+    "project_id": "kiffy-dev-cbc76",
+    "storage_bucket": "kiffy-dev-cbc76.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:788804351569:android:032ff1b0b1c240b110ea70",
+        "mobilesdk_app_id": "1:858024060821:android:b8bf2387bd22aef1edb89c",
         "android_client_info": {
           "package_name": "club.kiffy.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "788804351569-i36obccfn6efnrg591646ge6p22rdsdv.apps.googleusercontent.com",
+          "client_id": "858024060821-a460lhc2mimo7ur28qjhna92uo12uvaa.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDk928u7VAhZY0ZQI3szn-9zV-nHsVMPAg"
+          "current_key": "AIzaSyDpvkFNcbGiiDAVoZdqPfUw_oL7PTnsXes"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "788804351569-i36obccfn6efnrg591646ge6p22rdsdv.apps.googleusercontent.com",
+              "client_id": "858024060821-a460lhc2mimo7ur28qjhna92uo12uvaa.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "788804351569-nrjdqh4lt084jrcopef3bl11b7hrghuf.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "club.kiffy.app"
-              }
             }
           ]
         }

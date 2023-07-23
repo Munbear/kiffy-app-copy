@@ -1,0 +1,45 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "kiffy-dev",
+      "request": "launch",
+      "program": "lib/env/main_dev.dart",
+      "type": "dart",
+      "args": [
+        // "--flavor",
+        "dev"
+      ]
+    },
+    {
+      "name": "kiffy-prod",
+      "request": "launch",
+      "program": "lib/env/main_prod.dart",
+      "type": "dart",
+      "args": [
+        // "--flavor",
+        "prod"
+      ]
+    },
+    // {
+    //   "name": "kiffy_front",
+    //   "request": "launch",
+    //   "type": "dart"
+    // },
+    // {
+    //   "name": "kiffy_front (profile mode)",
+    //   "request": "launch",
+    //   "type": "dart",
+    //   "flutterMode": "profile"
+    // },
+    // {
+    //   "name": "kiffy_front (release mode)",
+    //   "request": "launch",
+    //   "type": "dart",
+    //   "flutterMode": "release"
+    // }
+  ]
+}
