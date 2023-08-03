@@ -11,7 +11,7 @@ class MyProfileHandler {
   final Ref ref;
   Dio dio;
 
-  MyProfileHandler(this.ref) : dio = ApiClient().dio;
+  MyProfileHandler(this.ref) : dio = ref.read(dioProvider);
 
   // 수정 필요
   getMyProfile() async {
@@ -26,7 +26,8 @@ final myProfileInfo = StateProvider<UserProfileView?>((ref) => null);
 // ::수정 필요
 // 내 프로필 불러오기
 final myProfileProvider = FutureProvider((ref) async {
-  final res = await ApiClient().dio.get("/api/view/user/v1/my/profile");
+  final dio = ref.read(dioProvider);
+  final res = await dio.get("/api/view/user/v1/my/profile");
 
   return UserProfileView.fromJson(res.data);
 });

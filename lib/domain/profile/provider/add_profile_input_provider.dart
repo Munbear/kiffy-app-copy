@@ -29,7 +29,7 @@ final addProfileInputProvider = StateNotifierProvider<AddProfileInputState, User
 // 유저 프로필 상태
 class AddProfileInputState extends StateNotifier<UserProfileCreateCommand> {
   final Ref ref;
-  Dio dio = ApiClient().dio;
+  // Dio dio = ApiClient().dio;
 
   AddProfileInputState(this.ref)
       : super(
@@ -149,7 +149,7 @@ class AddProfileInputState extends StateNotifier<UserProfileCreateCommand> {
     final userProfile = UserProfileCreateCommand(
             name: state.name, gender: state.gender, birthDate: state.birthDate, intro: state.intro, medias: state.medias, contacts: state.contacts)
         .toJson();
-    Response response = await ApiClient().dio.post("/api/view/user/v1/my/profile", data: userProfile);
+    Response response = await ref.read(dioProvider).post("/api/view/user/v1/my/profile", data: userProfile);
 
     // return response.data.map<UserProfileView>((profile) => UserProfileView.fromJson(profile));
     return UserProfileView.fromJson(response.data);

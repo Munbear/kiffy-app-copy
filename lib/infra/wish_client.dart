@@ -9,22 +9,23 @@ final wishClientProvider = Provider<WishClientHandler>((ref) => WishClientHandle
 
 class WishClientHandler {
   final Ref ref;
+  Dio dio;
 
-  WishClientHandler(this.ref);
+  WishClientHandler(this.ref) : dio = ref.read(dioProvider);
 
   // 위시 보내기
   approveWish({required String userId}) async {
-    await ApiClient().dio.put("/api/wish/v1/wish/approve", data: {"toUserId": userId});
+    await dio.put("/api/wish/v1/wish/approve", data: {"toUserId": userId});
   }
 
   // 위시 거절
   rejectWish({required String userId}) async {
-    await ApiClient().dio.put("/api/wish/v1/wish/reject", data: {"toUserId": userId});
+    await dio.put("/api/wish/v1/wish/reject", data: {"toUserId": userId});
   }
 
 // 나에게 위시한 사용자들 가져오기
   getWishOthersProfiles({String? next}) async {
-    Response res = await ApiClient().dio.get("/api/wish/v1/wish/other");
+    Response res = await dio.get("/api/wish/v1/wish/other");
     final items = WishOtherProfilesView.fromJson(res.data);
     ref.read(wishMeUsersProvider.notifier).update((state) => items.list);
   }

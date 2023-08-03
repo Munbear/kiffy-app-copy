@@ -184,7 +184,7 @@ class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
   AddProfileInputItemValidation inputImagesValidation = AddProfileInputItemValidation.success();
 
   void onAddedListener(String path) {
-    uploadImage(path).then(
+    ref.read(uploadMedia).uploadImage(path).then(
       (res) {
         setState(() {});
         return inputImages = [

@@ -28,7 +28,7 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
   var inputImagesValidation = AddProfileInputItemValidation.success();
 
   void onAddedListener(String path) {
-    uploadImage(path).then((res) => inputImages = [
+    ref.read(uploadMedia).uploadImage(path).then((res) => inputImages = [
           ...inputImages,
           AddProfileInputImageItem(
             filePath: path,

@@ -1,15 +1,17 @@
 import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/model/explore_user_profiles_view/explore_user_profiles_view.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final exploreProvider = Provider<ExploreHandler>((ref) => ExploreHandler(ref));
 
 class ExploreHandler {
-  final Ref ref;
+  Ref ref;
+  Dio dio;
 
-  ExploreHandler(this.ref);
+  ExploreHandler(this.ref) : dio = ref.read(dioProvider);
 
   // 탐색할 유저 불러오기
   getExpolreUserCard() async {
@@ -18,7 +20,7 @@ class ExploreHandler {
     ref.read(userCardLoading.notifier).update((state) => state = true);
 
     // 함수 호출
-    final response = await ApiClient().dio.get("/api/explore/v1/users?offset=0&limit=5");
+    final response = await dio.get("/api/explore/v1/users?offset=0&limit=5");
 
     await Future.delayed(const Duration(milliseconds: 1500));
 

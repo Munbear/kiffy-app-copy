@@ -1,20 +1,22 @@
 import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/model/matched_user_profiles_view/matched_user_profiles_view.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
+import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final matchedUserProfileProvider = Provider<MatchedUserProfileHandler>((ref) => MatchedUserProfileHandler(ref));
 
 class MatchedUserProfileHandler {
-  final Ref ref;
+  Ref ref;
+  Dio dio;
 
-  MatchedUserProfileHandler(this.ref);
+  MatchedUserProfileHandler(this.ref) : dio = ref.read(dioProvider);
 
   // 매칭된 유저 리스트
   getMatchedUsers(offset, limit) async {
     print(ref.read(isMatchedUserListMoreProvider));
     if (ref.read(isMatchedUserListMoreProvider)) {
-      final res = await ApiClient().dio.get("/api/match/v1/users", queryParameters: {"offset": offset, "limit": limit});
+      final res = await dio.get("/api/match/v1/users", queryParameters: {"offset": offset, "limit": limit});
 
       MatchedUserProfilesView item = MatchedUserProfilesView.fromJson(res.data);
 

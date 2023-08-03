@@ -57,7 +57,7 @@ class AuthState extends StateNotifier<AuthToken> {
 
     if (savedAccessToken != null) {
       try {
-        final userStatus = await getUserStatus();
+        final userStatus = ref.read(userStatusResponse).getUserStatus(); // await getUserStatus();
         state.authStatus = AuthStatus.SUCCESS;
         state.userStatus = userStatus.status;
         FirebaseAuth.instance.signInWithEmailAndPassword(email: userStatus.email, password: savedAccessToken);
