@@ -4,6 +4,20 @@ import 'package:Kiffy/infra/api_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+enum SignProvider {
+  GOOGLE,
+  FACEBOOK;
+
+  String toCode() {
+    switch (this) {
+      case SignProvider.GOOGLE:
+        return "google";
+      case SignProvider.FACEBOOK:
+        return "facebook";
+    }
+  }
+}
+
 class SignInResponse {
   late String accessToken;
 
@@ -18,23 +32,13 @@ class ResponseSignIn {
 
   ResponseSignIn(this.ref) : dio = ref.read(dioProvider);
 
-  Future<SignInResponse> signIn(SignProvider provider, String accessToken) async {
+  signIn(SignProvider provider, String accessToken) async {
     final response = await dio.post("/api/view/sign/v1/in/${provider.toCode()}", data: jsonEncode({"accessToken": accessToken}));
 
-    return SignInResponse.fromJson(response.data);
+    final item = SignInResponse.fromJson(response.data);
+
+    ref.read(signInResponseProvider.notifier).update((state) => state = item);
   }
 }
 
-enum SignProvider {
-  GOOGLE,
-  FACEBOOK;
-
-  String toCode() {
-    switch (this) {
-      case SignProvider.GOOGLE:
-        return "google";
-      case SignProvider.FACEBOOK:
-        return "facebook";
-    }
-  }
-}
+final signInResponseProvider = StateProvider<SignInResponse?>((ref) => null);

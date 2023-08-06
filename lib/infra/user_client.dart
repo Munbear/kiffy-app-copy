@@ -4,7 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Future<UserStatusView> getUserStatus() async {
-//   final response = await ApiClient().dio.get("/api/view/user/v1/my/status");
+//   var ref;
+//   Dio dio = ref.read(dioProvider);
+//   final response = await dio.get("/api/view/user/v1/my/status");
 
 //   return UserStatusView.fromJson(response.data);
 // }
@@ -22,9 +24,11 @@ class UserStatusResponse {
 
   UserStatusResponse(this.ref) : dio = ref.read(dioProvider);
 
-  Future<UserStatusView> getUserStatus() async {
+  getUserStatus() async {
     final response = await dio.get("/api/view/user/v1/my/status");
 
-    return UserStatusView.fromJson(response.data);
+    ref.read(userStatusView.notifier).update((state) => state = UserStatusView.fromJson(response.data));
   }
 }
+
+final userStatusView = StateProvider<UserStatusView?>((ref) => null);
