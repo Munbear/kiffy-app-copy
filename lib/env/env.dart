@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_conditional_assignment, unnecessary_null_comparison
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,8 +10,6 @@ import '../config/firebase/prod/firebase_options.dart' as prodFirebaseOptions;
 // ignore: library_prefixes
 import '../config/firebase/dev/firebase_options.dart' as devFirebaseOptions;
 import '../kiffy_app.dart';
-
-enum Environment { dev, prod }
 
 class Env {
   static Env? _instance;
@@ -58,9 +58,13 @@ class Env {
         fallbackLocale: const Locale('id'),
         // 기본 언어
         startLocale: const Locale('id'),
+        saveLocale: true,
         useFallbackTranslations: true,
+        useOnlyLangCode: true,
         child: const ProviderScope(child: KiffyApp()),
       ),
     );
   }
 }
+
+enum Environment { dev, prod }

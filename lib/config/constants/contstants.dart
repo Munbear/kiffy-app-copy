@@ -1,18 +1,18 @@
-enum Environment { Local, Prod }
+// enum Environment { Local, Prod }
 
 class Constants {
   static Map<String, dynamic> _config = _Config.prodConstants;
 
-  static void setEnvironment(Environment env) {
-    switch (env) {
-      case Environment.Local:
-        _config = _Config.localConstants;
-        break;
-      case Environment.Prod:
-        _config = _Config.prodConstants;
-        break;
-    }
-  }
+  // static void setEnvironment(Environment env) {
+  //   switch (env) {
+  //     case Environment.Local:
+  //       _config = _Config.localConstants;
+  //       break;
+  //     case Environment.Prod:
+  //       _config = _Config.prodConstants;
+  //       break;
+  //   }
+  // }
 
   static get API {
     return _config[_Config.API];

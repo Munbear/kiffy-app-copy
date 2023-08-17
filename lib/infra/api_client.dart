@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:dio/dio.dart';
@@ -68,7 +69,7 @@ final dioProvider = StateProvider<Dio>((ref) {
     if (storage != null) options.headers['authorization'] = 'Bearer $accessToken';
 
     // 국가 코드
-    // options.headers['x-kokiri-country-code'] = window.locale.countryCode;
+    options.headers['x-kiffy-country-code'] = window.locale.countryCode;
 
     return handler.next(options);
   }, onResponse: (response, handler) {
