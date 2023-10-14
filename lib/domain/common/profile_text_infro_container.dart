@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../util/BirthDateUtil.dart';
 
@@ -28,7 +28,8 @@ class ProfileTextInfoContainer extends ConsumerWidget {
               style: const TextStyle(color: Colors.white, fontSize: 28),
             ),
             Text(
-              BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userAge)).toString(),
+              BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userAge))
+                  .toString(),
               style: const TextStyle(color: Colors.white, fontSize: 20),
             )
           ],

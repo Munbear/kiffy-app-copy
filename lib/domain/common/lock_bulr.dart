@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LockBulr extends ConsumerWidget {
   final String mainText;
@@ -19,7 +19,10 @@ class LockBulr extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Image(image: AssetImage("assets/images/lock_image.png"), width: 15, height: 20),
+              const Image(
+                  image: AssetImage("assets/images/lock_image.png"),
+                  width: 15,
+                  height: 20),
               const SizedBox(width: 9),
               Text(
                 mainText,

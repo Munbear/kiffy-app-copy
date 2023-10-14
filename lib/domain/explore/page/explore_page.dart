@@ -3,7 +3,7 @@ import 'package:Kiffy/domain/common/user_profile_card.dart';
 import 'package:Kiffy/infra/explore_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/custom_bottom_nav_bar.dart';
 import '../widget/no_user_profile_card.dart';
@@ -72,7 +72,8 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
                           padding: EdgeInsets.zero,
                           initialIndex: 0,
                           onEnd: () {
-                            if (ref.watch(wishCount) >= 3) ref.read(exploreProvider).getExpolreUserCard();
+                            if (ref.watch(wishCount) >= 3)
+                              ref.read(exploreProvider).getExpolreUserCard();
                           },
                           numberOfCardsDisplayed: userCards.length <= 1 ? 1 : 2,
                           cardsCount: userCards.length,
@@ -88,7 +89,8 @@ class _ExplorePageState extends ConsumerState<ExplorePage> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: ExplorePage.routeLocation),
+      bottomNavigationBar:
+          CustomBottomNavBar(currentPath: ExplorePage.routeLocation),
     );
   }
 }

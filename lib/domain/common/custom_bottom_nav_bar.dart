@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config/router/route.dart';
 import '../main_page/widget/bottom_tap_item.dart';
@@ -24,7 +24,8 @@ class CustomBottomNavBar extends ConsumerStatefulWidget {
   const CustomBottomNavBar({super.key, required this.currentPath});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CustomBottomNavBarState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _CustomBottomNavBarState();
 }
 
 class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
@@ -61,7 +62,8 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
         ],
       ),
       child: ClipRRect(
-        borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(16), topRight: Radius.circular(16)),
         child: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
@@ -71,7 +73,8 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
                 iconPath: path.iconPath,
                 isFocus: path.routePath == widget.currentPath,
                 // isFocus: items.value.contains(currentPage),
-                onRouting: () => ref.read(routerProvider).replace(path.routePath),
+                onRouting: () =>
+                    ref.read(routerProvider).replace(path.routePath),
               ),
               label: "test",
             );

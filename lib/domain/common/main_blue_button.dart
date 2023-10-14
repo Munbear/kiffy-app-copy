@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MainBlueButton extends ConsumerWidget {
   final String text;
@@ -16,7 +16,9 @@ class MainBlueButton extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: 15),
         backgroundColor: const Color(0xff0031aa),
       ),
-      child: Text(text, style: const TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600)),
+      child: Text(text,
+          style: const TextStyle(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600)),
     );
   }
 }

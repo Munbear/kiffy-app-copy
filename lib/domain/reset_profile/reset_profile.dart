@@ -6,9 +6,9 @@ import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:Kiffy/infra/media_client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gradient_borders/gradient_borders.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../common/custom_app_bar.dart';
 
@@ -111,7 +111,9 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
                     index: index,
                     onDeleted: (idx) => onDeletedListener(idx),
                     onAdded: (path) => onAddedListener(path),
-                    filePath: inputImages.length > index ? inputImages.elementAt(index).filePath : null,
+                    filePath: inputImages.length > index
+                        ? inputImages.elementAt(index).filePath
+                        : null,
                   ),
                 ),
               ),
@@ -160,14 +162,20 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
                 decoration: const InputDecoration(
                     hintText: "Please enter it.",
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
-                      borderRadius:
-                          BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                      borderSide:
+                          BorderSide(color: Color(0xffcecece), width: 2.0),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                          topRight: Radius.circular(15)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
-                      borderRadius:
-                          BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                      borderSide:
+                          BorderSide(color: Color(0xff0031AA), width: 3.0),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                          topRight: Radius.circular(15)),
                     ),
                     contentPadding: EdgeInsets.all(18)),
               ),
@@ -276,14 +284,20 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
                 decoration: const InputDecoration(
                     hintText: "Please enter it.",
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
-                      borderRadius:
-                          BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                      borderSide:
+                          BorderSide(color: Color(0xffcecece), width: 2.0),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                          topRight: Radius.circular(15)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
-                      borderRadius:
-                          BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                      borderSide:
+                          BorderSide(color: Color(0xff0031AA), width: 3.0),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                          topRight: Radius.circular(15)),
                     ),
                     contentPadding: EdgeInsets.all(18)),
               ),
@@ -291,7 +305,8 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: AddProfileInputValidationText(
-                  normalText: "* When a match is made, it’s shown to the woman.",
+                  normalText:
+                      "* When a match is made, it’s shown to the woman.",
                   validation: inputContactValidation,
                 ),
               ),
@@ -309,7 +324,8 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
                   ),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 20),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                     backgroundColor: const Color(0xff0031AA),
                   ),
                 ),

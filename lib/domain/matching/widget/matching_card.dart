@@ -5,8 +5,7 @@ import 'package:Kiffy/infra/match_client.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
-
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MatchingCard extends ConsumerWidget {
   final UserProfileView userProfile;
@@ -17,7 +16,9 @@ class MatchingCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        ref.read(matchedUserDetailProvider.notifier).update((state) => state = userProfile);
+        ref
+            .read(matchedUserDetailProvider.notifier)
+            .update((state) => state = userProfile);
         ref.read(routerProvider).pushNamed(MatchingDetailPage.routeName);
       },
       child: Container(
@@ -55,7 +56,9 @@ class MatchingCard extends ConsumerWidget {
                     ),
                     const SizedBox(width: 7),
                     Text(
-                      BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userProfile.birthDate)).toString(),
+                      BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(
+                              userProfile.birthDate))
+                          .toString(),
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.white,

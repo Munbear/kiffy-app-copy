@@ -5,8 +5,7 @@ import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // class AddProfileUserPage extends HookConsumerWidget {
 //   AddProfileUserPage({super.key});
@@ -202,21 +201,25 @@ class AddProfileUserPage extends ConsumerStatefulWidget {
   const AddProfileUserPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddProfileUserPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AddProfileUserPageState();
 }
 
 class _AddProfileUserPageState extends ConsumerState<AddProfileUserPage> {
   // 유저 닉네임
   String inputName = "";
-  AddProfileInputItemValidation inputNameValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputNameValidation =
+      AddProfileInputItemValidation.success();
 
   // 유저 성별
   Gender? inputGender;
-  AddProfileInputItemValidation inputGenderValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputGenderValidation =
+      AddProfileInputItemValidation.success();
 
   // 유저 생년월일
   String inputBirthDay = "";
-  AddProfileInputItemValidation inputBirthdayValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputBirthdayValidation =
+      AddProfileInputItemValidation.success();
 
   @override
   Widget build(BuildContext context) {
@@ -243,18 +246,25 @@ class _AddProfileUserPageState extends ConsumerState<AddProfileUserPage> {
                       // 닉네임 입력
                       TextFormField(
                         onChanged: (t) => inputName = t,
-                        style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
+                        style: const TextStyle(
+                            fontSize: 20, color: Color(0xFF6C6C6C)),
                         decoration: const InputDecoration(
                           hintText: "Please enter it.",
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
-                            borderRadius:
-                                BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                            borderSide: BorderSide(
+                                color: Color(0xffcecece), width: 2.0),
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15),
+                                topRight: Radius.circular(15)),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
-                            borderRadius:
-                                BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                            borderSide: BorderSide(
+                                color: Color(0xff0031AA), width: 3.0),
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15),
+                                topRight: Radius.circular(15)),
                           ),
                           contentPadding: EdgeInsets.all(18),
                         ),
@@ -284,13 +294,17 @@ class _AddProfileUserPageState extends ConsumerState<AddProfileUserPage> {
                                   label: Text(
                                     Gender.genderToString(gender),
                                     style: TextStyle(
-                                      color: inputGender == gender ? const Color(0xFF0031AA) : const Color(0xff494949),
+                                      color: inputGender == gender
+                                          ? const Color(0xFF0031AA)
+                                          : const Color(0xff494949),
                                     ),
                                   ),
                                   icon: Image.asset(
                                     "assets/icons/man_icon.png",
                                     width: 18,
-                                    color: inputGender == gender ? const Color(0xFF0031AA) : const Color(0xff494949),
+                                    color: inputGender == gender
+                                        ? const Color(0xFF0031AA)
+                                        : const Color(0xff494949),
                                   ),
                                   style: ElevatedButton.styleFrom(
                                     shape: const RoundedRectangleBorder(
@@ -301,12 +315,15 @@ class _AddProfileUserPageState extends ConsumerState<AddProfileUserPage> {
                                       ),
                                     ),
                                     shadowColor: const Color(0x00000000),
-                                    padding: const EdgeInsets.only(top: 16, bottom: 16),
+                                    padding: const EdgeInsets.only(
+                                        top: 16, bottom: 16),
                                     backgroundColor: Colors.white,
                                     foregroundColor: const Color(0xff494949),
                                     textStyle: const TextStyle(fontSize: 18),
                                     side: BorderSide(
-                                      color: inputGender == gender ? const Color(0xFF0031AA) : const Color(0xffDCDCDC),
+                                      color: inputGender == gender
+                                          ? const Color(0xFF0031AA)
+                                          : const Color(0xffDCDCDC),
                                       width: 2.0,
                                     ),
                                   ),
@@ -330,7 +347,9 @@ class _AddProfileUserPageState extends ConsumerState<AddProfileUserPage> {
                         children: const [
                           Text("Birthday", style: TextStyle(fontSize: 20)),
                           SizedBox(width: 4),
-                          Text("example : 20010305", style: TextStyle(fontSize: 12, color: Color(0xff6c6c6c))),
+                          Text("example : 20010305",
+                              style: TextStyle(
+                                  fontSize: 12, color: Color(0xff6c6c6c))),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -338,18 +357,25 @@ class _AddProfileUserPageState extends ConsumerState<AddProfileUserPage> {
                       TextFormField(
                         keyboardType: TextInputType.number,
                         onChanged: (t) => inputBirthDay = t,
-                        style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
+                        style: const TextStyle(
+                            fontSize: 20, color: Color(0xFF6C6C6C)),
                         decoration: const InputDecoration(
                             hintText: "YYYYMMDD",
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
-                              borderRadius:
-                                  BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                              borderSide: BorderSide(
+                                  color: Color(0xffcecece), width: 2.0),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(15),
+                                  bottomRight: Radius.circular(15),
+                                  topRight: Radius.circular(15)),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
-                              borderRadius:
-                                  BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                              borderSide: BorderSide(
+                                  color: Color(0xff0031AA), width: 3.0),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(15),
+                                  bottomRight: Radius.circular(15),
+                                  topRight: Radius.circular(15)),
                             ),
                             contentPadding: EdgeInsets.all(18)),
                       ),
@@ -366,16 +392,32 @@ class _AddProfileUserPageState extends ConsumerState<AddProfileUserPage> {
               // submit 버튼
               ElevatedButton(
                 onPressed: () {
-                  inputNameValidation = ref.read(addProfileInputProvider.notifier).setName(inputName);
-                  inputGenderValidation = ref.read(addProfileInputProvider.notifier).setGender(inputGender);
-                  inputBirthdayValidation = ref.read(addProfileInputProvider.notifier).setBirthDate(inputBirthDay);
+                  inputNameValidation = ref
+                      .read(addProfileInputProvider.notifier)
+                      .setName(inputName);
+                  inputGenderValidation = ref
+                      .read(addProfileInputProvider.notifier)
+                      .setGender(inputGender);
+                  inputBirthdayValidation = ref
+                      .read(addProfileInputProvider.notifier)
+                      .setBirthDate(inputBirthDay);
                   setState(() {});
 
-                  if (inputNameValidation.isValid && inputGenderValidation.isValid && inputBirthdayValidation.isValid) {
-                    ref.read(addProfileInputProvider.notifier).updateName(inputName);
-                    ref.read(addProfileInputProvider.notifier).updateGender(inputGender);
-                    ref.read(addProfileInputProvider.notifier).updateBirthdDate(inputBirthDay);
-                    ref.read(routerProvider).replace("/profile/add_profile/contact");
+                  if (inputNameValidation.isValid &&
+                      inputGenderValidation.isValid &&
+                      inputBirthdayValidation.isValid) {
+                    ref
+                        .read(addProfileInputProvider.notifier)
+                        .updateName(inputName);
+                    ref
+                        .read(addProfileInputProvider.notifier)
+                        .updateGender(inputGender);
+                    ref
+                        .read(addProfileInputProvider.notifier)
+                        .updateBirthdDate(inputBirthDay);
+                    ref
+                        .read(routerProvider)
+                        .replace("/profile/add_profile/contact");
                   }
                 },
                 style: ElevatedButton.styleFrom(

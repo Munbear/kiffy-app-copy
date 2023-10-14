@@ -3,7 +3,7 @@ import 'package:Kiffy/domain/check_list/widget/unchecked_profile_circle.dart';
 import 'package:Kiffy/domain/common/custom_app_bar_image_title.dart';
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/custom_bottom_nav_bar.dart';
 
@@ -98,7 +98,8 @@ class _LikedListPageState extends ConsumerState<LikedListPage> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: ExplorePage.routeLocation),
+      bottomNavigationBar:
+          CustomBottomNavBar(currentPath: ExplorePage.routeLocation),
     );
   }
 }

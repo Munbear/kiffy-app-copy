@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RejectCircleButton extends ConsumerWidget {
   final Function() onClick;
@@ -10,7 +10,9 @@ class RejectCircleButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       alignment: Alignment.center,
-      decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 2.0)),
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.white, width: 2.0)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: SizedBox(

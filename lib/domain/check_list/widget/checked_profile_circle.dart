@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CheckedProfileCircle extends ConsumerStatefulWidget {
   const CheckedProfileCircle({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CheckedProfileCircleState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _CheckedProfileCircleState();
 }
 
 class _CheckedProfileCircleState extends ConsumerState<CheckedProfileCircle> {

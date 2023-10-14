@@ -4,8 +4,7 @@ import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:Kiffy/domain/profile/widget/example_intro_tips_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // class AddProfileIntroPage extends HookConsumerWidget {
 //   const AddProfileIntroPage({super.key});
@@ -129,7 +128,8 @@ class AddProfileIntroPage extends ConsumerStatefulWidget {
   const AddProfileIntroPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddProfileIntroPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AddProfileIntroPageState();
 }
 
 class _AddProfileIntroPageState extends ConsumerState<AddProfileIntroPage> {
@@ -148,7 +148,8 @@ class _AddProfileIntroPageState extends ConsumerState<AddProfileIntroPage> {
   }
 
   String inputIntro = "";
-  AddProfileInputItemValidation inputIntroValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputIntroValidation =
+      AddProfileInputItemValidation.success();
 
   @override
   Widget build(BuildContext context) {
@@ -200,12 +201,20 @@ class _AddProfileIntroPageState extends ConsumerState<AddProfileIntroPage> {
               decoration: const InputDecoration(
                   hintText: "Please enter it.",
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                    borderSide:
+                        BorderSide(color: Color(0xffcecece), width: 2.0),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                        topRight: Radius.circular(15)),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                    borderSide:
+                        BorderSide(color: Color(0xff0031AA), width: 3.0),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                        topRight: Radius.circular(15)),
                   ),
                   contentPadding: EdgeInsets.all(18)),
             ),
@@ -221,11 +230,17 @@ class _AddProfileIntroPageState extends ConsumerState<AddProfileIntroPage> {
             // 다음 버튼
             ElevatedButton(
               onPressed: () {
-                inputIntroValidation = ref.read(addProfileInputProvider.notifier).setIntro(inputIntro);
+                inputIntroValidation = ref
+                    .read(addProfileInputProvider.notifier)
+                    .setIntro(inputIntro);
 
                 if (inputIntroValidation.isValid) {
-                  ref.read(addProfileInputProvider.notifier).updateIntro(inputIntro);
-                  ref.read(routerProvider).replace("/profile/add_profile/image");
+                  ref
+                      .read(addProfileInputProvider.notifier)
+                      .updateIntro(inputIntro);
+                  ref
+                      .read(routerProvider)
+                      .replace("/profile/add_profile/image");
                 }
               },
               style: ElevatedButton.styleFrom(

@@ -3,7 +3,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // ignore: library_prefixes
 import '../config/firebase/prod/firebase_options.dart' as prodFirebaseOptions;
@@ -30,7 +30,8 @@ class Env {
   bool get isDebuggle => environment == Environment.dev;
 
   // 앱 이름
-  String get appTitle => environment == Environment.dev ? "[DEV] kiffy" : "kiffy";
+  String get appTitle =>
+      environment == Environment.dev ? "[DEV] kiffy" : "kiffy";
 
   // firebase 설정
   static FirebaseOptions get currentPlatform => environment == Environment.dev
@@ -38,15 +39,19 @@ class Env {
       : prodFirebaseOptions.DefaultFirebaseOptions.currentPlatform;
 
   // 서버 설정
-  static String? get apiUrl => environment == Environment.dev ? "http://api-dev.kiffy.club" : "http://api-dev.kiffy.club";
-  static String? get firebaseAppName => environment == Environment.dev ? 'Kiffy-dev' : 'Kiffy';
+  static String? get apiUrl => environment == Environment.dev
+      ? "http://api-dev.kiffy.club"
+      : "http://api-dev.kiffy.club";
+  static String? get firebaseAppName =>
+      environment == Environment.dev ? 'Kiffy-dev' : 'Kiffy';
 
   // 앱 실행
   Future<void> run() async {
     WidgetsFlutterBinding.ensureInitialized();
     await EasyLocalization.ensureInitialized();
 
-    await Firebase.initializeApp(name: firebaseAppName, options: currentPlatform);
+    await Firebase.initializeApp(
+        name: firebaseAppName, options: currentPlatform);
     // if (Platform.isIOS) await Permission.appTrackingTransparency.request();
 
     runApp(

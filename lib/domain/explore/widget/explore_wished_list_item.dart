@@ -3,15 +3,16 @@ import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page
 import 'package:Kiffy/infra/wish_client.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ExploreWishedListItem extends ConsumerStatefulWidget {
   final UserProfileView profile;
   const ExploreWishedListItem({super.key, required this.profile});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ExploreWishedListItemState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ExploreWishedListItemState();
 }
 
 class _ExploreWishedListItemState extends ConsumerState<ExploreWishedListItem> {
@@ -23,7 +24,9 @@ class _ExploreWishedListItemState extends ConsumerState<ExploreWishedListItem> {
       // 디테일 화면으로 이동
 
       onTap: () {
-        ref.read(mediaDetailProvider.notifier).update((state) => state = widget.profile.medias);
+        ref
+            .read(mediaDetailProvider.notifier)
+            .update((state) => state = widget.profile.medias);
         ref.read(routerProvider).pushNamed(
           UnMatchUserProfile.routeName,
           queryParams: {

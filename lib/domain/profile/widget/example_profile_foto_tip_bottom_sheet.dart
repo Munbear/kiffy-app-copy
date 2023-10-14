@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ExampleProfileFotoTipBottomSheet extends ConsumerWidget {
   ExampleProfileFotoTipBottomSheet({super.key});
@@ -63,9 +62,13 @@ class ExampleProfileFotoTipBottomSheet extends ConsumerWidget {
                                   ? const SizedBox(width: 50)
                                   : IconButton(
                                       onPressed: () {
-                                        controller.previousPage(duration: const Duration(milliseconds: 200), curve: Curves.easeInOut);
+                                        controller.previousPage(
+                                            duration: const Duration(
+                                                milliseconds: 200),
+                                            curve: Curves.easeInOut);
                                       },
-                                      icon: SvgPicture.asset('assets/svg/arrow_prev.svg'),
+                                      icon: SvgPicture.asset(
+                                          'assets/svg/arrow_prev.svg'),
                                     ),
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
@@ -81,9 +84,13 @@ class ExampleProfileFotoTipBottomSheet extends ConsumerWidget {
                                   : IconButton(
                                       onPressed: () {
                                         // next button
-                                        controller.nextPage(duration: const Duration(milliseconds: 200), curve: Curves.easeInOut);
+                                        controller.nextPage(
+                                            duration: const Duration(
+                                                milliseconds: 200),
+                                            curve: Curves.easeInOut);
                                       },
-                                      icon: SvgPicture.asset('assets/svg/arrow_next.svg'),
+                                      icon: SvgPicture.asset(
+                                          'assets/svg/arrow_next.svg'),
                                     ),
                             ],
                           ),
@@ -99,7 +106,8 @@ class ExampleProfileFotoTipBottomSheet extends ConsumerWidget {
             child: ElevatedButton(
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
                   side: const BorderSide(color: Color(0xff0031AA)),
                   backgroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 15),

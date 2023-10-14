@@ -3,7 +3,7 @@ import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/withdraw/service/withdraw_reason.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WithdrawPage extends ConsumerStatefulWidget {
   static String get routeLocation => "/withdraw";
@@ -58,11 +58,15 @@ class _WithdrawPageState extends ConsumerState<WithdrawPage> {
                   },
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 5),
-                    padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 21),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 14, horizontal: 21),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: selectedReason == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xffcecece),
+                        color: selectedReason ==
+                                WithDrawalReason.enumToString(reason)
+                            ? const Color(0xff0031AA)
+                            : const Color(0xffcecece),
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -70,7 +74,10 @@ class _WithdrawPageState extends ConsumerState<WithdrawPage> {
                       WithDrawalReason.enumToString(reason),
                       style: TextStyle(
                         fontSize: 20,
-                        color: selectedReason == WithDrawalReason.enumToString(reason) ? const Color(0xff0031AA) : const Color(0xff6c6c6c),
+                        color: selectedReason ==
+                                WithDrawalReason.enumToString(reason)
+                            ? const Color(0xff0031AA)
+                            : const Color(0xff6c6c6c),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -97,7 +104,8 @@ class _WithdrawPageState extends ConsumerState<WithdrawPage> {
               ),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 backgroundColor: const Color(0xff0031AA),
               ),
             ),

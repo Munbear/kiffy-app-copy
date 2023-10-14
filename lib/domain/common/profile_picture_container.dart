@@ -1,20 +1,26 @@
 import 'package:Kiffy/infra/explore_client.dart';
 import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProfilePictureContainer extends ConsumerStatefulWidget {
   final List<MediaView> userProfilePictures;
   final PageController pageController;
   final double height;
 
-  const ProfilePictureContainer({super.key, required this.userProfilePictures, required this.pageController, required this.height});
+  const ProfilePictureContainer(
+      {super.key,
+      required this.userProfilePictures,
+      required this.pageController,
+      required this.height});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ProfilePictureContainerState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ProfilePictureContainerState();
 }
 
-class _ProfilePictureContainerState extends ConsumerState<ProfilePictureContainer> {
+class _ProfilePictureContainerState
+    extends ConsumerState<ProfilePictureContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +40,9 @@ class _ProfilePictureContainerState extends ConsumerState<ProfilePictureContaine
       ),
       child: PageView(
         controller: widget.pageController,
-        onPageChanged: (int page) => ref.read(currentPictureIndex.notifier).update((state) => state = page),
+        onPageChanged: (int page) => ref
+            .read(currentPictureIndex.notifier)
+            .update((state) => state = page),
         children: widget.userProfilePictures.map(
           (foto) {
             return Image.network(

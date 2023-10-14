@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MatchingMoreButton extends ConsumerWidget {
   final Function() onClick;
@@ -29,7 +29,8 @@ class MatchingMoreButton extends ConsumerWidget {
             child: InkWell(
               onTap: () => onClick(),
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Colors.transparent,
@@ -41,7 +42,8 @@ class MatchingMoreButton extends ConsumerWidget {
                       tileMode: TileMode.mirror,
                     ).createShader(bound);
                   },
-                  child: const Text('More', style: TextStyle(color: Colors.white)),
+                  child:
+                      const Text('More', style: TextStyle(color: Colors.white)),
                 ),
               ),
             ),

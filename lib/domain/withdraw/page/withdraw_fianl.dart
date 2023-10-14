@@ -2,8 +2,8 @@ import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/my_page/page/my_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // class WithdrawFinal extends HookConsumerWidget {
 //   const WithdrawFinal({super.key});
@@ -118,19 +118,28 @@ class WithdrawFinal extends ConsumerWidget {
               const Center(
                 child: Text(
                   "Withdrawal",
-                  style: TextStyle(fontSize: 20, color: Color(0xff0031AA), fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Color(0xff0031AA),
+                      fontWeight: FontWeight.w600),
                 ),
               ),
               const SizedBox(height: 20),
               const Text(
                 "Are you sure you want to delete the account?",
-                style: TextStyle(fontSize: 15, color: Color(0xff6c6c6c), fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Color(0xff6c6c6c),
+                    fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               const Text(
                 "If you delete an account, it cannot be recovered.",
-                style: TextStyle(fontSize: 15, color: Color(0xff6c6c6c), fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Color(0xff6c6c6c),
+                    fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
@@ -151,7 +160,8 @@ class WithdrawFinal extends ConsumerWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 20),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
                   backgroundColor: const Color(0xff0031AA),
                 ),
               ),
@@ -159,7 +169,8 @@ class WithdrawFinal extends ConsumerWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: MyPage.routeLocation),
+      bottomNavigationBar:
+          CustomBottomNavBar(currentPath: MyPage.routeLocation),
     );
   }
 }

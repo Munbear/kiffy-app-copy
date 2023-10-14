@@ -3,7 +3,7 @@ import 'package:Kiffy/domain/common/profile_text_infro_container.dart';
 import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/domain/my_page/widget/my_page_button.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../infra/explore_client.dart';
 import '../../common/custom_bottom_nav_bar.dart';
@@ -58,14 +58,16 @@ class _MyPageState extends ConsumerState<MyPage> {
                 ),
 
                 // 유저 이름, 나이
-                if ((myProfile != null) && currentImageIndex != (myProfile.medias.length - 1))
+                if ((myProfile != null) &&
+                    currentImageIndex != (myProfile.medias.length - 1))
                   ProfileTextInfoContainer(
                     userName: myProfile.name,
                     userAge: myProfile.birthDate,
                   ),
 
                 // 자기소개
-                if ((myProfile != null) && currentImageIndex == (myProfile.medias.length - 1))
+                if ((myProfile != null) &&
+                    currentImageIndex == (myProfile.medias.length - 1))
                   Positioned(
                     left: 25,
                     bottom: 25,
@@ -82,15 +84,22 @@ class _MyPageState extends ConsumerState<MyPage> {
                 if (myProfile != null)
                   Positioned(
                     top: 15,
-                    child: ProfileFotoIndicator(mediasLength: myProfile.medias.length, endIndex: currentImageIndex.toDouble()),
+                    child: ProfileFotoIndicator(
+                        mediasLength: myProfile.medias.length,
+                        endIndex: currentImageIndex.toDouble()),
                   ),
 
                 if (myProfile != null)
                   // 프로필 카드 버튼
                   Positioned.fill(
                     child: PageControllerButton(
-                      prevButton: () => ref.read(exploreProvider).prevImage(currentImageIndex, pageController),
-                      nextButton: () => ref.read(exploreProvider).nextImage(currentImageIndex, pageController, myProfile.medias.length),
+                      prevButton: () => ref
+                          .read(exploreProvider)
+                          .prevImage(currentImageIndex, pageController),
+                      nextButton: () => ref.read(exploreProvider).nextImage(
+                          currentImageIndex,
+                          pageController,
+                          myProfile.medias.length),
                     ),
                   ),
               ],

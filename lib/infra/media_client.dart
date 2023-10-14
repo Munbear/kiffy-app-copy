@@ -2,7 +2,7 @@ import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Future<MediaView> uploadImage(String path) async {
 //   var dio = ApiClient().dio;
@@ -26,9 +26,11 @@ class Media {
   Media(this.ref) : dio = ref.read(dioProvider);
 
   Future<MediaView> uploadImage(String path) async {
-    var formData = FormData.fromMap({"file": await MultipartFile.fromFile(path)});
+    var formData =
+        FormData.fromMap({"file": await MultipartFile.fromFile(path)});
 
-    Response response = await dio.post("/api/view/media/v1/upload/image", data: formData);
+    Response response =
+        await dio.post("/api/view/media/v1/upload/image", data: formData);
 
     // return response.data.map<MediaView>(() => MediaView).toList();
     // :: 나중에 MediaView 로 변경
@@ -48,5 +50,6 @@ class UploadImageResponse {
     required this.type,
   });
 
-  static UploadImageResponse fromMap(Map<String, dynamic> d) => UploadImageResponse(id: d["id"], url: d["url"], type: d["type"]);
+  static UploadImageResponse fromMap(Map<String, dynamic> d) =>
+      UploadImageResponse(id: d["id"], url: d["url"], type: d["type"]);
 }

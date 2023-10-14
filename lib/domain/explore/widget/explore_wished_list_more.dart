@@ -1,7 +1,7 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ExploreWishedListMore extends ConsumerWidget {
   const ExploreWishedListMore({super.key});

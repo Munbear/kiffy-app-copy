@@ -3,7 +3,7 @@ import 'package:Kiffy/model/explore_user_profiles_view/explore_user_profiles_vie
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final exploreProvider = Provider<ExploreHandler>((ref) => ExploreHandler(ref));
 
@@ -24,7 +24,8 @@ class ExploreHandler {
 
     await Future.delayed(const Duration(milliseconds: 1500));
 
-    List<UserProfileView>? items = ExploreUserProfilesView.fromJson(response.data).list;
+    List<UserProfileView>? items =
+        ExploreUserProfilesView.fromJson(response.data).list;
 
     ref.read(userCardsProvider.notifier).update((state) => items);
 
@@ -32,10 +33,12 @@ class ExploreHandler {
   }
 
   // 다음 카드
-  void nextImage(int currentIndex, PageController pageController, int mediasLength) {
+  void nextImage(
+      int currentIndex, PageController pageController, int mediasLength) {
     if (currentIndex < mediasLength - 1) {
       currentIndex++;
-      pageController.animateToPage(currentIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+      pageController.animateToPage(currentIndex,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
 
@@ -43,7 +46,8 @@ class ExploreHandler {
   void prevImage(int currentIndex, PageController pageController) {
     if (currentIndex > 0) {
       currentIndex--;
-      pageController.animateToPage(currentIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+      pageController.animateToPage(currentIndex,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
 }

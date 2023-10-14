@@ -3,8 +3,8 @@ import 'dart:ui';
 
 import 'package:Kiffy/config/constants/contstants.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../env/env.dart';
 
@@ -66,14 +66,16 @@ final dioProvider = StateProvider<Dio>((ref) {
 
     String? accessToken = await storage.read(key: "accessToken");
 
-    if (storage != null) options.headers['authorization'] = 'Bearer $accessToken';
+    if (storage != null)
+      options.headers['authorization'] = 'Bearer $accessToken';
 
     // 국가 코드
     options.headers['x-kiffy-country-code'] = window.locale.countryCode;
 
     return handler.next(options);
   }, onResponse: (response, handler) {
-    print('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
+    print(
+        'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
     return handler.next(response);
   }, onError: (DioError err, handler) {
     print(err.message);

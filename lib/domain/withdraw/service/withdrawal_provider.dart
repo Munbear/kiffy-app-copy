@@ -1,7 +1,9 @@
 import 'package:Kiffy/domain/withdraw/service/withdraw_reason.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-var withdrawalProvider = StateNotifierProvider<WithdrawalInputState, WithdrawalInput>((ref) => WithdrawalInputState(ref));
+var withdrawalProvider =
+    StateNotifierProvider<WithdrawalInputState, WithdrawalInput>(
+        (ref) => WithdrawalInputState(ref));
 
 // 최종 회원 탈퇴 사유 객체
 class WithdrawalInput {
@@ -24,9 +26,11 @@ class SelecteWithdrawalReason {
     required this.validationMessage,
   });
 
-  static SelecteWithdrawalReason fail(String message) => SelecteWithdrawalReason(isValid: false, validationMessage: message);
+  static SelecteWithdrawalReason fail(String message) =>
+      SelecteWithdrawalReason(isValid: false, validationMessage: message);
 
-  static SelecteWithdrawalReason success() => SelecteWithdrawalReason(isValid: true, validationMessage: "");
+  static SelecteWithdrawalReason success() =>
+      SelecteWithdrawalReason(isValid: true, validationMessage: "");
 }
 
 class WithdrawalInputState extends StateNotifier<WithdrawalInput> {

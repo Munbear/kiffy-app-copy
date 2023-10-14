@@ -1,6 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/border._style.dart';
 
@@ -8,10 +8,12 @@ class UncheckedProfileCircle extends ConsumerStatefulWidget {
   const UncheckedProfileCircle({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _UncheckedProfileCircleState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UncheckedProfileCircleState();
 }
 
-class _UncheckedProfileCircleState extends ConsumerState<UncheckedProfileCircle> {
+class _UncheckedProfileCircleState
+    extends ConsumerState<UncheckedProfileCircle> {
   lockMessageFullScreenPopup(context) {
     return showDialog(
       barrierColor: Colors.white.withOpacity(0.7),
@@ -67,7 +69,8 @@ class _UncheckedProfileCircleState extends ConsumerState<UncheckedProfileCircle>
           Container(
             width: 93,
             height: 93,
-            decoration: BorderGradientBorderRadius50.outlineGradientBoxDecoration,
+            decoration:
+                BorderGradientBorderRadius50.outlineGradientBoxDecoration,
             child: Container(
               padding: const EdgeInsets.all(4),
               width: 83,

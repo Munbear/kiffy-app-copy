@@ -2,7 +2,7 @@ import 'package:Kiffy/domain/explore/widget/explore_wished_list_item.dart';
 import 'package:Kiffy/infra/wish_client.dart';
 import 'package:Kiffy/model/wish_other_profiles_view/wish_other_profiles_view.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../model/user_profile_view/user_profile_view.dart';
 
@@ -10,7 +10,8 @@ class PreviewLikedList extends ConsumerStatefulWidget {
   const PreviewLikedList({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _PreviewLikedListState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _PreviewLikedListState();
 }
 
 class _PreviewLikedListState extends ConsumerState<PreviewLikedList> {
@@ -41,7 +42,8 @@ class _PreviewLikedListState extends ConsumerState<PreviewLikedList> {
                   ),
                 ),
               // 자세히 보기
-              if (wishOtherProfiles != null && wishOtherProfiles.isEmpty) const Center(child: Text("아직 위시를 받은 적이 없습니다."))
+              if (wishOtherProfiles != null && wishOtherProfiles.isEmpty)
+                const Center(child: Text("아직 위시를 받은 적이 없습니다."))
               // 위시 받은 유저 리스트
               // wishOtherProfiles.list.isNotEmpty ? const ExploreWishedListMore() : const Center(child: Text("아직 위시를 받은 적이 없습니다.")),
             ],

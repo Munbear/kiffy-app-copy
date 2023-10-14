@@ -11,8 +11,7 @@ import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../infra/user_client.dart';
 
@@ -173,7 +172,8 @@ class AddProfileImagePage extends ConsumerStatefulWidget {
   const AddProfileImagePage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddProfileImagePageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AddProfileImagePageState();
 }
 
 class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
@@ -181,7 +181,8 @@ class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
   int inputImageMaxLength = 6;
 
   List<AddProfileInputImageItem> inputImages = [];
-  AddProfileInputItemValidation inputImagesValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputImagesValidation =
+      AddProfileInputItemValidation.success();
 
   void onAddedListener(String path) {
     ref.read(uploadMedia).uploadImage(path).then(
@@ -239,7 +240,10 @@ class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
               children: [
                 const Text(
                   "Select your pictures",
-                  style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
                   width: 18,
@@ -264,7 +268,9 @@ class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
                     index: index,
                     onDeleted: (idx) => onDeletedListener(idx),
                     onAdded: (path) => onAddedListener(path),
-                    filePath: inputImages.length > index ? inputImages.elementAt(index).filePath : null,
+                    filePath: inputImages.length > index
+                        ? inputImages.elementAt(index).filePath
+                        : null,
                   ),
                 );
               }),
@@ -280,12 +286,16 @@ class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
             // 넥스트 버튼
             ElevatedButton(
               onPressed: () {
-                inputImagesValidation = ref.read(addProfileInputProvider.notifier).setMedias(
-                      inputImages.map((image) {
-                        ref.read(addProfileInputProvider.notifier).updateMedia(image.id, image.orderNum);
-                        return UserProfileCreateAndEditCommandProfileMedia(id: image.id, orderNum: image.orderNum);
-                      }).toList(),
-                    );
+                inputImagesValidation =
+                    ref.read(addProfileInputProvider.notifier).setMedias(
+                          inputImages.map((image) {
+                            ref
+                                .read(addProfileInputProvider.notifier)
+                                .updateMedia(image.id, image.orderNum);
+                            return UserProfileCreateAndEditCommandProfileMedia(
+                                id: image.id, orderNum: image.orderNum);
+                          }).toList(),
+                        );
 
                 setState(() {});
 
@@ -296,7 +306,9 @@ class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
                     log(e.message ?? "");
                   }
 
-                  ref.read(routerProvider).replace("/profile/add_profile/complete");
+                  ref
+                      .read(routerProvider)
+                      .replace("/profile/add_profile/complete");
                 }
               },
               style: ElevatedButton.styleFrom(

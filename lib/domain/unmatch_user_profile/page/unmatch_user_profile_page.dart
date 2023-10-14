@@ -7,7 +7,7 @@ import 'package:Kiffy/domain/common/reject_circle_button.dart';
 import 'package:Kiffy/domain/common/wish_circle_button.dart';
 import 'package:Kiffy/infra/wish_client.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../infra/explore_client.dart';
 import '../../common/profile_picture_container.dart';
@@ -31,7 +31,8 @@ class UnMatchUserProfile extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _UnMatchUserProfileState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UnMatchUserProfileState();
 }
 
 class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
@@ -72,7 +73,9 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                     // 프로필 사진 인디케이터
                     Positioned(
                       top: 15,
-                      child: ProfileFotoIndicator(mediasLength: userImages.length, endIndex: currentImageIndex.toDouble()),
+                      child: ProfileFotoIndicator(
+                          mediasLength: userImages.length,
+                          endIndex: currentImageIndex.toDouble()),
                     ),
 
                     // 유저 닉네임, 유저 나이
@@ -89,17 +92,23 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                         bottom: 25,
                         child: Text(
                           widget.userIntro,
-                          style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
 
                     // 이미지 페이지 컨트롤
                     Positioned(
                       child: PageControllerButton(
-                          prevButton: () => ref.read(exploreProvider).prevImage(currentImageIndex, pageController), //prevImage(currentImageIndex),
-                          nextButton: () => ref
-                              .read(exploreProvider)
-                              .nextImage(currentImageIndex, pageController, userImages.length) //nextImage(currentImageIndex),
+                          prevButton: () => ref.read(exploreProvider).prevImage(
+                              currentImageIndex,
+                              pageController), //prevImage(currentImageIndex),
+                          nextButton: () => ref.read(exploreProvider).nextImage(
+                              currentImageIndex,
+                              pageController,
+                              userImages.length) //nextImage(currentImageIndex),
                           ),
                     ),
 
@@ -114,7 +123,9 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                           RejectCircleButton(
                             onClick: () async {
                               // 위시 거절
-                              ref.read(wishClientProvider).rejectWish(userId: widget.userId);
+                              ref
+                                  .read(wishClientProvider)
+                                  .rejectWish(userId: widget.userId);
                               // 돌아가기
                               Navigator.pop(context);
                             },
@@ -124,7 +135,9 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                           WishCircleButton(
                             onClick: () async {
                               // 위시 수락
-                              ref.read(wishClientProvider).approveWish(userId: widget.userId);
+                              ref
+                                  .read(wishClientProvider)
+                                  .approveWish(userId: widget.userId);
                               // 돌아 가기
                               Navigator.pop(context);
                               // print("수락수락");
@@ -140,7 +153,8 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: MatchingPage.routeLocation),
+      bottomNavigationBar:
+          CustomBottomNavBar(currentPath: MatchingPage.routeLocation),
     );
   }
 }

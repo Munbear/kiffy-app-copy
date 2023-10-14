@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../infra/match_client.dart';
 import '../../core/enum/contact_type.dart';
@@ -22,10 +22,18 @@ class ContactInfoContainer extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // 여상 유저한테만 보여짐
-          if (userDetailInfo!.contacts.first.contactType == ContactType.LINE.name)
-            const Image(image: AssetImage("assets/images/line_image.png"), width: 29, height: 29),
-          if (userDetailInfo.contacts.first.contactType == ContactType.WHATSAPP.name)
-            const Image(image: AssetImage("assets/icons/whatsapp_icon.png"), width: 29, height: 29),
+          if (userDetailInfo!.contacts.first.contactType ==
+              ContactType.LINE.name)
+            const Image(
+                image: AssetImage("assets/images/line_image.png"),
+                width: 29,
+                height: 29),
+          if (userDetailInfo.contacts.first.contactType ==
+              ContactType.WHATSAPP.name)
+            const Image(
+                image: AssetImage("assets/icons/whatsapp_icon.png"),
+                width: 29,
+                height: 29),
           const SizedBox(width: 8),
 
           // 여성 유저한테만 보여짐

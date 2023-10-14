@@ -1,7 +1,7 @@
 import 'package:Kiffy/domain/sign/provider/auth_provider.dart';
 import 'package:Kiffy/infra/auth_client.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignPage extends ConsumerStatefulWidget {
   static String get routeLoaction => "/sign";
@@ -46,7 +46,8 @@ class _SignPageState extends ConsumerState<SignPage> {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 shadowColor: const Color(0x00000000),
-                padding: const EdgeInsets.only(top: 11, bottom: 11, right: 50, left: 50),
+                padding: const EdgeInsets.only(
+                    top: 11, bottom: 11, right: 50, left: 50),
                 backgroundColor: Colors.white,
                 foregroundColor: const Color(0xff494949),
                 textStyle: const TextStyle(fontSize: 16),

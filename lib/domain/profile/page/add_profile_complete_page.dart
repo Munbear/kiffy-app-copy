@@ -3,7 +3,7 @@ import 'package:Kiffy/domain/common/border._style.dart';
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddProfileCompletePage extends ConsumerStatefulWidget {
   static String get routeLocation => "/profile/add_profile/complete";
@@ -11,10 +11,12 @@ class AddProfileCompletePage extends ConsumerStatefulWidget {
   const AddProfileCompletePage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddProfileCompletePageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AddProfileCompletePageState();
 }
 
-class _AddProfileCompletePageState extends ConsumerState<AddProfileCompletePage> {
+class _AddProfileCompletePageState
+    extends ConsumerState<AddProfileCompletePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,13 +43,16 @@ class _AddProfileCompletePageState extends ConsumerState<AddProfileCompletePage>
                       child: Container(
                         width: 172,
                         height: 172,
-                        decoration: BorderGradientCircleShape.outlineGradientBoxDecoration,
+                        decoration: BorderGradientCircleShape
+                            .outlineGradientBoxDecoration,
                         child: Container(
                           padding: const EdgeInsets.all(7),
                           decoration: BorderGradientCircleShape.innerDecoration,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
-                            child: Image.asset("assets/images/example_for_dev.png", fit: BoxFit.cover),
+                            child: Image.asset(
+                                "assets/images/example_for_dev.png",
+                                fit: BoxFit.cover),
                           ),
                         ),
                       ),

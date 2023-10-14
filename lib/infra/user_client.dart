@@ -1,7 +1,7 @@
 import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/model/user_status_view/user_status_view.dart';
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Future<UserStatusView> getUserStatus() async {
 //   var ref;
@@ -16,7 +16,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // }
 
-final userStatusResponse = Provider<UserStatusResponse>((ref) => UserStatusResponse(ref));
+final userStatusResponse =
+    Provider<UserStatusResponse>((ref) => UserStatusResponse(ref));
 
 class UserStatusResponse {
   Ref ref;
@@ -27,7 +28,9 @@ class UserStatusResponse {
   getUserStatus() async {
     final response = await dio.get("/api/view/user/v1/my/status");
 
-    ref.read(userStatusView.notifier).update((state) => state = UserStatusView.fromJson(response.data));
+    ref
+        .read(userStatusView.notifier)
+        .update((state) => state = UserStatusView.fromJson(response.data));
   }
 }
 

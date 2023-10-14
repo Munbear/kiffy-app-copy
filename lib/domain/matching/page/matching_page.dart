@@ -3,7 +3,7 @@ import 'package:Kiffy/domain/matching/widget/matching_card.dart';
 import 'package:Kiffy/domain/my_page/widget/matching_more_button.dart';
 import 'package:Kiffy/infra/match_client.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/custom_bottom_nav_bar.dart';
 
@@ -94,13 +94,16 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
                         ),
                       ),
                     )
-                  : const Expanded(child: Center(child: Text("아직 매칭된 유져가 없습니다"))),
+                  : const Expanded(
+                      child: Center(child: Text("아직 매칭된 유져가 없습니다"))),
 
           // 더보기 버튼
           // ref.read(isMatchedUserListMoreProvider.notifier).state
           isMore
               ? MatchingMoreButton(
-                  onClick: () => ref.read(matchedUserProfileProvider).getMatchedUsers(matchedUserList.length, 6),
+                  onClick: () => ref
+                      .read(matchedUserProfileProvider)
+                      .getMatchedUsers(matchedUserList.length, 6),
                 )
               : const SizedBox()
         ],

@@ -8,7 +8,7 @@ import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/infra/match_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MatchingDetailPage extends ConsumerStatefulWidget {
   static String get routeLocation => "/matchingDetail";
@@ -17,7 +17,8 @@ class MatchingDetailPage extends ConsumerStatefulWidget {
   const MatchingDetailPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MatchingDetailPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _MatchingDetailPageState();
 }
 
 class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
@@ -52,16 +53,21 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
                   if (myProfileState!.gender == Gender.FEMALE)
                     const Text(
                       "✉️ His ID for contact",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                     ),
 
                   // SNS 연락처 아이디 (여성 유저한테만 보임 )
-                  if (myProfileState.gender == Gender.FEMALE) const ContactInfoContainer(),
+                  if (myProfileState.gender == Gender.FEMALE)
+                    const ContactInfoContainer(),
 
                   // 코칭 메세지 텍스트
                   Text(
-                    myProfileState.gender == Gender.FEMALE ? "✔️ Send it yo him like this!" : "✔️ Wait for her contact!",
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    myProfileState.gender == Gender.FEMALE
+                        ? "✔️ Send it yo him like this!"
+                        : "✔️ Wait for her contact!",
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 8),
 
@@ -75,7 +81,8 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
                           :
                           // 남성 유저한테 보여질 텍스트
                           "She'll get a message like this.",
-                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+                      style: const TextStyle(
+                          fontSize: 13, fontWeight: FontWeight.w400),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -83,20 +90,27 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
                   // 코칭 이모지
                   GestureDetector(
                     onTap: () {
-                      Clipboard.setData(ClipboardData(text: myProfileState.name)).then((value) {
-                        return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("it has been copied")));
+                      Clipboard.setData(
+                              ClipboardData(text: myProfileState.name))
+                          .then((value) {
+                        return ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text("it has been copied")));
                       });
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 24),
-                      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 18, vertical: 12),
                       decoration: BoxDecoration(
                         // color: Colors.red,
                         color: const Color(0xffEEEEEE),
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: Text(
-                        userDetailInfo?.name != null ? "Hey I'm ${myProfileState.name}" : "",
+                        userDetailInfo?.name != null
+                            ? "Hey I'm ${myProfileState.name}"
+                            : "",
                         style: const TextStyle(fontSize: 18),
                       ),
                     ),
@@ -136,7 +150,10 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
                         ),
                         child: const Text(
                           "Cancel Matching",
-                          style: TextStyle(fontSize: 20, color: Color(0xffFF3A3A), fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Color(0xffFF3A3A),
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
@@ -147,7 +164,8 @@ class _MatchingDetailPageState extends ConsumerState<MatchingDetailPage> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: MatchingPage.routeLocation),
+      bottomNavigationBar:
+          CustomBottomNavBar(currentPath: MatchingPage.routeLocation),
     );
   }
 }

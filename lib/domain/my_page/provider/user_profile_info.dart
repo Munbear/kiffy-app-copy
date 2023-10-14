@@ -1,10 +1,11 @@
 import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 유저 프로필 정보
-final userInfoProvider = Provider<MyProfileHandler>((ref) => MyProfileHandler(ref));
+final userInfoProvider =
+    Provider<MyProfileHandler>((ref) => MyProfileHandler(ref));
 
 // 내 프로필 핸들러
 class MyProfileHandler {
@@ -17,7 +18,9 @@ class MyProfileHandler {
   getMyProfile() async {
     final res = await dio.get("/api/view/user/v1/my/profile");
 
-    return ref.read(myProfileInfo.notifier).update((state) => state = UserProfileView.fromJson(res.data));
+    return ref
+        .read(myProfileInfo.notifier)
+        .update((state) => state = UserProfileView.fromJson(res.data));
   }
 }
 

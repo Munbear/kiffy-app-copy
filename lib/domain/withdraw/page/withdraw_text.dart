@@ -2,7 +2,7 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WithdrawText extends ConsumerStatefulWidget {
   static String get routeLocation => "/withdrawText";
@@ -52,11 +52,13 @@ class _WithdrawTextState extends ConsumerState<WithdrawText> {
               decoration: InputDecoration(
                 hintText: "Reason for withdraw",
                 enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xffcecece), width: 2.0),
+                  borderSide:
+                      const BorderSide(color: Color(0xffcecece), width: 2.0),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xff0031AA), width: 3.0),
+                  borderSide:
+                      const BorderSide(color: Color(0xff0031AA), width: 3.0),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 contentPadding: const EdgeInsets.all(18),
@@ -75,7 +77,8 @@ class _WithdrawTextState extends ConsumerState<WithdrawText> {
               ),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 backgroundColor: const Color(0xff0031AA),
               ),
             ),

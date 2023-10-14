@@ -4,7 +4,7 @@ import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/setting_page/widget/setting_button.dart';
 import 'package:Kiffy/domain/sign/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SettingPage extends ConsumerStatefulWidget {
   static String get routeLocation => "/setting";
@@ -44,7 +44,8 @@ class _SettingPageState extends ConsumerState<SettingPage> {
                 // 로그아웃 함수 추가
                 ref.watch(authProvider.notifier).logout();
               },
-              child: const SettingButton(IconPath: "assets/images/log_out.png", text: "Log out"),
+              child: const SettingButton(
+                  IconPath: "assets/images/log_out.png", text: "Log out"),
             ),
           ),
           const SizedBox(height: 30),
@@ -53,7 +54,9 @@ class _SettingPageState extends ConsumerState<SettingPage> {
             padding: const EdgeInsets.symmetric(horizontal: 28),
             child: GestureDetector(
               onTap: () => ref.read(routerProvider).pushNamed("withdraw"),
-              child: const SettingButton(IconPath: "assets/images/withdrawal_img.png", text: "Withdrawal"),
+              child: const SettingButton(
+                  IconPath: "assets/images/withdrawal_img.png",
+                  text: "Withdrawal"),
             ),
           ),
           const Spacer(),

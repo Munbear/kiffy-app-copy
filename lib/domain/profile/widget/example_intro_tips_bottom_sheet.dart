@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ExampleIntroTipsBottomSheet extends ConsumerWidget {
   ExampleIntroTipsBottomSheet({super.key});
@@ -54,7 +54,9 @@ class ExampleIntroTipsBottomSheet extends ConsumerWidget {
               Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: const BorderSide(color: Color(0xff0031AA))),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: const BorderSide(color: Color(0xff0031AA))),
               backgroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 15),
             ),

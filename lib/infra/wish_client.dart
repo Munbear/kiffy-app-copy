@@ -3,9 +3,10 @@ import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:Kiffy/model/wish_other_profiles_view/wish_other_profiles_view.dart';
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final wishClientProvider = Provider<WishClientHandler>((ref) => WishClientHandler(ref));
+final wishClientProvider =
+    Provider<WishClientHandler>((ref) => WishClientHandler(ref));
 
 class WishClientHandler {
   final Ref ref;

@@ -16,8 +16,8 @@ import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page
 import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../domain/reset_profile/reset_profile.dart';
 

@@ -5,16 +5,18 @@ import 'package:Kiffy/infra/explore_client.dart';
 import 'package:Kiffy/infra/match_client.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MathcingUserProfileCard extends ConsumerStatefulWidget {
   const MathcingUserProfileCard({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MathcingUserProfileCardState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _MathcingUserProfileCardState();
 }
 
-class _MathcingUserProfileCardState extends ConsumerState<MathcingUserProfileCard> {
+class _MathcingUserProfileCardState
+    extends ConsumerState<MathcingUserProfileCard> {
   PageController pageController = PageController(initialPage: 0);
 
   @override
@@ -79,7 +81,9 @@ class _MathcingUserProfileCardState extends ConsumerState<MathcingUserProfileCar
                       ),
                     ),
                     Text(
-                      BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userDetailInfo.birthDate)).toString(),
+                      BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(
+                              userDetailInfo.birthDate))
+                          .toString(),
                       style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
@@ -108,8 +112,13 @@ class _MathcingUserProfileCardState extends ConsumerState<MathcingUserProfileCar
             // 이미지 컨트롤
             Positioned(
               child: PageControllerButton(
-                prevButton: () => ref.read(exploreProvider).prevImage(currentImageIndex, pageController),
-                nextButton: () => ref.read(exploreProvider).nextImage(currentImageIndex, pageController, userDetailInfo.medias.length),
+                prevButton: () => ref
+                    .read(exploreProvider)
+                    .prevImage(currentImageIndex, pageController),
+                nextButton: () => ref.read(exploreProvider).nextImage(
+                    currentImageIndex,
+                    pageController,
+                    userDetailInfo.medias.length),
               ),
             ),
           ],

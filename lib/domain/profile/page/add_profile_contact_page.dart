@@ -5,7 +5,7 @@ import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddProfileContactPage extends ConsumerStatefulWidget {
   static String get routeLocation => "/profile/add_profile/contact";
@@ -13,11 +13,13 @@ class AddProfileContactPage extends ConsumerStatefulWidget {
   const AddProfileContactPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddProfileContactPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AddProfileContactPageState();
 }
 
 class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
-  AddProfileInputItemValidation inputContactValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputContactValidation =
+      AddProfileInputItemValidation.success();
 
   String inputContactId = "";
   ContactType? inputContactType;
@@ -36,7 +38,10 @@ class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
 
             const Text(
               "Messenger for KIFFY",
-              style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 10),
 
@@ -52,7 +57,9 @@ class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
                     height: 55,
                     width: 55,
                     margin: const EdgeInsets.only(right: 10),
-                    decoration: contactApp == inputContactType ? BorderGradientCircleShape.outlineGradientBoxDecoration : null,
+                    decoration: contactApp == inputContactType
+                        ? BorderGradientCircleShape.outlineGradientBoxDecoration
+                        : null,
                     child: Container(
                       padding: const EdgeInsets.all(4),
                       decoration: BorderGradientCircleShape.innerDecoration,
@@ -63,7 +70,9 @@ class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
                           Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: inputContactType == contactApp ? null : Colors.white.withOpacity(0.7),
+                              color: inputContactType == contactApp
+                                  ? null
+                                  : Colors.white.withOpacity(0.7),
                             ),
                           )
                         ],
@@ -78,7 +87,10 @@ class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
 
             const Text(
               "ID for contact",
-              style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 10),
 
@@ -89,12 +101,20 @@ class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
               decoration: const InputDecoration(
                   hintText: "Please enter it.",
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                    borderSide:
+                        BorderSide(color: Color(0xffcecece), width: 2.0),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                        topRight: Radius.circular(15)),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15), topRight: Radius.circular(15)),
+                    borderSide:
+                        BorderSide(color: Color(0xff0031AA), width: 3.0),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                        topRight: Radius.circular(15)),
                   ),
                   contentPadding: EdgeInsets.all(18)),
             ),
@@ -110,15 +130,20 @@ class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
             // 다음 버튼
             ElevatedButton(
               onPressed: () {
-                inputContactValidation = ref.read(addProfileInputProvider.notifier).setContact(
-                      inputContactId,
-                      inputContactType,
-                    );
+                inputContactValidation =
+                    ref.read(addProfileInputProvider.notifier).setContact(
+                          inputContactId,
+                          inputContactType,
+                        );
                 setState(() {});
 
                 if (inputContactValidation.isValid) {
-                  ref.read(addProfileInputProvider.notifier).updateContact(inputContactId, inputContactType);
-                  ref.read(routerProvider).replace("/profile/add_profile/intro");
+                  ref
+                      .read(addProfileInputProvider.notifier)
+                      .updateContact(inputContactId, inputContactType);
+                  ref
+                      .read(routerProvider)
+                      .replace("/profile/add_profile/intro");
                 }
               },
               style: ElevatedButton.styleFrom(

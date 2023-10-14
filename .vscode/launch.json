@@ -7,7 +7,7 @@
       "type": "dart",
       "program": "lib/env/main_dev.dart",
       "args": [
-        "--flavor",
+        // "--flavor",
         "dev"
       ]
     },
@@ -18,7 +18,7 @@
       "program": "lib/env/main_dev.dart",
       "flutterMode": "release",
       "args": [
-          "--flavor",
+          // "--flavor",
           "dev"
       ]
     },
@@ -28,7 +28,7 @@
       "type": "dart",
       "program": "lib/env/main_prod.dart",
       "args": [
-        "--flavor",
+        // "--flavor",
         "prod"
       ]
     },
@@ -39,7 +39,7 @@
       "program": "lib/env/main_prod.dart",
       "flutterMode": "release",
       "args": [
-          "--flavor",
+          // "--flavor",
           "prod"
       ]
     },
