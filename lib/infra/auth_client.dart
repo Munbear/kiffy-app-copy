@@ -34,8 +34,10 @@ class ResponseSignIn {
   ResponseSignIn(this.ref) : dio = ref.read(dioProvider);
 
   signIn(SignProvider provider, String accessToken) async {
-    final response = await dio.post("/api/view/sign/v1/in/${provider.toCode()}",
+    final response = await dio.post("/api/sign/v1/in/${provider.toCode()}",
         data: jsonEncode({"accessToken": accessToken}));
+
+    print(response.data);
 
     final item = SignInResponse.fromJson(response.data);
 
