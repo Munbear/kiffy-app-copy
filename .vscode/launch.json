@@ -1,25 +1,58 @@
 {
   "version": "0.2.0",
+  "inputs": [
+    {
+      "id": "pickBuildMode",
+      "description": "Flutter build mode",
+      "type": "pickString",
+      "default": "--debug",
+      "options": [
+        "--debug",
+        "--profile",
+      ],
+    },
+    {
+      "id": "pickFlavor",
+      "description": "Flutter build flavor",
+      "type": "pickString",
+      "default": "dev",
+      "options": [
+        "dev",
+        "prod"
+      ],
+    },
+    {
+      "id": "pickMain",
+      "description": "Flutter build flavor",
+      "type": "pickString",
+      "default": "dev",
+      "options": [
+        "main_dev.dart",
+        "main_prod.dart"
+      ],
+    }
+  ],
   "configurations": [
+    {
+      "name": "select build, flavor",
+      "request": "launch",
+      "type": "dart",
+      // "deviceId": "${command:flutter.selectDevice}",
+      "program": "lib/env/${input:pickMain}",
+      "args": [
+        "--flavor",
+        "${input:pickFlavor}",
+        "${input:pickBuildMode}"
+      ]
+    },
     {
       "name": "kiffy-dev",
       "request": "launch",
       "type": "dart",
       "program": "lib/env/main_dev.dart",
       "args": [
-        // "--flavor",
+        "--flavor",
         "dev"
-      ]
-    },
-    {
-      "name": "kiffy-dev-release",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/env/main_dev.dart",
-      "flutterMode": "release",
-      "args": [
-          // "--flavor",
-          "dev"
       ]
     },
     {
@@ -28,18 +61,7 @@
       "type": "dart",
       "program": "lib/env/main_prod.dart",
       "args": [
-        // "--flavor",
-        "prod"
-      ]
-    },
-    {
-      "name": "kiffy-prod-release",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/env/main_prod.dart",
-      "flutterMode": "release",
-      "args": [
-          // "--flavor",
+          "--flavor",
           "prod"
       ]
     },
