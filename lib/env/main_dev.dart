@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:Kiffy/config/firebase/prod/firebase_options.dart';
 import 'package:Kiffy/kiffy_app.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -23,7 +21,7 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
 
   await Firebase.initializeApp(
-    name: "Kiffy-dev",
+    name: "kiffy-dev",
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
