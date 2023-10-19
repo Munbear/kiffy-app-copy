@@ -29,6 +29,13 @@
             {
               "client_id": "858024060821-a460lhc2mimo7ur28qjhna92uo12uvaa.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "858024060821-dsflvrrjr4fh6p2qv5u4du4s6b11edq6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "club.kiffy.app"
+              }
             }
           ]
         }

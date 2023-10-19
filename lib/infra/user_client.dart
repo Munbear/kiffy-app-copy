@@ -25,7 +25,7 @@ class UserStatusResponse {
 
   UserStatusResponse(this.ref) : dio = ref.read(dioProvider);
 
-  getUserStatus() async {
+  cgetUserStatus() async {
     final response = await dio.get("/api/view/user/v1/my/status");
 
     ref

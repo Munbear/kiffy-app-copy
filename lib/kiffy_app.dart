@@ -1,5 +1,4 @@
 import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/env/env.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';

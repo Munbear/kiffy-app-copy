@@ -1,5 +1,3 @@
-
-
 import 'dart:ui';
 
 import 'package:dio/dio.dart';
@@ -11,9 +9,13 @@ import 'package:openapi/openapi.dart';
 final openApiProvider = StateProvider<Openapi>((ref) {
   String? baseUrl = FlavorConfig.instance.variables["apiUrl"];
 
+  print("baseUrl");
+  print(baseUrl);
+
   final Dio dio = Dio(
     BaseOptions(
       responseType: ResponseType.json,
+      baseUrl: baseUrl!,
     ),
   );
 
@@ -29,7 +31,7 @@ final openApiProvider = StateProvider<Openapi>((ref) {
     String? accessToken = await storage.read(key: "accessToken");
 
     if (accessToken != null) {
-      options.headers['authorization'] = 'Bearer $accessToken';
+      options.headers['Authorization'] = 'Bearer $accessToken';
     }
 
     // 국가 코드

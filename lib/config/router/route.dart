@@ -10,7 +10,7 @@ import 'package:Kiffy/domain/profile/page/add_profile_input_auth_code_page.dart'
 import 'package:Kiffy/domain/profile/page/add_profile_intro_page.dart';
 import 'package:Kiffy/domain/profile/page/add_profile_user_page.dart';
 import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
-import 'package:Kiffy/domain/sign/page/sign_page.dart';
+import 'package:Kiffy/screen/sign_in_screen/sign_in_screen.dart';
 import 'package:Kiffy/domain/matching/page/matching_page.dart';
 import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
@@ -28,7 +28,7 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       routerNeglect: true,
       routes: _routes,
-      initialLocation: SignPage.routeLoaction,
+      initialLocation: SignInScreen.routeLoaction,
     );
   },
 );
@@ -109,9 +109,9 @@ List<RouteBase> get _routes => [
       ),
       GoRoute(
         // 회원 가입 및 로그인 페이지
-        path: SignPage.routeLoaction,
-        name: SignPage.routeName,
-        builder: (context, _) => const SignPage(),
+        path: SignInScreen.routeLoaction,
+        name: SignInScreen.routeName,
+        builder: (context, _) => const SignInScreen(),
       ),
       GoRoute(
         // 유저 프로필 닉네임, 성별, 나이, 입력 페이지

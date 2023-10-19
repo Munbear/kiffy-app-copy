@@ -2,7 +2,7 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/setting_page/widget/setting_button.dart';
-import 'package:Kiffy/domain/sign/provider/auth_provider.dart';
+import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
