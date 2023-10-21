@@ -3,13 +3,12 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/core/enum/user_status.dart';
 import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/screen/sign/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:openapi/openapi.dart';
-
-import '../../../screen/sign_in_screen/sign_in_screen.dart';
 
 enum AuthStatus {
   SUCCESS,
