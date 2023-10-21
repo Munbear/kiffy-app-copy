@@ -1,6 +1,7 @@
 import 'package:Kiffy/domain/common/preview_liked_list.dart';
 import 'package:Kiffy/domain/common/user_profile_card.dart';
 import 'package:Kiffy/infra/explore_client.dart';
+import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

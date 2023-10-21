@@ -1,5 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
+import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
 import 'package:Kiffy/screen_module/sign/widget/google_sgin_in_button.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
     var status = await ref.read(authProvider).googleLogin();
 
     if (status == AuthStatus.SUCCESS) {
+      await ref.read(myProvider).init();
       ref.read(routerProvider).replace(ExplorePage.routeLocation);
     }
   }

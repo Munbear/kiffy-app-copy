@@ -13,11 +13,6 @@ enum AuthStatus {
   NONE;
 }
 
-class Status {
-  AuthStatus authStatus = AuthStatus.NONE;
-
-}
-
 class AuthProvider {
   final storage = const FlutterSecureStorage();
   final Ref ref;

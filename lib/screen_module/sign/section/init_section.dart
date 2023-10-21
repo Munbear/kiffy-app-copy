@@ -1,8 +1,7 @@
-
-
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
+import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,20 +20,25 @@ class _InitSectionState extends ConsumerState<InitSection> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(authProvider).autoLogin()
-        .then((authStatus) {
-          // 로그인 정보가 저장되어 있으면 탐색탭으로 바로 이동함
-          progress = 100;
-          if (authStatus == AuthStatus.SUCCESS) {
-            ref.read(routerProvider).replace(ExplorePage.routeLocation);
-          } else {
-            ref.read(routerProvider).replace(SignInScreen.routeLoaction);
-          }
-        }
-      );
+      init();
     });
   }
 
+  void init() async {
+    var authStatus = await ref.read(authProvider).autoLogin();
+
+    progress = 50;
+
+    if (authStatus == AuthStatus.SUCCESS) {
+      // 로그인 정보가 저장되어 있으면 탐색탭으로 바로 이동하고 내 정보를 초기화함
+      await ref.read(myProvider).init();
+      progress = 100;
+      ref.read(routerProvider).replace(ExplorePage.routeLocation);
+    } else {
+      progress = 100;
+      ref.read(routerProvider).replace(SignInScreen.routeLoaction);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
