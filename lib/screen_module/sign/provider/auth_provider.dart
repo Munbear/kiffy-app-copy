@@ -38,6 +38,7 @@ class AuthState extends StateNotifier<AuthToken> {
 
     // 회원 가입한 회원이면 탐색 텝으로 보내기
     if (token.userStatus == UserStatusEnumView.APPROVED && token.authStatus == AuthStatus.SUCCESS) {
+      ref.read(userInfoProvider).getMyProfile();
       ref.read(routerProvider).replace("/explore");
     }
 
@@ -108,7 +109,6 @@ class AuthState extends StateNotifier<AuthToken> {
       final userStatus = await ref.read(openApiProvider).getMyApi().apiUserV1MyStatusGet();
 
       await userCredentials.user?.updatePassword(response.data!.accessToken);
-
       state.authStatus = AuthStatus.SUCCESS;
       state.userStatus = userStatus.data!.status;
       _routeByAuthToken(state);

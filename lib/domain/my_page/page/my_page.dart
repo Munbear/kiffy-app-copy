@@ -28,6 +28,8 @@ class _MyPageState extends ConsumerState<MyPage> {
     final myProfile = ref.watch(myProfileInfo);
     final currentImageIndex = ref.watch(currentPictureIndex);
 
+    print(myProfile);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

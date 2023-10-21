@@ -16,7 +16,7 @@ class MyProfileHandler {
 
   // 수정 필요
   getMyProfile() async {
-    final res = await dio.get("/api/view/user/v1/my/profile");
+    final res = await dio.get("/api/user/v1/my/profile");
 
     return ref
         .read(myProfileInfo.notifier)
@@ -30,7 +30,7 @@ final myProfileInfo = StateProvider<UserProfileView?>((ref) => null);
 // 내 프로필 불러오기
 final myProfileProvider = FutureProvider((ref) async {
   final dio = ref.read(dioProvider);
-  final res = await dio.get("/api/view/user/v1/my/profile");
+  final res = await dio.get("/api/user/v1/my/profile");
 
   return UserProfileView.fromJson(res.data);
 });
