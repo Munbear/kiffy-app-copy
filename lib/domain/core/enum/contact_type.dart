@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openapi/openapi.dart';
 
 enum ContactType {
   LINE,
@@ -28,5 +29,13 @@ enum ContactType {
       default:
         return "";
     }
+  }
+
+  UserProfileContactEnumView toContactEnumView() {
+    if (this == LINE) {
+      return UserProfileContactEnumView.LINE;
+    }
+
+    return UserProfileContactEnumView.WHATSAPP;
   }
 }

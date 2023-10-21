@@ -1,3 +1,5 @@
+import 'package:openapi/openapi.dart';
+
 enum Gender {
   MALE,
   FEMALE;
@@ -19,5 +21,13 @@ enum Gender {
       case Gender.FEMALE:
         return "Woman";
     }
+  }
+
+  GenderEnumView toGenderEnumView() {
+    if (this == Gender.MALE) {
+      return GenderEnumView.MALE;
+    }
+
+    return GenderEnumView.FEMALE;
   }
 }

@@ -7,6 +7,7 @@ import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';
 import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
 import 'package:Kiffy/domain/profile/widget/example_profile_foto_tip_bottom_sheet.dart';
 import 'package:Kiffy/infra/media_client.dart';
+import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact/user_profile_create_and_edit_command_profile_contact.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:dio/dio.dart';
@@ -184,21 +185,20 @@ class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
   AddProfileInputItemValidation inputImagesValidation =
       AddProfileInputItemValidation.success();
 
-  void onAddedListener(String path) {
-    ref.read(uploadMedia).uploadImage(path).then(
-      (res) {
-        setState(() {});
-        return inputImages = [
-          ...inputImages,
-          AddProfileInputImageItem(
-            filePath: path,
-            url: res.url,
-            id: res.id,
-            orderNum: inputImages.length,
-          )
-        ];
-      },
-    );
+  void onAddedListener(String path) async {
+    ref.read(openApiProvider).getMediaApi().apiMediaV1UploadTypePost(type: "image", file: await MultipartFile.fromFile(path))
+      .then((res) {
+      setState(() {});
+      return inputImages = [
+        ...inputImages,
+        AddProfileInputImageItem(
+          filePath: path,
+          url: res.data!.url,
+          id: res.data!.id,
+          orderNum: inputImages.length,
+        )
+      ];
+      });
   }
 
   void onDeletedListener(int index) {
@@ -300,15 +300,12 @@ class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
                 setState(() {});
 
                 if (inputImagesValidation.isValid) {
-                  try {
-                    ref.watch(addProfileInputProvider.notifier).addProfile();
-                  } on DioError catch (e) {
-                    log(e.message ?? "");
-                  }
-
-                  ref
-                      .read(routerProvider)
-                      .replace("/profile/add_profile/complete");
+                  ref.watch(addProfileInputProvider.notifier).addProfile()
+                    .then((_) {
+                    ref
+                        .read(routerProvider)
+                        .replace("/profile/add_profile/complete");
+                  });
                 }
               },
               style: ElevatedButton.styleFrom(

@@ -1,12 +1,14 @@
 import 'package:Kiffy/domain/core/enum/contact_type.dart';
 import 'package:Kiffy/domain/core/enum/gender_type.dart';
 import 'package:Kiffy/infra/api_client.dart';
+import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact/user_profile_create_and_edit_command_profile_contact.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:Kiffy/model/user_profile_create_command/user_profile_create_command.dart';
 import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 // 프로필 유효성 검사
 class AddProfileInputItemValidation {
@@ -163,20 +165,24 @@ class AddProfileInputState extends StateNotifier<UserProfileCreateCommand> {
   }
 
   // 프로필 생성하기
-  addProfile() async {
-    final userProfile = UserProfileCreateCommand(
-            name: state.name,
-            gender: state.gender,
-            birthDate: state.birthDate,
-            intro: state.intro,
-            medias: state.medias,
-            contacts: state.contacts)
-        .toJson();
-    Response response = await ref
-        .read(dioProvider)
-        .post("/api/view/user/v1/my/profile", data: userProfile);
+  Future<Response<void>> addProfile() async {
+    final createUserProfileRequest = CreateUserProfileRequest((b) {
+      b.name = state.name;
+      b.gender = state.gender.toGenderEnumView();
+      b.birthDate = DateTime.tryParse("${state.birthDate.substring(0, 4)}-${state.birthDate.substring(4, 6)}-${state.birthDate.substring(6, 8)}T00:00:00Z");
+      b.intro = state.intro;
+      b.medias.addAll(
+        state.medias.map((media) => EditUserProfileRequestMediasInner((b) {
+          b.id = media.id;
+          b.orderNum = media.orderNum;
+        }))
+      );
+      b.contacts.addAll(state.contacts.map((contact) => EditUserProfileRequestContactsInner((b) {
+        b.contactId = contact.contactId;
+        b.contactType = contact.contactType.toContactEnumView();
+      })));
+    });
 
-    // return response.data.map<UserProfileView>((profile) => UserProfileView.fromJson(profile));
-    return UserProfileView.fromJson(response.data);
+    return await ref.read(openApiProvider).getMyApi().apiUserV1MyProfilePost(createUserProfileRequest: createUserProfileRequest);
   }
 }
