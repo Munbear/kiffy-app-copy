@@ -17,6 +17,7 @@ class MyProvider {
 
   MyProvider({required this.ref});
 
+  // MyProvider의 MyInfo를 초기화(저장) 해놓는 로직, 다른 메소드를 호출하기 전에 항상 이 메소드가 한번이상 호출 되었어야함
   Future<void> init() async {
     var statusResponse = await ref.read(openApiProvider).getMyApi().apiUserV1MyStatusGet();
 
