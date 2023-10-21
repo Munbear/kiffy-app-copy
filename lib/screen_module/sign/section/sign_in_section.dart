@@ -1,3 +1,5 @@
+import 'package:Kiffy/config/router/route.dart';
+import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
 import 'package:Kiffy/screen_module/sign/widget/google_sgin_in_button.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +17,15 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(authProvider.notifier).autoAuth();
     });
+  }
+
+  void googleLoginAndRoute() async {
+    var status = await ref.read(authProvider).googleLogin();
+
+    if (status == AuthStatus.SUCCESS) {
+      ref.read(routerProvider).replace(ExplorePage.routeLocation);
+    }
   }
 
   @override
@@ -31,7 +40,7 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
           Image.asset("assets/images/kiffy_logo_purple.png", width: 150),
           // 구글 아이콘
           GoogleSignInButton(
-            onSgin: () => ref.read(authProvider.notifier).auth(),
+            onSgin: () => googleLoginAndRoute(),
           )
         ],
       ),

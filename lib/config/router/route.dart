@@ -15,6 +15,7 @@ import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page
 import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
+import 'package:Kiffy/screen/sign/init_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -28,12 +29,17 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       routerNeglect: true,
       routes: _routes,
-      initialLocation: SignInScreen.routeLoaction,
+      initialLocation: InitScreen.routeLoaction,
     );
   },
 );
 
 List<RouteBase> get _routes => [
+      GoRoute(
+          path: InitScreen.routeLoaction,
+          name: InitScreen.routeName,
+          builder: (context, _) => const InitScreen()
+      ),
       GoRoute(
         // 마이페이지 탭
         path: MyPage.routeLocation,

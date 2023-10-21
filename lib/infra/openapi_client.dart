@@ -28,7 +28,7 @@ final openApiProvider = StateProvider<Openapi>((ref) {
   dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) async {
     final storage = const FlutterSecureStorage();
 
-    String? accessToken = await storage.read(key: "accessToken");
+    String? accessToken = await storage.read(key: "SECURE_STORAGE_AUTH_TOKEN");
 
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
