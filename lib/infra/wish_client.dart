@@ -15,12 +15,16 @@ class WishClientHandler {
 
   // 위시 보내기
   approveWish({required String userId}) async {
-    await dio.put("/api/wish/v1/wish/approve", data: {"toUserId": userId});
+    await ref.read(openApiProvider).getWishApi().apiWishV1WishApprovePut(wishApproveRequest: WishApproveRequest((b) {
+      b.toUserId = userId;
+    }));
   }
 
   // 위시 거절
   rejectWish({required String userId}) async {
-    await dio.put("/api/wish/v1/wish/reject", data: {"toUserId": userId});
+    await ref.read(openApiProvider).getWishApi().apiWishV1WishRejectPut(wishRejectRequest: WishRejectRequest((b) {
+      b.toUserId = userId;
+    }));
   }
 
 // 나에게 위시한 사용자들 가져오기

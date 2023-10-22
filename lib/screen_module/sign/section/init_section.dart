@@ -39,7 +39,7 @@ class _InitSectionState extends ConsumerState<InitSection> {
       var userStatus = ref.read(myProvider).getStatus();
       switch (userStatus.status) {
         case UserStatusEnumView.JOINER:
-          ref.read(routerProvider).replace(AddProfileUserPage.routeLocation);
+          ref.read(routerProvider).replace(AddProfileUserScreen.routeLocation);
           break;
         case UserStatusEnumView.APPROVED:
           ref.read(routerProvider).replace(ExplorePage.routeLocation);

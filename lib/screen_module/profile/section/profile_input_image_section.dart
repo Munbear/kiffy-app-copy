@@ -144,6 +144,7 @@ class _ProfileInputImageSectionState extends ConsumerState<ProfileInputImageSect
 
               if (inputImagesValidation.isValid) {
                 await ref.read(profileInputProvider.notifier).addProfile();
+                // 프로필을 생성해주었으니 다시 init 해주어야함
                 await ref.read(myProvider).init();
                 ref.read(routerProvider).replace("/profile/add_profile/complete");
               }

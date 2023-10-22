@@ -119,32 +119,32 @@ List<RouteBase> get _routes => [
       ),
       GoRoute(
         // 유저 프로필 닉네임, 성별, 나이, 입력 페이지
-        path: AddProfileUserPage.routeLocation,
-        name: AddProfileUserPage.routeName,
-        builder: (context, _) => const AddProfileUserPage(),
+        path: AddProfileUserScreen.routeLocation,
+        name: AddProfileUserScreen.routeName,
+        builder: (context, _) => const AddProfileUserScreen(),
       ),
       GoRoute(
         // 프로필 연락처 추가 화면
-        path: AddProfileContactPage.routeLocation,
-        name: AddProfileContactPage.routeName,
-        builder: (context, _) => const AddProfileContactPage(),
+        path: AddProfileContactScreen.routeLocation,
+        name: AddProfileContactScreen.routeName,
+        builder: (context, _) => const AddProfileContactScreen(),
       ),
       GoRoute(
         // 프로필 등록 자기소개 페이지
-        path: AddProfileIntroPage.routeLocation,
-        name: AddProfileIntroPage.routeName,
-        builder: (context, _) => const AddProfileIntroPage(),
+        path: AddProfileIntroScreen.routeLocation,
+        name: AddProfileIntroScreen.routeName,
+        builder: (context, _) => const AddProfileIntroScreen(),
       ),
       GoRoute(
         // 프로필 이미지 등록 페이지
-        path: AddProfileImagePage.routeLocation,
-        name: AddProfileImagePage.routeName,
-        builder: (context, _) => const AddProfileImagePage(),
+        path: AddProfileImageScreen.routeLocation,
+        name: AddProfileImageScreen.routeName,
+        builder: (context, _) => const AddProfileImageScreen(),
       ),
       GoRoute(
         // 프로필 등록 완료 페이지
-        path: AddProfileCompletePage.routeLocation,
-        name: AddProfileCompletePage.routeName,
-        builder: (context, _) => const AddProfileCompletePage(),
+        path: AddProfileCompleteScreen.routeLocation,
+        name: AddProfileCompleteScreen.routeName,
+        builder: (context, _) => const AddProfileCompleteScreen(),
       ),
     ];

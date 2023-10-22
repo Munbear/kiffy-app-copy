@@ -2,6 +2,7 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/setting_page/widget/setting_button.dart';
+import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,6 +37,7 @@ class _SettingPageState extends ConsumerState<SettingPage> {
       ),
       body: Column(
         children: [
+          Text(ref.read(myProvider).getStatus().id),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 28),

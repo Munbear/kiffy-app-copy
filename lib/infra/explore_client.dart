@@ -15,7 +15,7 @@ class ExploreHandler {
 
   // 탐색할 유저 불러오기
   getExpolreUserCard() async {
-    var response = await ref.read(openApiProvider).getExploreApi().apiExploreV1UsersGet();
+    var response = await ref.read(openApiProvider).getExploreApi().apiExploreV1UsersGet(limit: 5, offset: 0);
 
     ref.read(userCardsProvider.notifier).update((state) => response.data!.list!.toList());
     ref.read(userCardLoading.notifier).update((state) => false);

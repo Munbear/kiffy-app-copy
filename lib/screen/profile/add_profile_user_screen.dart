@@ -2,11 +2,11 @@ import 'package:Kiffy/screen_module/profile/section/profile_input_user_section.d
 import 'package:Kiffy/screen_module/profile/widget/add_profile_header.dart';
 import 'package:flutter/material.dart';
 
-class AddProfileUserPage extends StatelessWidget {
+class AddProfileUserScreen extends StatelessWidget {
   static String get routeLocation => "/profile/add_profile/user";
   static String get routeName => "profile_add_profile_user";
 
-  const AddProfileUserPage({super.key});
+  const AddProfileUserScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

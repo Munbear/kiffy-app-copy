@@ -21,6 +21,8 @@ class AuthProvider {
   Future<AuthStatus> autoLogin() async {
     String? savedAccessToken = await storage.read(key: "SECURE_STORAGE_AUTH_TOKEN");
 
+    print(savedAccessToken);
+
     if (savedAccessToken == null) {
       return AuthStatus.NONE;
     }
