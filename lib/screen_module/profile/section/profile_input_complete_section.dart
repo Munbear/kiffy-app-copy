@@ -1,6 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/border._style.dart';
-import 'package:Kiffy/domain/explore/page/explore_page.dart';
+import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
@@ -14,10 +14,12 @@ class ProfileInputCompleteSection extends ConsumerStatefulWidget {
   const ProfileInputCompleteSection({super.key});
 
   @override
-  ConsumerState<ProfileInputCompleteSection> createState() => _ProfileInputCompleteSectionState();
+  ConsumerState<ProfileInputCompleteSection> createState() =>
+      _ProfileInputCompleteSectionState();
 }
 
-class _ProfileInputCompleteSectionState extends ConsumerState<ProfileInputCompleteSection> {
+class _ProfileInputCompleteSectionState
+    extends ConsumerState<ProfileInputCompleteSection> {
   UserProfileView? myProfile;
 
   @override
@@ -38,9 +40,9 @@ class _ProfileInputCompleteSectionState extends ConsumerState<ProfileInputComple
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: myProfile?.medias.first.url.let((it) =>
-                ProfileInputCompleteWelcomeBox(boxImageUrl: it)
-            ) ?? SizedBox(),
+            child: myProfile?.medias.first.url.let(
+                    (it) => ProfileInputCompleteWelcomeBox(boxImageUrl: it)) ??
+                SizedBox(),
           ),
           // start button
           ElevatedButton(

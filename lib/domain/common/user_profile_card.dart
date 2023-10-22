@@ -11,28 +11,49 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-class UserProfileCard extends ConsumerStatefulWidget {
+class UserProfileCard extends StatefulWidget {
   final UserProfileView userProfile;
   final CardSwiperController controller;
+  final Function(String) onWishReject;
+  final Function(String) onWishApprove;
 
   const UserProfileCard({
     super.key,
     required this.userProfile,
     required this.controller,
+    required this.onWishReject,
+    required this.onWishApprove,
   });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _UserProfileCardState();
+  State<UserProfileCard> createState() => _UserProfileCardState();
 }
 
-class _UserProfileCardState extends ConsumerState<UserProfileCard> {
+class _UserProfileCardState extends State<UserProfileCard> {
   PageController pageController = PageController(initialPage: 0);
+  int currentImageIndex = 0;
+
+  // 다음 카드
+  void nextImage(
+      int currentIndex, PageController pageController, int mediasLength) {
+    if (currentIndex < mediasLength - 1) {
+      currentIndex++;
+      pageController.animateToPage(currentIndex,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+  // 이전 카드
+  void prevImage(int currentIndex, PageController pageController) {
+    if (currentIndex > 0) {
+      currentIndex--;
+      pageController.animateToPage(currentIndex,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final currentImageIndex = ref.watch(currentPictureIndex);
-
     return Container(
       padding: const EdgeInsets.only(top: 5, left: 20, right: 20, bottom: 20),
       child: Stack(
@@ -77,14 +98,13 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
           // 다음 이전 사진
           Positioned(
             child: PageControllerButton(
-                prevButton: () => ref.read(exploreProvider).prevImage(
-                    currentImageIndex,
+                prevButton: () => prevImage(currentImageIndex,
                     pageController), //prevImage(currentImageIndex),
-                nextButton: () => ref.read(exploreProvider).nextImage(
-                    currentImageIndex,
-                    pageController,
-                    widget.userProfile.medias
-                        .length) //nextImage(currentImageIndex),
+                nextButton: () => nextImage(
+                      currentImageIndex,
+                      pageController,
+                      widget.userProfile.medias.length,
+                    ) //nextImage(currentImageIndex),
                 ),
           ),
 
@@ -95,27 +115,11 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
             child: Column(
               children: [
                 // 위시 거절하
-                RejectCircleButton(onClick: () {
-                  ref
-                      .read(wishClientProvider)
-                      .rejectWish(userId: widget.userProfile.id);
-                  ref.read(wishCount.notifier).update((state) => state + 1);
-                  // 카드 넘기기
-                  widget.controller.swipeTop();
-                }),
+                RejectCircleButton(onClick: () => widget.onWishReject),
                 const SizedBox(height: 12),
                 // 위지 보내기
                 WishCircleButton(
-                  onClick: () {
-                    // 위시 수락 하기
-                    ref
-                        .read(wishClientProvider)
-                        .approveWish(userId: widget.userProfile.id);
-                    // 위시 카운터
-                    ref.read(wishCount.notifier).update((state) => state + 1);
-                    // 카드 넘기기
-                    widget.controller.swipeTop();
-                  },
+                  onClick: () => widget.onWishApprove,
                 ),
               ],
             ),

@@ -1,5 +1,5 @@
 import 'package:Kiffy/domain/check_list/page/liked_list_page.dart';
-import 'package:Kiffy/domain/explore/page/explore_page.dart';
+import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/domain/matching_detail/page/matching_detail_page.dart';
 import 'package:Kiffy/domain/my_page/page/my_page.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
@@ -36,8 +36,7 @@ List<RouteBase> get _routes => [
       GoRoute(
           path: InitScreen.routeLoaction,
           name: InitScreen.routeName,
-          builder: (context, _) => const InitScreen()
-      ),
+          builder: (context, _) => const InitScreen()),
       GoRoute(
         // 마이페이지 탭
         path: MyPage.routeLocation,
@@ -68,37 +67,37 @@ List<RouteBase> get _routes => [
         name: ExplorePage.routeName,
         builder: (context, _) => const ExplorePage(),
       ),
-      GoRoute(
-        // 매칭 탭 화면
-        path: MatchingPage.routeLocation,
-        name: MatchingPage.routeName,
-        builder: (context, _) => const MatchingPage(),
-      ),
-      GoRoute(
-        // 매칭 디테일 화면
-        path: MatchingDetailPage.routeLocation,
-        name: MatchingDetailPage.routeName,
-        builder: (context, state) => const MatchingDetailPage(),
-      ),
+      // GoRoute(
+      //   // 매칭 탭 화면
+      //   path: MatchingPage.routeLocation,
+      //   name: MatchingPage.routeName,
+      //   builder: (context, _) => const MatchingPage(),
+      // ),
+      // GoRoute(
+      //   // 매칭 디테일 화면
+      //   path: MatchingDetailPage.routeLocation,
+      //   name: MatchingDetailPage.routeName,
+      //   builder: (context, state) => const MatchingDetailPage(),
+      // ),
       GoRoute(
         // 좋아요 보낸 사람 리스트
         path: LikedListPage.routeLocation,
         name: LikedListPage.routeName,
         builder: (context, _) => const LikedListPage(),
       ),
-      GoRoute(
-        // 좋아요 받은 유저 상세 프로필
-        path: UnMatchUserProfile.routeLocation,
-        name: UnMatchUserProfile.routeName,
-        builder: (context, state) {
-          return UnMatchUserProfile(
-            userName: state.queryParams["userName"] ?? "",
-            userAge: state.queryParams["userAge"] ?? "",
-            userId: state.queryParams["userId"] ?? "",
-            userIntro: state.queryParams["userIntro"] ?? "",
-          );
-        },
-      ),
+      // GoRoute(
+      //   // 좋아요 받은 유저 상세 프로필
+      //   path: UnMatchUserProfile.routeLocation,
+      //   name: UnMatchUserProfile.routeName,
+      //   builder: (context, state) {
+      //     return UnMatchUserProfile(
+      //       userName: state.queryParams["userName"] ?? "",
+      //       userAge: state.queryParams["userAge"] ?? "",
+      //       userId: state.queryParams["userId"] ?? "",
+      //       userIntro: state.queryParams["userIntro"] ?? "",
+      //     );
+      //   },
+      // ),
       GoRoute(
         // 회원 탈퇴 이유 텍스트
         path: WithdrawText.routeLocation,

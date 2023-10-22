@@ -1,42 +1,23 @@
-import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page.dart';
-import 'package:Kiffy/infra/wish_client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:openapi/openapi.dart';
 
-class ExploreWishedListItem extends ConsumerStatefulWidget {
+class OtherWishPreviewChip extends StatelessWidget {
   final UserProfileView profile;
-  const ExploreWishedListItem({super.key, required this.profile});
+  final VoidCallback onTap;
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ExploreWishedListItemState();
-}
-
-class _ExploreWishedListItemState extends ConsumerState<ExploreWishedListItem> {
-  List<String> test = [];
+  const OtherWishPreviewChip({
+    super.key,
+    required this.profile,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       // 디테일 화면으로 이동
 
-      onTap: () {
-        ref
-            .read(mediaDetailProvider.notifier)
-            .update((state) => state = widget.profile.medias.toList());
-        ref.read(routerProvider).pushNamed(
-          UnMatchUserProfile.routeName,
-          queryParams: {
-            "userName": widget.profile.name,
-            "userAge": widget.profile.birthDate,
-            "userId": widget.profile.id,
-            "userIntro": widget.profile.intro,
-          },
-        );
-      },
+      onTap: () => onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 6),
         child: Column(
@@ -68,13 +49,13 @@ class _ExploreWishedListItemState extends ConsumerState<ExploreWishedListItem> {
                 decoration: const BoxDecoration(shape: BoxShape.circle),
                 clipBehavior: Clip.hardEdge,
                 child: Image.network(
-                  widget.profile.medias[0].url,
+                  profile.medias[0].url,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             const SizedBox(height: 5),
-            Text(widget.profile.name),
+            Text(profile.name),
           ],
         ),
       ),

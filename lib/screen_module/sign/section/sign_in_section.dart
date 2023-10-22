@@ -1,5 +1,5 @@
 import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/domain/explore/page/explore_page.dart';
+import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_user_screen.dart';
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
@@ -19,8 +19,7 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
   }
 
   void googleLoginAndRoute() async {
