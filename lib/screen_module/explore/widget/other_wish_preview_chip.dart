@@ -1,3 +1,4 @@
+import 'package:Kiffy/screen_module/common/widget/space.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:openapi/openapi.dart';
@@ -54,8 +55,14 @@ class OtherWishPreviewChip extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 5),
-            Text(profile.name),
+            const Space(height: 5),
+            SizedBox(
+              width: 60,
+              child: Text(
+                profile.name,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ],
         ),
       ),
