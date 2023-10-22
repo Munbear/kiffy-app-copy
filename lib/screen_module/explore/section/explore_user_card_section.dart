@@ -1,6 +1,5 @@
-import 'package:Kiffy/domain/common/user_profile_card.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
-import 'package:dio/dio.dart';
+import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,14 +17,7 @@ class _ExploreUserCardSectionState
     extends ConsumerState<ExploreUserCardSection> {
   final CardSwiperController controller = CardSwiperController();
   List<UserProfileView> userProfiles = List.empty();
-  int wishCount = 0;
   int currentIndex = 0;
-
-  void plusWishCount() {
-    setState(() {
-      wishCount += 1;
-    });
-  }
 
   void getUserProfiles() async {
     final response = await ref
@@ -47,59 +39,48 @@ class _ExploreUserCardSectionState
     });
   }
 
-  void prevImage(int currentIndex, PageController pageController) {
-    if (currentIndex > 0) {
-      currentIndex--;
-      pageController.animateToPage(currentIndex,
-          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-    }
-  }
-
-  void nextImage(
-      int currentIndex, PageController pageController, int mediasLength) {
-    if (currentIndex < mediasLength - 1) {
-      currentIndex++;
-      pageController.animateToPage(currentIndex,
-          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: CardSwiper(
         controller: controller,
-        isHorizontalSwipingEnabled: false,
-        isVerticalSwipingEnabled: false,
+        allowedSwipeDirection: const AllowedSwipeDirection.none(),
         isLoop: false,
         padding: EdgeInsets.zero,
         initialIndex: 0,
         onEnd: () {
-          if (wishCount >= 3) {
-            getUserProfiles();
-          }
+          getUserProfiles();
         },
         numberOfCardsDisplayed: userProfiles.length <= 1 ? 1 : 2,
         cardsCount: userProfiles.length,
         cardBuilder: (context, index) {
           return UserProfileCard(
             userProfile: userProfiles[index],
-            controller: controller,
-            onWishApprove: (userId) {
-              ref.read(openApiProvider).getWishApi().apiWishV1WishApprovePut(
-                    wishApproveRequest:
-                        WishApproveRequest((b) => b.toUserId = userId),
-                  );
-              plusWishCount();
-              controller.swipeTop();
+            onWish: (userId) async {
+              await ref
+                  .read(openApiProvider)
+                  .getWishApi()
+                  .apiWishV1WishApprovePut(
+                wishApproveRequest: WishApproveRequest(
+                  (b) {
+                    b.toUserId = userId;
+                  },
+                ),
+              );
+              controller.swipeBottom();
             },
-            onWishReject: (userId) {
-              ref.read(openApiProvider).getWishApi().apiWishV1WishRejectPut(
-                  wishRejectRequest: WishRejectRequest((b) {
-                b.toUserId = userId;
-              }));
-              plusWishCount();
-              controller.swipeTop();
+            onReject: (userId) async {
+              await ref
+                  .read(openApiProvider)
+                  .getWishApi()
+                  .apiWishV1WishRejectPut(
+                wishRejectRequest: WishRejectRequest(
+                  (b) {
+                    b.toUserId = userId;
+                  },
+                ),
+              );
+              controller.swipeBottom();
             },
           );
         },
