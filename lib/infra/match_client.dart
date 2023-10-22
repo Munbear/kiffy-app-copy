@@ -14,6 +14,7 @@ class MatchedUserProfileHandler {
 
   // 매칭된 유저 리스트
   getMatchedUsers(offset, limit) async {
+    print("isTrue???");
     print(ref.read(isMatchedUserListMoreProvider));
     if (ref.read(isMatchedUserListMoreProvider)) {
       var response = await ref.read(openApiProvider).getMatchApi().apiMatchV2UsersGet(offset: offset, limit: limit);

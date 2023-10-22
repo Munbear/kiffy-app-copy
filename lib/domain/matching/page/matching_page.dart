@@ -41,6 +41,8 @@ class _MatchingPageState extends ConsumerState<MatchingPage> {
     // 더보기 버튼
     final isMore = ref.read(isMatchedUserListMoreProvider);
 
+    print(matchedUserList);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
