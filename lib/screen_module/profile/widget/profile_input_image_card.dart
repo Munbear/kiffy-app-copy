@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image/image.dart' as img;
 
 class PhotoInputCard extends StatelessWidget {
   final int index;
@@ -36,6 +37,12 @@ class EmptyPhotoInputCard extends StatelessWidget {
     final picker = ImagePicker();
     final file = await picker.pickImage(source: imageSource);
     if (file != null) {
+    final resizeCommand = img.Command()
+        ..decodeImage(await file.readAsBytes())
+        ..copyResize(width: 780)
+        ..writeToFile(file.path);
+
+      await resizeCommand.execute();
       onAdded(file.path);
     }
   }
