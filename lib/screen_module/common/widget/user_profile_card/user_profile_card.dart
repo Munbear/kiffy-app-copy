@@ -24,30 +24,27 @@ class UserProfileCard extends StatefulWidget {
 class _UserProfileCardState extends State<UserProfileCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 5, left: 20, right: 20, bottom: 20),
-      child: Stack(
-        children: [
-          UserProfileCardPage(userProfile: widget.userProfile),
-          Positioned(
-            right: 25,
-            bottom: 20,
-            child: Column(
-              children: [
-                RejectCircleButton(onClick: () {
-                  widget.onReject(widget.userProfile.id);
-                }),
-                const Space(height: 12),
-                WishCircleButton(
-                  onClick: () {
-                    widget.onWish(widget.userProfile.id);
-                  },
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+    return Stack(
+      children: [
+        UserProfileCardPage(userProfile: widget.userProfile),
+        Positioned(
+          right: 25,
+          bottom: 20,
+          child: Column(
+            children: [
+              RejectCircleButton(onClick: () {
+                widget.onReject(widget.userProfile.id);
+              }),
+              const Space(height: 12),
+              WishCircleButton(
+                onClick: () {
+                  widget.onWish(widget.userProfile.id);
+                },
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

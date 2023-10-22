@@ -51,7 +51,7 @@ class _CustomBottomNavBarState extends ConsumerState<CustomBottomNavBar> {
       ),
     ];
     return Container(
-      height: 115,
+      height: 80,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
