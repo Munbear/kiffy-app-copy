@@ -1,5 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/core/enum/gender_type.dart';
+import 'package:Kiffy/screen_module/common/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_gender_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
@@ -28,6 +29,25 @@ class _ProfileInputUserSectionState extends ConsumerState<ProfileInputUserSectio
   String inputBirthDay = "";
   AddProfileInputItemValidation inputBirthdayValidation = AddProfileInputItemValidation.success();
 
+  Widget NicknameTitle() {
+    return const Text("Nickname", style: TextStyle(fontSize: 20));
+  }
+
+  Widget GenderTitle() {
+    return const Text("Gender", style: TextStyle(fontSize: 20));
+  }
+
+  Widget BirthdayTitle() {
+    return const Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text("Birthday", style: TextStyle(fontSize: 20)),
+        Space(width: 4,),
+        Text("example : 20010305", style: TextStyle(fontSize: 12, color: Color(0xff6c6c6c))),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     ref.watch(profileInputProvider);
@@ -36,8 +56,8 @@ class _ProfileInputUserSectionState extends ConsumerState<ProfileInputUserSectio
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Nickname", style: TextStyle(fontSize: 20)),
-          const SizedBox(height: 8),
+          NicknameTitle(),
+          const Space(height: 8),
           // 닉네임 입력
           ProfileInputTextFormField(
             onChanged: (t) => setState(() {
@@ -45,16 +65,16 @@ class _ProfileInputUserSectionState extends ConsumerState<ProfileInputUserSectio
             }),
             hintText: "Please enter it.",
           ),
-          const SizedBox(height: 8),
+          const Space(height: 8),
           ProfileInputValidationText(
             normalText: "* It cannot be changed",
             validation: inputNameValidation,
           ),
-          const SizedBox(height: 40),
+          const Space(height: 40),
 
           // 성별 선택
-          const Text("Gender", style: TextStyle(fontSize: 20)),
-          const SizedBox(height: 8),
+          GenderTitle(),
+          const Space(height: 8),
           ProfileInputGenderButton(
             onChanged: (gender) {
               setState(() {
@@ -64,35 +84,28 @@ class _ProfileInputUserSectionState extends ConsumerState<ProfileInputUserSectio
             selectedGender: inputGender,
           ),
 
-          const SizedBox(height: 8),
+          const Space(height: 8),
           ProfileInputValidationText(
             normalText: "* It cannot be changed",
             validation: inputGenderValidation,
           ),
-          const SizedBox(height: 40),
+          const Space(height: 40),
 
           // 생년월일 입력
-          const Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text("Birthday", style: TextStyle(fontSize: 20)),
-              SizedBox(width: 4),
-              Text("example : 20010305", style: TextStyle(fontSize: 12, color: Color(0xff6c6c6c))),
-            ],
-          ),
-          const SizedBox(height: 8),
+          BirthdayTitle(),
+          const Space(height: 8),
           ProfileInputTextFormField(
             onChanged: (t) => setState(() {
               inputBirthDay = t;
             }),
             hintText: "YYYYMMDD",
           ),
-          const SizedBox(height: 8),
+          const Space(height: 8),
           ProfileInputValidationText(
             normalText: "* It cannot be changed",
             validation: inputBirthdayValidation,
           ),
-          const SizedBox(height: 20),
+          const Space(height: 20),
 
           ProfileInputNextButton(
             onPressed: () {

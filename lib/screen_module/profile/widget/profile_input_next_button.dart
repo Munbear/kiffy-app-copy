@@ -10,7 +10,7 @@ class ProfileInputNextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => onPressed,
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.only(top: 15, bottom: 15),
         textStyle: const TextStyle(fontSize: 20, color: Colors.white),
