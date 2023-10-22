@@ -141,12 +141,6 @@ class profileInputState extends StateNotifier<UserProfileCreateCommand> {
         contactId: contactId, contactType: contactType!);
     final newContacts = [...state.contacts];
     newContacts.add(newContact);
-    // final index = newContacts.indexWhere((contact) => contact.contactId == contactId);
-    // if (index != -1) {
-    //   newContacts[index] = newContact;
-    // } else {
-    //   newContacts.add(newContact);
-    // }
 
     state = state.copyWith(contacts: newContacts);
   }

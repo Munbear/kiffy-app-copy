@@ -4,6 +4,7 @@ import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/widget/proifle_input_complete_welcome_box.dart';
 import 'package:dartlin/control_flow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,44 +38,9 @@ class _ProfileInputCompleteSectionState extends ConsumerState<ProfileInputComple
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // profile preview circle
-                Center(
-                  child: Container(
-                    width: 172,
-                    height: 172,
-                    decoration: BorderGradientCircleShape.outlineGradientBoxDecoration,
-                    child: Container(
-                      padding: const EdgeInsets.all(7),
-                      decoration: BorderGradientCircleShape.innerDecoration,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: myProfile?.let((it) => Image.network(it.medias.first.url, fit: BoxFit.cover)),
-                      ),
-                    ),
-                  ),
-                ),
-                Space(height: 20),
-                const Text(
-                  "Enjoy Kiffy!",
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Color(0xFF0031AA),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Space(height: 8),
-                const Text(
-                  "Meet various people through the kiffy!",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xFF494949),
-                  ),
-                ),
-              ],
-            ),
+            child: myProfile?.medias.first.url.let((it) =>
+                ProfileInputCompleteWelcomeBox(boxImageUrl: it)
+            ) ?? SizedBox(),
           ),
           // start button
           ElevatedButton(
