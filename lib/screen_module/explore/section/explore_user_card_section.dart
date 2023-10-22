@@ -1,6 +1,7 @@
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/common/widget/skeleton.dart';
 import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card.dart';
+import 'package:Kiffy/screen_module/explore/widget/explore_user_card_empty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -65,6 +66,10 @@ class _ExploreUserCardSectionState
         ),
         child: Skeleton(),
       );
+    }
+
+    if (userProfiles.isEmpty) {
+      return ExploreUserCardEmpty();
     }
 
     return CardSwiper(

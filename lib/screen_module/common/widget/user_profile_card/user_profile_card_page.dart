@@ -18,11 +18,18 @@ class UserProfileCardPage extends StatefulWidget {
 
 class _UserProfileCardPageState extends State<UserProfileCardPage> {
   double page = 0;
-  final PageController pageController = PageController(initialPage: 0);
+  PageController pageController = PageController(initialPage: 0);
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(_) {
+    super.didUpdateWidget(_);
+    pageController.jumpToPage(0);
+    page = 0;
   }
 
   List<Widget> UserProfilePageItems() {
