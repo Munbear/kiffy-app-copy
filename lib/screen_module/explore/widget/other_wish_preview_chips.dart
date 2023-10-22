@@ -1,6 +1,6 @@
 import 'package:Kiffy/screen_module/common/widget/skeleton.dart';
-import 'package:Kiffy/screen_module/explore/widget/explore_wished_list_more.dart';
 import 'package:Kiffy/screen_module/explore/widget/other_wish_preview_chip.dart';
+import 'package:Kiffy/screen_module/explore/widget/other_wish_preview_chip_more.dart';
 import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
 
@@ -25,7 +25,7 @@ class OtherWishPreviewChips extends StatelessWidget {
             },
           ),
         ),
-        ...userProfiles.isNotEmpty ? [const ExploreWishedListMore()] : [],
+        ...userProfiles.isNotEmpty ? [const OtherWishPreviewChipMore()] : [],
       ],
     );
   }

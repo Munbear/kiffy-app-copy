@@ -6,8 +6,8 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-class ExploreUserProifleCardSection extends ConsumerStatefulWidget {
-  const ExploreUserProifleCardSection({super.key});
+class ExploreUserProfileCardSection extends ConsumerStatefulWidget {
+  const ExploreUserProfileCardSection({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -15,7 +15,7 @@ class ExploreUserProifleCardSection extends ConsumerStatefulWidget {
 }
 
 class _ExploreUserCardSectionState
-    extends ConsumerState<ExploreUserProifleCardSection> {
+    extends ConsumerState<ExploreUserProfileCardSection> {
   final CardSwiperController controller = CardSwiperController();
   List<UserProfileView> userProfiles = List.empty();
   bool isLoading = true;
@@ -104,7 +104,7 @@ class _ExploreUserCardSectionState
           top: 20,
           left: 20,
           right: 20,
-          bottom: 20,
+          bottom: 40,
         ),
         child: LoadingCardSwiper(),
       ),

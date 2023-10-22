@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ExploreWishedListMore extends ConsumerWidget {
-  const ExploreWishedListMore({super.key});
+class OtherWishPreviewChipMore extends ConsumerWidget {
+  const OtherWishPreviewChipMore({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

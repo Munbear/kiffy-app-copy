@@ -30,7 +30,7 @@ class ExploreScreen extends StatelessWidget {
           children: [
             // 나에게 위시 보낸 유저 리스트
             ExploreOtherWishPreviewSection(),
-            ExploreUserProifleCardSection(),
+            ExploreUserProfileCardSection(),
           ],
         ),
       ),
