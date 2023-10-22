@@ -1,3 +1,4 @@
+import 'package:Kiffy/screen_module/common/widget/skeleton.dart';
 import 'package:flutter/material.dart';
 
 class UserProfileCardPageItemMedia extends StatelessWidget {
@@ -13,6 +14,13 @@ class UserProfileCardPageItemMedia extends StatelessWidget {
       child: Image.network(
         profileImageUrl,
         fit: BoxFit.cover,
+        loadingBuilder: (_, child, progress) {
+          if (progress == null) {
+            return child;
+          }
+
+          return const Skeleton();
+        },
         errorBuilder: (context, error, stackTrace) {
           return const Text("Error");
         },
