@@ -99,7 +99,7 @@ class _LikedListPageState extends ConsumerState<LikedListPage> {
         ),
       ),
       bottomNavigationBar:
-          CustomBottomNavBar(currentPath: ExplorePage.routeLocation),
+          CustomBottomNavBar(currentPath: ExploreScreen.routeLocation),
     );
   }
 }

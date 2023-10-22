@@ -1,9 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/domain/common/border._style.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
-import 'package:Kiffy/screen_module/common/widget/space.dart';
-import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/proifle_input_complete_welcome_box.dart';
 import 'package:dartlin/control_flow.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +44,7 @@ class _ProfileInputCompleteSectionState
           // start button
           ElevatedButton(
             onPressed: () {
-              ref.read(routerProvider).replace(ExplorePage.routeLocation);
+              ref.read(routerProvider).replace(ExploreScreen.routeLocation);
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.only(top: 15, bottom: 15),

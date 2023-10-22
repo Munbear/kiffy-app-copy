@@ -1,4 +1,4 @@
-// import 'package:Kiffy/screen_module/explore/widget/explore_wished_list_item.dart';
+// import 'package:Kiffy/screen_module/explore/widget/other_wish_preview_chip.dart';
 // import 'package:Kiffy/infra/openapi_client.dart';
 // import 'package:Kiffy/infra/wish_client.dart';
 // import 'package:Kiffy/model/wish_other_profiles_view/wish_other_profiles_view.dart';

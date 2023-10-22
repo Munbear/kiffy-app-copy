@@ -1,5 +1,5 @@
 import 'package:Kiffy/infra/openapi_client.dart';
-import 'package:Kiffy/screen_module/explore/widget/explore_wished_list_item.dart';
+import 'package:Kiffy/screen_module/explore/widget/other_wish_preview_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
@@ -28,20 +28,6 @@ class _OtherWishPreviewSectionState
     });
   }
 
-  //  ref
-  //           .read(mediaDetailProvider.notifier)
-  //           .update((state) => state = widget.profile.medias.toList());
-
-  // ref.read(routerProvider).pushNamed(
-  //   UnMatchUserProfile.routeName,
-  //   queryParams: {
-  //     "userName": widget.profile.name,
-  //     "userAge": widget.profile.birthDate,
-  //     "userId": widget.profile.id,
-  //     "userIntro": widget.profile.intro,
-  //   },
-  // );
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -56,7 +42,7 @@ class _OtherWishPreviewSectionState
                 (wishOtherProfile) => OtherWishPreviewChip(
                   profile: wishOtherProfile,
                   onTap: () {
-                    // 상세 화면 넘어기
+                    // TODO 상세 화면 넘어기
                   },
                 ),
               ),

@@ -1,18 +1,15 @@
 import 'package:Kiffy/domain/check_list/page/liked_list_page.dart';
-import 'package:Kiffy/screen/explore/explore_screen.dart';
-import 'package:Kiffy/domain/matching_detail/page/matching_detail_page.dart';
 import 'package:Kiffy/domain/my_page/page/my_page.dart';
+import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
+import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
+import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
+import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
+import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_contact_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_image_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_intro_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_user_screen.dart';
-import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
-import 'package:Kiffy/domain/matching/page/matching_page.dart';
-import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page.dart';
-import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
-import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
-import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -63,9 +60,9 @@ List<RouteBase> get _routes => [
       ),
       GoRoute(
         // 탐색 탭
-        path: ExplorePage.routeLocation,
-        name: ExplorePage.routeName,
-        builder: (context, _) => const ExplorePage(),
+        path: ExploreScreen.routeLocation,
+        name: ExploreScreen.routeName,
+        builder: (context, _) => const ExploreScreen(),
       ),
       // GoRoute(
       //   // 매칭 탭 화면
