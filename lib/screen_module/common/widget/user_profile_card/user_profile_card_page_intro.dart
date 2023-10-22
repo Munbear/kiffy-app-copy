@@ -14,6 +14,9 @@ class UserProfileCardPageIntro extends StatelessWidget {
     return Stack(
       children: [
         UserProfileCardPageItemMedia(profileImageUrl: profileImageUrl),
+        Container(
+          color: Color.fromRGBO(0, 0, 0, 0.5),
+        ),
         Positioned(
           left: 0,
           bottom: 0,

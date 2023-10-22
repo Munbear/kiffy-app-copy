@@ -1,5 +1,6 @@
 import 'package:Kiffy/domain/common/page_controller_button.dart';
 import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_page_default.dart';
+import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_page_indicator.dart';
 import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_page_intro.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:collection/collection.dart';
@@ -16,58 +17,34 @@ class UserProfileCardPage extends StatefulWidget {
 }
 
 class _UserProfileCardPageState extends State<UserProfileCardPage> {
-  int page = 0;
-  int totalPage = 0;
+  double page = 0;
   final PageController pageController = PageController(initialPage: 0);
 
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      totalPage = widget.userProfile.medias.length - 1;
-    });
-  }
-
-  void movePage(int inc) {
-    if (page > 0 && inc > 0) {
-      // 다음페이지
-      setState(() {
-        page -= 1;
-      });
-    }
-    if (page < totalPage - 1 && inc < 0) {
-      // 이전페이지
-      setState(() {
-        page += 1;
-      });
-    }
-    pageController.animateToPage(
-      page,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
   }
 
   List<Widget> UserProfilePageItems() {
-    return widget.userProfile.medias.mapIndexed((index, media) {
-      if (index == 0) {
-        return UserProfileCardPageDefault(
-          profileImageUrl: media.url,
-          name: widget.userProfile.name,
-          age: BirthDateUtil.getAge(widget.userProfile.birthDate),
-        );
-      }
-
-      return UserProfileCardPageIntro(
-        profileImageUrl: media.url,
+    return [
+      ...widget.userProfile.medias
+          .mapIndexed((index, media) => UserProfileCardPageDefault(
+                profileImageUrl: media.url,
+                name: widget.userProfile.name,
+                age: BirthDateUtil.getAge(widget.userProfile.birthDate),
+              ))
+          .toList(),
+      UserProfileCardPageIntro(
+        profileImageUrl: widget.userProfile.medias.last.url,
         intro: widget.userProfile.intro,
-      );
-    }).toList();
+      )
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
+    var pageItems = [...UserProfilePageItems()];
+
     return Container(
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
@@ -85,14 +62,35 @@ class _UserProfileCardPageState extends State<UserProfileCardPage> {
         children: [
           PageView(
             controller: pageController,
-            children: [...UserProfilePageItems()],
+            children: pageItems,
+          ),
+          SizedBox(
+            height: 30,
+            child: Center(
+              child: UserProfileCardPageIndicator(
+                page: page,
+                totalPage: pageItems.length,
+              ),
+            ),
           ),
           PageControllerButton(
-            prevButton: () {
-              movePage(1);
+            prevButton: () async {
+              await pageController.previousPage(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+              setState(() {
+                page = pageController.page ?? 0.0;
+              });
             },
-            nextButton: () {
-              movePage(-1);
+            nextButton: () async {
+              await pageController.nextPage(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+              setState(() {
+                page = pageController.page ?? 0.0;
+              });
             },
           ),
         ],

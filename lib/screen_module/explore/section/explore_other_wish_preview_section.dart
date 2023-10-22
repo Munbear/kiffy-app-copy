@@ -65,8 +65,11 @@ class _OtherWishPreviewSectionState
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [...LoadingOtherWishPreviewChips()],
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: Stack(
+        children: [...LoadingOtherWishPreviewChips()],
+      ),
     );
   }
 }
