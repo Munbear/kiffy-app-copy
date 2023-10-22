@@ -2,6 +2,7 @@ import 'package:Kiffy/domain/common/profile_picture_container.dart';
 import 'package:Kiffy/domain/common/profile_text_infro_container.dart';
 import 'package:Kiffy/domain/my_page/provider/user_profile_info.dart';
 import 'package:Kiffy/domain/my_page/widget/my_page_button.dart';
+import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,7 +26,7 @@ class _MyPageState extends ConsumerState<MyPage> {
 
   @override
   Widget build(BuildContext context) {
-    final myProfile = ref.watch(myProfileInfo);
+    final myProfile = ref.read(myProvider).getProfile();
     final currentImageIndex = ref.watch(currentPictureIndex);
 
     print(myProfile);
@@ -54,7 +55,7 @@ class _MyPageState extends ConsumerState<MyPage> {
               children: [
                 // 유저 사진
                 ProfilePictureContainer(
-                  userProfilePictures: myProfile?.medias ?? [],
+                  userProfilePictures: myProfile.medias.toList() ?? [],
                   pageController: pageController,
                   height: 390,
                 ),
@@ -64,7 +65,7 @@ class _MyPageState extends ConsumerState<MyPage> {
                     currentImageIndex != (myProfile.medias.length - 1))
                   ProfileTextInfoContainer(
                     userName: myProfile.name,
-                    userAge: myProfile.birthDate,
+                    userAge: myProfile.birthDate.toIso8601String(),
                   ),
 
                 // 자기소개

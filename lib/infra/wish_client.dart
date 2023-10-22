@@ -1,9 +1,8 @@
 import 'package:Kiffy/infra/api_client.dart';
-import 'package:Kiffy/model/media_view/media_view.dart';
-import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
-import 'package:Kiffy/model/wish_other_profiles_view/wish_other_profiles_view.dart';
+import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 final wishClientProvider =
     Provider<WishClientHandler>((ref) => WishClientHandler(ref));
@@ -26,9 +25,8 @@ class WishClientHandler {
 
 // 나에게 위시한 사용자들 가져오기
   getWishOthersProfiles({String? next}) async {
-    Response res = await dio.get("/api/wish/v1/wish/other");
-    final items = WishOtherProfilesView.fromJson(res.data);
-    ref.read(wishMeUsersProvider.notifier).update((state) => items.list);
+    var response = await ref.read(openApiProvider).getWishApi().apiWishV1WishOtherGet();
+    ref.read(wishMeUsersProvider.notifier).update((state) => response.data!.list!.toList());
   }
 }
 

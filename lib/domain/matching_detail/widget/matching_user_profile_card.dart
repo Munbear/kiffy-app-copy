@@ -38,7 +38,7 @@ class _MathcingUserProfileCardState
             // 프로필 사진
             ProfilePictureContainer(
               height: MediaQuery.of(context).size.height,
-              userProfilePictures: userDetailInfo!.medias,
+              userProfilePictures: userDetailInfo!.medias.toList(),
               pageController: pageController,
             ),
 
@@ -82,7 +82,7 @@ class _MathcingUserProfileCardState
                     ),
                     Text(
                       BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(
-                              userDetailInfo.birthDate))
+                              userDetailInfo.birthDate.toIso8601String()))
                           .toString(),
                       style: const TextStyle(
                         fontSize: 20,

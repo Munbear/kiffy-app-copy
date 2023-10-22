@@ -65,7 +65,7 @@ class _UnMatchUserProfileState extends ConsumerState<UnMatchUserProfile> {
                   children: [
                     // 유저 사진
                     ProfilePictureContainer(
-                      userProfilePictures: userImages,
+                      userProfilePictures: userImages.toList(),
                       pageController: pageController,
                       height: MediaQuery.of(context).size.height,
                     ),

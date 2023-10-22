@@ -6,10 +6,10 @@ import 'package:Kiffy/domain/common/reject_circle_button.dart';
 import 'package:Kiffy/domain/common/wish_circle_button.dart';
 import 'package:Kiffy/infra/explore_client.dart';
 import 'package:Kiffy/infra/wish_client.dart';
-import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 class UserProfileCard extends ConsumerStatefulWidget {
   final UserProfileView userProfile;
@@ -40,7 +40,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
         children: [
           // 유저 사진
           ProfilePictureContainer(
-            userProfilePictures: widget.userProfile.medias,
+            userProfilePictures: widget.userProfile.medias.toList(),
             pageController: pageController,
             height: MediaQuery.of(context).size.height,
           ),
@@ -57,7 +57,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
           if (currentImageIndex != (widget.userProfile.medias.length - 1))
             ProfileTextInfoContainer(
               userName: widget.userProfile.name,
-              userAge: widget.userProfile.birthDate,
+              userAge: widget.userProfile.birthDate.toIso8601String(),
             ),
 
           // 자기소개

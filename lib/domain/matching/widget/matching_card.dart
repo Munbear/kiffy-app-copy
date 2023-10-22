@@ -2,10 +2,10 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/border._style.dart';
 import 'package:Kiffy/domain/matching_detail/page/matching_detail_page.dart';
 import 'package:Kiffy/infra/match_client.dart';
-import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 class MatchingCard extends ConsumerWidget {
   final UserProfileView userProfile;
@@ -57,7 +57,7 @@ class MatchingCard extends ConsumerWidget {
                     const SizedBox(width: 7),
                     Text(
                       BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(
-                              userProfile.birthDate))
+                              userProfile.birthDate.toIso8601String()))
                           .toString(),
                       style: const TextStyle(
                         fontSize: 16,

@@ -1,10 +1,10 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page.dart';
 import 'package:Kiffy/infra/wish_client.dart';
-import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:openapi/openapi.dart';
 
 class ExploreWishedListItem extends ConsumerStatefulWidget {
   final UserProfileView profile;
@@ -26,7 +26,7 @@ class _ExploreWishedListItemState extends ConsumerState<ExploreWishedListItem> {
       onTap: () {
         ref
             .read(mediaDetailProvider.notifier)
-            .update((state) => state = widget.profile.medias);
+            .update((state) => state = widget.profile.medias.toList());
         ref.read(routerProvider).pushNamed(
           UnMatchUserProfile.routeName,
           queryParams: {

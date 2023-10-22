@@ -1,7 +1,7 @@
 import 'package:Kiffy/infra/explore_client.dart';
-import 'package:Kiffy/model/media_view/media_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 class ProfilePictureContainer extends ConsumerStatefulWidget {
   final List<MediaView> userProfilePictures;
