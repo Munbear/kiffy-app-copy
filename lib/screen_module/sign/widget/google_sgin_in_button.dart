@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GoogleSignInButton extends ConsumerWidget {
-  final VoidCallback onSgin;
+  final VoidCallback onPressed;
 
-  const GoogleSignInButton({super.key, required this.onSgin});
+  const GoogleSignInButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton.icon(
-      onPressed: () => onSgin(),
+      onPressed: () => onPressed(),
       label: const Text("Continue with Google"),
       icon: Image.asset("assets/images/google_logo.png", width: 20),
       style: ElevatedButton.styleFrom(

@@ -2,13 +2,11 @@ import 'package:Kiffy/domain/check_list/page/liked_list_page.dart';
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
 import 'package:Kiffy/domain/matching_detail/page/matching_detail_page.dart';
 import 'package:Kiffy/domain/my_page/page/my_page.dart';
-import 'package:Kiffy/domain/profile/page/add_profiile_auth_phone_number.dart';
-import 'package:Kiffy/domain/profile/page/add_profile_complete_page.dart';
-import 'package:Kiffy/domain/profile/page/add_profile_contact_page.dart';
-import 'package:Kiffy/domain/profile/page/add_profile_image_page.dart';
-import 'package:Kiffy/domain/profile/page/add_profile_input_auth_code_page.dart';
-import 'package:Kiffy/domain/profile/page/add_profile_intro_page.dart';
-import 'package:Kiffy/domain/profile/page/add_profile_user_page.dart';
+import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
+import 'package:Kiffy/screen/profile/add_profile_contact_screen.dart';
+import 'package:Kiffy/screen/profile/add_profile_image_screen.dart';
+import 'package:Kiffy/screen/profile/add_profile_intro_screen.dart';
+import 'package:Kiffy/screen/profile/add_profile_user_screen.dart';
 import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
 import 'package:Kiffy/domain/matching/page/matching_page.dart';
 import 'package:Kiffy/domain/unmatch_user_profile/page/unmatch_user_profile_page.dart';
@@ -148,17 +146,5 @@ List<RouteBase> get _routes => [
         path: AddProfileCompletePage.routeLocation,
         name: AddProfileCompletePage.routeName,
         builder: (context, _) => const AddProfileCompletePage(),
-      ),
-      GoRoute(
-        // 전화번호 입력 페이지
-        path: AddProfilePhoneNumberPage.routeLocation,
-        name: AddProfilePhoneNumberPage.routeName,
-        builder: (context, _) => const AddProfilePhoneNumberPage(),
-      ),
-      GoRoute(
-        // 코드 입력 페이지
-        path: AddProfileInputAuthCodePage.routeLocation,
-        name: AddProfileInputAuthCodePage.routeName,
-        builder: (context, _) => const AddProfileInputAuthCodePage(),
       ),
     ];

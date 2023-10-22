@@ -1,6 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
-import 'package:Kiffy/domain/profile/page/add_profile_user_page.dart';
+import 'package:Kiffy/screen/profile/add_profile_user_screen.dart';
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
 import 'package:Kiffy/screen_module/sign/widget/google_sgin_in_button.dart';
@@ -58,7 +58,7 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
           Image.asset("assets/images/kiffy_logo_purple.png", width: 150),
           // 구글 아이콘
           GoogleSignInButton(
-            onSgin: () => googleLoginAndRoute(),
+            onPressed: () => googleLoginAndRoute(),
           )
         ],
       ),

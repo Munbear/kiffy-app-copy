@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignInScreen extends ConsumerWidget {
   static String get routeLoaction => "/sign";
+
   static String get routeName => "sign";
 
   const SignInScreen({super.key});

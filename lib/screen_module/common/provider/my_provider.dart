@@ -30,13 +30,16 @@ class MyProvider {
       return;
     }
 
+    try {
+      var profileResponse = await ref.read(openApiProvider).getMyApi().apiUserV1MyProfileGet();
+      if (profileResponse.statusCode != 200) {
+        return;
+      }
 
-    var profileResponse = await ref.read(openApiProvider).getMyApi().apiUserV1MyProfileGet();
-    if (profileResponse.statusCode != 200) {
-      return;
+      info = MyInfo(status: statusResponse.data, profile: profileResponse.data);
+    } catch(e) {
+      // ignore
     }
-
-    info = MyInfo(status: statusResponse.data, profile: profileResponse.data);
   }
 
   UserStatusView getStatus() {

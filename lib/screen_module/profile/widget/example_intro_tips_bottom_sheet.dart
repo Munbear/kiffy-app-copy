@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ExampleIntroTipsBottomSheet extends ConsumerWidget {
+class ExampleIntroTipsBottomSheet extends StatelessWidget {
   ExampleIntroTipsBottomSheet({super.key});
 
   List<String> example = [
@@ -12,7 +12,7 @@ class ExampleIntroTipsBottomSheet extends ConsumerWidget {
   ];
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 39, vertical: 24),
       child: Column(

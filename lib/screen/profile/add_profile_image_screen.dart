@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
-import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
-import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';
-import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
-import 'package:Kiffy/domain/profile/widget/example_profile_foto_tip_bottom_sheet.dart';
+import 'package:Kiffy/screen_module/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile_header.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile_input_image_card.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile_input_validation_text.dart';
+import 'package:Kiffy/screen_module/profile/widget/example_profile_photo_tip_bottom_sheet.dart';
 import 'package:Kiffy/infra/media_client.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact/user_profile_create_and_edit_command_profile_contact.dart';
@@ -217,7 +217,7 @@ class _AddProfileImagePageState extends ConsumerState<AddProfileImagePage> {
         maxHeight: MediaQuery.of(context).size.height / 2,
       ),
       builder: (BuildContext context) {
-        return ExampleProfileFotoTipBottomSheet();
+        return ExampleProfilePhotoTipBottomSheet();
       },
     );
   }

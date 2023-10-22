@@ -1,9 +1,9 @@
 import 'package:Kiffy/config/router/route.dart';
 
 import 'package:Kiffy/domain/core/enum/gender_type.dart';
-import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
-import 'package:Kiffy/domain/profile/widget/add_profile_header.dart';
-import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
+import 'package:Kiffy/screen_module/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile_header.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile_input_validation_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

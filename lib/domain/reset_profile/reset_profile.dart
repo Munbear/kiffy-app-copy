@@ -1,9 +1,9 @@
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/core/enum/contact_type.dart';
-import 'package:Kiffy/domain/profile/page/add_profile_image_page.dart';
-import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
-import 'package:Kiffy/domain/profile/widget/add_profile_input_image_card.dart';
-import 'package:Kiffy/domain/profile/widget/add_profile_input_validation_text.dart';
+import 'package:Kiffy/screen/profile/add_profile_image_screen.dart';
+import 'package:Kiffy/screen_module/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile_input_image_card.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile_input_validation_text.dart';
 import 'package:Kiffy/infra/media_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

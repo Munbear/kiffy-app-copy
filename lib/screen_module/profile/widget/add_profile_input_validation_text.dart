@@ -1,8 +1,8 @@
-import 'package:Kiffy/domain/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/provider/add_profile_input_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddProfileInputValidationText extends ConsumerWidget {
+class AddProfileInputValidationText extends StatelessWidget {
   String normalText;
   AddProfileInputItemValidation validation;
 
@@ -13,7 +13,7 @@ class AddProfileInputValidationText extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return validation.isValid
         ? Text(
             normalText,

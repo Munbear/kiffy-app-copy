@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddProfileHeader extends ConsumerWidget {
+class AddProfileHeader extends StatelessWidget {
   const AddProfileHeader({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 72, bottom: 30),
-      child: Column(
-        children: const [
+      child: const Column(
+        children: [
           Text(
             "Identify yourself",
             style: TextStyle(

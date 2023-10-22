@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ExampleProfileFotoTipBottomSheet extends ConsumerWidget {
-  ExampleProfileFotoTipBottomSheet({super.key});
+class ExampleProfilePhotoTipBottomSheet extends StatelessWidget {
+  ExampleProfilePhotoTipBottomSheet({super.key});
 
   PageController controller = PageController(initialPage: 0);
 
@@ -16,7 +15,7 @@ class ExampleProfileFotoTipBottomSheet extends ConsumerWidget {
   int currentPage = 0;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24),
       child: Column(

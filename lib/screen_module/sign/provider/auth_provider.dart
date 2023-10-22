@@ -9,7 +9,6 @@ final authProvider = Provider((ref) => AuthProvider(ref: ref));
 
 enum AuthStatus {
   SUCCESS,
-  FAIL,
   NONE;
 }
 
@@ -26,12 +25,12 @@ class AuthProvider {
       return AuthStatus.NONE;
     }
 
-    final response = await ref.read(openApiProvider).getMyApi().apiUserV1MyStatusGet();
-    if (response.statusCode != 200) {
+    try { // API 실패 잡기
+      await ref.read(openApiProvider).getMyApi().apiUserV1MyStatusGet();
+      return AuthStatus.SUCCESS;
+    } catch(e) {
       return AuthStatus.NONE;
     }
-
-    return AuthStatus.SUCCESS;
   }
 
   Future<void> logout() async {
