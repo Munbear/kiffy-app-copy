@@ -6,8 +6,8 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-class ExploreUserCardSection extends ConsumerStatefulWidget {
-  const ExploreUserCardSection({super.key});
+class ExploreUserProifleCardSection extends ConsumerStatefulWidget {
+  const ExploreUserProifleCardSection({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -15,7 +15,7 @@ class ExploreUserCardSection extends ConsumerStatefulWidget {
 }
 
 class _ExploreUserCardSectionState
-    extends ConsumerState<ExploreUserCardSection> {
+    extends ConsumerState<ExploreUserProifleCardSection> {
   final CardSwiperController controller = CardSwiperController();
   List<UserProfileView> userProfiles = List.empty();
   bool isLoading = true;
@@ -27,7 +27,7 @@ class _ExploreUserCardSectionState
     final response = await ref
         .read(openApiProvider)
         .getExploreApi()
-        .apiExploreV1UsersGet(limit: 5, offset: 0);
+        .apiExploreV1UsersGet(offset: 0, limit: 5);
 
     setState(() {
       userProfiles = response.data!.list!.toList();
@@ -101,7 +101,7 @@ class _ExploreUserCardSectionState
     return Expanded(
       child: Container(
         padding: const EdgeInsets.only(
-          top: 5,
+          top: 20,
           left: 20,
           right: 20,
           bottom: 20,
