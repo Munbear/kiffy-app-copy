@@ -28,16 +28,16 @@ class AddProfileInputItemValidation {
 }
 
 // 프로필 생성 상태
-final addProfileInputProvider =
-    StateNotifierProvider<AddProfileInputState, UserProfileCreateCommand>(
-        (ref) => AddProfileInputState(ref));
+final profileInputProvider =
+    StateNotifierProvider<profileInputState, UserProfileCreateCommand>(
+        (ref) => profileInputState(ref));
 
 // 유저 프로필 상태
-class AddProfileInputState extends StateNotifier<UserProfileCreateCommand> {
+class profileInputState extends StateNotifier<UserProfileCreateCommand> {
   final Ref ref;
   // Dio dio = ApiClient().dio;
 
-  AddProfileInputState(this.ref)
+  profileInputState(this.ref)
       : super(
           UserProfileCreateCommand(
             name: "",

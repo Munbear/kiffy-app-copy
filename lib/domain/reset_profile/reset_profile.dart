@@ -1,9 +1,9 @@
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/domain/core/enum/contact_type.dart';
 import 'package:Kiffy/screen/profile/add_profile_image_screen.dart';
-import 'package:Kiffy/screen_module/profile/provider/add_profile_input_provider.dart';
-import 'package:Kiffy/screen_module/profile/widget/add_profile_input_image_card.dart';
-import 'package:Kiffy/screen_module/profile/widget/add_profile_input_validation_text.dart';
+import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/widget/profile_input_image_card.dart';
+import 'package:Kiffy/screen_module/profile/widget/profile_input_validation_text.dart';
 import 'package:Kiffy/infra/media_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +14,7 @@ import '../common/custom_app_bar.dart';
 
 class ResetProfile extends ConsumerStatefulWidget {
   static String get routeLocation => "/resetProfile";
+
   static String get routeNmae => "resetProfile";
 
   const ResetProfile({super.key});
@@ -55,7 +56,7 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
 
   @override
   Widget build(BuildContext context) {
-    var userProfile = ref.read(addProfileInputProvider);
+    var userProfile = ref.read(profileInputProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -106,15 +107,11 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
                   mainAxisSpacing: 15,
                   crossAxisSpacing: 15,
                 ),
-                itemBuilder: (context, index) => AddProfileInputImageCard(
-                  props: AddProfileInputImageCardProps(
-                    index: index,
-                    onDeleted: (idx) => onDeletedListener(idx),
-                    onAdded: (path) => onAddedListener(path),
-                    filePath: inputImages.length > index
-                        ? inputImages.elementAt(index).filePath
-                        : null,
-                  ),
+                itemBuilder: (context, index) => PhotoInputCard(
+                  index: index,
+                  onDeleted: (idx) => onDeletedListener(idx),
+                  onAdded: (path) => onAddedListener(path),
+                  filePath: inputImages.length > index ? inputImages.elementAt(index).filePath : null,
                 ),
               ),
               const SizedBox(height: 10),
@@ -122,7 +119,7 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
               // 사진 2개 이상 등록 안내 텍스트
               Align(
                 alignment: Alignment.centerLeft,
-                child: AddProfileInputValidationText(
+                child: ProfileInputValidationText(
                   normalText: "* You must select at least two sheets.",
                   validation: inputImagesValidation,
                 ),
@@ -162,16 +159,14 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
                 decoration: const InputDecoration(
                     hintText: "Please enter it.",
                     enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xffcecece), width: 2.0),
+                      borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15),
                           topRight: Radius.circular(15)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xff0031AA), width: 3.0),
+                      borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15),
@@ -182,7 +177,7 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
               const SizedBox(height: 10),
               Align(
                 alignment: Alignment.centerLeft,
-                child: AddProfileInputValidationText(
+                child: ProfileInputValidationText(
                   normalText: "* This will increase your matching probability.",
                   validation: inputIntroValidation,
                 ),
@@ -284,16 +279,14 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
                 decoration: const InputDecoration(
                     hintText: "Please enter it.",
                     enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xffcecece), width: 2.0),
+                      borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15),
                           topRight: Radius.circular(15)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xff0031AA), width: 3.0),
+                      borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15),
@@ -304,9 +297,8 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
               const SizedBox(height: 8),
               Align(
                 alignment: Alignment.centerLeft,
-                child: AddProfileInputValidationText(
-                  normalText:
-                      "* When a match is made, it’s shown to the woman.",
+                child: ProfileInputValidationText(
+                  normalText: "* When a match is made, it’s shown to the woman.",
                   validation: inputContactValidation,
                 ),
               ),
@@ -324,8 +316,7 @@ class _ResetProfileState extends ConsumerState<ResetProfile> {
                   ),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 20),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     backgroundColor: const Color(0xff0031AA),
                   ),
                 ),

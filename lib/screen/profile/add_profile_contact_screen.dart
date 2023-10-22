@@ -1,9 +1,9 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/border._style.dart';
 import 'package:Kiffy/domain/core/enum/contact_type.dart';
-import 'package:Kiffy/screen_module/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile_header.dart';
-import 'package:Kiffy/screen_module/profile/widget/add_profile_input_validation_text.dart';
+import 'package:Kiffy/screen_module/profile/widget/profile_input_validation_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -121,7 +121,7 @@ class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
             const SizedBox(height: 8),
 
             // 유호성 안내 텍스
-            AddProfileInputValidationText(
+            ProfileInputValidationText(
               normalText: "* When a match is made, it’s shown to the woman.",
               validation: inputContactValidation,
             ),
@@ -131,7 +131,7 @@ class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
             ElevatedButton(
               onPressed: () {
                 inputContactValidation =
-                    ref.read(addProfileInputProvider.notifier).setContact(
+                    ref.read(profileInputProvider.notifier).setContact(
                           inputContactId,
                           inputContactType,
                         );
@@ -139,7 +139,7 @@ class _AddProfileContactPageState extends ConsumerState<AddProfileContactPage> {
 
                 if (inputContactValidation.isValid) {
                   ref
-                      .read(addProfileInputProvider.notifier)
+                      .read(profileInputProvider.notifier)
                       .updateContact(inputContactId, inputContactType);
                   ref
                       .read(routerProvider)

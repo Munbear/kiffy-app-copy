@@ -1,7 +1,7 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/border._style.dart';
 import 'package:Kiffy/domain/explore/page/explore_page.dart';
-import 'package:Kiffy/screen_module/profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -78,7 +78,7 @@ class _AddProfileCompletePageState
               // start button
               ElevatedButton(
                 onPressed: () {
-                  print(ref.watch(addProfileInputProvider.notifier).state);
+                  print(ref.watch(profileInputProvider.notifier).state);
                   ref.read(routerProvider).replace(ExplorePage.routeLocation);
                   // ref.read(addUserProfileInfoProvider);
                 },
