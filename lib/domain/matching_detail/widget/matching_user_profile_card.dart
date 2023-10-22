@@ -33,7 +33,6 @@ class _MathcingUserProfileCardState
         ),
         child: Stack(
           alignment: Alignment.center,
-          // fit: StackFit.expand,
           children: [
             // 프로필 사진
             ProfilePictureContainer(
@@ -50,19 +49,6 @@ class _MathcingUserProfileCardState
                 endIndex: currentImageIndex.toDouble(),
               ),
             ),
-
-            // Positioned(
-            //   left: 28,
-            //   bottom: 59,
-            //   child: Text(
-            //     userDetailInfo.name,
-            //     style: const TextStyle(
-            //       fontSize: 35,
-            //       color: Colors.white,
-            //       fontWeight: FontWeight.w300,
-            //     ),
-            //   ),
-            // ),
 
             // 유저 나이 및 지역
             if (currentImageIndex != (userDetailInfo.medias.length - 1))
@@ -81,8 +67,7 @@ class _MathcingUserProfileCardState
                       ),
                     ),
                     Text(
-                      BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(
-                              userDetailInfo.birthDate.toIso8601String()))
+                      BirthDateUtil.getAge(BirthDateUtil.parseBirthDate(userDetailInfo.birthDate.toIso8601String()))
                           .toString(),
                       style: const TextStyle(
                         fontSize: 20,
@@ -118,7 +103,8 @@ class _MathcingUserProfileCardState
                 nextButton: () => ref.read(exploreProvider).nextImage(
                     currentImageIndex,
                     pageController,
-                    userDetailInfo.medias.length),
+                    userDetailInfo.medias.length
+                ),
               ),
             ),
           ],

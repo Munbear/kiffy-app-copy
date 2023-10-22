@@ -1,22 +1,12 @@
-import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/domain/common/border._style.dart';
-import 'package:Kiffy/domain/explore/page/explore_page.dart';
-import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/section/profile_input_complete_section.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddProfileCompletePage extends ConsumerStatefulWidget {
+class AddProfileCompletePage extends StatelessWidget {
   static String get routeLocation => "/profile/add_profile/complete";
   static String get routeName => "profile_add_profile_complete";
+
   const AddProfileCompletePage({super.key});
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _AddProfileCompletePageState();
-}
-
-class _AddProfileCompletePageState
-    extends ConsumerState<AddProfileCompletePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,73 +19,7 @@ class _AddProfileCompletePageState
           backgroundColor: Colors.white,
           title: Image.asset("assets/images/kiffy_logo_purple.png", width: 69),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 36),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // profile preview circle
-                    Center(
-                      child: Container(
-                        width: 172,
-                        height: 172,
-                        decoration: BorderGradientCircleShape
-                            .outlineGradientBoxDecoration,
-                        child: Container(
-                          padding: const EdgeInsets.all(7),
-                          decoration: BorderGradientCircleShape.innerDecoration,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Image.asset(
-                                "assets/images/example_for_dev.png",
-                                fit: BoxFit.cover),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Text(
-                      "Build your Profile",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Color(0xFF0031AA),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const Text(
-                      "Meet various people through the kiffy!",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF494949),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // start button
-              ElevatedButton(
-                onPressed: () {
-                  print(ref.watch(profileInputProvider.notifier).state);
-                  ref.read(routerProvider).replace(ExplorePage.routeLocation);
-                  // ref.read(addUserProfileInfoProvider);
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.only(top: 15, bottom: 15),
-                  textStyle: const TextStyle(fontSize: 20, color: Colors.white),
-                  backgroundColor: const Color(0xFF0031AA),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text("Start KIFFY !"),
-              ),
-              const SizedBox(height: 20),
-            ],
-          ),
-        ),
+        body: const ProfileInputCompleteSection(),
       ),
     );
   }
