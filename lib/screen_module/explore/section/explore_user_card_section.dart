@@ -36,6 +36,7 @@ class _ExploreUserCardSectionState
     });
   }
 
+  /// 위시 및 스와이프
   void wishAndSwipe(String userId) async {
     await ref.read(openApiProvider).getWishApi().apiWishV1WishApprovePut(
       wishApproveRequest: WishApproveRequest(
@@ -47,6 +48,7 @@ class _ExploreUserCardSectionState
     controller.swipeRight();
   }
 
+  /// 거절 및 스와이프
   void rejectAndSwipe(String userId) async {
     await ref.read(openApiProvider).getWishApi().apiWishV1WishRejectPut(
       wishRejectRequest: WishRejectRequest(
@@ -58,18 +60,20 @@ class _ExploreUserCardSectionState
     controller.swipeLeft();
   }
 
+  /// 로딩 위젯
   Widget LoadingCardSwiper() {
     if (isLoading) {
       return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Skeleton(),
+        child: const Skeleton(),
       );
     }
 
+    // 유저 없을 때
     if (userProfiles.isEmpty) {
-      return ExploreUserCardEmpty();
+      return const ExploreUserCardEmpty();
     }
 
     return CardSwiper(
