@@ -881,8 +881,8 @@ packages:
     dependency: "direct main"
     description:
       path: "openapi/gen/api/dart-dio"
-      ref: "9bf3b4ef72be5a8601d39bea1779720568f4751c"
-      resolved-ref: "9bf3b4ef72be5a8601d39bea1779720568f4751c"
+      ref: a86bbc6fa04c42719712b426cf4e4e3aadd35598
+      resolved-ref: a86bbc6fa04c42719712b426cf4e4e3aadd35598
       url: "git@github.com:kiiffy/idl.git"
     source: git
     version: "1.0.1"

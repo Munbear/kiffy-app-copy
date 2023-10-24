@@ -1,4 +1,3 @@
-import 'package:Kiffy/domain/check_list/page/liked_list_page.dart';
 import 'package:Kiffy/domain/my_page/page/my_page.dart';
 import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
@@ -13,6 +12,7 @@ import 'package:Kiffy/screen/profile/add_profile_intro_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_user_screen.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
+import 'package:Kiffy/screen/wish/other_wish_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -116,9 +116,9 @@ List<RouteBase> get _routes => [
       ),
       GoRoute(
         // 좋아요 보낸 사람 리스트
-        path: LikedListPage.routeLocation,
-        name: LikedListPage.routeName,
-        builder: (context, _) => const LikedListPage(),
+        path: OtherWishUserScreen.routeLocation,
+        name: OtherWishUserScreen.routeName,
+        builder: (context, _) => const OtherWishUserScreen(),
       ),
 
       GoRoute(
