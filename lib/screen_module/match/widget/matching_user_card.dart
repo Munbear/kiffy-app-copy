@@ -1,25 +1,22 @@
-import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/border._style.dart';
-import 'package:Kiffy/domain/matching_detail/page/matching_detail_page.dart';
-import 'package:Kiffy/infra/match_client.dart';
-import 'package:Kiffy/model/matched_user_profiles_view/matched_user_profiles_view.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-class MatchingCard extends ConsumerWidget {
+class MatchingUserCard extends StatelessWidget {
   final MatchedUserView userProfile;
+  final VoidCallback onTap;
 
-  const MatchingCard({super.key, required this.userProfile});
+  const MatchingUserCard({
+    super.key,
+    required this.onTap,
+    required this.userProfile,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // TODO
-        // 매칭된 유저 상세 화면으로
-      },
+      onTap: () => onTap(),
       child: Container(
         height: 205,
         margin: const EdgeInsets.only(top: 12),
@@ -35,7 +32,6 @@ class MatchingCard extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   userProfile.userProfile.medias.first.url,
-                  // userProfile.medias.first.url,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -48,7 +44,6 @@ class MatchingCard extends ConsumerWidget {
                   children: [
                     Text(
                       userProfile.userProfile.name,
-                      // userProfile.name,
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -58,10 +53,9 @@ class MatchingCard extends ConsumerWidget {
                     const SizedBox(width: 7),
                     Text(
                       BirthDateUtil.getAge(
-                        BirthDateUtil.parseBirthDate(
-                            userProfile.userProfile.birthDate.toIso8601String()
-                            // userProfile.birthDate.toIso8601String(),
-                            ),
+                        BirthDateUtil.parseBirthDate(userProfile
+                            .userProfile.birthDate
+                            .toIso8601String()),
                       ).toString(),
                       style: const TextStyle(
                         fontSize: 16,

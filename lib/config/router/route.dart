@@ -48,7 +48,7 @@ List<RouteBase> get _routes => [
         builder: (context, _) => const MyPage(),
       ),
       GoRoute(
-        // 설정 화면
+        // 설정 화면K
         path: SettingPage.routeLocation,
         name: SettingPage.routeName,
         builder: (context, _) => const SettingPage(),

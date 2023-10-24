@@ -1,5 +1,7 @@
-import 'package:Kiffy/domain/matching/widget/matching_card.dart';
+import 'package:Kiffy/screen_module/match/widget/matching_empty_widget.dart';
+import 'package:Kiffy/screen_module/match/widget/matching_user_card.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/screen_module/match/widget/matching_list_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
@@ -16,94 +18,112 @@ class _MatchedUserCardSectionState
     extends ConsumerState<MatchedUserCardSection> {
   /// 매칭 유저들 state
   List<MatchedUserView> usersProfile = List.empty();
+  late ScrollController _scrollController;
 
   /// 로딩 state
-  bool isLoading = false;
+  bool isLoading = true;
+  bool isMoreLoading = false;
 
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final res = await ref
-          .read(openApiProvider)
-          .getMatchApi()
-          .apiMatchV2UsersGet(offset: 0, limit: 5);
-
-      setState(() {
-        usersProfile = res.data!.list.toList();
-      });
+      getMatchingUsers(0, 6);
     });
+
+    _scrollController = ScrollController()
+      ..addListener(() {
+        if (_scrollController.position.pixels <
+            _scrollController.position.maxScrollExtent) {
+          print("scroll");
+        }
+      });
+  }
+
+  void getMatchingUsers(offset, limit) async {
+    setState(() => isLoading = true);
+    final res = await ref
+        .read(openApiProvider)
+        .getMatchApi()
+        .apiMatchV2UsersGet(offset: offset, limit: limit);
+
+    setState(() {
+      usersProfile = [...usersProfile, ...res.data!.list.toList()];
+      isLoading = false;
+    });
+  }
+
+  Widget loadingMatchingCard() {
+    if (isLoading) {
+      return const MatchingListLoadingWidget();
+    }
+
+    if (usersProfile.isEmpty) {
+      return const MatchingEmptyWidget();
+    }
+
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 24, right: 24),
+        child: GridView.builder(
+          shrinkWrap: true,
+          physics: const ScrollPhysics(),
+          controller: _scrollController,
+          itemCount: usersProfile.length,
+          scrollDirection: Axis.vertical,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.75,
+            crossAxisSpacing: 18,
+            mainAxisSpacing: 6,
+          ),
+          itemBuilder: (context, index) {
+            final matchedUser = usersProfile[index];
+            return MatchingUserCard(
+              onTap: () {
+                //TODO
+                // 매칭 유저 디테일 이동
+              },
+              userProfile: matchedUser,
+            );
+          },
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ///
-        const Padding(
-          padding: EdgeInsets.only(left: 24, top: 12),
-          child: Text(
-            "Matches",
-            style: TextStyle(
-              color: Color(0xff494949),
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          /// 캡션
+          const Padding(
+            padding: EdgeInsets.only(left: 26, top: 12),
+            child: Text(
+              "Matches",
+              style: TextStyle(
+                color: Color(0xff494949),
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
-        ),
 
-        /// 리스트
-        // TODO
-        // 유저 카드 컴포넌트
-        // 스켈레톤 컴포넌트
-        // more 컴포넌트
-        // Expanded(
-        //   child: Padding(
-        //     padding: const EdgeInsets.only(left: 24, right: 24),
-        //     child: GridView.count(
-        //       scrollDirection: Axis.vertical,
-        //       crossAxisCount: 2,
-        //       crossAxisSpacing: 18,
-        //       mainAxisSpacing: 6,
-        //       childAspectRatio: 0.75,
-        //       children: usersProfile.map((matchedUser) {
-        //         return MatchingCard(userProfile: matchedUser);
-        //       }).toList(),
-        //     ),
-        //   ),
-        // )
-        // isLoading
-        //     ? const Center(
-        //         child: CircularProgressIndicator(),
-        //       )
-        //     // 매칭 리스트
-        //     : usersProfile.isNotEmpty
-        //         ? Expanded(
-        //             child: Padding(
-        //               padding: const EdgeInsets.only(left: 24, right: 24),
-        //               child: GridView.count(
-        //                 scrollDirection: Axis.vertical,
-        //                 crossAxisCount: 2,
-        //                 crossAxisSpacing: 18,
-        //                 mainAxisSpacing: 6,
-        //                 childAspectRatio: 0.75,
-        //                 children: usersProfile.map((matchedUser) {
-        //                   return MatchingCard(userProfile: matchedUser);
-        //                 }).toList(),
-        //               ),
-        //             ),
-        //           )
-        //         : const Expanded(child: Center(child: Text("아직 매칭된 유져가 없습니다"))),
-
-        // isMore
-        //     ? MatchingMoreButton(
-        //         onClick: () => ref
-        //             .read(matchedUserProfileProvider)
-        //             .getMatchedUsers(matchedUserList.length, 6),
-        //       )
-        //     : const SizedBox()
-      ],
+          /// 리스트
+          loadingMatchingCard(),
+          // 더보기 로딩
+          if (isMoreLoading)
+            const SizedBox(
+              height: 100,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            )
+        ],
+      ),
     );
   }
 }
