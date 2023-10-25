@@ -14,9 +14,9 @@ class WishRemainCalculator {
     Duration remained = expiration - difference;
 
     return WishRemained(
-      hour: max(remained.inHours % 24, 0),
-      minute: max(remained.inMinutes % 60, 0),
-      second: max(remained.inSeconds % 60, 0),
+      hour: remained.inHours > 0 ? remained.inHours % 24 : 0,
+      minute: remained.inMinutes > 0 ? remained.inMinutes % 60 : 0,
+      second: remained.inSeconds > 0 ? remained.inSeconds % 60 : 0,
     );
   }
 }
@@ -38,5 +38,9 @@ class WishRemained {
     }
 
     return false;
+  }
+
+  String remainedDurationHHmmss() {
+    return "${hour > 9 ? hour : "0${hour}"}:${minute > 9 ? minute : "0${minute}"}:${second > 9 ? second : "0${second}"}";
   }
 }

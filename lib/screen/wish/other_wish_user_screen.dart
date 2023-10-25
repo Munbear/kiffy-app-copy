@@ -23,7 +23,22 @@ class _LikedListPageState extends ConsumerState<OtherWishUserScreen> {
         elevation: 0.5,
         title: const CustomAppBarImageTitle(),
       ),
-      body: OtherWishUserProfileSection(),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            SizedBox(
+              height: 100,
+              child: Center(
+                child: Text("나에게 위시한 사용자들"),
+              ),
+            ),
+            Container(
+              child: OtherWishUserProfileSection(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

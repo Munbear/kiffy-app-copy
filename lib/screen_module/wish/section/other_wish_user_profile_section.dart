@@ -28,7 +28,7 @@ class _OtherWishUserProfileSectionState
       var response =
           await ref.read(openApiProvider).getWishApi().apiWishV2WishOtherGet(
                 offsetWishId: offsetWishId,
-                limit: 10,
+                limit: 50,
               );
 
       if (response.data != null && response.data!.list.isNotEmpty) {
@@ -87,8 +87,10 @@ class _OtherWishUserProfileSectionState
     }
 
     return GridView.count(
+      physics: NeverScrollableScrollPhysics(),
       crossAxisCount: 3,
       childAspectRatio: 0.8,
+      shrinkWrap: true,
       children: [
         ...otherWishes.map(
           (otherWish) => Container(

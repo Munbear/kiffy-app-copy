@@ -28,7 +28,7 @@ class OtherWishUserProfileChip extends StatelessWidget {
           ...[
             remained.isRemained()
                 ? Text(
-                    "${remained.hour}:${remained.minute}:${remained.second}",
+                    remained.remainedDurationHHmmss(),
                     style: TextStyle(
                       color: Color(0xff0031AA),
                       fontSize: 13,
