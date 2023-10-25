@@ -23,6 +23,8 @@ class _MatchedUserCardSectionState
   /// 로딩 state
   bool isLoading = true;
   bool isMoreLoading = false;
+  bool hasList = true;
+  bool _scrollDelay = false;
 
   @override
   void initState() {
@@ -34,9 +36,13 @@ class _MatchedUserCardSectionState
 
     _scrollController = ScrollController()
       ..addListener(() {
-        if (_scrollController.position.pixels <
-            _scrollController.position.maxScrollExtent) {
-          print("scroll");
+        if (_scrollController.position.pixels ==
+                _scrollController.position.maxScrollExtent &&
+            hasList &&
+            !_scrollDelay) {
+          _scrollDelay = true;
+          getMatchingUsers(usersProfile.length, 6);
+          _scrollDelay = false;
         }
       });
   }
@@ -47,6 +53,12 @@ class _MatchedUserCardSectionState
         .read(openApiProvider)
         .getMatchApi()
         .apiMatchV2UsersGet(offset: offset, limit: limit);
+
+    if (res.data!.list.toList().isEmpty) {
+      setState(() {
+        hasList = false;
+      });
+    }
 
     setState(() {
       usersProfile = [...usersProfile, ...res.data!.list.toList()];
