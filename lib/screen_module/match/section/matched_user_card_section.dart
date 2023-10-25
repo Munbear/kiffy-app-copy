@@ -1,7 +1,7 @@
 import 'package:Kiffy/screen_module/match/widget/matching_empty_widget.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_user_card.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
-import 'package:Kiffy/screen_module/match/widget/matching_list_loading_widget.dart';
+import 'package:Kiffy/screen_module/match/widget/matching_card_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
@@ -56,7 +56,7 @@ class _MatchedUserCardSectionState
 
   Widget loadingMatchingCard() {
     if (isLoading) {
-      return const MatchingListLoadingWidget();
+      return const MatchingCardSkeleton();
     }
 
     if (usersProfile.isEmpty) {
