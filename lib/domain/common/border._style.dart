@@ -73,4 +73,9 @@ class BorderGradientBorderRadius50 {
       ],
     ),
   );
+
+  static BoxDecoration outlineGreyBoxDecoration = BoxDecoration(
+    border: Border.all(color: Colors.grey),
+    borderRadius: BorderRadius.circular(50),
+  );
 }
