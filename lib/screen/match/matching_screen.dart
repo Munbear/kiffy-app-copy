@@ -1,18 +1,17 @@
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/widget/other_wish_user/other_wish_preview_section.dart';
-import 'package:Kiffy/screen_module/explore/section/explore_user_card_section.dart';
+import 'package:Kiffy/screen_module/match/section/matched_user_card_section.dart';
 import 'package:flutter/material.dart';
 
-class ExploreScreen extends StatelessWidget {
-  static String get routeName => "explore";
-  static String get routeLocation => "/explore";
+class MatchingScreen extends StatelessWidget {
+  static String get routeLocation => "/matching";
+  static String get routeName => "matching";
 
-  const ExploreScreen({super.key});
+  const MatchingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
@@ -24,19 +23,17 @@ class ExploreScreen extends StatelessWidget {
           "assets/images/kiffy_logo_purple.png",
         ),
       ),
-      body: const SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            // 나에게 위시 보낸 유저 리스트
-            OtherWishPreviewSection(),
-            // 탐색할 유저 카드
-            ExploreUserProfileCardSection(),
-          ],
-        ),
+      body: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 위시 리스트
+          OtherWishPreviewSection(),
+          // 매칭 된 리스트 타이틀
+          MatchedUserCardSection(),
+        ],
       ),
       bottomNavigationBar: CustomBottomNavBar(
-        currentPath: ExploreScreen.routeLocation,
+        currentPath: MatchingScreen.routeLocation,
       ),
     );
   }

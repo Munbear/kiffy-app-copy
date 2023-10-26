@@ -5,6 +5,7 @@ import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
+import 'package:Kiffy/screen/match/matching_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_contact_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_image_screen.dart';
@@ -12,19 +13,25 @@ import 'package:Kiffy/screen/profile/add_profile_intro_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_user_screen.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../domain/reset_profile/reset_profile.dart';
 
+final GlobalKey<NavigatorState> rootNavKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> exploreNavKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> matchNavKey = GlobalKey<NavigatorState>();
+
 // 라우팅 변경
 final routerProvider = Provider<GoRouter>(
   (ref) {
     return GoRouter(
+      navigatorKey: rootNavKey,
       debugLogDiagnostics: true,
       routerNeglect: true,
-      routes: _routes,
       initialLocation: InitScreen.routeLoaction,
+      routes: _routes,
     );
   },
 );
@@ -41,7 +48,7 @@ List<RouteBase> get _routes => [
         builder: (context, _) => const MyPage(),
       ),
       GoRoute(
-        // 설정 화면
+        // 설정 화면K
         path: SettingPage.routeLocation,
         name: SettingPage.routeName,
         builder: (context, _) => const SettingPage(),
@@ -58,43 +65,62 @@ List<RouteBase> get _routes => [
         name: WithdrawPage.routeName,
         builder: (context, _) => const WithdrawPage(),
       ),
-      GoRoute(
-        // 탐색 탭
-        path: ExploreScreen.routeLocation,
-        name: ExploreScreen.routeName,
-        builder: (context, _) => const ExploreScreen(),
+      // GoRoute(
+      //   // 탐색 탭
+      //   path: ExploreScreen.routeLocation,
+      //   name: ExploreScreen.routeName,
+      //   builder: (context, _) => const ExploreScreen(),
+      // ),
+      ShellRoute(
+        navigatorKey: exploreNavKey,
+        routes: [
+          GoRoute(
+            // 탐색 탭
+            path: ExploreScreen.routeLocation,
+            name: ExploreScreen.routeName,
+            builder: (context, _) => const ExploreScreen(),
+          ),
+          // TODO
+          // GoRoute(
+          //   // 매칭 디테일 화면
+          //   path: MatchingDetailPage.routeLocation,
+          //   name: MatchingDetailPage.routeName,
+          //   builder: (context, state) => const MatchingDetailPage(),
+          // ),
+        ],
       ),
-      // GoRoute(
-      //   // 매칭 탭 화면
-      //   path: MatchingPage.routeLocation,
-      //   name: MatchingPage.routeName,
-      //   builder: (context, _) => const MatchingPage(),
-      // ),
-      // GoRoute(
-      //   // 매칭 디테일 화면
-      //   path: MatchingDetailPage.routeLocation,
-      //   name: MatchingDetailPage.routeName,
-      //   builder: (context, state) => const MatchingDetailPage(),
-      // ),
+      ShellRoute(
+        navigatorKey: matchNavKey,
+        routes: [
+          GoRoute(
+            // 매칭 탭 화면
+            path: MatchingScreen.routeLocation,
+            name: MatchingScreen.routeName,
+            builder: (context, _) => const MatchingScreen(),
+          ),
+          // TODO
+          // GoRoute(
+          //   // 좋아요 받은 유저 상세 프로필
+          //   path: UnMatchUserProfile.routeLocation,
+          //   name: UnMatchUserProfile.routeName,
+          //   builder: (context, state) {
+          //     return UnMatchUserProfile(
+          //       userName: state.queryParams["userName"] ?? "",
+          //       userAge: state.queryParams["userAge"] ?? "",
+          //       userId: state.queryParams["userId"] ?? "",
+          //       userIntro: state.queryParams["userIntro"] ?? "",
+          //     );
+          //   },
+          // ),
+        ],
+      ),
       GoRoute(
         // 좋아요 보낸 사람 리스트
         path: LikedListPage.routeLocation,
         name: LikedListPage.routeName,
         builder: (context, _) => const LikedListPage(),
       ),
-      // GoRoute(
-      //   // 좋아요 받은 유저 상세 프로필
-      //   path: UnMatchUserProfile.routeLocation,
-      //   name: UnMatchUserProfile.routeName,
-      //   builder: (context, state) {
-      //     return UnMatchUserProfile(
-      //       userName: state.queryParams["userName"] ?? "",
-      //       userAge: state.queryParams["userAge"] ?? "",
-      //       userId: state.queryParams["userId"] ?? "",
-      //       userIntro: state.queryParams["userIntro"] ?? "",
-      //     );
-      //   },
-      // ),
+
       GoRoute(
         // 회원 탈퇴 이유 텍스트
         path: WithdrawText.routeLocation,

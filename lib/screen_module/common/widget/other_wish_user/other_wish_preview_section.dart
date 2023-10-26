@@ -1,11 +1,11 @@
 import 'package:Kiffy/infra/openapi_client.dart';
-import 'package:Kiffy/screen_module/explore/widget/other_wish_preview_chips.dart';
+import 'package:Kiffy/screen_module/common/widget/other_wish_user/other_wish_preview_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-class ExploreOtherWishPreviewSection extends ConsumerStatefulWidget {
-  const ExploreOtherWishPreviewSection({super.key});
+class OtherWishPreviewSection extends ConsumerStatefulWidget {
+  const OtherWishPreviewSection({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -13,7 +13,7 @@ class ExploreOtherWishPreviewSection extends ConsumerStatefulWidget {
 }
 
 class _OtherWishPreviewSectionState
-    extends ConsumerState<ExploreOtherWishPreviewSection> {
+    extends ConsumerState<OtherWishPreviewSection> {
   bool isLoading = true;
   List<UserProfileView> wishOtherProfiles = List.empty();
 
@@ -52,7 +52,14 @@ class _OtherWishPreviewSectionState
               ),
             )
           ]
-        : [];
+        : [
+            const SizedBox(
+              height: 95,
+              child: Center(
+                child: Text("아직 위시를 보낸 사용자가 없습니다."),
+              ),
+            )
+          ];
   }
 
   @override
@@ -66,7 +73,7 @@ class _OtherWishPreviewSectionState
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
       child: Stack(
         children: [...LoadingOtherWishPreviewChips()],
       ),
