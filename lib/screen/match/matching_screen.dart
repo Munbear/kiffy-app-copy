@@ -28,6 +28,19 @@ class MatchingScreen extends StatelessWidget {
         children: [
           // 위시 리스트
           OtherWishPreviewSection(),
+
+          // Match캡션
+          Padding(
+            padding: EdgeInsets.only(left: 26, top: 12),
+            child: Text(
+              "Matches",
+              style: TextStyle(
+                color: Color(0xff494949),
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
           // 매칭 된 리스트 타이틀
           MatchedUserCardSection(),
         ],
