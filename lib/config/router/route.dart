@@ -12,6 +12,7 @@ import 'package:Kiffy/screen/profile/add_profile_intro_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_user_screen.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
+import 'package:Kiffy/screen/wish/other_wish_user_detail_screen.dart';
 import 'package:Kiffy/screen/wish/other_wish_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -120,7 +121,13 @@ List<RouteBase> get _routes => [
         name: OtherWishUserScreen.routeName,
         builder: (context, _) => const OtherWishUserScreen(),
       ),
-
+      GoRoute(
+        path: OtherWishUserDetailScreen.routeLocation,
+        name: OtherWishUserDetailScreen.routeName,
+        builder: (context, state) => OtherWishUserDetailScreen(
+          wishId: state.params["wishId"],
+        ),
+      ),
       GoRoute(
         // 회원 탈퇴 이유 텍스트
         path: WithdrawText.routeLocation,
