@@ -44,7 +44,8 @@ class _SettingPageState extends ConsumerState<SettingPage> {
             child: GestureDetector(
               onTap: () {
                 // 로그아웃 함수 추가
-                ref.read(authProvider).logout();
+                // ref.read(authProvider).logout();
+                print(ref.read(myProvider).getStatus().id);
               },
               child: const SettingButton(
                   IconPath: "assets/images/log_out.png", text: "Log out"),

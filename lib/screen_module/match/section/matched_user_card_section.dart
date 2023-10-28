@@ -1,4 +1,3 @@
-import 'package:Kiffy/screen_module/match/widget/matching_empty_widget.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_user_card.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_card_skeleton.dart';
@@ -20,114 +19,46 @@ class _MatchedUserCardSectionState
   static const _offset = 6;
 
   final PagingController<int, MatchedUserView> _pagingController =
-      PagingController<int, MatchedUserView>(firstPageKey: 6);
-
-  /// 매칭 유저들 state
-  List<MatchedUserView> usersProfile = List.empty();
-  // late ScrollController _scrollController;
-
-  /// 로딩 state
-  bool isLoading = true;
-  bool isMoreLoading = false;
-  bool hasList = true;
-  bool _scrollDelay = false;
+      PagingController<int, MatchedUserView>(firstPageKey: 0);
 
   @override
   void initState() {
-    super.initState();
-
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   initMatchingUsers();
-    // });
-
     _pagingController.addPageRequestListener((pageKey) {
-      _moreMatchedUsers(pageKey);
+      _fecthMatchedUsers(pageKey);
     });
+    super.initState();
   }
 
-  void initMatchingUsers() async {
-    setState(() => isLoading = true);
-
-    final res = await ref
-        .read(openApiProvider)
-        .getMatchApi()
-        .apiMatchV2UsersGet(offset: 0, limit: 6);
-
-    if (res.data!.list.toList().isEmpty) {
-      setState(() {
-        hasList = false;
-      });
-    }
-
-    setState(() {
-      usersProfile = res.data!.list.toList();
-      isLoading = false;
-    });
-  }
-
-  _moreMatchedUsers(pageKey) async {
-    final res = await ref
-        .read(openApiProvider)
-        .getMatchApi()
-        .apiMatchV2UsersGet(offset: pageKey, limit: _offset);
-    final newItems = res.data!.list.toList();
-    final isLastPage = newItems.length < _offset;
-    if (isLastPage) {
-      _pagingController.appendLastPage(newItems);
-    } else {
-      final nextPageKey = pageKey + newItems.length;
-      _pagingController.appendPage(newItems, nextPageKey);
+  _fecthMatchedUsers(pageKey) async {
+    try {
+      final res = await ref
+          .read(openApiProvider)
+          .getMatchApi()
+          .apiMatchV2UsersGet(offset: pageKey, limit: _offset);
+      List<MatchedUserView> newItems = res.data?.list.toList() ?? [];
+      final isLastPage = newItems.length < _offset;
+      if (isLastPage) {
+        _pagingController.appendLastPage(newItems);
+      } else {
+        final nextPageKey = pageKey + newItems.length;
+        _pagingController.appendPage(newItems, nextPageKey);
+      }
+    } catch (e) {
+      _pagingController.error = e;
     }
   }
 
-  // Widget loadingMatchingCard() {
-  //   if (isLoading) {
-  //     return const MatchingCardSkeleton();
-  //   }
-
-  //   if (usersProfile.isEmpty) {
-  //     return const MatchingEmptyWidget();
-  //   }
-
-  //   return Expanded(
-  //     child: Padding(
-  //       padding: const EdgeInsets.only(left: 24, right: 24),
-  //       child: GridView.builder(
-  //         shrinkWrap: true,
-  //         physics: const ScrollPhysics(),
-  //         // controller: _scrollController,
-  //         itemCount: usersProfile.length,
-  //         scrollDirection: Axis.vertical,
-  //         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-  //           crossAxisCount: 2,
-  //           childAspectRatio: 0.75,
-  //           crossAxisSpacing: 18,
-  //           mainAxisSpacing: 6,
-  //         ),
-  //         itemBuilder: (context, index) {
-  //           final matchedUser = usersProfile[index];
-  //           return MatchingUserCard(
-  //             onTap: () {
-  //               //TODO
-  //               // 매칭 유저 디테일 이동
-  //             },
-  //             userProfile: matchedUser,
-  //           );
-  //         },
-  //       ),
-  //     ),
-  //     // child:
-  //   );
-  // }
-
-  ///@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24),
         child: PagedGridView<int, MatchedUserView>(
+          showNewPageProgressIndicatorAsGridChild: true,
+          showNewPageErrorIndicatorAsGridChild: false,
+          showNoMoreItemsIndicatorAsGridChild: false,
           pagingController: _pagingController,
+          physics: const BouncingScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 0.75,
@@ -135,13 +66,25 @@ class _MatchedUserCardSectionState
             mainAxisSpacing: 6,
           ),
           builderDelegate: PagedChildBuilderDelegate<MatchedUserView>(
-            itemBuilder: (context, matchedUser, index) {
+            firstPageProgressIndicatorBuilder: (context) {
+              // 스켈레톤
+              return const MatchingCardSkeleton();
+            },
+            newPageProgressIndicatorBuilder: (context) {
+              // 더 불러올때
+              return Center(
+                child: CircularProgressIndicator(
+                  color: Colors.purple[600],
+                ),
+              );
+            },
+            itemBuilder: (context, items, index) {
               return MatchingUserCard(
                 onTap: () {
-                  //TODO
-                  // 매칭 유저 디테일 이동
+                  // TODO
+                  // 매칭 상세화면으로 이동
                 },
-                userProfile: matchedUser,
+                userProfile: items,
               );
             },
           ),

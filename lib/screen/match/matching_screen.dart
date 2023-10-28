@@ -29,7 +29,7 @@ class MatchingScreen extends StatelessWidget {
           // 위시 리스트
           OtherWishPreviewSection(),
 
-          // Match캡션
+          // Match 캡션
           Padding(
             padding: EdgeInsets.only(left: 26, top: 12),
             child: Text(
@@ -41,7 +41,8 @@ class MatchingScreen extends StatelessWidget {
               ),
             ),
           ),
-          // 매칭 된 리스트 타이틀
+
+          // 매칭된 유저 카드 섹션
           MatchedUserCardSection(),
         ],
       ),

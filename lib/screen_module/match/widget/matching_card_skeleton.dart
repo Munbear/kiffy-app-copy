@@ -6,15 +6,16 @@ class MatchingCardSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24),
-        child: GridView.count(
-          crossAxisCount: 2,
-          childAspectRatio: 0.75,
-          crossAxisSpacing: 18,
-          mainAxisSpacing: 6,
-          children: List.generate(6, (index) {
+    return SizedBox(
+      height: 300,
+      child: GridView.count(
+        crossAxisCount: 2,
+        childAspectRatio: 0.75,
+        crossAxisSpacing: 18,
+        mainAxisSpacing: 6,
+        children: List.generate(
+          6,
+          (index) {
             return Container(
                     height: 205,
                     decoration: BoxDecoration(
@@ -26,7 +27,7 @@ class MatchingCardSkeleton extends StatelessWidget {
                   duration: const Duration(milliseconds: 700),
                   curve: Curves.easeOutQuad,
                 );
-          }),
+          },
         ),
       ),
     );
