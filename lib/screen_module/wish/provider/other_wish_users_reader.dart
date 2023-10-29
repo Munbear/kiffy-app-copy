@@ -4,9 +4,9 @@ import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-final otherWishUsersReaderProvider =
-    AsyncNotifierProvider<OtherWishUsersReaderProvider, OtherWishUsers>(
-        OtherWishUsersReaderProvider.new);
+final otherWishUsersReaderProvider = AutoDisposeAsyncNotifierProvider<
+    OtherWishUsersReaderProvider,
+    OtherWishUsers>(OtherWishUsersReaderProvider.new);
 
 class OtherWishUsers {
   String? offsetWishId;
@@ -55,7 +55,8 @@ class OtherWishUsers {
   }
 }
 
-class OtherWishUsersReaderProvider extends AsyncNotifier<OtherWishUsers> {
+class OtherWishUsersReaderProvider
+    extends AutoDisposeAsyncNotifier<OtherWishUsers> {
   int limit = 15;
 
   @override
