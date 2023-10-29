@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
 
 class OtherWishPreviewChips extends StatelessWidget {
-  final List<UserProfileView> userProfiles;
+  final List<OtherWishUserProfileView> otherWishes;
   final Function(String) onTap;
 
   const OtherWishPreviewChips(
-      {super.key, required this.userProfiles, required this.onTap});
+      {super.key, required this.otherWishes, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -17,21 +17,23 @@ class OtherWishPreviewChips extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20),
       scrollDirection: Axis.horizontal,
       children: [
-        ...userProfiles.map(
-          (userProfile) => OtherWishPreviewChip(
-            profile: userProfile,
+        ...otherWishes.map(
+          (otherWish) => OtherWishPreviewChip(
+            profile: otherWish.userProfile,
             onTap: () {
-              onTap(userProfile.id);
+              onTap(otherWish.id);
             },
           ),
         ),
-        ...userProfiles.isNotEmpty ? [const OtherWishPreviewChipMore()] : [],
+        ...otherWishes.isNotEmpty ? [const OtherWishPreviewChipMore()] : [],
       ],
     );
   }
 }
 
 class OtherWishPreviewChipsSkeleton extends StatelessWidget {
+  const OtherWishPreviewChipsSkeleton({super.key});
+
   Widget OtherWishPreviewChipSkeleton() {
     return Container(
       width: 60,

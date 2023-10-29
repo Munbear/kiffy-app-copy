@@ -2,6 +2,7 @@ import 'package:Kiffy/screen_module/common/widget/other_wish_user/other_wish_pre
 import 'package:Kiffy/screen_module/wish/provider/other_wish_users_reader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class OtherWishPreviewSection extends ConsumerStatefulWidget {
   const OtherWishPreviewSection({super.key});
@@ -23,7 +24,7 @@ class _OtherWishPreviewSectionState
     final otherWishState = ref.watch(otherWishUsersReaderProvider);
 
     if (otherWishState.isLoading) {
-      return Stack(
+      return const Stack(
         children: [
           SizedBox(
             height: 95,
@@ -39,11 +40,15 @@ class _OtherWishPreviewSectionState
               SizedBox(
                 height: 95,
                 child: OtherWishPreviewChips(
-                  userProfiles: otherWishState.requireValue.otherWishes
-                      .take(10)
-                      .map((e) => e.userProfile)
-                      .toList(),
-                  onTap: (userId) {},
+                  otherWishes:
+                      otherWishState.requireValue.otherWishes.take(10).toList(),
+                  onTap: (wishId) {
+                    context
+                        .push("/other-wish/wish/${wishId}/detail")
+                        .then((value) {
+                      ref.read(otherWishUsersReaderProvider.notifier).refresh();
+                    });
+                  },
                 ),
               )
             ],
