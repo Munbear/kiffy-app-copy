@@ -9,8 +9,10 @@ import 'package:openapi/openapi.dart';
 
 class OtherWishUserProfileChipSection extends ConsumerStatefulWidget {
   final OtherWishUserProfileView otherWish;
+  final VoidCallback onRemainedProfileTap;
 
-  const OtherWishUserProfileChipSection({super.key, required this.otherWish});
+  const OtherWishUserProfileChipSection(
+      {super.key, required this.otherWish, required this.onRemainedProfileTap});
 
   @override
   ConsumerState<OtherWishUserProfileChipSection> createState() =>
@@ -52,11 +54,6 @@ class _OtherWishUserProfileChipSectionState
   }
 
   @override
-  void didUpdateWidget(covariant OtherWishUserProfileChipSection oldWidget) {
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
     if (isLoading) {
       return OtherWishUserProfileChipSkeleton();
@@ -65,6 +62,7 @@ class _OtherWishUserProfileChipSectionState
     return OtherWishUserProfileChip(
       otherWish: widget.otherWish,
       remained: remained!,
+      onRemainedProfileTap: widget.onRemainedProfileTap,
     );
   }
 }

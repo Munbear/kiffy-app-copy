@@ -3,6 +3,7 @@ import 'package:Kiffy/screen_module/wish/section/other_wish_user_profile_chip_se
 import 'package:Kiffy/screen_module/wish/widget/other_wish_user_profile_chip_skelton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 
 class OtherWishUserProfileSection extends ConsumerStatefulWidget {
@@ -18,7 +19,7 @@ class _OtherWishUserProfileSectionState
   bool isLoading = true;
   bool hasNext = true;
   String? offsetWishId;
-  final List<OtherWishUserProfileView> otherWishes = List.empty(growable: true);
+  List<OtherWishUserProfileView> otherWishes = List.empty(growable: true);
 
   void nextWishes() async {
     setState(() {
@@ -28,7 +29,7 @@ class _OtherWishUserProfileSectionState
       var response =
           await ref.read(openApiProvider).getWishApi().apiWishV2WishOtherGet(
                 offsetWishId: offsetWishId,
-                limit: 50,
+                limit: 20,
               );
 
       if (response.data != null && response.data!.list.isNotEmpty) {
@@ -97,6 +98,17 @@ class _OtherWishUserProfileSectionState
             padding: EdgeInsets.all(10),
             child: OtherWishUserProfileChipSection(
               otherWish: otherWish,
+              onRemainedProfileTap: () {
+                context
+                    .push("/other-wish/wish/${otherWish.id}/detail")
+                    .then((value) {
+                  setState(() {
+                    otherWishes = List.empty(growable: true);
+                    offsetWishId = null;
+                    nextWishes();
+                  });
+                });
+              },
             ),
           ),
         ),

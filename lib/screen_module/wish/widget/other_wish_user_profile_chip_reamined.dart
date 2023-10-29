@@ -1,30 +1,28 @@
 import 'package:Kiffy/domain/common/border._style.dart';
 import 'package:Kiffy/screen_module/common/widget/space.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 
 class OtherWishUserProfileChipRemained extends StatelessWidget {
   final OtherWishUserProfileView otherWish;
+  final VoidCallback onTap;
 
-  const OtherWishUserProfileChipRemained({super.key, required this.otherWish});
+  const OtherWishUserProfileChipRemained(
+      {super.key, required this.otherWish, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          decoration:
-          BorderGradientBorderRadius50.outlineGradientBoxDecoration,
+          decoration: BorderGradientBorderRadius50.outlineGradientBoxDecoration,
           child: Container(
             padding: const EdgeInsets.all(4),
             width: 80,
             height: 80,
             decoration: BorderGradientBorderRadius50.innerDecoration,
             child: GestureDetector(
-              onTap: () {
-                context.go("/other-wish/wish/${otherWish.id}/detail");
-              },
+              onTap: onTap,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(50),
                 child: Image.network(
