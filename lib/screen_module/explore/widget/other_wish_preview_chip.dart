@@ -16,9 +16,9 @@ class OtherWishPreviewChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // 디테일 화면으로 이동
-
-      onTap: () => onTap,
+      onTap: () {
+        onTap();
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 6),
         child: Column(
