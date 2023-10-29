@@ -24,8 +24,12 @@ class OtherWishUserDetailScreen extends StatelessWidget {
         elevation: 0.5,
         title: const CustomAppBarImageTitle(),
       ),
-      body: OtherWishUserDetailSection(
-        wishId: wishId!,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: OtherWishUserDetailSection(
+          wishId: wishId!,
+        ),
       ),
     );
   }

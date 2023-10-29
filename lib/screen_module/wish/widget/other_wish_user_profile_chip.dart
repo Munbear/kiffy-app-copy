@@ -7,13 +7,20 @@ import 'package:openapi/openapi.dart';
 class OtherWishUserProfileChip extends StatelessWidget {
   final OtherWishUserProfileView otherWish;
   final WishRemained remained;
+  final VoidCallback onRemainedProfileTap;
 
   const OtherWishUserProfileChip(
-      {super.key, required this.otherWish, required this.remained});
+      {super.key,
+      required this.otherWish,
+      required this.remained,
+      required this.onRemainedProfileTap});
 
   Widget ProfileChip() {
     if (remained.isRemained()) {
-      return OtherWishUserProfileChipRemained(otherWish: otherWish);
+      return OtherWishUserProfileChipRemained(
+        otherWish: otherWish,
+        onTap: onRemainedProfileTap,
+      );
     }
 
     return OtherWishUserProfileChipExpired(otherWish: otherWish);
