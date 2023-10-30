@@ -113,20 +113,24 @@ android {
 
     productFlavors {
         dev {
+//            applicationId "club.kiffy.app.dev"
             dimension "env"
             signingConfig signingConfigs.dev
             manifestPlaceholders = [
                 appName: "[DEV] kiffy"
             ]
             resValue "string", "app_name", "[DEV] Kiffy"
+            resValue "string", "app_package", "club.kiffy.app.dev"
         }
          prod {
+//            applicationId "club.kiffy.app"
             dimension "env"
             signingConfig signingConfigs.prod
             manifestPlaceholders = [
                 appName: "Kiffy"
             ]
             resValue "string", "app_name", "Kiffy"
+            resValue "string", "app_package", "club.kiffy.app"
         }
     }
 }

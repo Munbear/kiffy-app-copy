@@ -1,3 +1,4 @@
+import 'package:Kiffy/config/firebase/dev/firebase_options.dart';
 import 'package:Kiffy/config/firebase/prod/firebase_options.dart';
 import 'package:Kiffy/kiffy_app.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -6,34 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// class Config{
-//   final String baseUrl;
-//   final String token;
-//
-//   Config._dev():
-//         baseUrl = '',		// dev url
-//         token = '';		// dev token
-//
-//   Config._product():
-//         baseUrl = '',	// product url
-//         token = '';		// product token
-//
-//   factory Config (String? _flavor) {
-//     if (_flavor == 'dev'){
-//       instance = Config._dev();
-//       (_flavor == 'product'){
-//         instance = Config._product();
-//       }else {
-//       throw Exception("Unknown flaver : $_flavor}");
-//     }
-//
-//     return instance;
-//   }
-//
-//     static late final Config instance;
-//   }
-// }
 
 FlavorConfig getFlavorConfig(String? flavor) {
   switch (flavor) {
@@ -51,12 +24,21 @@ FlavorConfig getFlavorConfig(String? flavor) {
       return FlavorConfig(
         name: "dev",
         variables: {
-          "isDebuggle": false,
+          "isDebuggle": true,
           "appTitle": "[DEV] kiffy",
           "apiUrl": "http://api-dev.kiffy.club",
           // "afDevKey": "",
         },
       );
+  }
+}
+
+FirebaseOptions getFirebaseOptions(String? flavor) {
+  switch (flavor) {
+    case "prod":
+      return ProdFirebaseOptions.currentPlatform;
+    default:
+      return DevFirebaseOptions.currentPlatform;
   }
 }
 
@@ -69,14 +51,14 @@ Future<void> main() async {
   getFlavorConfig(flavor);
 
   await Firebase.initializeApp(
-    name: "Kiffy",
-    options: ProdFirebaseOptions.currentPlatform,
+    name: FlavorConfig.instance.name,
+    options: getFirebaseOptions(flavor),
   );
 
   runApp(
     EasyLocalization(
       path: 'assets/translations',
-      supportedLocales: const [Locale('ko'), Locale('id')],
+      supportedLocales: const [Locale('id')],
       fallbackLocale: const Locale('id'),
       startLocale: const Locale("id"),
       useFallbackTranslations: true,

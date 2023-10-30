@@ -50,6 +50,7 @@ class ProdFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
+    appGroupId: "club.kiffy.app",
     apiKey: 'AIzaSyDk928u7VAhZY0ZQI3szn-9zV-nHsVMPAg',
     appId: '1:788804351569:android:032ff1b0b1c240b110ea70',
     messagingSenderId: '788804351569',

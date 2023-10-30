@@ -50,14 +50,16 @@ class DevFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDpvkFNcbGiiDAVoZdqPfUw_oL7PTnsXes',
-    appId: '1:858024060821:android:b8bf2387bd22aef1edb89c',
-    messagingSenderId: '858024060821',
-    projectId: 'kiffy-dev-cbc76',
-    storageBucket: 'kiffy-dev-cbc76.appspot.com',
+    appGroupId: "club.kiffy.app.dev",
+    apiKey: 'AIzaSyDk928u7VAhZY0ZQI3szn-9zV-nHsVMPAg',
+    appId: '1:788804351569:android:032ff1b0b1c240b110ea70',
+    messagingSenderId: '788804351569',
+    projectId: 'kiffy-cbf6d',
+    storageBucket: 'kiffy-cbf6d.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
+    // TODO 바꾸어주어야함
     apiKey: 'AIzaSyAfVI8Fd-W9jD8JqrNbsw50CGg1Up2gUK0',
     appId: '1:858024060821:ios:195534625f08d176edb89c',
     messagingSenderId: '858024060821',

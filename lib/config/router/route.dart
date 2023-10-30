@@ -18,8 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../domain/reset_profile/reset_profile.dart';
-
 final GlobalKey<NavigatorState> rootNavKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> exploreNavKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> matchNavKey = GlobalKey<NavigatorState>();
@@ -54,12 +52,12 @@ List<RouteBase> get _routes => [
         name: SettingPage.routeName,
         builder: (context, _) => const SettingPage(),
       ),
-      GoRoute(
-        // 프로필 수정
-        path: ResetProfile.routeLocation,
-        name: ResetProfile.routeNmae,
-        builder: (context, _) => const ResetProfile(),
-      ),
+      // GoRoute(
+      //   // 프로필 수정
+      //   path: ResetProfile.routeLocation,
+      //   name: ResetProfile.routeNmae,
+      //   builder: (context, _) => const ResetProfile(),
+      // ),
       GoRoute(
         // 회원 탈퇴 화면
         path: WithdrawPage.routeLocation,
