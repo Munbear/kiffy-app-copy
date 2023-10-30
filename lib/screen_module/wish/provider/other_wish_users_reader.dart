@@ -31,7 +31,7 @@ class OtherWishUsers {
       OtherWishUsers? before, OtherWishUserProfilePagingView view) {
     if (before == null) {
       return OtherWishUsers(
-        offsetWishId: view.list.lastOrNull?.id,
+        offsetWishId: view.list.lastOrNull?.id ?? before?.offsetWishId,
         hasNext: view.paging.hasNext,
         otherWishes: view.list.toList(),
       );
@@ -40,7 +40,7 @@ class OtherWishUsers {
     if (view.list.isNotEmpty) {
       return OtherWishUsers(
           hasNext: view.paging.hasNext,
-          offsetWishId: view.list.last.id,
+          offsetWishId: view.list.lastOrNull?.id ?? before.offsetWishId,
           otherWishes: [
             ...before.otherWishes,
             ...view.list,
@@ -52,6 +52,18 @@ class OtherWishUsers {
         otherWishes: before.otherWishes,
       );
     }
+  }
+
+  factory OtherWishUsers.removeUserId(OtherWishUsers before, String userId) {
+    var beforeOtherWishes = before.otherWishes;
+    beforeOtherWishes
+        .removeWhere((element) => element.userProfile.id == userId);
+
+    return OtherWishUsers(
+      offsetWishId: before.offsetWishId,
+      hasNext: before.hasNext,
+      otherWishes: beforeOtherWishes,
+    );
   }
 }
 
@@ -68,7 +80,7 @@ class OtherWishUsersReaderProvider
             );
 
     return OtherWishUsers(
-      offsetWishId: response.data!.list.last.id,
+      offsetWishId: response.data!.list.lastOrNull?.id,
       hasNext: response.data!.paging.hasNext,
       otherWishes: response.data!.list.toList(),
     );
@@ -98,5 +110,9 @@ class OtherWishUsersReaderProvider
             );
 
     state = AsyncData(OtherWishUsers.from(null, response.data!));
+  }
+
+  Future<void> removeUser(String userId) async {
+    state = AsyncData(OtherWishUsers.removeUserId(state.requireValue, userId));
   }
 }

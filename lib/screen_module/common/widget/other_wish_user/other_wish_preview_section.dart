@@ -1,4 +1,5 @@
 import 'package:Kiffy/screen_module/common/widget/other_wish_user/other_wish_preview_chips.dart';
+import 'package:Kiffy/screen_module/explore/provider/explore_users_provider.dart';
 import 'package:Kiffy/screen_module/wish/provider/other_wish_users_reader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,53 +16,32 @@ class OtherWishPreviewSection extends ConsumerStatefulWidget {
 class _OtherWishPreviewSectionState
     extends ConsumerState<OtherWishPreviewSection> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final otherWishState = ref.watch(otherWishUsersReaderProvider);
 
     if (otherWishState.isLoading) {
-      return const Stack(
-        children: [
-          SizedBox(
-            height: 95,
-            child: OtherWishPreviewChipsSkeleton(),
-          )
-        ],
-      );
+      return const SizedBox(height: 95, child: OtherWishPreviewChipsSkeleton());
     }
 
     return otherWishState.requireValue.otherWishes.isNotEmpty
-        ? Stack(
-            children: [
-              SizedBox(
-                height: 95,
-                child: OtherWishPreviewChips(
-                  otherWishes:
-                      otherWishState.requireValue.otherWishes.take(10).toList(),
-                  onTap: (wishId) {
-                    context
-                        .push("/other-wish/wish/${wishId}/detail")
-                        .then((value) {
-                      ref.read(otherWishUsersReaderProvider.notifier).refresh();
-                    });
-                  },
-                ),
-              )
-            ],
+        ? SizedBox(
+            height: 95,
+            child: OtherWishPreviewChips(
+              otherWishes:
+                  otherWishState.requireValue.otherWishes.take(10).toList(),
+              onTap: (wishId) {
+                context.push("/other-wish/wish/${wishId}/detail").then((value) {
+                  ref.read(otherWishUsersReaderProvider.notifier).refresh();
+                  ref.read(exploreUsersProvider.notifier).refresh();
+                });
+              },
+            ),
           )
-        : const Stack(
-            children: [
-              SizedBox(
-                height: 95,
-                child: Center(
-                  child: Text("아직 위시를 보낸 사용자가 없습니다."),
-                ),
-              )
-            ],
+        : SizedBox(
+            height: 95,
+            child: Center(
+              child: Text("아직 위시를 한 사용자가 없습니다"),
+            ),
           );
   }
 }

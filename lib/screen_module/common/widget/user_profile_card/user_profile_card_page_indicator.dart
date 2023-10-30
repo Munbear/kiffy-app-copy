@@ -10,9 +10,6 @@ class UserProfileCardPageIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(totalPage);
-    print(page);
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Container(

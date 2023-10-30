@@ -9,9 +9,6 @@ import 'package:openapi/openapi.dart';
 final openApiProvider = StateProvider<Openapi>((ref) {
   String? baseUrl = FlavorConfig.instance.variables["apiUrl"];
 
-  print("baseUrl");
-  print(baseUrl);
-
   final Dio dio = Dio(
     BaseOptions(
       responseType: ResponseType.json,
