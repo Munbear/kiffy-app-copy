@@ -2,12 +2,15 @@ import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/widget/other_wish_user/other_wish_preview_section.dart';
 import 'package:Kiffy/screen_module/match/section/matched_user_card_section.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MatchingScreen extends StatelessWidget {
   static String get routeLocation => "/matching";
   static String get routeName => "matching";
 
-  const MatchingScreen({super.key});
+  const MatchingScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

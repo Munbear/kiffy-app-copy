@@ -21,6 +21,8 @@ final dioProvider = StateProvider<Dio>((ref) {
 
     String? accessToken = await storage.read(key: "accessToken");
 
+    // print(accessToken);
+
     if (storage != null)
       options.headers['authorization'] = 'Bearer $accessToken';
 
