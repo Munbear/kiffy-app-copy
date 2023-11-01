@@ -2,12 +2,12 @@ import 'package:Kiffy/config/router/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyPageButton extends ConsumerWidget {
+class MyButton extends ConsumerWidget {
   final String text;
   final String iconPath;
   final String routePathName;
 
-  const MyPageButton({
+  const MyButton({
     super.key,
     required this.text,
     required this.iconPath,
@@ -25,8 +25,15 @@ class MyPageButton extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 17),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: const Color(0xffcecece)),
+            border: Border.all(color: const Color(0x99cecece)),
             color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.18),
+                blurRadius: 3,
+                offset: const Offset(0, 3),
+              )
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

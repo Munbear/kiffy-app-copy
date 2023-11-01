@@ -19,11 +19,29 @@ class UserProfileCardPageItemInfo extends StatelessWidget {
         children: [
           Text(
             name,
-            style: const TextStyle(color: Colors.white, fontSize: 28),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 28,
+              shadows: [
+                Shadow(
+                  color: Colors.black,
+                  blurRadius: 3,
+                ),
+              ],
+            ),
           ),
           Text(
             "$age",
-            style: const TextStyle(color: Colors.white, fontSize: 20),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              shadows: [
+                Shadow(
+                  color: Colors.black,
+                  blurRadius: 3,
+                ),
+              ],
+            ),
           )
         ],
       ),
