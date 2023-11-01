@@ -3,7 +3,6 @@ import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:openapi/openapi.dart';
 import 'package:built_collection/src/list.dart';
 

@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
 
+enum SNSType {
+  LINE("line"),
+  WHATSAPP("whatsapp"),
+  TELEGRAM("telegram");
+
+  const SNSType(this.text);
+
+  final String text;
+
+  Widget snsImage() {
+    switch (this) {
+      case SNSType.LINE:
+        return Image.asset("assets/images/line_image.png");
+      default:
+        return Image.asset("assets/images/line_image.png");
+    }
+  }
+}
+
 enum ContactType {
   LINE,
   WHATSAPP;
