@@ -1,6 +1,6 @@
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
-import 'package:Kiffy/domain/my_page/page/my_page.dart';
+import 'package:Kiffy/screen/my/my_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -170,7 +170,7 @@ class WithdrawFinal extends ConsumerWidget {
         ),
       ),
       bottomNavigationBar:
-          CustomBottomNavBar(currentPath: MyPage.routeLocation),
+          CustomBottomNavBar(currentPath: MyScreen.routeLocation),
     );
   }
 }
