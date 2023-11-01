@@ -3,8 +3,8 @@
 // import 'package:Kiffy/domain/common/page_controller_button.dart';
 // import 'package:Kiffy/domain/common/profile_foto_indicator.dart';
 // import 'package:Kiffy/domain/common/profile_text_infro_container.dart';
-// import 'package:Kiffy/domain/common/reject_circle_button.dart';
-// import 'package:Kiffy/domain/common/wish_circle_button.dart';
+// import 'package:Kiffy/domain/common/user_profile_card_wish_button.dart';
+// import 'package:Kiffy/domain/common/user_profile_card_reject_button.dart';
 // import 'package:Kiffy/infra/wish_client.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
