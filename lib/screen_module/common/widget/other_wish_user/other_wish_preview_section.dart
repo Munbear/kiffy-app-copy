@@ -36,7 +36,7 @@ class _OtherWishPreviewSectionState
                 .toList()
             : [];
 
-    return otherWishState.requireValue.otherWishes.isNotEmpty
+    return remainedOtherWishUsers.isNotEmpty
         ? SizedBox(
             height: 95,
             child: OtherWishPreviewChips(
@@ -50,10 +50,8 @@ class _OtherWishPreviewSectionState
             ),
           )
         : SizedBox(
-            height: 95,
-            child: Center(
-              child: Text("아직 위시를 한 사용자가 없습니다"),
-            ),
+            width: 0,
+            height: 0,
           );
   }
 }

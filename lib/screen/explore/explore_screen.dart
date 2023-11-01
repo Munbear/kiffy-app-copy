@@ -29,10 +29,7 @@ class ExploreScreen extends StatelessWidget {
         child: Column(
           children: [
             // 나에게 위시 보낸 유저 리스트
-            SizedBox(
-              height: 95,
-              child: OtherWishPreviewSection(),
-            ),
+            OtherWishPreviewSection(),
             // 탐색할 유저 카드
             ExploreUserProfileCardSection(),
           ],
