@@ -1,8 +1,10 @@
+import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_user_card.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_card_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -82,7 +84,10 @@ class _MatchedUserCardSectionState
               return MatchingUserCard(
                 onTap: () {
                   // TODO
-                  // 매칭 상세화면으로 이동
+                  context.pushNamed(
+                    MatchedDetailScreen.routeName,
+                    extra: items,
+                  );
                 },
                 userProfile: items,
               );

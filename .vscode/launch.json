@@ -59,7 +59,7 @@
       "name": "kiffy-prod",
       "request": "launch",
       "type": "dart",
-      "program": "lib/env/main_prod.dart",
+      "program": "lib/env/main.dart",
       "args": [
           "--flavor",
           "prod"

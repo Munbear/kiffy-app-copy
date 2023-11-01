@@ -5,6 +5,7 @@ import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/match/matching_screen.dart';
+import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_contact_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_image_screen.dart';
@@ -17,6 +18,7 @@ import 'package:Kiffy/screen/wish/other_wish_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:openapi/openapi.dart';
 
 final GlobalKey<NavigatorState> rootNavKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> exploreNavKey = GlobalKey<NavigatorState>();
@@ -81,10 +83,17 @@ List<RouteBase> get _routes => [
           ),
           // TODO
           // GoRoute(
-          //   // 매칭 디테일 화면
-          //   path: MatchingDetailPage.routeLocation,
-          //   name: MatchingDetailPage.routeName,
-          //   builder: (context, state) => const MatchingDetailPage(),
+          //   // 좋아요 받은 유저 상세 프로필
+          //   path: UnMatchUserProfile.routeLocation,
+          //   name: UnMatchUserProfile.routeName,
+          //   builder: (context, state) {
+          //     return UnMatchUserProfile(
+          //       userName: state.queryParams["userName"] ?? "",
+          //       userAge: state.queryParams["userAge"] ?? "",
+          //       userId: state.queryParams["userId"] ?? "",
+          //       userIntro: state.queryParams["userIntro"] ?? "",
+          //     );
+          //   },
           // ),
         ],
       ),
@@ -98,19 +107,15 @@ List<RouteBase> get _routes => [
             builder: (context, _) => const MatchingScreen(),
           ),
           // TODO
-          // GoRoute(
-          //   // 좋아요 받은 유저 상세 프로필
-          //   path: UnMatchUserProfile.routeLocation,
-          //   name: UnMatchUserProfile.routeName,
-          //   builder: (context, state) {
-          //     return UnMatchUserProfile(
-          //       userName: state.queryParams["userName"] ?? "",
-          //       userAge: state.queryParams["userAge"] ?? "",
-          //       userId: state.queryParams["userId"] ?? "",
-          //       userIntro: state.queryParams["userIntro"] ?? "",
-          //     );
-          //   },
-          // ),
+          GoRoute(
+            // 매칭 디테일 화면
+            path: MatchedDetailScreen.routeLocation,
+            name: MatchedDetailScreen.routeName,
+            builder: (context, state) {
+              MatchedUserView matchedUser = state.extra as MatchedUserView;
+              return MatchedDetailScreen(userProfile: matchedUser);
+            },
+          ),
         ],
       ),
       GoRoute(
