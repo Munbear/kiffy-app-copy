@@ -18,13 +18,15 @@ class _MatchedDetailCancelSectionState
         // 매칭 취소 api
       },
       style: ElevatedButton.styleFrom(
-          elevation: 0,
-          padding: const EdgeInsets.symmetric(vertical: 23),
-          side: const BorderSide(color: Color(0xffFF3A3A)),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          backgroundColor: Colors.white),
+        elevation: 0,
+        padding: const EdgeInsets.symmetric(vertical: 23),
+        side: const BorderSide(color: Color(0xffFF3A3A)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.grey[300],
+      ),
       child: const Text(
         "Cancel Matching",
         style: TextStyle(

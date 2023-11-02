@@ -1,3 +1,4 @@
+import 'package:Kiffy/domain/reset_profile/reset_profile.dart';
 import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
@@ -5,6 +6,7 @@ import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/match/matching_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
+import 'package:Kiffy/screen/modify/modify_screen.dart';
 import 'package:Kiffy/screen/my/my_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_contact_screen.dart';
@@ -54,12 +56,12 @@ List<RouteBase> get _routes => [
         name: SettingPage.routeName,
         builder: (context, _) => const SettingPage(),
       ),
-      // GoRoute(
-      //   // 프로필 수정
-      //   path: ResetProfile.routeLocation,
-      //   name: ResetProfile.routeNmae,
-      //   builder: (context, _) => const ResetProfile(),
-      // ),
+      GoRoute(
+        // 프로필 수정
+        path: ModifyScreen.routeLocation,
+        name: ModifyScreen.routeName,
+        builder: (context, _) => const ModifyScreen(),
+      ),
       GoRoute(
         // 회원 탈퇴 화면
         path: WithdrawPage.routeLocation,
@@ -106,7 +108,6 @@ List<RouteBase> get _routes => [
             name: MatchingScreen.routeName,
             builder: (context, _) => const MatchingScreen(),
           ),
-          // TODO
           GoRoute(
             // 매칭 디테일 화면
             path: MatchedDetailScreen.routeLocation,

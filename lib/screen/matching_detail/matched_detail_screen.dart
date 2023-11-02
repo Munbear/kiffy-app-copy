@@ -1,4 +1,5 @@
 import 'package:Kiffy/domain/common/custom_app_bar_image_title.dart';
+import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_page.dart';
 import 'package:Kiffy/screen_module/matched_detail/section/matched_detail_cancel_section.dart';
 import 'package:Kiffy/screen_module/matched_detail/section/matched_detail_profile_card.dart';
 import 'package:Kiffy/screen_module/matched_detail/widget/matched_user_detail_info_container.dart';
@@ -30,11 +31,10 @@ class MatchedDetailScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // 매칭 유저 디테일 프로필 카드
-              MatchedDetailProfileCard(
-                medias: userProfile.userProfile.medias,
-                name: userProfile.userProfile.name,
-                age: userProfile.userProfile.birthDate,
-                intro: userProfile.userProfile.intro,
+              SizedBox(
+                height: 400,
+                child:
+                    UserProfileCardPage(userProfile: userProfile.userProfile),
               ),
               const SizedBox(height: 8),
 

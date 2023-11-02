@@ -1,6 +1,5 @@
 // import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 // import 'package:Kiffy/domain/core/enum/contact_type.dart';
-// import 'package:Kiffy/infra/media_client.dart';
 // import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 // import 'package:Kiffy/screen_module/profile/section/profile_input_image_section.dart';
 // import 'package:Kiffy/screen_module/profile/widget/profile_input_image_card.dart';
@@ -9,25 +8,25 @@
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:flutter_svg/svg.dart';
 // import 'package:gradient_borders/gradient_borders.dart';
-//
+
 // import '../common/custom_app_bar.dart';
-//
+
 // class ResetProfile extends ConsumerStatefulWidget {
 //   static String get routeLocation => "/resetProfile";
-//
+
 //   static String get routeNmae => "resetProfile";
-//
+
 //   const ResetProfile({super.key});
-//
+
 //   @override
 //   ConsumerState<ConsumerStatefulWidget> createState() => _ResetProfileState();
 // }
-//
+
 // class _ResetProfileState extends ConsumerState<ResetProfile> {
 //   int inputImageMaxLength = 6;
 //   List<AddProfileInputImageItem> inputImages = List.empty();
 //   var inputImagesValidation = AddProfileInputItemValidation.success();
-//
+
 //   void onAddedListener(String path) {
 //     ref.read(uploadMedia).uploadImage(path).then((res) => inputImages = [
 //           ...inputImages,
@@ -39,25 +38,25 @@
 //           )
 //         ]);
 //   }
-//
+
 //   void onDeletedListener(int index) {
 //     var copiedList = inputImages.getRange(0, inputImages.length).toList();
 //     copiedList.removeAt(index);
 //     inputImages = copiedList;
 //   }
-//
+
 //   var inputIntroValidation = AddProfileInputItemValidation.success();
 //   String inputIntro = "";
-//
+
 //   String inputContactId = "";
 //   ContactType? inputContactType = null;
-//
+
 //   var inputContactValidation = AddProfileInputItemValidation.success();
-//
+
 //   @override
 //   Widget build(BuildContext context) {
 //     var userProfile = ref.read(profileInputProvider);
-//
+
 //     return Scaffold(
 //       appBar: AppBar(
 //         backgroundColor: Colors.white,
@@ -95,7 +94,7 @@
 //                 ],
 //               ),
 //               const SizedBox(height: 10),
-//
+
 //               // 사진 첨부 버튼 레이아웃
 //               GridView.builder(
 //                 shrinkWrap: true,
@@ -111,11 +110,13 @@
 //                   index: index,
 //                   onDeleted: (idx) => onDeletedListener(idx),
 //                   onAdded: (path) => onAddedListener(path),
-//                   filePath: inputImages.length > index ? inputImages.elementAt(index).filePath : null,
+//                   filePath: inputImages.length > index
+//                       ? inputImages.elementAt(index).filePath
+//                       : null,
 //                 ),
 //               ),
 //               const SizedBox(height: 10),
-//
+
 //               // 사진 2개 이상 등록 안내 텍스트
 //               Align(
 //                 alignment: Alignment.centerLeft,
@@ -125,7 +126,7 @@
 //                 ),
 //               ),
 //               const SizedBox(height: 30),
-//
+
 //               // 자기소개 입력 폼,
 //               Row(
 //                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -159,14 +160,16 @@
 //                 decoration: const InputDecoration(
 //                     hintText: "Please enter it.",
 //                     enabledBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
+//                       borderSide:
+//                           BorderSide(color: Color(0xffcecece), width: 2.0),
 //                       borderRadius: BorderRadius.only(
 //                           bottomLeft: Radius.circular(15),
 //                           bottomRight: Radius.circular(15),
 //                           topRight: Radius.circular(15)),
 //                     ),
 //                     focusedBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
+//                       borderSide:
+//                           BorderSide(color: Color(0xff0031AA), width: 3.0),
 //                       borderRadius: BorderRadius.only(
 //                           bottomLeft: Radius.circular(15),
 //                           bottomRight: Radius.circular(15),
@@ -183,7 +186,7 @@
 //                 ),
 //               ),
 //               const SizedBox(height: 20),
-//
+
 //               const Text(
 //                 "Messenger for kiffy",
 //                 style: TextStyle(
@@ -262,7 +265,7 @@
 //                 ],
 //               ),
 //               const SizedBox(height: 20),
-//
+
 //               Text(
 //                 "ID for contact",
 //                 style: TextStyle(
@@ -279,14 +282,16 @@
 //                 decoration: const InputDecoration(
 //                     hintText: "Please enter it.",
 //                     enabledBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
+//                       borderSide:
+//                           BorderSide(color: Color(0xffcecece), width: 2.0),
 //                       borderRadius: BorderRadius.only(
 //                           bottomLeft: Radius.circular(15),
 //                           bottomRight: Radius.circular(15),
 //                           topRight: Radius.circular(15)),
 //                     ),
 //                     focusedBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(color: Color(0xff0031AA), width: 3.0),
+//                       borderSide:
+//                           BorderSide(color: Color(0xff0031AA), width: 3.0),
 //                       borderRadius: BorderRadius.only(
 //                           bottomLeft: Radius.circular(15),
 //                           bottomRight: Radius.circular(15),
@@ -298,11 +303,12 @@
 //               Align(
 //                 alignment: Alignment.centerLeft,
 //                 child: ProfileInputValidationText(
-//                   normalText: "* When a match is made, it’s shown to the woman.",
+//                   normalText:
+//                       "* When a match is made, it’s shown to the woman.",
 //                   validation: inputContactValidation,
 //                 ),
 //               ),
-//
+
 //               const SizedBox(height: 30),
 //               SizedBox(
 //                 width: MediaQuery.of(context).size.width,
@@ -316,7 +322,8 @@
 //                   ),
 //                   style: ElevatedButton.styleFrom(
 //                     padding: const EdgeInsets.symmetric(vertical: 20),
-//                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+//                     shape: RoundedRectangleBorder(
+//                         borderRadius: BorderRadius.circular(10)),
 //                     backgroundColor: const Color(0xff0031AA),
 //                   ),
 //                 ),

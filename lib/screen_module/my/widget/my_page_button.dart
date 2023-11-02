@@ -1,26 +1,23 @@
-import 'package:Kiffy/config/router/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyButton extends ConsumerWidget {
   final String text;
   final String iconPath;
-  final String routePathName;
+  final VoidCallback onTap;
 
   const MyButton({
     super.key,
     required this.text,
     required this.iconPath,
-    required this.routePathName,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Expanded(
       child: GestureDetector(
-        onTap: () {
-          ref.read(routerProvider).pushNamed(routePathName);
-        },
+        onTap: () => onTap(),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 17),
           decoration: BoxDecoration(
