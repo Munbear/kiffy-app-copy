@@ -33,13 +33,11 @@ class _MyPageState extends ConsumerState<MyScreen> {
           "assets/images/kiffy_logo_purple.png",
         ),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            MyProfileCardSection(),
-            MyButtonSection(),
-          ],
-        ),
+      body: const Column(
+        children: [
+          MyProfileCardSection(),
+          MyButtonSection(),
+        ],
       ),
       bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
     );

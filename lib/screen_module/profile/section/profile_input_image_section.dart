@@ -31,12 +31,15 @@ class ProfileInputImageSection extends ConsumerStatefulWidget {
   const ProfileInputImageSection({super.key});
 
   @override
-  ConsumerState<ProfileInputImageSection> createState() => _ProfileInputImageSectionState();
+  ConsumerState<ProfileInputImageSection> createState() =>
+      _ProfileInputImageSectionState();
 }
 
-class _ProfileInputImageSectionState extends ConsumerState<ProfileInputImageSection> {
+class _ProfileInputImageSectionState
+    extends ConsumerState<ProfileInputImageSection> {
   List<AddProfileInputImageItem> inputImages = [];
-  AddProfileInputItemValidation inputImagesValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputImagesValidation =
+      AddProfileInputItemValidation.success();
   PageController pageController = PageController(initialPage: 0);
   int inputImageMaxLength = 6;
 
@@ -44,7 +47,8 @@ class _ProfileInputImageSectionState extends ConsumerState<ProfileInputImageSect
     ref
         .read(openApiProvider)
         .getMediaApi()
-        .apiMediaV1UploadTypePost(type: "image", file: await MultipartFile.fromFile(path))
+        .apiMediaV1UploadTypePost(
+            type: "image", file: await MultipartFile.fromFile(path))
         .then((res) {
       setState(() {});
       return inputImages = [
@@ -94,7 +98,10 @@ class _ProfileInputImageSectionState extends ConsumerState<ProfileInputImageSect
             children: [
               const Text(
                 "Select your pictures",
-                style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 width: 18,
@@ -114,11 +121,13 @@ class _ProfileInputImageSectionState extends ConsumerState<ProfileInputImageSect
             spacing: 15,
             runSpacing: 15,
             children: List.generate(inputImageMaxLength, (index) {
-              return PhotoInputCard(
+              return ProfileInputImageCard(
                 index: index,
                 onDeleted: (idx) => onDeletedListener(idx),
                 onAdded: (path) => onAddedListener(path),
-                filePath: inputImages.length > index ? inputImages.elementAt(index).filePath : null,
+                filePath: inputImages.length > index
+                    ? inputImages.elementAt(index).filePath
+                    : null,
               );
             }),
           ),
@@ -133,12 +142,16 @@ class _ProfileInputImageSectionState extends ConsumerState<ProfileInputImageSect
           // 넥스트 버튼
           ProfileInputNextButton(
             onPressed: () async {
-              inputImagesValidation = ref.read(profileInputProvider.notifier).setMedias(
-                inputImages.map((image) {
-                  ref.read(profileInputProvider.notifier).updateMedia(image.id, image.orderNum);
-                  return UserProfileCreateAndEditCommandProfileMedia(id: image.id, orderNum: image.orderNum);
-                }).toList(),
-              );
+              inputImagesValidation =
+                  ref.read(profileInputProvider.notifier).setMedias(
+                        inputImages.map((image) {
+                          ref
+                              .read(profileInputProvider.notifier)
+                              .updateMedia(image.id, image.orderNum);
+                          return UserProfileCreateAndEditCommandProfileMedia(
+                              id: image.id, orderNum: image.orderNum);
+                        }).toList(),
+                      );
 
               setState(() {});
 
@@ -146,7 +159,9 @@ class _ProfileInputImageSectionState extends ConsumerState<ProfileInputImageSect
                 await ref.read(profileInputProvider.notifier).addProfile();
                 // 프로필을 생성해주었으니 다시 init 해주어야함
                 await ref.read(myProvider).init();
-                ref.read(routerProvider).replace("/profile/add_profile/complete");
+                ref
+                    .read(routerProvider)
+                    .replace("/profile/add_profile/complete");
               }
             },
           ),

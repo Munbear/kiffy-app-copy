@@ -4,27 +4,30 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image/image.dart' as img;
 
-class PhotoInputCard extends StatelessWidget {
+class ProfileInputImageCard extends StatelessWidget {
   final int index;
   final String? filePath;
   final ValueChanged<int> onDeleted;
   final ValueChanged<String> onAdded;
 
-  const PhotoInputCard({
-    super.key,
-    required this.index,
-    required this.onDeleted,
-    required this.onAdded,
-    this.filePath
-  });
+  const ProfileInputImageCard(
+      {super.key,
+      required this.index,
+      required this.onDeleted,
+      required this.onAdded,
+      this.filePath});
 
   @override
   Widget build(BuildContext context) {
-    if (filePath != null) {
-      return FilledPhotoInputCard(index: index, filePath: filePath!, onDeleted: onDeleted);
-    }
-
-    return EmptyPhotoInputCard(onAdded: onAdded);
+    return filePath != null
+        // 사진 있을 대
+        ? FilledPhotoInputCard(
+            index: index,
+            filePath: filePath!,
+            onDeleted: onDeleted,
+          )
+        // 사진 없을 때
+        : EmptyPhotoInputCard(onAdded: onAdded);
   }
 }
 
@@ -37,7 +40,7 @@ class EmptyPhotoInputCard extends StatelessWidget {
     final picker = ImagePicker();
     final file = await picker.pickImage(source: imageSource);
     if (file != null) {
-    final resizeCommand = img.Command()
+      final resizeCommand = img.Command()
         ..decodeImage(await file.readAsBytes())
         ..copyResize(width: 780)
         ..writeToFile(file.path);
@@ -69,10 +72,13 @@ class EmptyPhotoInputCard extends StatelessWidget {
               onTap: () {
                 addImage(ImageSource.gallery);
               },
-              child: const Center(child: Text("+", style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)))),
+              child: const Center(
+                  child: Text("+",
+                      style:
+                          TextStyle(fontSize: 20, color: Color(0xFFCECECE)))),
             )
-          // Image.file(File(imagePath.value!.path), fit: BoxFit.cover),
-        )
+            // Image.file(File(imagePath.value!.path), fit: BoxFit.cover),
+            )
       ],
     );
   }
@@ -83,10 +89,15 @@ class FilledPhotoInputCard extends StatelessWidget {
   final String filePath;
   final ValueChanged<int> onDeleted;
 
-  const FilledPhotoInputCard({super.key, required this.index, required this.filePath, required this.onDeleted});
+  const FilledPhotoInputCard(
+      {super.key,
+      required this.index,
+      required this.filePath,
+      required this.onDeleted});
 
   // 이미지 삭제
-  Future deleteImage(ValueNotifier<File?> imagePath, ValueNotifier<File?> imageFile) async {
+  Future deleteImage(
+      ValueNotifier<File?> imagePath, ValueNotifier<File?> imageFile) async {
     if (imagePath.value != null) {
       imagePath.value = null;
       imageFile.value = null;
@@ -112,7 +123,8 @@ class FilledPhotoInputCard extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               color: Colors.grey,
-              image: DecorationImage(image: Image.file(File(filePath)).image, fit: BoxFit.cover),
+              image: DecorationImage(
+                  image: Image.file(File(filePath)).image, fit: BoxFit.cover),
             ),
           ),
         ),
@@ -121,7 +133,8 @@ class FilledPhotoInputCard extends StatelessWidget {
           top: 15,
           child: GestureDetector(
             onTap: () => onDeleted(index),
-            child: const Text("X", style: TextStyle(fontSize: 14, color: Colors.white)),
+            child: const Text("X",
+                style: TextStyle(fontSize: 14, color: Colors.white)),
           ),
         ),
       ],
