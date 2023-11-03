@@ -7,6 +7,7 @@ import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dar
 import 'package:Kiffy/screen_module/profile/widget/profile_input_sns_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_text_form_field.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_validation_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,26 +15,31 @@ class ProfileInputContactSection extends ConsumerStatefulWidget {
   const ProfileInputContactSection({super.key});
 
   @override
-  ConsumerState<ProfileInputContactSection> createState() => _ProfileInputContactSectionState();
+  ConsumerState<ProfileInputContactSection> createState() =>
+      _ProfileInputContactSectionState();
 }
 
-class _ProfileInputContactSectionState extends ConsumerState<ProfileInputContactSection> {
-  AddProfileInputItemValidation inputContactValidation = AddProfileInputItemValidation.success();
+class _ProfileInputContactSectionState
+    extends ConsumerState<ProfileInputContactSection> {
+  AddProfileInputItemValidation inputContactValidation =
+      AddProfileInputItemValidation.success();
 
   String inputContactId = "";
   ContactType? inputContactType;
 
   Widget ContactTypeTitle() {
-    return const Text(
-      "Messenger for KIFFY",
-      style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),
+    return Text(
+      tr("text.profile.contact.contact_type"),
+      style: TextStyle(
+          color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),
     );
   }
 
   Widget ContactIdTitle() {
-    return const Text(
-      "ID for contact",
-      style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+    return Text(
+      tr("text.profile.contact.contact_id"),
+      style: TextStyle(
+          fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
     );
   }
 
@@ -73,7 +79,7 @@ class _ProfileInputContactSectionState extends ConsumerState<ProfileInputContact
 
           // 유호성 안내 텍스
           ProfileInputValidationText(
-            normalText: "* When a match is made, it’s shown to the woman.",
+            normalText: tr("text.profile.input_profile.contact"),
             validation: inputContactValidation,
           ),
           const Spacer(),
@@ -81,14 +87,17 @@ class _ProfileInputContactSectionState extends ConsumerState<ProfileInputContact
           // 다음 버튼
           ProfileInputNextButton(
             onPressed: () {
-              inputContactValidation = ref.read(profileInputProvider.notifier).setContact(
-                    inputContactId,
-                    inputContactType,
-                  );
+              inputContactValidation =
+                  ref.read(profileInputProvider.notifier).setContact(
+                        inputContactId,
+                        inputContactType,
+                      );
               setState(() {});
 
               if (inputContactValidation.isValid) {
-                ref.read(profileInputProvider.notifier).updateContact(inputContactId, inputContactType);
+                ref
+                    .read(profileInputProvider.notifier)
+                    .updateContact(inputContactId, inputContactType);
                 ref.read(routerProvider).replace("/profile/add_profile/intro");
               }
             },

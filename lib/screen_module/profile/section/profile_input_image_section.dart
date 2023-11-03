@@ -1,15 +1,16 @@
 import 'package:Kiffy/config/router/route.dart';
+import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile_header.dart';
+import 'package:Kiffy/screen_module/profile/widget/example_profile_photo_tip_bottom_sheet.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_image_card.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_validation_text.dart';
-import 'package:Kiffy/screen_module/profile/widget/example_profile_photo_tip_bottom_sheet.dart';
-import 'package:Kiffy/infra/openapi_client.dart';
-import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -94,15 +95,16 @@ class _ProfileInputImageSectionState
           const AddProfileHeader(),
           const Space(height: 40),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Select your pictures",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500),
-              ),
+              Expanded(
+                  child: Text(
+                    tr("text.profile.media"),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  )),
               SizedBox(
                 width: 18,
                 height: 18,
@@ -112,7 +114,8 @@ class _ProfileInputImageSectionState
                     "assets/icons/alert_icon.png",
                   ),
                 ),
-              )
+              ),
+              Space(width: 10)
             ],
           ),
           const Space(height: 20),
@@ -134,7 +137,7 @@ class _ProfileInputImageSectionState
 
           const Space(height: 8),
           ProfileInputValidationText(
-            normalText: "* You must select at least two sheets.",
+            normalText: tr("text.profile.profile_input.media"),
             validation: inputImagesValidation,
           ),
           const Spacer(),

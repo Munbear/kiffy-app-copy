@@ -72,7 +72,7 @@ class _ProfileInputUserSectionState
             onChanged: (t) => setState(() {
               inputName = t;
             }),
-            hintText: tr("text.profile.name.hint"),
+            hintText: tr("Enter it."),
           ),
           const Space(height: 8),
           ProfileInputValidationText(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:openapi/openapi.dart';
 
 enum Gender {
@@ -17,9 +18,9 @@ enum Gender {
   static genderToString(gender) {
     switch (gender) {
       case Gender.MALE:
-        return "Man";
+        return tr("text.male");
       case Gender.FEMALE:
-        return "Woman";
+        return tr("text.female");
     }
   }
 

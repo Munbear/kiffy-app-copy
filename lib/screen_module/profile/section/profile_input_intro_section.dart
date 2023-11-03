@@ -1,10 +1,11 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile_header.dart';
+import 'package:Kiffy/screen_module/profile/widget/example_intro_tips_bottom_sheet.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_text_field.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_validation_text.dart';
-import 'package:Kiffy/screen_module/profile/widget/example_intro_tips_bottom_sheet.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,12 +13,15 @@ class ProfileInputIntroSection extends ConsumerStatefulWidget {
   const ProfileInputIntroSection({super.key});
 
   @override
-  ConsumerState<ProfileInputIntroSection> createState() => _ProfileInputIntroSectionState();
+  ConsumerState<ProfileInputIntroSection> createState() =>
+      _ProfileInputIntroSectionState();
 }
 
-class _ProfileInputIntroSectionState extends ConsumerState<ProfileInputIntroSection> {
+class _ProfileInputIntroSectionState
+    extends ConsumerState<ProfileInputIntroSection> {
   String inputIntro = "";
-  AddProfileInputItemValidation inputIntroValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputIntroValidation =
+      AddProfileInputItemValidation.success();
 
   // 자기소개 추천 바텀 시트
   IntroExampleBottomSheet(context) {
@@ -37,8 +41,8 @@ class _ProfileInputIntroSectionState extends ConsumerState<ProfileInputIntroSect
   Widget IntroTitle() {
     return Row(
       children: [
-        const Text(
-          "Introduce yourself",
+        Text(
+          tr("text.profile.intro"),
           style: TextStyle(
             color: Colors.black,
             fontSize: 20,
@@ -89,14 +93,15 @@ class _ProfileInputIntroSectionState extends ConsumerState<ProfileInputIntroSect
 
           // 유효성 안내 텍스트
           ProfileInputValidationText(
-            normalText: "* This will increase your matching probability.",
+            normalText: "* ${tr("text.profile.input_profile.intro")}",
             validation: inputIntroValidation,
           ),
           const Spacer(),
 
           // 다음 버튼
           ProfileInputNextButton(onPressed: () {
-            inputIntroValidation = ref.read(profileInputProvider.notifier).setIntro(inputIntro);
+            inputIntroValidation =
+                ref.read(profileInputProvider.notifier).setIntro(inputIntro);
 
             if (inputIntroValidation.isValid) {
               ref.read(profileInputProvider.notifier).updateIntro(inputIntro);
