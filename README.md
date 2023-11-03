@@ -33,7 +33,7 @@ $ localazy download json
 
 ### 번역 사용하는 법
 
-`tr()` 메소드를 이용해 언어파일을 사용할 수 있습니다.
+`tr()` 메소드를 이용해 언어파일을 사용할 수 있습니다. >> [확인하러가기](https://github.com/kiiffy/idl/commits/main)
 ```dart
 import 'package:easy_localization/easy_localization.dart';
 
