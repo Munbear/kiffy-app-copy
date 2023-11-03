@@ -18,7 +18,7 @@ main.dart
 
 ## 언어파일 다운로드받기
 
-언어 번역은 localazy를 사용합니다
+언어 번역은 localazy를 사용합니다 --> [Localazy](https://localazy.com/p/kiffy)
 
 ### 언어파일 다운로드
 
@@ -33,7 +33,7 @@ $ localazy download json
 
 ### 번역 사용하는 법
 
-`tr()` 메소드를 이용해 언어파일을 사용할 수 있습니다. >> [확인하러가기](https://github.com/kiiffy/idl/commits/main)
+`tr()` 메소드를 이용해 언어파일을 사용할 수 있습니다.
 ```dart
 import 'package:easy_localization/easy_localization.dart';
 
@@ -42,7 +42,7 @@ Text(tr("text.some.key"));
 
 ## OpenAPI (API Client) 사용하는 방법
 
-pubspec.yaml에서 아래의 commit hash (version)을 올려주시면 자동으로 최신 API 클라이언트 코드를 사용할 수 있습니다.
+pubspec.yaml에서 아래의 commit hash (version)을 올려주시면 자동으로 최신 API 클라이언트 코드를 사용할 수 있습니다. --> [확인하러가기](https://github.com/kiiffy/idl/commits/main)
 ```yaml
   openapi:
     git:
