@@ -1,12 +1,12 @@
-import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
-import 'package:Kiffy/screen_module/match/widget/matching_user_card.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_card_skeleton.dart';
+import 'package:Kiffy/screen_module/match/widget/matching_user_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:openapi/openapi.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:openapi/openapi.dart';
 
 class MatchedUserCardSection extends ConsumerStatefulWidget {
   const MatchedUserCardSection({super.key});
@@ -84,10 +84,16 @@ class _MatchedUserCardSectionState
               return MatchingUserCard(
                 onTap: () {
                   // TODO
-                  context.pushNamed(
+                  context
+                      .pushNamed(
                     MatchedDetailScreen.routeName,
                     extra: items,
-                  );
+                  )
+                      .then((_) {
+                    setState(() {
+                      _pagingController.refresh();
+                    });
+                  });
                 },
                 userProfile: items,
               );

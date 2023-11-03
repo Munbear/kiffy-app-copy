@@ -1,4 +1,3 @@
-import 'package:Kiffy/domain/reset_profile/reset_profile.dart';
 import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
@@ -114,7 +113,7 @@ List<RouteBase> get _routes => [
             name: MatchedDetailScreen.routeName,
             builder: (context, state) {
               MatchedUserView matchedUser = state.extra as MatchedUserView;
-              return MatchedDetailScreen(userProfile: matchedUser);
+              return MatchedDetailScreen(matchedUser: matchedUser);
             },
           ),
         ],
