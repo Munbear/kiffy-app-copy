@@ -1,4 +1,5 @@
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/common/widget/skeleton.dart';
 import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,7 +31,11 @@ class _MyProfileCardSectionState extends ConsumerState<MyProfileCardSection> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const Placeholder();
+      return const SizedBox(
+        width: double.infinity,
+        height: 400,
+        child: Skeleton(),
+      );
     }
 
     return Padding(

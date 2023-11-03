@@ -1,12 +1,11 @@
 import 'package:Kiffy/domain/core/enum/contact_type.dart';
 import 'package:Kiffy/domain/core/enum/gender_type.dart';
-import 'package:Kiffy/infra/api_client.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_contact/user_profile_create_and_edit_command_profile_contact.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
 import 'package:Kiffy/model/user_profile_create_command/user_profile_create_command.dart';
-import 'package:Kiffy/model/user_profile_view/user_profile_view.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
@@ -97,9 +96,11 @@ class profileInputState extends StateNotifier<UserProfileCreateCommand> {
   AddProfileInputItemValidation setContact(
       String contactId, ContactType? contactType) {
     if (contactId.isEmpty)
-      return AddProfileInputItemValidation.fail("* 연락처를 입력해주세요");
+      return AddProfileInputItemValidation.fail(
+          "* ${tr("text.profile.contact.contact_id.validation")}");
     if (contactType == null)
-      return AddProfileInputItemValidation.fail("* 연락처를 선택해주세요");
+      return AddProfileInputItemValidation.fail(
+          "* ${tr("text.profile.contact.contact_type.validation")}");
     state.contacts;
     return AddProfileInputItemValidation.success();
   }
@@ -107,9 +108,9 @@ class profileInputState extends StateNotifier<UserProfileCreateCommand> {
   // 프로필 자기소개 유효성 검사
   AddProfileInputItemValidation setIntro(String intro) {
     if (intro.isEmpty)
-      return AddProfileInputItemValidation.fail("* 자기소개를 입력해주세요");
-    if (intro.length >= 500)
-      return AddProfileInputItemValidation.fail("* 500자 이내로 작성해주세요");
+      return AddProfileInputItemValidation.fail(
+          "* ${tr("text.profile.intro")}");
+    if (intro.length >= 500) return AddProfileInputItemValidation.fail("> 500");
     state.intro;
     return AddProfileInputItemValidation.success();
   }
@@ -118,7 +119,8 @@ class profileInputState extends StateNotifier<UserProfileCreateCommand> {
   AddProfileInputItemValidation setMedias(
       List<UserProfileCreateAndEditCommandProfileMedia> medias) {
     if (medias.length < 2)
-      return AddProfileInputItemValidation.fail("최소 2장 이상의 사진을 등록해주세요");
+      return AddProfileInputItemValidation.fail(
+          tr("text.profile.profile_input.media"));
     state.medias;
     return AddProfileInputItemValidation.success();
   }
@@ -163,20 +165,22 @@ class profileInputState extends StateNotifier<UserProfileCreateCommand> {
     final createUserProfileRequest = CreateUserProfileRequest((b) {
       b.name = state.name;
       b.gender = state.gender.toGenderEnumView();
-      b.birthDate = DateTime.tryParse("${state.birthDate.substring(0, 4)}-${state.birthDate.substring(4, 6)}-${state.birthDate.substring(6, 8)}T00:00:00Z");
+      b.birthDate = DateTime.tryParse(
+          "${state.birthDate.substring(0, 4)}-${state.birthDate.substring(4, 6)}-${state.birthDate.substring(6, 8)}T00:00:00Z");
       b.intro = state.intro;
       b.medias.addAll(
-        state.medias.map((media) => EditUserProfileRequestMediasInner((b) {
-          b.id = media.id;
-          b.orderNum = media.orderNum;
-        }))
-      );
-      b.contacts.addAll(state.contacts.map((contact) => EditUserProfileRequestContactsInner((b) {
-        b.contactId = contact.contactId;
-        b.contactType = contact.contactType.toContactEnumView();
-      })));
+          state.medias.map((media) => EditUserProfileRequestMediasInner((b) {
+                b.id = media.id;
+                b.orderNum = media.orderNum;
+              })));
+      b.contacts.addAll(state.contacts
+          .map((contact) => EditUserProfileRequestContactsInner((b) {
+                b.contactId = contact.contactId;
+                b.contactType = contact.contactType.toContactEnumView();
+              })));
     });
 
-    return await ref.read(openApiProvider).getMyApi().apiUserV1MyProfilePost(createUserProfileRequest: createUserProfileRequest);
+    return await ref.read(openApiProvider).getMyApi().apiUserV1MyProfilePost(
+        createUserProfileRequest: createUserProfileRequest);
   }
 }

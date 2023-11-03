@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class MatchedDetailCancelButton extends StatelessWidget {
@@ -23,8 +24,8 @@ class MatchedDetailCancelButton extends StatelessWidget {
           backgroundColor: Colors.white,
           foregroundColor: Colors.grey[300],
         ),
-        child: const Text(
-          "Cancel Matching",
+        child: Text(
+          tr("text.match.cancel"),
           style: TextStyle(
             fontSize: 20,
             color: Color(0xffFF3A3A),

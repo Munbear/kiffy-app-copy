@@ -48,7 +48,7 @@ class MyButton extends ConsumerWidget {
               const SizedBox(height: 42),
               Text(
                 text,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 14),
               ),
             ],
           ),

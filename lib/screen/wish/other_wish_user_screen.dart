@@ -1,5 +1,6 @@
 import 'package:Kiffy/domain/common/custom_app_bar_image_title.dart';
 import 'package:Kiffy/screen_module/wish/section/other_wish_user_profile_section.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,7 +31,7 @@ class _LikedListPageState extends ConsumerState<OtherWishUserScreen> {
             SizedBox(
               height: 100,
               child: Center(
-                child: Text("나에게 위시한 사용자들"),
+                child: Text(tr("text.wish.other_wishes")),
               ),
             ),
             Container(

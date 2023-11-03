@@ -1,14 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ExampleIntroTipsBottomSheet extends StatelessWidget {
   ExampleIntroTipsBottomSheet({super.key});
 
   List<String> example = [
-    "My MBTI is..",
-    "My MBTI is..",
-    "My MBTI is..",
-    "My MBTI is..",
+    tr("text.profile.intro.hint1"),
+    tr("text.profile.intro.hint2"),
+    tr("text.profile.intro.hint3"),
+    tr("text.profile.intro.hint4"),
   ];
 
   @override
@@ -60,8 +60,8 @@ class ExampleIntroTipsBottomSheet extends StatelessWidget {
               backgroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 15),
             ),
-            child: const Text(
-              "Okay",
+            child: Text(
+              tr("text.okay"),
               style: TextStyle(
                 fontSize: 20,
                 color: Color(0xff0031AA),

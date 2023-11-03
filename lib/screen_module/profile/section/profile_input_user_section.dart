@@ -6,6 +6,7 @@ import 'package:Kiffy/screen_module/profile/widget/profile_input_gender_button.d
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_text_form_field.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_validation_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,37 +14,45 @@ class ProfileInputUserSection extends ConsumerStatefulWidget {
   const ProfileInputUserSection({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ProfileInputUserSectionState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ProfileInputUserSectionState();
 }
 
-class _ProfileInputUserSectionState extends ConsumerState<ProfileInputUserSection> {
+class _ProfileInputUserSectionState
+    extends ConsumerState<ProfileInputUserSection> {
   // 유저 닉네임
   String inputName = "";
-  AddProfileInputItemValidation inputNameValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputNameValidation =
+      AddProfileInputItemValidation.success();
 
   // 유저 성별
   Gender? inputGender;
-  AddProfileInputItemValidation inputGenderValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputGenderValidation =
+      AddProfileInputItemValidation.success();
 
   // 유저 생년월일
   String inputBirthDay = "";
-  AddProfileInputItemValidation inputBirthdayValidation = AddProfileInputItemValidation.success();
+  AddProfileInputItemValidation inputBirthdayValidation =
+      AddProfileInputItemValidation.success();
 
   Widget NicknameTitle() {
-    return const Text("Nickname", style: TextStyle(fontSize: 20));
+    return Text(tr("text.profile.nickname"), style: TextStyle(fontSize: 20));
   }
 
   Widget GenderTitle() {
-    return const Text("Gender", style: TextStyle(fontSize: 20));
+    return Text(tr("text.profile.gender"), style: TextStyle(fontSize: 20));
   }
 
   Widget BirthdayTitle() {
-    return const Row(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text("Birthday", style: TextStyle(fontSize: 20)),
-        Space(width: 4,),
-        Text("example : 20010305", style: TextStyle(fontSize: 12, color: Color(0xff6c6c6c))),
+        Text(tr("text.profile.birthday"), style: TextStyle(fontSize: 20)),
+        Space(
+          width: 4,
+        ),
+        Text("example : 20010305",
+            style: TextStyle(fontSize: 12, color: Color(0xff6c6c6c))),
       ],
     );
   }
@@ -110,16 +119,29 @@ class _ProfileInputUserSectionState extends ConsumerState<ProfileInputUserSectio
           ProfileInputNextButton(
             onPressed: () {
               setState(() {
-                inputNameValidation = ref.read(profileInputProvider.notifier).setName(inputName);
-                inputGenderValidation = ref.read(profileInputProvider.notifier).setGender(inputGender);
-                inputBirthdayValidation = ref.read(profileInputProvider.notifier).setBirthDate(inputBirthDay);
+                inputNameValidation =
+                    ref.read(profileInputProvider.notifier).setName(inputName);
+                inputGenderValidation = ref
+                    .read(profileInputProvider.notifier)
+                    .setGender(inputGender);
+                inputBirthdayValidation = ref
+                    .read(profileInputProvider.notifier)
+                    .setBirthDate(inputBirthDay);
               });
 
-              if (inputNameValidation.isValid && inputGenderValidation.isValid && inputBirthdayValidation.isValid) {
+              if (inputNameValidation.isValid &&
+                  inputGenderValidation.isValid &&
+                  inputBirthdayValidation.isValid) {
                 ref.read(profileInputProvider.notifier).updateName(inputName);
-                ref.read(profileInputProvider.notifier).updateGender(inputGender);
-                ref.read(profileInputProvider.notifier).updateBirthdDate(inputBirthDay);
-                ref.read(routerProvider).replace("/profile/add_profile/contact");
+                ref
+                    .read(profileInputProvider.notifier)
+                    .updateGender(inputGender);
+                ref
+                    .read(profileInputProvider.notifier)
+                    .updateBirthdDate(inputBirthDay);
+                ref
+                    .read(routerProvider)
+                    .replace("/profile/add_profile/contact");
               }
             },
           ),

@@ -1,9 +1,10 @@
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
+import 'package:built_collection/src/list.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
-import 'package:built_collection/src/list.dart';
 
 class MatchedUserDetailInfoContainer extends ConsumerWidget {
   final BuiltList<UserProfileContactView> contactInfo;
@@ -78,7 +79,7 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
           Text(
             myGender == GenderEnumView.FEMALE
                 ? "✔️ Send it to him like this!"
-                : "✔️ Wait for her contact!",
+                : "✔️ ${tr("text.match.detail.contact_title")}",
             style: const TextStyle(
               fontSize: 20,
               color: Colors.black,
@@ -91,7 +92,7 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
             child: Text(
               myGender == GenderEnumView.FEMALE
                   ? "If you send him like this, he'll recognize you."
-                  : "She'll get a message like this.",
+                  : tr("text.match.detail.contact_subtitle"),
               style: const TextStyle(
                 fontSize: 13,
                 color: Colors.black,

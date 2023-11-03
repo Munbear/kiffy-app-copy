@@ -1,5 +1,6 @@
 import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/modify/section/photo_list_section.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ModifyScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class ModifyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -19,7 +20,7 @@ class ModifyScreen extends StatelessWidget {
             /// 프로필 사진 캡션
             Row(
               children: [
-                Text('Select your pictures'),
+                Text(tr("text.profile.media")),
               ],
             ),
             SizedBox(height: 8),

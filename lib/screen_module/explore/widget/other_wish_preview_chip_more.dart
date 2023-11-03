@@ -1,4 +1,5 @@
 import 'package:Kiffy/config/router/route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,8 +45,8 @@ class OtherWishPreviewChipMore extends ConsumerWidget {
           Container(
             alignment: Alignment.center,
             margin: const EdgeInsets.only(top: 5),
-            child: const Text(
-              "see more",
+            child: Text(
+              tr("text.wish.other_wishes.see_more"),
               style: TextStyle(color: Color(0xFF6C6C6C)),
             ),
           )

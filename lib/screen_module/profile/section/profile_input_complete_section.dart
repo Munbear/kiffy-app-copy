@@ -3,6 +3,7 @@ import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/proifle_input_complete_welcome_box.dart';
 import 'package:dartlin/control_flow.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
@@ -54,7 +55,7 @@ class _ProfileInputCompleteSectionState
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            child: const Text("Start KIFFY !"),
+            child: Text(tr("text.start_kiffy").toString()),
           ),
           const SizedBox(height: 20),
         ],

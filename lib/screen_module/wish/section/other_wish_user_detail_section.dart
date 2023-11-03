@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:Kiffy/screen_module/common/widget/skeleton.dart';
 import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card.dart';
 import 'package:Kiffy/screen_module/wish/provider/other_wish_user_reader.dart';
 import 'package:Kiffy/screen_module/wish/provider/wish_manager.dart';
@@ -71,7 +72,13 @@ class _OtherWishUserDetailSectionState
   @override
   Widget build(BuildContext context) {
     if (wishUserProfileView == null) {
-      return Placeholder();
+      return const Padding(
+        padding: EdgeInsets.all(20),
+        child: SizedBox(
+          height: 600,
+          child: Skeleton(),
+        ),
+      );
     }
 
     return ListView(
@@ -84,8 +91,12 @@ class _OtherWishUserDetailSectionState
             height: 600,
             child: UserProfileCard(
               userProfile: wishUserProfileView!.userProfile,
-              onWish: (wishId) { approveAndPop(wishUserProfileView!.userProfile.id); },
-              onReject: (wishId) { rejectAndPop(wishUserProfileView!.userProfile.id); },
+              onWish: (wishId) {
+                approveAndPop(wishUserProfileView!.userProfile.id);
+              },
+              onReject: (wishId) {
+                rejectAndPop(wishUserProfileView!.userProfile.id);
+              },
             ),
           ),
         ),

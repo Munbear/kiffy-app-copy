@@ -1,5 +1,4 @@
-
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInputNextButton extends StatelessWidget {
@@ -19,7 +18,7 @@ class ProfileInputNextButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      child: const Text("Next"),
+      child: Text(tr("text.next")),
     );
   }
 }
