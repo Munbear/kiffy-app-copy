@@ -72,11 +72,11 @@ class _ProfileInputUserSectionState
             onChanged: (t) => setState(() {
               inputName = t;
             }),
-            hintText: "Please enter it.",
+            hintText: tr("text.profile.name.hint"),
           ),
           const Space(height: 8),
           ProfileInputValidationText(
-            normalText: "* It cannot be changed",
+            normalText: tr("text.profile.input_profile.immutable"),
             validation: inputNameValidation,
           ),
           const Space(height: 40),
@@ -95,7 +95,7 @@ class _ProfileInputUserSectionState
 
           const Space(height: 8),
           ProfileInputValidationText(
-            normalText: "* It cannot be changed",
+            normalText: tr("text.profile.input_profile.immutable"),
             validation: inputGenderValidation,
           ),
           const Space(height: 40),
@@ -111,7 +111,7 @@ class _ProfileInputUserSectionState
           ),
           const Space(height: 8),
           ProfileInputValidationText(
-            normalText: "* It cannot be changed",
+            normalText: tr("text.profile.input_profile.immutable"),
             validation: inputBirthdayValidation,
           ),
           const Space(height: 20),

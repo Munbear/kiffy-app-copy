@@ -10,7 +10,7 @@ class GoogleSignInButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton.icon(
       onPressed: () => onPressed(),
-      label: const Text("Continue with Google"),
+      label: const Text("Google"),
       icon: Image.asset("assets/images/google_logo.png", width: 20),
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class AddProfileHeader extends StatelessWidget {
@@ -7,10 +8,10 @@ class AddProfileHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 72, bottom: 30),
-      child: const Column(
+      child: Column(
         children: [
           Text(
-            "Identify yourself",
+            tr("text.profile.input_profile.intro_title"),
             style: TextStyle(
               fontSize: 32,
               color: Color(0xff0031AA),
@@ -18,7 +19,7 @@ class AddProfileHeader extends StatelessWidget {
             ),
           ),
           Text(
-            "Enter information to be displayed in kiffy",
+            tr("text.profile.input_profile.sub_title"),
             style: TextStyle(
               fontSize: 13,
               color: Color(0xff494949),
