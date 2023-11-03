@@ -21,29 +21,3 @@ $ cd assets/translations
 # 번역 파일 다운로드
 $ localazy download json
 ```
-
-## 코드 생성기 사용
-```shell
-# 파일명과 클래스명은 api문서 스키마와 동일하게 작성 
-#모델 작성 
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part '파일명.freezed.dart';
-part '파일명.g.dart';
-
-@freezed
-class 클래스명 with _$클래스명 {
-  factory 클래스명({
-    required String id,
-    required int orderNum,
-  }) = _클래스명;
-
-  factory 클래스명.fromJson(Map<String, dynamic> json) =>
-      _$클래스명FromJson(json);
-}
-# 모델 작성후 코드 만들기 
-# flutter pub run build_runner build
-# 전부 지웠다가 다시 만들기  
-# flutter pub run build_runner build --delete-conflicting-outputs
-# 변경점 실실간으로 적용 
-# flutter pub run build_runner watch

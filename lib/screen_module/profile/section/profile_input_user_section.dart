@@ -1,5 +1,5 @@
 import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/domain/core/enum/gender_type.dart';
+import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/screen_module/common/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_gender_button.dart';

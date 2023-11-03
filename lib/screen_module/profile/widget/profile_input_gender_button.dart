@@ -1,12 +1,12 @@
-import 'package:Kiffy/domain/core/enum/gender_type.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:Kiffy/constant/gender_type.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInputGenderButton extends StatelessWidget {
   final Gender? selectedGender;
   final ValueChanged<Gender> onChanged;
 
-  const ProfileInputGenderButton({super.key, this.selectedGender, required this.onChanged});
+  const ProfileInputGenderButton(
+      {super.key, this.selectedGender, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,19 @@ class ProfileInputGenderButton extends StatelessWidget {
                 label: Text(
                   Gender.genderToString(gender),
                   style: TextStyle(
-                    color: selectedGender == gender ? const Color(0xFF0031AA) : const Color(0xff494949),
+                    color: selectedGender == gender
+                        ? const Color(0xFF0031AA)
+                        : const Color(0xff494949),
                   ),
                 ),
                 icon: Image.asset(
-                  gender == Gender.MALE ? "assets/icons/man_icon.png" : "assets/icons/woman_icon.png",
+                  gender == Gender.MALE
+                      ? "assets/icons/man_icon.png"
+                      : "assets/icons/woman_icon.png",
                   width: 18,
-                  color: selectedGender == gender ? const Color(0xFF0031AA) : const Color(0xff494949),
+                  color: selectedGender == gender
+                      ? const Color(0xFF0031AA)
+                      : const Color(0xff494949),
                 ),
                 style: ElevatedButton.styleFrom(
                   shape: const RoundedRectangleBorder(
@@ -44,7 +50,9 @@ class ProfileInputGenderButton extends StatelessWidget {
                   foregroundColor: const Color(0xff494949),
                   textStyle: const TextStyle(fontSize: 18),
                   side: BorderSide(
-                    color: selectedGender == gender ? const Color(0xFF0031AA) : const Color(0xffDCDCDC),
+                    color: selectedGender == gender
+                        ? const Color(0xFF0031AA)
+                        : const Color(0xffDCDCDC),
                     width: 2.0,
                   ),
                 ),

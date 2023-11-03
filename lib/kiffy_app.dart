@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'infra/api_client.dart';
-
 class KiffyApp extends ConsumerWidget {
   const KiffyApp({super.key});
 
@@ -13,9 +11,6 @@ class KiffyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // 라우트 불러오기
     final router = ref.watch(routerProvider);
-    // http
-    ref.read(dioProvider.notifier).state.options.headers['Accept-Lanauage'] =
-        context.locale.toString();
 
     return MaterialApp.router(
       theme: ThemeData(fontFamily: "Pretendard"),
