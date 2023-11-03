@@ -18,6 +18,7 @@ class KiffyApp extends ConsumerWidget {
         context.locale.toString();
 
     return MaterialApp.router(
+      theme: ThemeData(fontFamily: "Pretendard"),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

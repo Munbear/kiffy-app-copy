@@ -13,7 +13,7 @@ class AddProfileHeader extends StatelessWidget {
           Text(
             tr("text.profile.input_profile.intro_title"),
             style: TextStyle(
-              fontSize: 32,
+              fontSize: 28,
               color: Color(0xff0031AA),
               fontWeight: FontWeight.bold,
             ),
