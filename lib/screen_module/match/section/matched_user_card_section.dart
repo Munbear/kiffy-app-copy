@@ -91,7 +91,10 @@ class _MatchedUserCardSectionState
                   )
                       .then((_) {
                     setState(() {
-                      _pagingController.refresh();
+                      setState(() {
+                        // TODO 매칭 제거하면 바로 없어지도록 변경 필요
+                        _pagingController.refresh();
+                      });
                     });
                   });
                 },

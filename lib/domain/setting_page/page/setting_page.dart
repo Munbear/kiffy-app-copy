@@ -5,6 +5,7 @@ import 'package:Kiffy/domain/setting_page/widget/setting_button.dart';
 import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../screen_module/sign/provider/auth_provider.dart';
 
@@ -42,10 +43,10 @@ class _SettingPageState extends ConsumerState<SettingPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 28),
             child: GestureDetector(
-              onTap: () {
+              onTap: () async {
                 // 로그아웃 함수 추가
-                // ref.read(authProvider).logout();
-                print(ref.read(myProvider).getStatus().id);
+                await ref.read(authProvider).logout();
+                context.replace("/");
               },
               child: const SettingButton(
                   IconPath: "assets/images/log_out.png", text: "Log out"),
