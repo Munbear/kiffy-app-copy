@@ -1,5 +1,5 @@
-import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/screen_module/common/bottom_nav/widget/bottom_nav_bar.dart';
+import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
 import 'package:Kiffy/screen_module/my_setting/section/withdrawal_section.dart';
 import 'package:flutter/material.dart';
 

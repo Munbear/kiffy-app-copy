@@ -1,4 +1,4 @@
-import 'package:Kiffy/domain/common/page_controller_button.dart';
+import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page_controller_button.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page_default.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page_indicator.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page_intro.dart';
