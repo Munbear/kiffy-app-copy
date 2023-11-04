@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/common/widget/skeleton.dart';
+import 'package:Kiffy/screen_module/common/skeleton/widget/skeleton.dart';
 import 'package:flutter/material.dart';
 
 class OtherWishUserProfileChipSkeleton extends StatelessWidget {

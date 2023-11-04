@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:built_collection/src/list.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

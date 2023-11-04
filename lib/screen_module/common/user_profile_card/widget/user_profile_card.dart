@@ -1,7 +1,7 @@
-import 'package:Kiffy/screen_module/common/widget/space.dart';
-import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_page.dart';
-import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_reject_button.dart';
-import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_wish_button.dart';
+import 'package:Kiffy/screen_module/common/space/widget/space.dart';
+import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page.dart';
+import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_reject_button.dart';
+import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_wish_button.dart';
 import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
 

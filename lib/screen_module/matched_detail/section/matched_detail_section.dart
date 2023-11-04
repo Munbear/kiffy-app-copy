@@ -1,5 +1,5 @@
-import 'package:Kiffy/screen_module/common/widget/space.dart';
-import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_page.dart';
+import 'package:Kiffy/screen_module/common/space/widget/space.dart';
+import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page.dart';
 import 'package:Kiffy/screen_module/matched_detail/provider/match_manager_provider.dart';
 import 'package:Kiffy/screen_module/matched_detail/widget/matched_detail_cancel_button.dart';
 import 'package:Kiffy/screen_module/matched_detail/widget/matched_user_detail_info_container.dart';

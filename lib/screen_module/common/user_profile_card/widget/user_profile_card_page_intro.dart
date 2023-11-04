@@ -1,5 +1,5 @@
-import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_page_item_intro.dart';
-import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card_page_item_media.dart';
+import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page_item_intro.dart';
+import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page_item_media.dart';
 import 'package:flutter/material.dart';
 
 class UserProfileCardPageIntro extends StatelessWidget {

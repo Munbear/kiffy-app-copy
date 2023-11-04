@@ -1,8 +1,8 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/model/user_profile_create_and_edit_command_profile_media/user_profile_create_and_edit_command_profile_media.dart';
-import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
-import 'package:Kiffy/screen_module/common/widget/space.dart';
+import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/screen_module/profile/widget/example_profile_photo_tip_bottom_sheet.dart';

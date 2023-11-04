@@ -1,6 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/constant/contact_type.dart';
-import 'package:Kiffy/screen_module/common/widget/space.dart';
+import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile_header.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';

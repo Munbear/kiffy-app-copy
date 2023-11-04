@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/common/widget/other_wish_user/other_wish_preview_chips.dart';
+import 'package:Kiffy/screen_module/common/other_wish_user/widget/other_wish_preview_chips.dart';
 import 'package:Kiffy/screen_module/explore/provider/explore_users_provider.dart';
 import 'package:Kiffy/screen_module/wish/provider/other_wish_users_reader.dart';
 import 'package:Kiffy/screen_module/wish/provider/wish_remain_calculator.dart';

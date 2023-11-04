@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:Kiffy/screen_module/common/widget/skeleton.dart';
-import 'package:Kiffy/screen_module/common/widget/user_profile_card/user_profile_card.dart';
+import 'package:Kiffy/screen_module/common/skeleton/widget/skeleton.dart';
+import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card.dart';
 import 'package:Kiffy/screen_module/wish/provider/other_wish_user_reader.dart';
 import 'package:Kiffy/screen_module/wish/provider/wish_manager.dart';
 import 'package:Kiffy/screen_module/wish/provider/wish_remain_calculator.dart';

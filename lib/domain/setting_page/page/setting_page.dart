@@ -1,8 +1,8 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
 import 'package:Kiffy/domain/setting_page/widget/setting_button.dart';
-import 'package:Kiffy/screen_module/bottom_nav/widget/bottom_nav_bar.dart';
-import 'package:Kiffy/screen_module/common/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/common/bottom_nav/widget/bottom_nav_bar.dart';
+import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

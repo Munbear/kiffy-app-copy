@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/common/widget/skeleton.dart';
+import 'package:Kiffy/screen_module/common/skeleton/widget/skeleton.dart';
 import 'package:Kiffy/screen_module/explore/widget/other_wish_preview_chip.dart';
 import 'package:Kiffy/screen_module/explore/widget/other_wish_preview_chip_more.dart';
 import 'package:flutter/material.dart';
