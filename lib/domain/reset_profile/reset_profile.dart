@@ -1,7 +1,7 @@
 // import 'package:Kiffy/domain/common/bottom_nav_bar.dart';
 // import 'package:Kiffy/domain/core/enum/contact_type.dart';
 // import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
-// import 'package:Kiffy/screen_module/profile/section/profile_input_image_section.dart';
+// import 'package:Kiffy/screen_module/profile/section/profile_input_images.dart';
 // import 'package:Kiffy/screen_module/profile/widget/profile_input_image_card.dart';
 // import 'package:Kiffy/screen_module/profile/widget/profile_input_validation_text.dart';
 // import 'package:flutter/material.dart';

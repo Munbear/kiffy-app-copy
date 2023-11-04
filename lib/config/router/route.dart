@@ -6,10 +6,7 @@ import 'package:Kiffy/screen/modify/modify_screen.dart';
 import 'package:Kiffy/screen/my/my_screen.dart';
 import 'package:Kiffy/screen/my/setting/withdraw_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
-import 'package:Kiffy/screen/profile/add_profile_contact_screen.dart';
-import 'package:Kiffy/screen/profile/add_profile_image_screen.dart';
-import 'package:Kiffy/screen/profile/add_profile_intro_screen.dart';
-import 'package:Kiffy/screen/profile/add_profile_user_screen.dart';
+import 'package:Kiffy/screen/profile/add_profile_screen.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
 import 'package:Kiffy/screen/wish/other_wish_user_detail_screen.dart';
@@ -137,27 +134,9 @@ List<RouteBase> get _routes => [
       ),
       GoRoute(
         // 유저 프로필 닉네임, 성별, 나이, 입력 페이지
-        path: AddProfileUserScreen.routeLocation,
-        name: AddProfileUserScreen.routeName,
-        builder: (context, _) => const AddProfileUserScreen(),
-      ),
-      GoRoute(
-        // 프로필 연락처 추가 화면
-        path: AddProfileContactScreen.routeLocation,
-        name: AddProfileContactScreen.routeName,
-        builder: (context, _) => const AddProfileContactScreen(),
-      ),
-      GoRoute(
-        // 프로필 등록 자기소개 페이지
-        path: AddProfileIntroScreen.routeLocation,
-        name: AddProfileIntroScreen.routeName,
-        builder: (context, _) => const AddProfileIntroScreen(),
-      ),
-      GoRoute(
-        // 프로필 이미지 등록 페이지
-        path: AddProfileImageScreen.routeLocation,
-        name: AddProfileImageScreen.routeName,
-        builder: (context, _) => const AddProfileImageScreen(),
+        path: AddProfileScreen.routeLocation,
+        name: AddProfileScreen.routeName,
+        builder: (context, _) => const AddProfileScreen(),
       ),
       GoRoute(
         // 프로필 등록 완료 페이지

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ExampleProfilePhotoTipBottomSheet extends StatelessWidget {
-  ExampleProfilePhotoTipBottomSheet({super.key});
+class ExampleProfileImageTipBottomSheet extends StatelessWidget {
+  ExampleProfileImageTipBottomSheet({super.key});
 
   PageController controller = PageController(initialPage: 0);
 

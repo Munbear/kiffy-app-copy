@@ -7,7 +7,6 @@ class AddProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 72, bottom: 30),
       child: Column(
         children: [
           Text(

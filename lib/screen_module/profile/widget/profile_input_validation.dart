@@ -1,19 +1,20 @@
-import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInputValidationText extends StatelessWidget {
   final String normalText;
-  final AddProfileInputItemValidation validation;
+  final String violatedText;
+  final bool Function() check;
 
   const ProfileInputValidationText({
     super.key,
     required this.normalText,
-    required this.validation,
+    required this.violatedText,
+    required this.check,
   });
 
   @override
   Widget build(BuildContext context) {
-    return validation.isValid
+    return check()
         ? Text(
             normalText,
             style: const TextStyle(
@@ -22,10 +23,10 @@ class ProfileInputValidationText extends StatelessWidget {
             ),
           )
         : Text(
-            validation.validationMessage,
+            violatedText,
             style: const TextStyle(
               fontSize: 13,
-              color: Colors.redAccent,
+              color: Color(0xFF0031AA),
             ),
           );
   }
