@@ -1,4 +1,4 @@
-import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
+import 'package:Kiffy/screen_module/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/widget/other_wish_user/other_wish_preview_section.dart';
 import 'package:Kiffy/screen_module/explore/section/explore_user_card_section.dart';
 import 'package:flutter/material.dart';

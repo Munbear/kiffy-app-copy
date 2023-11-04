@@ -3,7 +3,7 @@ import 'package:Kiffy/screen_module/my/section/my_profile_card_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../domain/common/custom_bottom_nav_bar.dart';
+import '../../screen_module/bottom_nav/widget/bottom_nav_bar.dart';
 
 class MyScreen extends ConsumerStatefulWidget {
   static String get routeLocation => "/myPage";

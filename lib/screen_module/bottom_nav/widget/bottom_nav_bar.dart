@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../config/router/route.dart';
-import '../main_page/widget/bottom_tap_item.dart';
+import '../../../config/router/route.dart';
+import 'bottom_nav_bar_item.dart';
 
 // 아이콘 및 라우트path
 class GlobalNavigationPaths {

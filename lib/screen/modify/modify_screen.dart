@@ -1,4 +1,4 @@
-import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
+import 'package:Kiffy/screen_module/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/modify/section/photo_list_section.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

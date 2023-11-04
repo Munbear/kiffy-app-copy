@@ -1,8 +1,7 @@
 import 'package:Kiffy/domain/common/custom_app_bar.dart';
-import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
+import 'package:Kiffy/screen_module/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/my_setting/section/withdrawal_section.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WithdrawalScreen extends StatelessWidget {
   static String get routeLocation => "/withdraw";

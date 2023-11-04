@@ -1,4 +1,4 @@
-// import 'package:Kiffy/domain/common/custom_bottom_nav_bar.dart';
+// import 'package:Kiffy/domain/common/bottom_nav_bar.dart';
 // import 'package:Kiffy/domain/core/enum/contact_type.dart';
 // import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 // import 'package:Kiffy/screen_module/profile/section/profile_input_image_section.dart';
