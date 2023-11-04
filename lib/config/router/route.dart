@@ -1,6 +1,4 @@
 import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
-import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
-import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/match/matching_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
@@ -130,18 +128,6 @@ List<RouteBase> get _routes => [
         builder: (context, state) => OtherWishUserDetailScreen(
           wishId: state.params["wishId"],
         ),
-      ),
-      GoRoute(
-        // 회원 탈퇴 이유 텍스트
-        path: WithdrawText.routeLocation,
-        name: WithdrawText.routeName,
-        builder: (context, _) => const WithdrawText(),
-      ),
-      GoRoute(
-        // 회원 탈퇴 최종
-        path: WithdrawFinal.routeLocation,
-        name: WithdrawFinal.routeName,
-        builder: (context, _) => const WithdrawFinal(),
       ),
       GoRoute(
         // 회원 가입 및 로그인 페이지
