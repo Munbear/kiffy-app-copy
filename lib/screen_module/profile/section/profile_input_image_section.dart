@@ -99,12 +99,12 @@ class _ProfileInputImageSectionState
             children: [
               Expanded(
                   child: Text(
-                    tr("text.profile.media"),
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500),
-                  )),
+                tr("text.profile.media"),
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
+              )),
               SizedBox(
                 width: 18,
                 height: 18,
