@@ -1,5 +1,4 @@
 import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
-import 'package:Kiffy/domain/withdraw/page/withdraw.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_fianl.dart';
 import 'package:Kiffy/domain/withdraw/page/withdraw_text.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
@@ -7,6 +6,7 @@ import 'package:Kiffy/screen/match/matching_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/modify/modify_screen.dart';
 import 'package:Kiffy/screen/my/my_screen.dart';
+import 'package:Kiffy/screen/my/setting/withdraw_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_contact_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_image_screen.dart';
@@ -63,9 +63,9 @@ List<RouteBase> get _routes => [
       ),
       GoRoute(
         // 회원 탈퇴 화면
-        path: WithdrawPage.routeLocation,
-        name: WithdrawPage.routeName,
-        builder: (context, _) => const WithdrawPage(),
+        path: WithdrawalScreen.routeLocation,
+        name: WithdrawalScreen.routeName,
+        builder: (context, _) => const WithdrawalScreen(),
       ),
       // GoRoute(
       //   // 탐색 탭
