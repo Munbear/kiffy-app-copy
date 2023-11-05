@@ -117,6 +117,7 @@ class _ProfileInputProcessSectionState
     ref.read(routerProvider).replace(AddProfileCompleteScreen.routeLocation);
   }
 
+  // 프로필 입력 화면 들
   Widget processBuilder() {
     switch (process) {
       case 1:
@@ -132,6 +133,7 @@ class _ProfileInputProcessSectionState
     }
   }
 
+  /// 프로필 입력 화면
   Widget profileInputUser() {
     return Column(
       children: [
@@ -159,6 +161,7 @@ class _ProfileInputProcessSectionState
     );
   }
 
+  ///sns 선택
   Widget profileInputContact() {
     return Column(
       children: [
@@ -179,6 +182,7 @@ class _ProfileInputProcessSectionState
     );
   }
 
+  // 자기소개
   Widget profileInputIntro() {
     return Column(
       children: [
@@ -190,6 +194,7 @@ class _ProfileInputProcessSectionState
     );
   }
 
+  // 이미지 선택 UI
   Widget profileInputImages() {
     return Column(
       children: [

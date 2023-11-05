@@ -9,11 +9,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ProfileInputContactId extends ConsumerWidget {
   final String? contactId;
   final ValueChanged<String> onChanged;
+  final String? initContactId;
 
   const ProfileInputContactId({
     super.key,
     required this.contactId,
     required this.onChanged,
+    this.initContactId,
   });
 
   Widget contactIdTitle() {
@@ -48,6 +50,7 @@ class ProfileInputContactId extends ConsumerWidget {
         KiffyTextField(
           hintText: "",
           onChanged: (v) => onChanged(v),
+          initContactId: initContactId,
         ),
         Space(height: 2),
         validationText(ref),

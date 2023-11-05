@@ -28,19 +28,29 @@ class _PhotoListSectionState extends ConsumerState<ModifyPhotoSection> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 30),
-      child: ProfileInputImages(
-        medias: myImages,
-        onAdded: (media) {
-          setState(() {
-            myImages.add(media);
-          });
-        },
-        onDeleted: (index) {
-          setState(() {
-            myImages.removeAt(index);
-          });
-        },
-        isModifyScreen: true,
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              print(myImages);
+            },
+            child: Text("media Text"),
+          ),
+          ProfileInputImages(
+            medias: myImages,
+            onAdded: (media) {
+              setState(() {
+                myImages.add(media);
+              });
+            },
+            onDeleted: (index) {
+              setState(() {
+                myImages.removeAt(index);
+              });
+            },
+            isModifyScreen: true,
+          ),
+        ],
       ),
     );
     // return SizedBox(

@@ -1,7 +1,9 @@
 import 'package:Kiffy/screen_module/common/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
+import 'package:Kiffy/screen_module/modify/section/modify_contact_section.dart';
 import 'package:Kiffy/screen_module/modify/section/modify_intro_section.dart';
 import 'package:Kiffy/screen_module/modify/section/modify_photo_section.dart';
+import 'package:Kiffy/screen_module/modify/section/modify_reset_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_images.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,14 @@ class ModifyScreen extends StatelessWidget {
               ModifyPhotoSection(),
               Space(height: 40),
               // 자기소개
-              ModiftyIntroSection()
+              ModiftyIntroSection(),
+              Space(height: 40),
+              // sns
+              ModifyContactSection(),
+              Space(height: 40),
+              // 수정 완료하기 버튼
+              ModifyResetButton(),
+              Space(height: 40),
             ],
           ),
         ),
