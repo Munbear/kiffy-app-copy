@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 
 class KiffyTextFieldMultiline extends StatelessWidget {
   final ValueChanged<String> onChanged;
+  final TextEditingController? textController;
 
-  const KiffyTextFieldMultiline({super.key, required this.onChanged});
+  const KiffyTextFieldMultiline({
+    super.key,
+    required this.onChanged,
+    this.textController,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      initialValue: textController?.text ?? "",
       onChanged: (t) => onChanged(t),
       minLines: 5,
       maxLines: 5,

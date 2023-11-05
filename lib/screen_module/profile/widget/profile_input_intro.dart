@@ -5,13 +5,16 @@ import 'package:Kiffy/screen_module/profile/widget/profile_input_validation.dart
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileInputIntro extends ConsumerWidget {
   final ValueChanged<String> onChanged;
+  final TextEditingController? textController;
 
   const ProfileInputIntro({
     super.key,
     required this.onChanged,
+    this.textController,
   });
 
   @override
@@ -19,9 +22,12 @@ class ProfileInputIntro extends ConsumerWidget {
     return Column(
       children: [
         introTitle(context),
-        Space(height: 8),
-        KiffyTextFieldMultiline(onChanged: (v) => onChanged(v)),
-        Space(height: 2),
+        const Space(height: 8),
+        KiffyTextFieldMultiline(
+          onChanged: (v) => onChanged(v),
+          textController: textController,
+        ),
+        const Space(height: 2),
         validationText(ref),
       ],
     );

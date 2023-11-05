@@ -42,25 +42,23 @@ class _ProfileInputProcessSectionState
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(39),
-            child: AddProfileHeader(),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 39, right: 39, bottom: 39),
-            child: processBuilder(),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 39),
-            child: ProfileInputNextButton(onPressed: () {
-              next();
-            }),
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(39),
+          child: AddProfileHeader(),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+          child: processBuilder(),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 39),
+          child: ProfileInputNextButton(onPressed: () {
+            next();
+          }),
+        )
+      ],
     );
   }
 

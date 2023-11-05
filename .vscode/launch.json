@@ -49,7 +49,7 @@
       "name": "kiffy-dev",
       "request": "launch",
       "type": "dart",
-      "program": "lib/env/main_dev.dart",
+      "program": "lib/main.dart",
       "args": [
         "--flavor",
         "dev"
@@ -59,7 +59,7 @@
       "name": "kiffy-prod",
       "request": "launch",
       "type": "dart",
-      "program": "lib/env/main.dart",
+      "program": "lib/main.dart",
       "args": [
           "--flavor",
           "prod"

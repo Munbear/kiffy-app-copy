@@ -6,26 +6,24 @@ class AddProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Text(
-            tr("text.profile.input_profile.intro_title"),
-            style: TextStyle(
-              fontSize: 28,
-              color: Color(0xff0031AA),
-              fontWeight: FontWeight.bold,
-            ),
+    return Column(
+      children: [
+        Text(
+          tr("text.profile.input_profile.intro_title"),
+          style: const TextStyle(
+            fontSize: 28,
+            color: Color(0xff0031AA),
+            fontWeight: FontWeight.bold,
           ),
-          Text(
-            tr("text.profile.input_profile.sub_title"),
-            style: TextStyle(
-              fontSize: 13,
-              color: Color(0xff494949),
-            ),
-          )
-        ],
-      ),
+        ),
+        Text(
+          tr("text.profile.input_profile.sub_title"),
+          style: const TextStyle(
+            fontSize: 13,
+            color: Color(0xff494949),
+          ),
+        )
+      ],
     );
   }
 }

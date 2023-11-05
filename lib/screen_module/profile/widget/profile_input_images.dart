@@ -10,14 +10,16 @@ import 'package:openapi/openapi.dart';
 
 class ProfileInputImages extends ConsumerStatefulWidget {
   final List<MediaView> medias;
-  final Function(MediaView) onAdded;
-  final Function(int) onDeleted;
+  final ValueChanged<MediaView> onAdded;
+  final ValueChanged<int> onDeleted;
+  final bool isModifyScreen;
 
   const ProfileInputImages({
     super.key,
     required this.medias,
     required this.onAdded,
     required this.onDeleted,
+    this.isModifyScreen = false,
   });
 
   @override
@@ -28,17 +30,15 @@ class ProfileInputImages extends ConsumerStatefulWidget {
 class _ProfileInputImageSectionState extends ConsumerState<ProfileInputImages> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          inputProfileImageTitle(),
-          Space(height: 20),
-          inputProfileImageFields(),
-          Space(height: 8),
-          inputValidationCheck(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        inputProfileImageTitle(),
+        const Space(height: 20),
+        inputProfileImageFields(),
+        const Space(height: 8),
+        inputValidationCheck(),
+      ],
     );
   }
 
@@ -61,22 +61,28 @@ class _ProfileInputImageSectionState extends ConsumerState<ProfileInputImages> {
       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-            child: Text(
-          tr("text.profile.media"),
-          style: const TextStyle(
-              fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
-        )),
-        SizedBox(
-          width: 18,
-          height: 18,
-          child: GestureDetector(
-            onTap: () => imageTipBottomSheet(context),
-            child: Image.asset(
-              "assets/icons/alert_icon.png",
+          child: widget.isModifyScreen
+              ? Text(tr("text.profile.media"))
+              : Text(
+                  tr("text.profile.media"),
+                  style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
+                ),
+        ),
+        if (!widget.isModifyScreen)
+          SizedBox(
+            width: 18,
+            height: 18,
+            child: GestureDetector(
+              onTap: () => imageTipBottomSheet(context),
+              child: Image.asset(
+                "assets/icons/alert_icon.png",
+              ),
             ),
           ),
-        ),
-        Space(width: 10)
+        const Space(width: 10)
       ],
     );
   }
