@@ -16,9 +16,12 @@ main.dart
 ㄴ infra : API 관련 코드
 ```
 
-## 언어파일 다운로드받기
+## 다국어 지원
 
-언어 번역은 localazy를 사용합니다 --> [Localazy](https://localazy.com/p/kiffy)
+- 언어 번역은 localazy를 사용합니다 --> [Localazy](https://localazy.com/p/kiffy)
+- localzy에 접속해서 먼저 번역작업을 시작해주세요
+  - 새로운 key가 필요하다면 source language에서 추가해주세요
+  - 생성된 새로운 키를 각 나라의 언어에 맞게 번역해서 저장합니다
 
 ### 언어파일 다운로드
 
