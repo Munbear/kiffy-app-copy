@@ -16,7 +16,7 @@ FlavorConfig getFlavorConfig(String? flavor) {
         variables: {
           "isDebuggle": false,
           "appTitle": "kiffy",
-          "apiUrl": "http://api-dev.kiffy.club",
+          "apiUrl": "http://api.kiffy.club",
           // "afDevKey": "",
         },
       );
@@ -26,7 +26,7 @@ FlavorConfig getFlavorConfig(String? flavor) {
         variables: {
           "isDebuggle": true,
           "appTitle": "[DEV] kiffy",
-          "apiUrl": "http://api-dev.kiffy.club",
+          "apiUrl": "http://api.dev.kiffy.club",
           // "afDevKey": "",
         },
       );
