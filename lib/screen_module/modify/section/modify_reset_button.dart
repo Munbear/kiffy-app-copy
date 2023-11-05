@@ -1,7 +1,12 @@
+import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/modify/provider/modify_profile_provider.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 
 class ModifyResetButton extends ConsumerStatefulWidget {
@@ -18,12 +23,50 @@ class _ModifyResetButtonState extends ConsumerState<ModifyResetButton> {
   // ref.read(profileInputValidatorProvider).verifyMedias(medias)
 
   void completeModifyProfile() async {
-    //TODO 유효성 검사
-    // 변경된 값 넣기만 하면 됨
-    final modifyUserProfileRequest = CreateUserProfileRequest();
-    ref.read(openApiProvider).getMyApi().apiUserV1MyProfilePost(
-          createUserProfileRequest: modifyUserProfileRequest,
+    List<MediaView> editMedias = ref.watch(editUserMediaProfile);
+    String? editIntro = ref.watch(editUserIntroProfile);
+    String? editContactId = ref.watch(editUserContactIdProfile);
+    ContactType? editContactType = ref.watch(editUserContactTypeProfile);
+
+    EditUserProfileRequest modifyUserProfileRequest = EditUserProfileRequest(
+      (e) {
+        e.medias.addAll(
+          editMedias.mapIndexed(
+            (index, element) => EditUserProfileRequestMediasInner(
+              (b) {
+                b.id = element.id;
+                b.orderNum = index;
+              },
+            ),
+          ),
         );
+        e.intro = editIntro;
+        e.contacts.add(
+          EditUserProfileRequestContactsInner(
+            (b) {
+              b.contactId = editContactId;
+              b.contactType = editContactType!.toContactEnumView();
+            },
+          ),
+        );
+      },
+    );
+
+    // 변경 api
+    // print(editIntro);
+    // print(editContactType);
+    // print(editContactId);
+    await ref
+        .read(openApiProvider)
+        .getMyApi()
+        .apiUserV1MyProfilePut(
+          editUserProfileRequest: modifyUserProfileRequest,
+        )
+        .then(
+      (value) {
+        context.pop();
+      },
+    );
   }
 
   @override

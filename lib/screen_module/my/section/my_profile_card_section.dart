@@ -29,6 +29,16 @@ class _MyProfileCardSectionState extends ConsumerState<MyProfileCardSection> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = ModalRoute.of(context)!;
+    if (route.isCurrent) {
+      print("hello");
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (isLoading) {
       return const SizedBox(

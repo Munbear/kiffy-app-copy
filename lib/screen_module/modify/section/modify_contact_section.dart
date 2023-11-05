@@ -1,5 +1,6 @@
 import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/modify/provider/modify_profile_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_contact_id.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_contact_type.dart';
 import 'package:flutter/material.dart';
@@ -43,15 +44,24 @@ class _ModifyContactSectionState extends ConsumerState<ModifyContactSection> {
             onChanged: (inputContactType) {
               setState(() {
                 myContactType = inputContactType;
+                ref
+                    .read(editUserContactTypeProfile.notifier)
+                    .update((state) => myContactType);
               });
             },
           ),
           ProfileInputContactId(
-              contactId: myContactId,
-              onChanged: (newContactId) {
+            contactId: myContactId,
+            onChanged: (newContactId) {
+              setState(() {
                 myContactId = newContactId;
-              },
-              initContactId: myContactId),
+                ref
+                    .read(editUserContactIdProfile.notifier)
+                    .update((state) => myContactId);
+              });
+            },
+            initContactId: myContactId,
+          ),
         ],
       ),
     );

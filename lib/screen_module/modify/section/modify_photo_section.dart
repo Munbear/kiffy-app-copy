@@ -1,4 +1,5 @@
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/modify/provider/modify_profile_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,23 +31,27 @@ class _PhotoListSectionState extends ConsumerState<ModifyPhotoSection> {
       padding: const EdgeInsets.only(left: 30),
       child: Column(
         children: [
-          ElevatedButton(
-            onPressed: () {
-              print(myImages);
-            },
-            child: Text("media Text"),
-          ),
           ProfileInputImages(
             medias: myImages,
             onAdded: (media) {
               setState(() {
                 myImages.add(media);
               });
+              ref
+                  .read(editUserMediaProfile.notifier)
+                  .update((state) => myImages);
+              print("###########################");
+              print(ref.read(editUserMediaProfile));
             },
             onDeleted: (index) {
               setState(() {
                 myImages.removeAt(index);
               });
+              ref
+                  .read(editUserMediaProfile.notifier)
+                  .update((state) => myImages);
+              print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+              print(ref.read(editUserMediaProfile));
             },
             isModifyScreen: true,
           ),

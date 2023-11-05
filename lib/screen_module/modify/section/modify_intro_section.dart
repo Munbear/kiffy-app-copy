@@ -1,4 +1,5 @@
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/modify/provider/modify_profile_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_intro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,7 +27,11 @@ class _ModiftyIntroSectionState extends ConsumerState<ModiftyIntroSection> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 28),
       child: ProfileInputIntro(
-        onChanged: (intro) {},
+        onChanged: (intro) {
+          ref
+              .read(editUserIntroProfile.notifier)
+              .update((state) => state = intro);
+        },
         textController: textController,
       ),
     );
