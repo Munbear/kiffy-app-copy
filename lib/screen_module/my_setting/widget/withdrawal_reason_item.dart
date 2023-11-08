@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WithdrawalReasonItem extends StatelessWidget {
@@ -14,21 +13,19 @@ class WithdrawalReasonItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: () {
         onTap(reason);
-        },
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
-        padding:
-        const EdgeInsets.symmetric(vertical: 14, horizontal: 21),
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 21),
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(
-            color: isSelected
-                ? const Color(0xff0031AA)
-                : const Color(0xffcecece),
+            color:
+                isSelected ? const Color(0xff0031AA) : const Color(0xffcecece),
           ),
           borderRadius: BorderRadius.circular(8),
         ),
@@ -36,9 +33,8 @@ class WithdrawalReasonItem extends StatelessWidget {
           reason,
           style: TextStyle(
             fontSize: 20,
-            color: isSelected
-                ? const Color(0xff0031AA)
-                : const Color(0xff6c6c6c),
+            color:
+                isSelected ? const Color(0xff0031AA) : const Color(0xff6c6c6c),
             fontWeight: FontWeight.w400,
           ),
         ),

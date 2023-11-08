@@ -81,9 +81,9 @@ class _WithdrawalSectionState extends ConsumerState<WithdrawalSection> {
             const Spacer(),
             SvgPicture.asset("assets/svg/warning_icon.svg"),
             const SizedBox(height: 19),
-            const Center(
+            Center(
               child: Text(
-                "Withdrawal",
+                tr("text.my.setting.withdrawal"),
                 style: TextStyle(
                     fontSize: 20,
                     color: Color(0xff0031AA),
@@ -91,8 +91,8 @@ class _WithdrawalSectionState extends ConsumerState<WithdrawalSection> {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              "Are you sure you want to delete the account?",
+            Text(
+              tr("text.my.setting.withdrawal.last_question"),
               style: TextStyle(
                   fontSize: 15,
                   color: Color(0xff6c6c6c),
@@ -100,8 +100,8 @@ class _WithdrawalSectionState extends ConsumerState<WithdrawalSection> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),
-            const Text(
-              "If you delete an account, it cannot be recovered.",
+            Text(
+              tr("text.my.setting.withdrawal.last_question2"),
               style: TextStyle(
                   fontSize: 15,
                   color: Color(0xff6c6c6c),
@@ -124,7 +124,7 @@ class _WithdrawalSectionState extends ConsumerState<WithdrawalSection> {
                 ref.read(routerProvider).replace(SignInScreen.routeLoaction);
               },
               child: Text(
-                "Delete Account",
+                tr("text.my.setting.withdrawal.complete"),
                 style: TextStyle(
                   fontSize: 20,
                 ),

@@ -113,7 +113,7 @@ class _ProfileInputProcessSectionState
           createUserProfileRequest: createUserProfileRequest,
         );
 
-    await ref.read(myProvider).init();
+    await ref.read(myProvider.notifier).init();
     ref.read(routerProvider).replace(AddProfileCompleteScreen.routeLocation);
   }
 
@@ -153,9 +153,9 @@ class _ProfileInputProcessSectionState
         Space(height: 20),
         ProfileInputBirthday(
           birthday: birthday,
-          onChanged: (inputBirthday) {
+          onChanged: (inputBirthday) => setState(() {
             birthday = inputBirthday;
-          },
+          }),
         ),
       ],
     );

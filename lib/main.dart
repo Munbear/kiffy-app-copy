@@ -16,7 +16,7 @@ FlavorConfig getFlavorConfig(String? flavor) {
         variables: {
           "isDebuggle": false,
           "appTitle": "kiffy",
-          "apiUrl": "http://api.kiffy.club",
+          "apiUrl": "https://api.kiffy.club",
           // "afDevKey": "",
         },
       );
@@ -60,7 +60,7 @@ Future<void> main() async {
       path: 'assets/translations',
       supportedLocales: const [Locale('id')],
       fallbackLocale: const Locale('id'),
-      startLocale: const Locale("id"),
+      startLocale: const Locale("ko"),
       useFallbackTranslations: true,
       saveLocale: true,
       useOnlyLangCode: true,

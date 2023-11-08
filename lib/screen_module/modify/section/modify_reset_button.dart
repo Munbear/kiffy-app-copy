@@ -2,7 +2,6 @@ import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/modify/provider/modify_profile_provider.dart';
-import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,10 +51,6 @@ class _ModifyResetButtonState extends ConsumerState<ModifyResetButton> {
       },
     );
 
-    // 변경 api
-    // print(editIntro);
-    // print(editContactType);
-    // print(editContactId);
     await ref
         .read(openApiProvider)
         .getMyApi()
@@ -64,7 +59,9 @@ class _ModifyResetButtonState extends ConsumerState<ModifyResetButton> {
         )
         .then(
       (value) {
-        context.pop();
+        ref.read(myProvider.notifier).init().then((value) {
+          context.pop({"refresh": true});
+        });
       },
     );
   }

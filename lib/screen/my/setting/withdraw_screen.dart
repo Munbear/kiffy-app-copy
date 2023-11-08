@@ -1,6 +1,7 @@
 import 'package:Kiffy/screen_module/common/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
 import 'package:Kiffy/screen_module/my_setting/section/withdrawal_section.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class WithdrawalScreen extends StatelessWidget {
@@ -19,8 +20,8 @@ class WithdrawalScreen extends StatelessWidget {
         centerTitle: true,
         titleSpacing: 0,
         elevation: 0.5,
-        title: const CustomAppBar(
-          title: "Withdrawal",
+        title: CustomAppBar(
+          title: tr("text.my.setting.withdrawal"),
           titleColor: Color(0xff828282),
           fontSize: 20,
         ),

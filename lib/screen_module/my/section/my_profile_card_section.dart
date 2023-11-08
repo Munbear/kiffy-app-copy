@@ -3,7 +3,6 @@ import 'package:Kiffy/screen_module/common/skeleton/widget/skeleton.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:openapi/openapi.dart';
 
 class MyProfileCardSection extends ConsumerStatefulWidget {
   const MyProfileCardSection({super.key});
@@ -15,32 +14,17 @@ class MyProfileCardSection extends ConsumerStatefulWidget {
 
 class _MyProfileCardSectionState extends ConsumerState<MyProfileCardSection> {
   bool isLoading = true;
-  late final UserProfileView myProfile;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        myProfile = ref.read(myProvider).getProfile();
-        isLoading = false;
-      });
-    });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final route = ModalRoute.of(context)!;
-    if (route.isCurrent) {
-      print("hello");
-      setState(() {});
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
+    var my = ref.watch(myProvider);
+
+    if (my.isLoading) {
       return const SizedBox(
         width: double.infinity,
         height: 400,
@@ -53,7 +37,7 @@ class _MyProfileCardSectionState extends ConsumerState<MyProfileCardSection> {
       child: SizedBox(
         height: 400,
         child: UserProfileCardPage(
-          userProfile: myProfile,
+          userProfile: my.requireValue.profile!,
         ),
       ),
     );

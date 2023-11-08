@@ -5,7 +5,6 @@ import 'package:Kiffy/screen_module/profile/widget/profile_input_contact_id.dart
 import 'package:Kiffy/screen_module/profile/widget/profile_input_contact_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:openapi/openapi.dart';
 
 class ModifyContactSection extends ConsumerStatefulWidget {
   const ModifyContactSection({super.key});
@@ -21,7 +20,7 @@ class _ModifyContactSectionState extends ConsumerState<ModifyContactSection> {
 
   @override
   void initState() {
-    final mySnsInfo = ref.read(myProvider).getProfile();
+    final mySnsInfo = ref.read(myProvider.notifier).getProfile();
     if (mySnsInfo.contacts.first.contactType.name == "LINE") {
       myContactType = ContactType.LINE;
     }

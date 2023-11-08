@@ -19,7 +19,7 @@ class _ModiftyIntroSectionState extends ConsumerState<ModiftyIntroSection> {
   void initState() {
     super.initState();
 
-    textController.text = ref.read(myProvider).getProfile().intro;
+    textController.text = ref.read(myProvider.notifier).getProfile().intro;
   }
 
   @override

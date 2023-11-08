@@ -30,9 +30,9 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
     if (authStatus != AuthStatus.SUCCESS) {
       return;
     }
-    await ref.read(myProvider).init();
+    await ref.read(myProvider.notifier).init();
 
-    var userStatus = ref.read(myProvider).getStatus();
+    var userStatus = ref.read(myProvider.notifier).getStatus();
     switch (userStatus.status) {
       case UserStatusEnumView.JOINER:
         ref.read(routerProvider).replace(AddProfileScreen.routeLocation);

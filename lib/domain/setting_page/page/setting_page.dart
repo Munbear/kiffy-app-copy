@@ -3,6 +3,7 @@ import 'package:Kiffy/domain/setting_page/widget/setting_button.dart';
 import 'package:Kiffy/screen_module/common/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -38,7 +39,7 @@ class _SettingPageState extends ConsumerState<SettingPage> {
       ),
       body: Column(
         children: [
-          Text(ref.read(myProvider).getStatus().id),
+          Text(ref.read(myProvider.notifier).getStatus().id),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 28),
@@ -48,8 +49,9 @@ class _SettingPageState extends ConsumerState<SettingPage> {
                 await ref.read(authProvider).logout();
                 context.replace("/");
               },
-              child: const SettingButton(
-                  IconPath: "assets/images/log_out.png", text: "Log out"),
+              child: SettingButton(
+                  IconPath: "assets/images/log_out.png",
+                  text: tr("text.my.setting.logout")),
             ),
           ),
           const SizedBox(height: 30),
@@ -58,9 +60,9 @@ class _SettingPageState extends ConsumerState<SettingPage> {
             padding: const EdgeInsets.symmetric(horizontal: 28),
             child: GestureDetector(
               onTap: () => ref.read(routerProvider).pushNamed("withdraw"),
-              child: const SettingButton(
+              child: SettingButton(
                   IconPath: "assets/images/withdrawal_img.png",
-                  text: "Withdrawal"),
+                  text: tr("text.my.setting.withdrawal")),
             ),
           ),
           const Spacer(),

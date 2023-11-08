@@ -5,6 +5,7 @@ import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile
 import 'package:Kiffy/screen_module/wish/provider/other_wish_user_reader.dart';
 import 'package:Kiffy/screen_module/wish/provider/wish_manager.dart';
 import 'package:Kiffy/screen_module/wish/provider/wish_remain_calculator.dart';
+import 'package:Kiffy/screen_module/wish/section/other_wish_user_detail_time_remained_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -30,16 +31,6 @@ class _OtherWishUserDetailSectionState
   void initState() {
     super.initState();
 
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (wishUserProfileView != null) {
-          remained = ref
-              .read(wishRemainCalculatorProvider)
-              .calculate(wishUserProfileView!.createdAt);
-        }
-      });
-    });
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(otherWishUserReaderProvider)
@@ -61,12 +52,6 @@ class _OtherWishUserDetailSectionState
 
   void rejectAndPop(String userId) {
     ref.read(wishManagerProvider).reject(userId).then((value) => context.pop());
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _timer?.cancel();
   }
 
   @override
@@ -100,38 +85,9 @@ class _OtherWishUserDetailSectionState
             ),
           ),
         ),
-        Container(
-          alignment: Alignment.topLeft,
-          padding: EdgeInsets.all(30),
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "🕑 Respond within ",
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                      ),
-                      TextSpan(
-                        text: remained?.remainedDurationHHmmss() ?? "00:00:00",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Color(0xff0031AA),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                child: Text("If you don't respon, his heart will disapper."),
-              )
-            ],
-          ),
-        )
+        OtherWishUserDetailTimeRemainedSection(
+          wishUserProfileView: wishUserProfileView!,
+        ),
       ],
     );
   }

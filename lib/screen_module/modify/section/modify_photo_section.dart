@@ -19,7 +19,7 @@ class _PhotoListSectionState extends ConsumerState<ModifyPhotoSection> {
   @override
   void initState() {
     setState(() {
-      myImages = ref.read(myProvider).getProfile().medias.toList();
+      myImages = ref.read(myProvider.notifier).getProfile().medias.toList();
     });
 
     super.initState();

@@ -33,10 +33,10 @@ class _InitSectionState extends ConsumerState<InitSection> {
 
     if (authStatus == AuthStatus.SUCCESS) {
       // 로그인 정보가 저장되어 있으면 탐색탭으로 바로 이동하고 내 정보를 초기화함
-      await ref.read(myProvider).init();
+      await ref.read(myProvider.notifier).init();
       progress = 100;
 
-      var userStatus = ref.read(myProvider).getStatus();
+      var userStatus = ref.read(myProvider.notifier).getStatus();
       switch (userStatus.status) {
         case UserStatusEnumView.JOINER:
           ref.read(routerProvider).replace(AddProfileScreen.routeLocation);

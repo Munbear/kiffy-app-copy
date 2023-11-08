@@ -25,7 +25,7 @@ class _ProfileInputCompleteSectionState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        myProfile = ref.read(myProvider).getProfile();
+        myProfile = ref.read(myProvider.notifier).getProfile();
       });
     });
   }

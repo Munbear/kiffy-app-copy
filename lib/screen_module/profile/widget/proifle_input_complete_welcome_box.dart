@@ -1,5 +1,6 @@
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/common/style/widget/border._style.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInputCompleteWelcomeBox extends StatelessWidget {
@@ -29,8 +30,8 @@ class ProfileInputCompleteWelcomeBox extends StatelessWidget {
           ),
         ),
         Space(height: 20),
-        const Text(
-          "Enjoy Kiffy!",
+        Text(
+          tr("text.profile.input_profile.complete"),
           style: TextStyle(
             fontSize: 30,
             color: Color(0xFF0031AA),
@@ -38,8 +39,8 @@ class ProfileInputCompleteWelcomeBox extends StatelessWidget {
           ),
         ),
         Space(height: 8),
-        const Text(
-          "Meet various people through the kiffy!",
+        Text(
+          tr("text.profile.input_profile.complete_text"),
           style: TextStyle(
             fontSize: 16,
             color: Color(0xFF494949),

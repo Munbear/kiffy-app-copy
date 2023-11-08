@@ -37,7 +37,7 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myGender = ref.read(myProvider).info!.profile!.gender;
+    final myGender = ref.read(myProvider.notifier).getProfile().gender;
     final contactType = contactInfo.map((item) => item.contactType);
     final contactId = contactInfo.map((item) => item.contactId);
     return Padding(
@@ -50,8 +50,8 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
           /// 연락처 아이디 및 마지막 프로필 시간
           Text(
             myGender == GenderEnumView.FEMALE
-                ? "💌 His ID for contact"
-                : "👀 Number of profile checks",
+                ? tr("text.match.detail.contact1.female")
+                : "",
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
 
@@ -78,7 +78,7 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
 
           Text(
             myGender == GenderEnumView.FEMALE
-                ? "✔️ Send it to him like this!"
+                ? "✔️ ${tr("text.match.detail.contact_title.female")}"
                 : "✔️ ${tr("text.match.detail.contact_title")}",
             style: const TextStyle(
               fontSize: 20,
@@ -91,7 +91,7 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
             padding: const EdgeInsets.only(left: 28),
             child: Text(
               myGender == GenderEnumView.FEMALE
-                  ? "If you send him like this, he'll recognize you."
+                  ? tr("text.match.detail.contact_subtitle.female")
                   : tr("text.match.detail.contact_subtitle"),
               style: const TextStyle(
                 fontSize: 13,
