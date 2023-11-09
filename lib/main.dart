@@ -60,7 +60,7 @@ Future<void> main() async {
       path: 'assets/translations',
       supportedLocales: const [Locale('id')],
       fallbackLocale: const Locale('id'),
-      startLocale: const Locale("ko"),
+      startLocale: const Locale("id"),
       useFallbackTranslations: true,
       saveLocale: true,
       useOnlyLangCode: true,

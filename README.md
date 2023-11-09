@@ -53,3 +53,12 @@ pubspec.yaml에서 아래의 commit hash (version)을 올려주시면 자동으�
       path: openapi/gen/api/dart-dio
       ref: 최신 커밋 해시
 ```
+
+
+## 앱 빌드하기
+Android는 Android App Bundle 로 빌드해서 스토어에 등록합니다
+
+루트디렉토리에서
+```bash
+$ flutter build appbundle --flavor prod
+```
