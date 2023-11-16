@@ -23,8 +23,6 @@ class AuthProvider {
     String? savedAccessToken =
         await storage.read(key: "SECURE_STORAGE_AUTH_TOKEN");
 
-    print(savedAccessToken);
-
     if (savedAccessToken == null) {
       return AuthStatus.NONE;
     }
@@ -34,6 +32,8 @@ class AuthProvider {
       await ref.read(openApiProvider).getMyApi().apiUserV1MyStatusGet();
       return AuthStatus.SUCCESS;
     } catch (e) {
+      print('autoLogin');
+      print(e);
       return AuthStatus.NONE;
     }
   }
@@ -80,7 +80,9 @@ class AuthProvider {
         return AuthStatus.SUCCESS;
       }
     } catch (e) {
+      print('googleLogin');
       print(e);
+      ref.read(loginLoading.notifier).update((state) => state = false);
       return AuthStatus.NONE;
     }
 

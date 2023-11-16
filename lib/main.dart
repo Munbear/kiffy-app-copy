@@ -42,7 +42,7 @@ FirebaseOptions getFirebaseOptions(String? flavor) {
   }
 }
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 

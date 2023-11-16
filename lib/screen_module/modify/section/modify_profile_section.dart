@@ -70,8 +70,6 @@ class _ModifyProfileSectionState extends ConsumerState<ModifyProfileSection> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       var myProfile = ref.read(myProvider).requireValue.profile;
 
-      print(myProfile);
-
       setState(() {
         contactType =
             ContactType.fromEnumView(myProfile!.contacts.first.contactType);
