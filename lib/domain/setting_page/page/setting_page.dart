@@ -39,7 +39,6 @@ class _SettingPageState extends ConsumerState<SettingPage> {
       ),
       body: Column(
         children: [
-          Text(ref.read(myProvider.notifier).getStatus().id),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 28),
