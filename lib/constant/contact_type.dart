@@ -37,6 +37,18 @@ enum ContactType {
     throw ArgumentError();
   }
 
+  static ContactType fromEnumView(UserProfileContactEnumView enumView) {
+    switch (enumView) {
+      case UserProfileContactEnumView.WHATSAPP:
+        return ContactType.WHATSAPP;
+      case UserProfileContactEnumView.LINE:
+        // TODO: Handle this case.
+        break;
+    }
+
+    return ContactType.LINE;
+  }
+
   static contactAppIcon(contactType) {
     switch (contactType) {
       case ContactType.LINE:

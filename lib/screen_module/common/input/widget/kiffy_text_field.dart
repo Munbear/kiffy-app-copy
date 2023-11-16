@@ -5,20 +5,18 @@ class KiffyTextField extends StatelessWidget {
   final String? value;
   final String hintText;
   final ValueChanged<String> onChanged;
-  final String? initContactId;
 
   KiffyTextField({
     super.key,
     this.value,
     required this.hintText,
     required this.onChanged,
-    this.initContactId,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: initContactId,
+      initialValue: value,
       onChanged: (t) => onChanged(t),
       style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
       decoration: KiffyInputStyle.inputDecoration(hintText),

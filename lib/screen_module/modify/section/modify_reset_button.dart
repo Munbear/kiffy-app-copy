@@ -1,79 +1,18 @@
-import 'package:Kiffy/constant/contact_type.dart';
-import 'package:Kiffy/infra/openapi_client.dart';
-import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
-import 'package:Kiffy/screen_module/modify/provider/modify_profile_provider.dart';
-import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:openapi/openapi.dart';
 
-class ModifyResetButton extends ConsumerStatefulWidget {
-  const ModifyResetButton({super.key});
+class ModifyResetButton extends StatelessWidget {
+  final VoidCallback onPressed;
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ModifyResetButtonState();
-}
-
-class _ModifyResetButtonState extends ConsumerState<ModifyResetButton> {
-  // ref.read(profileInputValidatorProvider).verifyContactType(contactType)
-  // ref.read(profileInputValidatorProvider).verifyContactId(contactId)
-  // ref.read(profileInputValidatorProvider).verifyMedias(medias)
-
-  void completeModifyProfile() async {
-    List<MediaView> editMedias = ref.watch(editUserMediaProfile);
-    String? editIntro = ref.watch(editUserIntroProfile);
-    String? editContactId = ref.watch(editUserContactIdProfile);
-    ContactType? editContactType = ref.watch(editUserContactTypeProfile);
-
-    EditUserProfileRequest modifyUserProfileRequest = EditUserProfileRequest(
-      (e) {
-        e.medias.addAll(
-          editMedias.mapIndexed(
-            (index, element) => EditUserProfileRequestMediasInner(
-              (b) {
-                b.id = element.id;
-                b.orderNum = index;
-              },
-            ),
-          ),
-        );
-        e.intro = editIntro;
-        e.contacts.add(
-          EditUserProfileRequestContactsInner(
-            (b) {
-              b.contactId = editContactId;
-              b.contactType = editContactType!.toContactEnumView();
-            },
-          ),
-        );
-      },
-    );
-
-    await ref
-        .read(openApiProvider)
-        .getMyApi()
-        .apiUserV1MyProfilePut(
-          editUserProfileRequest: modifyUserProfileRequest,
-        )
-        .then(
-      (value) {
-        ref.read(myProvider.notifier).init().then((value) {
-          context.pop({"refresh": true});
-        });
-      },
-    );
-  }
+  const ModifyResetButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 28),
+    return SizedBox(
+      width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          //  ref.read(profileInputValidatorProvider).verifyMedias(widget.medias)
-          completeModifyProfile();
+          onPressed();
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xff0031AA),
@@ -83,9 +22,9 @@ class _ModifyResetButtonState extends ConsumerState<ModifyResetButton> {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: const Text(
-          "Modify",
-          style: TextStyle(
+        child: Text(
+          tr("text.modify"),
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.w400,

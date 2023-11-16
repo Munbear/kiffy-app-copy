@@ -59,7 +59,6 @@ class _ModifyContactSectionState extends ConsumerState<ModifyContactSection> {
                     .update((state) => myContactId);
               });
             },
-            initContactId: myContactId,
           ),
         ],
       ),
