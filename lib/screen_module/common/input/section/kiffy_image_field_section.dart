@@ -1,5 +1,6 @@
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_image_filed.dart';
+import 'package:Kiffy/screen_module/modify/provider/modify_profile_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,6 +25,8 @@ class KiffyImageFieldSection extends ConsumerStatefulWidget {
 
 class _KiffyImageSectionState extends ConsumerState<KiffyImageFieldSection> {
   void onAddedListener(String path) async {
+    if (ref.read(imageLoading)) return;
+    ref.read(imageLoading.notifier).update((state) => state = true);
     var res =
         await ref.read(openApiProvider).getMediaApi().apiMediaV1UploadTypePost(
               type: "image",
@@ -31,6 +34,7 @@ class _KiffyImageSectionState extends ConsumerState<KiffyImageFieldSection> {
             );
 
     widget.onAdded(res.data!);
+    ref.read(imageLoading.notifier).update((state) => state = false);
   }
 
   void onDeletedListener() async {

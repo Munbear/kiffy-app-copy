@@ -70,8 +70,6 @@ class _ModifyProfileSectionState extends ConsumerState<ModifyProfileSection> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       var myProfile = ref.read(myProvider).requireValue.profile;
 
-      print(myProfile);
-
       setState(() {
         contactType =
             ContactType.fromEnumView(myProfile!.contacts.first.contactType);
@@ -86,6 +84,7 @@ class _ModifyProfileSectionState extends ConsumerState<ModifyProfileSection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // 이미지 영역
         ProfileInputImages(
           medias: medias,
           onAdded: (media) {
@@ -99,14 +98,14 @@ class _ModifyProfileSectionState extends ConsumerState<ModifyProfileSection> {
             });
           },
         ),
-        Space(height: 20),
+        const Space(height: 20),
         ProfileInputContactType(
           contactType: contactType,
           onChanged: (inputContactType) => setState(() {
             contactType = inputContactType;
           }),
         ),
-        Space(height: 20),
+        const Space(height: 20),
         contactId != "" && contactId != null
             ? ProfileInputContactId(
                 contactId: contactId,
@@ -115,7 +114,7 @@ class _ModifyProfileSectionState extends ConsumerState<ModifyProfileSection> {
                 }),
               )
             : Space(),
-        Space(height: 20),
+        const Space(height: 20),
         intro != "" && intro != null
             ? ProfileInputIntro(
                 textController: TextEditingController(text: intro),
@@ -125,8 +124,8 @@ class _ModifyProfileSectionState extends ConsumerState<ModifyProfileSection> {
                   },
                 ),
               )
-            : Space(),
-        Space(height: 20),
+            : const Space(),
+        const Space(height: 20),
         ModifyResetButton(
           onPressed: () => completeModifyProfile(ref).then((_) {
             ref.read(myProvider.notifier).init();

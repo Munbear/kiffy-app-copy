@@ -14,3 +14,4 @@ final editUserMediaProfile = StateProvider<List<MediaView>>((ref) => []);
 final editUserIntroProfile = StateProvider<String>((ref) => "");
 final editUserContactTypeProfile = StateProvider<ContactType?>((ref) => null);
 final editUserContactIdProfile = StateProvider<String?>((ref) => null);
+final imageLoading = StateProvider.autoDispose<bool>((ref) => false);
