@@ -1,3 +1,4 @@
+import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,10 +9,20 @@ class GoogleSignInButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loading = ref.watch(loginLoading);
     return ElevatedButton.icon(
       onPressed: () => onPressed(),
       label: const Text("Google"),
-      icon: Image.asset("assets/images/google_logo.png", width: 20),
+      icon: loading
+          ? const SizedBox(
+              width: 14,
+              height: 14,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Colors.purple,
+              ),
+            )
+          : Image.asset("assets/images/google_logo.png", width: 20),
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),

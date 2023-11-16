@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:openapi/openapi.dart';
 
 final authProvider = Provider((ref) => AuthProvider(ref: ref));
+final loginLoading = StateProvider.autoDispose<bool>((ref) => false);
 
 enum AuthStatus {
   SUCCESS,
@@ -48,6 +49,7 @@ class AuthProvider {
   }
 
   Future<AuthStatus> googleLogin() async {
+    ref.read(loginLoading.notifier).update((state) => state = true);
     // Google 인증
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();

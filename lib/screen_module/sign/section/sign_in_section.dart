@@ -36,9 +36,11 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
     switch (userStatus.status) {
       case UserStatusEnumView.JOINER:
         ref.read(routerProvider).replace(AddProfileScreen.routeLocation);
+        ref.read(loginLoading.notifier).update((state) => state = false);
         break;
       case UserStatusEnumView.APPROVED:
         ref.read(routerProvider).replace(ExploreScreen.routeLocation);
+        ref.read(loginLoading.notifier).update((state) => state = false);
         break;
       default:
         break;
@@ -57,7 +59,9 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
           Image.asset("assets/images/kiffy_logo_purple.png", width: 150),
           // 구글 아이콘
           GoogleSignInButton(
-            onPressed: () => googleLoginAndRoute(),
+            onPressed: () {
+              googleLoginAndRoute();
+            },
           )
         ],
       ),
