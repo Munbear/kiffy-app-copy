@@ -93,27 +93,14 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
-        // release {
-        //     // TODO: Add your own signing config for the release build.
-        //     // Signing with the debug keys for now, so `flutter run --release` works.
-        //     // 기본 값
-        //     // signingConfig signingConfigs.debug
-        //     signingConfig signingConfigs.release
-
-        //     minifyEnabled true
-        //     // useProguard true
-
-        //     proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        // }
     }
 
     flavorDimensions "env"
 
     productFlavors {
         dev {
-//            applicationId "club.kiffy.app.dev"
             dimension "env"
             signingConfig signingConfigs.dev
             manifestPlaceholders = [
@@ -123,7 +110,6 @@ android {
             resValue "string", "app_package", "club.kiffy.app.dev"
         }
          prod {
-//            applicationId "club.kiffy.app"
             dimension "env"
             signingConfig signingConfigs.prod
             manifestPlaceholders = [
