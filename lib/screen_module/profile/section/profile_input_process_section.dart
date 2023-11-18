@@ -15,6 +15,7 @@ import 'package:Kiffy/screen_module/profile/widget/profile_input_images.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_intro.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_nickname.dart';
+import 'package:Kiffy/screen_module/profile/widget/profile_input_phone.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -123,14 +124,24 @@ class _ProfileInputProcessSectionState
       case 1:
         return profileInputUser();
       case 2:
-        return profileInputContact();
+        return profileInputPhone();
       case 3:
-        return profileInputIntro();
+        return profileInputContact();
       case 4:
+        return profileInputIntro();
+      case 5:
         return profileInputImages();
       default:
         throw Exception();
     }
+  }
+
+  Widget profileInputPhone() {
+    return Column(
+      children: [
+        ProfileInputPhone(),
+      ],
+    );
   }
 
   /// 프로필 입력 화면
