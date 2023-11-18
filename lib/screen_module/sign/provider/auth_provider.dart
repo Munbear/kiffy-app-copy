@@ -1,7 +1,7 @@
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/screen_module/sign/provider/auth_storage_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:openapi/openapi.dart';
 
@@ -14,14 +14,12 @@ enum AuthStatus {
 }
 
 class AuthProvider {
-  final storage = const FlutterSecureStorage();
   final Ref ref;
 
   AuthProvider({required this.ref});
 
   Future<AuthStatus> autoLogin() async {
-    String? savedAccessToken =
-        await storage.read(key: "SECURE_STORAGE_AUTH_TOKEN");
+    String? savedAccessToken = await AuthStorage.getAccessToken();
 
     if (savedAccessToken == null) {
       return AuthStatus.NONE;
@@ -39,7 +37,7 @@ class AuthProvider {
   }
 
   Future<void> logout() async {
-    await storage.delete(key: "SECURE_STORAGE_AUTH_TOKEN");
+    await AuthStorage.deleteAccessToken();
 
     try {
       await GoogleSignIn().signOut();
@@ -73,9 +71,7 @@ class AuthProvider {
               }));
 
       if (response.statusCode == 200) {
-        await storage.write(
-            key: "SECURE_STORAGE_AUTH_TOKEN",
-            value: response.data!.accessToken);
+        await AuthStorage.setAccessToken(response.data!.accessToken);
         await userCredentials.user?.updatePassword(response.data!.accessToken);
         return AuthStatus.SUCCESS;
       }
