@@ -1,5 +1,6 @@
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/skeleton/widget/skeleton.dart';
+import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,9 +37,11 @@ class _MyProfileCardSectionState extends ConsumerState<MyProfileCardSection> {
       padding: EdgeInsets.all(20),
       child: SizedBox(
         height: 400,
-        child: UserProfileCardPage(
-          userProfile: my.requireValue.profile!,
-        ),
+        child: my.requireValue.profile != null
+            ? UserProfileCardPage(
+                userProfile: my.requireValue.profile!,
+              )
+            : Space(),
       ),
     );
   }

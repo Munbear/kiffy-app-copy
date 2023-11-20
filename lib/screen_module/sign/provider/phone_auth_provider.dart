@@ -14,12 +14,14 @@ class PhoneAuthManager {
     required this.ref,
   });
 
-  Future<bool> isAlreadyRegistered(String phoneNumber) async {
+  Future<bool> isAlreadyRegistered(
+      String countryNumber, String phoneNumber) async {
     var response = await ref
         .read(openApiProvider)
         .getMyApi()
         .apiUserV1MyPhoneExistPost(apiUserV1MyPhoneExistPostRequest:
             ApiUserV1MyPhoneExistPostRequest((b) {
+      b.countryNumber = countryNumber;
       b.phoneNumber = phoneNumber;
     }));
 

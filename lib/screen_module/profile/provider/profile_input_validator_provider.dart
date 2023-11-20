@@ -1,5 +1,6 @@
 import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/constant/gender_type.dart';
+import 'package:Kiffy/screen_module/profile/widget/profile_input_phone.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
@@ -23,10 +24,12 @@ class ProfileInputValidator {
     return true;
   }
 
-  bool verifyPhoneNumber(String phoneNumber) {
-    var regex = RegExp("^\\+[^ ]+ [\\d ]+\$");
+  bool verifyPhoneNumber(CountryAndPhoneNumber countryAndPhoneNumber) {
+    var countryNumberRegex = RegExp("^\\+\\d+\$");
+    var phoneNumberRegex = RegExp("^\\d+\$");
 
-    return regex.hasMatch(phoneNumber);
+    return countryNumberRegex.hasMatch(countryAndPhoneNumber.countryNumber) &&
+        phoneNumberRegex.hasMatch(countryAndPhoneNumber.phoneNumber);
   }
 
   bool verifyContactType(ContactType? contactType) {

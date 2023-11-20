@@ -39,7 +39,7 @@ class _ProfileInputProcessSectionState
   ContactType? contactType;
   String? contactId;
   String intro = "";
-  String phoneNumber = "";
+  CountryAndPhoneNumber countryAndPhoneNumber = CountryAndPhoneNumber.empty();
   List<MediaView> medias = [];
 
   @override
@@ -65,7 +65,7 @@ class _ProfileInputProcessSectionState
       case 2:
         if (ref
             .read(profileInputValidatorProvider)
-            .verifyPhoneNumber(phoneNumber)) {
+            .verifyPhoneNumber(countryAndPhoneNumber)) {
           setState(() => process++);
         }
         break;
@@ -100,7 +100,8 @@ class _ProfileInputProcessSectionState
         b.contactId = contactId;
         b.contactType = contactType!.toContactEnumView();
       }));
-      b.phoneNumber = phoneNumber;
+      b.countryNumber = countryAndPhoneNumber.countryNumber;
+      b.phoneNumber = countryAndPhoneNumber.phoneNumber;
     });
 
     await ref.read(openApiProvider).getMyApi().apiUserV2MyProfilePost(
@@ -199,8 +200,8 @@ class _ProfileInputProcessSectionState
     return Column(
       children: [
         ProfileInputPhone(
-          onNext: (phoneNumber) {
-            setState(() => this.phoneNumber = phoneNumber);
+          onNext: (countryAndPhoneNumber) {
+            setState(() => this.countryAndPhoneNumber = countryAndPhoneNumber);
             next();
           },
         ),

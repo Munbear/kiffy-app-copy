@@ -22,12 +22,38 @@ class FlagAndCountryNumber {
   });
 }
 
+class CountryAndPhoneNumber {
+  final String countryNumber;
+  final String phoneNumber;
+
+  const CountryAndPhoneNumber({
+    required this.countryNumber,
+    required this.phoneNumber,
+  });
+
+  static CountryAndPhoneNumber of(
+      {required String countryNumber, required String phoneNumber}) {
+    String zeroStripPhoneNumber = phoneNumber;
+    while (zeroStripPhoneNumber.startsWith("0")) {
+      zeroStripPhoneNumber.substring(0, 1);
+    }
+    zeroStripPhoneNumber = zeroStripPhoneNumber.replaceAll(" ", "");
+
+    return CountryAndPhoneNumber(
+        countryNumber: countryNumber, phoneNumber: phoneNumber);
+  }
+
+  static CountryAndPhoneNumber empty() {
+    return const CountryAndPhoneNumber(countryNumber: "", phoneNumber: "");
+  }
+}
+
 final flagsAndCountryNumbers = [
   FlagAndCountryNumber(flag: "🇮🇩", countryNumber: "+62"),
 ];
 
 class ProfileInputPhone extends ConsumerStatefulWidget {
-  final Function(String phonenumber) onNext;
+  final Function(CountryAndPhoneNumber countryAndPhoneNumber) onNext;
 
   const ProfileInputPhone({super.key, required this.onNext});
 
@@ -65,7 +91,8 @@ class _ProfileInputPhoneState extends ConsumerState<ProfileInputPhone> {
         .getMyApi()
         .apiUserV1MyPhoneExistPost(apiUserV1MyPhoneExistPostRequest:
             ApiUserV1MyPhoneExistPostRequest((b) {
-      b.phoneNumber = "${selectedCountry.countryNumber} ${phoneNumber}";
+      b.countryNumber = selectedCountry.countryNumber;
+      b.phoneNumber = phoneNumber;
     }));
 
     if (response.data!.isAlreadyRegistered) {
@@ -112,7 +139,10 @@ class _ProfileInputPhoneState extends ConsumerState<ProfileInputPhone> {
 
       await userCredentials.user?.updatePhoneNumber(credentials);
 
-      widget.onNext("${selectedCountry.countryNumber} ${phoneNumber}");
+      widget.onNext(CountryAndPhoneNumber(
+        countryNumber: selectedCountry.countryNumber,
+        phoneNumber: phoneNumber,
+      ));
     } catch (exception) {
       print(exception);
 
@@ -168,19 +198,36 @@ class _ProfileInputPhoneState extends ConsumerState<ProfileInputPhone> {
             Expanded(
               child: KiffyTextField(
                 hintText: "",
-                onChanged: (t) => setState(() => this.phoneNumber = t),
+                onChanged: (t) {
+                  setState(() {
+                    this.phoneNumber =
+                        t.replaceAll(" ", "").replaceAll("-", "");
+                  });
+                },
                 value: phoneNumber,
               ),
             ),
           ],
         ),
-        Space(height: 8),
-        KiffyTextField(
-          hintText: "",
-          onChanged: (t) => setState(() => this.smsCode = t),
-          value: this.smsCode,
-        ),
-        Space(height: 8),
+        ...verificationId != ""
+            ? [
+                Space(height: 8),
+                KiffyTextField(
+                  hintText: "",
+                  onChanged: (t) => setState(() => this.smsCode = t),
+                  value: this.smsCode,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    tr("text.profile.input_profile.phone.code"),
+                    style:
+                        TextStyle(fontSize: 12, color: const Color(0xff0031AA)),
+                  ),
+                )
+              ]
+            : [],
+        Space(height: 20),
         processButton()
       ],
     );
