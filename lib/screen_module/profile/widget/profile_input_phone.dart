@@ -1,3 +1,4 @@
+import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
@@ -8,6 +9,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:openapi/openapi.dart';
 
 class FlagAndCountryNumber {
   final String flag;
@@ -24,7 +27,9 @@ final flagsAndCountryNumbers = [
 ];
 
 class ProfileInputPhone extends ConsumerStatefulWidget {
-  const ProfileInputPhone({super.key});
+  final Function(String phonenumber) onNext;
+
+  const ProfileInputPhone({super.key, required this.onNext});
 
   @override
   ConsumerState<ProfileInputPhone> createState() => _ProfileInputPhoneState();
@@ -54,6 +59,95 @@ class _ProfileInputPhoneState extends ConsumerState<ProfileInputPhone> {
     );
   }
 
+  void sendCode() async {
+    var response = await ref
+        .read(openApiProvider)
+        .getMyApi()
+        .apiUserV1MyPhoneExistPost(apiUserV1MyPhoneExistPostRequest:
+            ApiUserV1MyPhoneExistPostRequest((b) {
+      b.phoneNumber = "${selectedCountry.countryNumber} ${phoneNumber}";
+    }));
+
+    if (response.data!.isAlreadyRegistered) {
+      Fluttertoast.showToast(
+        msg: tr("text.profile.input_profile.phone.already_exists"),
+        fontSize: 16,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+      );
+    } else {
+      try {
+        ref.read(phoneAuthManagerProvider).sendPhoneVerificationCode(
+              phoneNumber: "${selectedCountry.countryNumber} ${phoneNumber}",
+              codeSent: (verificationId) {
+                setState(() {
+                  this.isCodeSent = true;
+                  this.verificationId = verificationId;
+                });
+              },
+            );
+      } catch (exception) {
+        print(exception);
+
+        Fluttertoast.showToast(
+          msg: tr("text.profile.input_profile.phone.send_fail"),
+          fontSize: 16,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+        );
+      }
+    }
+  }
+
+  void verifyCode() async {
+    try {
+      var credentials = PhoneAuthProvider.credential(
+          verificationId: verificationId, smsCode: smsCode);
+
+      var email = ref.read(myProvider).requireValue.status!.email;
+      var accessToken = await AuthStorage.getAccessToken();
+
+      var userCredentials = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: accessToken!);
+
+      await userCredentials.user?.updatePhoneNumber(credentials);
+
+      widget.onNext("${selectedCountry.countryNumber} ${phoneNumber}");
+    } catch (exception) {
+      print(exception);
+
+      Fluttertoast.showToast(
+        msg: tr("text.profile.input_profile.phone.code_fail"),
+        fontSize: 16,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+      );
+    }
+  }
+
+  Widget processButton() {
+    if (verificationId == "") {
+      return ProfileInputNextButton(
+        text: tr("text.profile.input_profile.phone.submit"),
+        onPressed: () => sendCode(),
+      );
+    } else {
+      return Column(
+        children: [
+          ProfileInputNextButton(
+            onPressed: () => verifyCode(),
+          ),
+          Space(height: 8),
+          ProfileInputNextButton(
+            text: tr("text.profile.input_profile.phone.submit_again"),
+            color: Colors.grey,
+            onPressed: () => sendCode(),
+          ),
+        ],
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,40 +175,13 @@ class _ProfileInputPhoneState extends ConsumerState<ProfileInputPhone> {
           ],
         ),
         Space(height: 8),
-        ProfileInputNextButton(onPressed: () {
-          print(phoneNumber);
-
-          ref.read(phoneAuthManagerProvider).sendPhoneVerificationCode(
-                phoneNumber: "${selectedCountry.countryNumber} ${phoneNumber}",
-                codeSent: (verificationId) {
-                  setState(() {
-                    this.isCodeSent = true;
-                    this.verificationId = verificationId;
-                  });
-                },
-              );
-        }),
-        Space(height: 6),
         KiffyTextField(
           hintText: "",
           onChanged: (t) => setState(() => this.smsCode = t),
           value: this.smsCode,
         ),
-        Space(height: 6),
-        ProfileInputNextButton(onPressed: () async {
-          print(phoneNumber);
-
-          var credentials = PhoneAuthProvider.credential(
-              verificationId: verificationId, smsCode: smsCode);
-
-          var email = ref.read(myProvider).requireValue.status!.email;
-          var accessToken = await AuthStorage.getAccessToken();
-
-          var userCredentials = await FirebaseAuth.instance
-              .signInWithEmailAndPassword(email: email, password: accessToken!);
-
-          await userCredentials.user?.updatePhoneNumber(credentials);
-        }),
+        Space(height: 8),
+        processButton()
       ],
     );
   }

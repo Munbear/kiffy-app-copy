@@ -23,6 +23,12 @@ class ProfileInputValidator {
     return true;
   }
 
+  bool verifyPhoneNumber(String phoneNumber) {
+    var regex = RegExp("^\\+[^ ]+ [\\d ]+\$");
+
+    return regex.hasMatch(phoneNumber);
+  }
+
   bool verifyContactType(ContactType? contactType) {
     return contactType != null;
   }

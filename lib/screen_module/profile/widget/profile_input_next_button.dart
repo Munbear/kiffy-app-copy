@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 
 class ProfileInputNextButton extends StatelessWidget {
   final VoidCallback onPressed;
+  String? text;
+  Color? color;
 
-  const ProfileInputNextButton({super.key, required this.onPressed});
+  ProfileInputNextButton(
+      {super.key, required this.onPressed, this.text, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +18,12 @@ class ProfileInputNextButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.only(top: 15, bottom: 15),
           textStyle: const TextStyle(fontSize: 20, color: Colors.white),
-          backgroundColor: const Color(0xFF0031AA),
+          backgroundColor: color != null ? color : Color(0xFF0031AA),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: Text(tr("text.next")),
+        child: Text(text != null ? text! : tr("text.next")),
       ),
     );
   }

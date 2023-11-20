@@ -39,6 +39,7 @@ class _ProfileInputProcessSectionState
   ContactType? contactType;
   String? contactId;
   String intro = "";
+  String phoneNumber = "";
   List<MediaView> medias = [];
 
   @override
@@ -49,16 +50,7 @@ class _ProfileInputProcessSectionState
           padding: EdgeInsets.all(39),
           child: AddProfileHeader(),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
-          child: processBuilder(),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 39),
-          child: ProfileInputNextButton(onPressed: () {
-            next();
-          }),
-        )
+        processBuilder(),
       ],
     );
   }
@@ -66,26 +58,26 @@ class _ProfileInputProcessSectionState
   void next() {
     switch (process) {
       case 1:
-        if (ref.read(profileInputValidatorProvider).verifyNickname(nickname) &&
-            ref.read(profileInputValidatorProvider).verifyBirthday(birthday) &&
-            ref.read(profileInputValidatorProvider).verifyGender(gender)) {
+        if (profileInputUserVerify()) {
           setState(() => process++);
         }
         break;
       case 2:
         if (ref
-                .read(profileInputValidatorProvider)
-                .verifyContactType(contactType) &&
-            ref
-                .read(profileInputValidatorProvider)
-                .verifyContactId(contactId)) {
+            .read(profileInputValidatorProvider)
+            .verifyPhoneNumber(phoneNumber)) {
           setState(() => process++);
         }
         break;
       case 3:
-        setState(() => process++);
+        if (profileInputContactVerify()) {
+          setState(() => process++);
+        }
         break;
       case 4:
+        setState(() => process++);
+        break;
+      case 5:
         if (ref.read(profileInputValidatorProvider).verifyMedias(medias)) {
           complete();
         }
@@ -94,7 +86,7 @@ class _ProfileInputProcessSectionState
   }
 
   void complete() async {
-    final createUserProfileRequest = CreateUserProfileRequest((b) {
+    final createUserProfileRequest = CreateUserProfileRequestV2((b) {
       b.name = nickname;
       b.gender = gender!.toGenderEnumView();
       b.birthDate = birthday!.toUtc();
@@ -108,11 +100,11 @@ class _ProfileInputProcessSectionState
         b.contactId = contactId;
         b.contactType = contactType!.toContactEnumView();
       }));
+      b.phoneNumber = phoneNumber;
     });
 
-    await ref.read(openApiProvider).getMyApi().apiUserV1MyProfilePost(
-          createUserProfileRequest: createUserProfileRequest,
-        );
+    await ref.read(openApiProvider).getMyApi().apiUserV2MyProfilePost(
+        createUserProfileRequestV2: createUserProfileRequest);
 
     await ref.read(myProvider.notifier).init();
     ref.read(routerProvider).replace(AddProfileCompleteScreen.routeLocation);
@@ -122,15 +114,82 @@ class _ProfileInputProcessSectionState
   Widget processBuilder() {
     switch (process) {
       case 1:
-        return profileInputUser();
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputUser(),
+            ),
+            profileInputUserVerify()
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 39),
+                    child: ProfileInputNextButton(onPressed: () {
+                      next();
+                    }),
+                  )
+                : Space(),
+          ],
+        );
       case 2:
-        return profileInputPhone();
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputPhone(),
+            ),
+          ],
+        );
       case 3:
-        return profileInputContact();
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputContact(),
+            ),
+            profileInputContactVerify()
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 39),
+                    child: ProfileInputNextButton(
+                      onPressed: () {
+                        next();
+                      },
+                    ),
+                  )
+                : Space()
+          ],
+        );
       case 4:
-        return profileInputIntro();
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputIntro(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 39),
+              child: ProfileInputNextButton(onPressed: () {
+                next();
+              }),
+            )
+          ],
+        );
       case 5:
-        return profileInputImages();
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputImages(),
+            ),
+            ref.read(profileInputValidatorProvider).verifyMedias(medias)
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 39),
+                    child: ProfileInputNextButton(onPressed: () {
+                      next();
+                    }),
+                  )
+                : Space()
+          ],
+        );
       default:
         throw Exception();
     }
@@ -139,7 +198,12 @@ class _ProfileInputProcessSectionState
   Widget profileInputPhone() {
     return Column(
       children: [
-        ProfileInputPhone(),
+        ProfileInputPhone(
+          onNext: (phoneNumber) {
+            setState(() => this.phoneNumber = phoneNumber);
+            next();
+          },
+        ),
       ],
     );
   }
@@ -172,6 +236,12 @@ class _ProfileInputProcessSectionState
     );
   }
 
+  bool profileInputUserVerify() {
+    return ref.read(profileInputValidatorProvider).verifyNickname(nickname) &&
+        ref.read(profileInputValidatorProvider).verifyBirthday(birthday) &&
+        ref.read(profileInputValidatorProvider).verifyGender(gender);
+  }
+
   ///sns 선택
   Widget profileInputContact() {
     return Column(
@@ -191,6 +261,13 @@ class _ProfileInputProcessSectionState
         ),
       ],
     );
+  }
+
+  bool profileInputContactVerify() {
+    return ref
+            .read(profileInputValidatorProvider)
+            .verifyContactType(contactType) &&
+        ref.read(profileInputValidatorProvider).verifyContactId(contactId);
   }
 
   // 자기소개
