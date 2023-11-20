@@ -44,6 +44,8 @@ dependencies:
   infinite_scroll_pagination: ^4.0.0
   shimmer: ^3.0.0
 
+  fluttertoast: ^8.2.4
+
   #state
   flutter_riverpod: ^2.4.3
 
@@ -62,7 +64,7 @@ dependencies:
     git:
       url: git@github.com:kiiffy/idl.git
       path: openapi/gen/api/dart-dio
-      ref: 8fbd43462ea98f39ed462db4709cc68631819748
+      ref: 37183ac63411dae1589e86fb15d41b61349d1a45
 
 dev_dependencies:
   flutter_test:

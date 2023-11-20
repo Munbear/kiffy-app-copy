@@ -1,9 +1,9 @@
 import 'dart:ui';
 
+import 'package:Kiffy/screen_module/sign/provider/auth_storage_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:openapi/openapi.dart';
 
 final openApiProvider = StateProvider<Openapi>((ref) {
@@ -23,9 +23,7 @@ final openApiProvider = StateProvider<Openapi>((ref) {
 
   // 인터셉터
   dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) async {
-    final storage = const FlutterSecureStorage();
-
-    String? accessToken = await storage.read(key: "SECURE_STORAGE_AUTH_TOKEN");
+    String? accessToken = await AuthStorage.getAccessToken();
 
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
@@ -40,7 +38,7 @@ final openApiProvider = StateProvider<Openapi>((ref) {
         'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
     return handler.next(response);
   }, onError: (DioError err, handler) {
-    print(err.message);
+    print(err.response?.data ?? "");
     print('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions}');
     return handler.next(err);
   }));

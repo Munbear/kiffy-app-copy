@@ -15,6 +15,7 @@ import 'package:Kiffy/screen_module/profile/widget/profile_input_images.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_intro.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_nickname.dart';
+import 'package:Kiffy/screen_module/profile/widget/profile_input_phone.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,6 +39,7 @@ class _ProfileInputProcessSectionState
   ContactType? contactType;
   String? contactId;
   String intro = "";
+  CountryAndPhoneNumber countryAndPhoneNumber = CountryAndPhoneNumber.empty();
   List<MediaView> medias = [];
 
   @override
@@ -48,16 +50,7 @@ class _ProfileInputProcessSectionState
           padding: EdgeInsets.all(39),
           child: AddProfileHeader(),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
-          child: processBuilder(),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 39),
-          child: ProfileInputNextButton(onPressed: () {
-            next();
-          }),
-        )
+        processBuilder(),
       ],
     );
   }
@@ -65,26 +58,26 @@ class _ProfileInputProcessSectionState
   void next() {
     switch (process) {
       case 1:
-        if (ref.read(profileInputValidatorProvider).verifyNickname(nickname) &&
-            ref.read(profileInputValidatorProvider).verifyBirthday(birthday) &&
-            ref.read(profileInputValidatorProvider).verifyGender(gender)) {
+        if (profileInputUserVerify()) {
           setState(() => process++);
         }
         break;
       case 2:
         if (ref
-                .read(profileInputValidatorProvider)
-                .verifyContactType(contactType) &&
-            ref
-                .read(profileInputValidatorProvider)
-                .verifyContactId(contactId)) {
+            .read(profileInputValidatorProvider)
+            .verifyPhoneNumber(countryAndPhoneNumber)) {
           setState(() => process++);
         }
         break;
       case 3:
-        setState(() => process++);
+        if (profileInputContactVerify()) {
+          setState(() => process++);
+        }
         break;
       case 4:
+        setState(() => process++);
+        break;
+      case 5:
         if (ref.read(profileInputValidatorProvider).verifyMedias(medias)) {
           complete();
         }
@@ -93,7 +86,7 @@ class _ProfileInputProcessSectionState
   }
 
   void complete() async {
-    final createUserProfileRequest = CreateUserProfileRequest((b) {
+    final createUserProfileRequest = CreateUserProfileRequestV2((b) {
       b.name = nickname;
       b.gender = gender!.toGenderEnumView();
       b.birthDate = birthday!.toUtc();
@@ -107,11 +100,12 @@ class _ProfileInputProcessSectionState
         b.contactId = contactId;
         b.contactType = contactType!.toContactEnumView();
       }));
+      b.countryNumber = countryAndPhoneNumber.countryNumber;
+      b.phoneNumber = countryAndPhoneNumber.phoneNumber;
     });
 
-    await ref.read(openApiProvider).getMyApi().apiUserV1MyProfilePost(
-          createUserProfileRequest: createUserProfileRequest,
-        );
+    await ref.read(openApiProvider).getMyApi().apiUserV2MyProfilePost(
+        createUserProfileRequestV2: createUserProfileRequest);
 
     await ref.read(myProvider.notifier).init();
     ref.read(routerProvider).replace(AddProfileCompleteScreen.routeLocation);
@@ -121,16 +115,98 @@ class _ProfileInputProcessSectionState
   Widget processBuilder() {
     switch (process) {
       case 1:
-        return profileInputUser();
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputUser(),
+            ),
+            profileInputUserVerify()
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 39),
+                    child: ProfileInputNextButton(onPressed: () {
+                      next();
+                    }),
+                  )
+                : Space(),
+          ],
+        );
       case 2:
-        return profileInputContact();
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputPhone(),
+            ),
+          ],
+        );
       case 3:
-        return profileInputIntro();
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputContact(),
+            ),
+            profileInputContactVerify()
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 39),
+                    child: ProfileInputNextButton(
+                      onPressed: () {
+                        next();
+                      },
+                    ),
+                  )
+                : Space()
+          ],
+        );
       case 4:
-        return profileInputImages();
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputIntro(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 39),
+              child: ProfileInputNextButton(onPressed: () {
+                next();
+              }),
+            )
+          ],
+        );
+      case 5:
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+              child: profileInputImages(),
+            ),
+            ref.read(profileInputValidatorProvider).verifyMedias(medias)
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 39),
+                    child: ProfileInputNextButton(onPressed: () {
+                      next();
+                    }),
+                  )
+                : Space()
+          ],
+        );
       default:
         throw Exception();
     }
+  }
+
+  Widget profileInputPhone() {
+    return Column(
+      children: [
+        ProfileInputPhone(
+          onNext: (countryAndPhoneNumber) {
+            setState(() => this.countryAndPhoneNumber = countryAndPhoneNumber);
+            next();
+          },
+        ),
+      ],
+    );
   }
 
   /// 프로필 입력 화면
@@ -161,6 +237,12 @@ class _ProfileInputProcessSectionState
     );
   }
 
+  bool profileInputUserVerify() {
+    return ref.read(profileInputValidatorProvider).verifyNickname(nickname) &&
+        ref.read(profileInputValidatorProvider).verifyBirthday(birthday) &&
+        ref.read(profileInputValidatorProvider).verifyGender(gender);
+  }
+
   ///sns 선택
   Widget profileInputContact() {
     return Column(
@@ -180,6 +262,13 @@ class _ProfileInputProcessSectionState
         ),
       ],
     );
+  }
+
+  bool profileInputContactVerify() {
+    return ref
+            .read(profileInputValidatorProvider)
+            .verifyContactType(contactType) &&
+        ref.read(profileInputValidatorProvider).verifyContactId(contactId);
   }
 
   // 자기소개
