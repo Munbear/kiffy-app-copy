@@ -17,7 +17,7 @@
   "text.my.setting.withdrawal": "회원탈퇴",
   "text.my.setting.withdrawal.complete": "회원 탈퇴",
   "text.my.setting.withdrawal.last_question": "정말로 키피를 떠나시나요?",
-  "text.my.setting.withdrawal.last_question2": "계정을 한번 삭제하면 되돌릴 수 없습니다",
+  "text.my.setting.withdrawal.last_question2": "계정을 한번 삭제하면 되돌릴 수 없으며 같은 전화번호로는 30일간 재가입이 불가능합니다.",
   "text.my_setting.withdrawal.question": "왜 떠나시나요?",
   "text.my_setting.withdrawal.reason1": "재미가 없어서",
   "text.my_setting.withdrawal.reason2": "기능이 부족해서",
