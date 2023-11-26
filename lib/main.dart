@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 FlavorConfig getFlavorConfig(String? flavor) {
   switch (flavor) {
@@ -45,6 +46,7 @@ FirebaseOptions getFirebaseOptions(String? flavor) {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  MobileAds.instance.initialize();
 
   String? flavor =
       await const MethodChannel("flavor").invokeMethod<String>("getFlavor");

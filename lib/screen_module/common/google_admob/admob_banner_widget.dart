@@ -2,14 +2,14 @@ import 'package:Kiffy/config/admob/ad_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class TestBannerWidget extends StatefulWidget {
-  const TestBannerWidget({super.key});
+class AdmobBannerWidget extends StatefulWidget {
+  const AdmobBannerWidget({super.key});
 
   @override
-  State<TestBannerWidget> createState() => _TestBannerWidgetState();
+  State<AdmobBannerWidget> createState() => _AdmobBannerWidgetState();
 }
 
-class _TestBannerWidgetState extends State<TestBannerWidget> {
+class _AdmobBannerWidgetState extends State<AdmobBannerWidget> {
   // 320x50
   BannerAd? _bannerAd;
 
