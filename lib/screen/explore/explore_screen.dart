@@ -11,6 +11,10 @@ class ExploreScreen extends StatelessWidget {
 
   const ExploreScreen({super.key});
 
+  Future<InitializationStatus> _initGoogleMobileAds() {
+    return MobileAds.instance.initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +48,4 @@ class ExploreScreen extends StatelessWidget {
       ),
     );
   }
-
-  // Future<InitializationStatus> _initGoogleMobileAds() {
-  //   return MobileAds.instance.initialize();
-  // }
 }

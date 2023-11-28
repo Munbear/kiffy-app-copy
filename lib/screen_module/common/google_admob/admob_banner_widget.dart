@@ -15,7 +15,6 @@ class _AdmobBannerWidgetState extends State<AdmobBannerWidget> {
 
   @override
   void initState() {
-    super.initState();
     BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
@@ -32,6 +31,8 @@ class _AdmobBannerWidgetState extends State<AdmobBannerWidget> {
         },
       ),
     ).load();
+
+    super.initState();
   }
 
   @override
@@ -43,16 +44,12 @@ class _AdmobBannerWidgetState extends State<AdmobBannerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (_bannerAd != null)
-          Container(
+    return _bannerAd != null
+        ? SizedBox(
             width: _bannerAd!.size.width.toDouble(),
             height: _bannerAd!.size.height.toDouble(),
             child: AdWidget(ad: _bannerAd!),
-          ),
-      ],
-    );
+          )
+        : const SizedBox();
   }
 }

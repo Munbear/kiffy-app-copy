@@ -12,6 +12,16 @@ class AdHelper {
     }
   }
 
+  static String get bannerAdUnitTestId {
+    if (Platform.isAndroid) {
+      return "test";
+    } else if (Platform.isIOS) {
+      return "MY_IOS_BANNER_AD_UNIT_ID";
+    } else {
+      throw UnsupportedError("Unsupported platform");
+    }
+  }
+
   // 전면 광고
   static String get interstitialAdUnitId {
     if (Platform.isAndroid) {
