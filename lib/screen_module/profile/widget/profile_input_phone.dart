@@ -141,7 +141,8 @@ class _ProfileInputPhoneState extends ConsumerState<ProfileInputPhone> {
 
       widget.onNext(CountryAndPhoneNumber(
         countryNumber: selectedCountry.countryNumber,
-        phoneNumber: phoneNumber,
+        phoneNumber: userCredentials.user!.phoneNumber!
+            .replaceAll(selectedCountry.countryNumber, ""),
       ));
     } catch (exception) {
       print(exception);
