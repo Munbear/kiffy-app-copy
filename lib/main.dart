@@ -18,7 +18,7 @@ FlavorConfig getFlavorConfig(String? flavor) {
           "isDebuggle": false,
           "appTitle": "kiffy",
           "apiUrl": "https://api.kiffy.club",
-          // "afDevKey": "",
+          "isDev": false
         },
       );
     default:
@@ -28,7 +28,7 @@ FlavorConfig getFlavorConfig(String? flavor) {
           "isDebuggle": true,
           "appTitle": "[DEV] kiffy",
           "apiUrl": "http://api.dev.kiffy.club",
-          // "afDevKey": "",
+          "isDev": true,
         },
       );
   }
