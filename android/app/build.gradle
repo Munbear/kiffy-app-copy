@@ -108,6 +108,7 @@ android {
             ]
             resValue "string", "app_name", "[DEV] Kiffy"
             resValue "string", "app_package", "club.kiffy.app.dev"
+            resValue "string", "admob_id", "ca-app-pub-3940256099942544~3347511713"
         }
          prod {
             dimension "env"
@@ -117,6 +118,7 @@ android {
             ]
             resValue "string", "app_name", "Kiffy"
             resValue "string", "app_package", "club.kiffy.app"
+            resValue "string", "admob_id", "ca-app-pub-7635870133849157~5436150774"
         }
     }
 }

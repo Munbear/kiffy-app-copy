@@ -5,6 +5,11 @@
         android:label="@string/app_name"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <!--android:value 사용 app id 적용-->
+        <meta-data 
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_id" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
