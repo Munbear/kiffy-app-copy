@@ -1,10 +1,10 @@
-import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/match/matching_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/modify/modify_screen.dart';
 import 'package:Kiffy/screen/my/my_screen.dart';
 import 'package:Kiffy/screen/my/setting/withdraw_screen.dart';
+import 'package:Kiffy/screen/my/setting_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_screen.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';
@@ -46,9 +46,9 @@ List<RouteBase> get _routes => [
       ),
       GoRoute(
         // 설정 화면K
-        path: SettingPage.routeLocation,
-        name: SettingPage.routeName,
-        builder: (context, _) => const SettingPage(),
+        path: SettingScreen.routeLocation,
+        name: SettingScreen.routeName,
+        builder: (context, _) => const SettingScreen(),
       ),
       GoRoute(
         // 프로필 수정
