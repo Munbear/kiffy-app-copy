@@ -5,6 +5,7 @@ import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_storage_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/phone_auth_provider.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:openapi/openapi.dart';
 
 class FlagAndCountryNumber {
-  final String flag;
   final String countryNumber;
 
   const FlagAndCountryNumber({
-    required this.flag,
     required this.countryNumber,
   });
 }
@@ -49,7 +48,7 @@ class CountryAndPhoneNumber {
 }
 
 final flagsAndCountryNumbers = [
-  FlagAndCountryNumber(flag: "🇮🇩", countryNumber: "+62"),
+  FlagAndCountryNumber(countryNumber: "+62"),
 ];
 
 class ProfileInputPhone extends ConsumerStatefulWidget {
@@ -190,12 +189,21 @@ class _ProfileInputPhoneState extends ConsumerState<ProfileInputPhone> {
         Row(
           children: [
             Container(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                "🇮🇩",
-                style: TextStyle(fontSize: 20),
+              width: 100,
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xffcecece), width: 2.0),
+              ),
+              child: CountryCodePicker(
+                onChanged: (v) {
+                  selectedCountry = FlagAndCountryNumber(
+                    countryNumber: v.dialCode!,
+                  );
+                },
+                initialSelection: "ID",
+                showFlag: true,
               ),
             ),
+            Space(width: 8),
             Expanded(
               child: KiffyTextField(
                 hintText: "",
