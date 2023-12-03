@@ -1,5 +1,5 @@
-import 'package:Kiffy/domain/setting_page/page/setting_page.dart';
 import 'package:Kiffy/screen/modify/modify_screen.dart';
+import 'package:Kiffy/screen/my/setting_screen.dart';
 import 'package:Kiffy/screen_module/my/widget/my_page_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +35,7 @@ class _MyButtonSectionState extends ConsumerState<MyButtonSection> {
           // 설정
           MyButton(
             onTap: () {
-              context.pushNamed(SettingPage.routeName);
+              context.pushNamed(SettingScreen.routeName);
             },
             text: tr("text.my.setting"),
             iconPath: "assets/images/setting_x3.png",

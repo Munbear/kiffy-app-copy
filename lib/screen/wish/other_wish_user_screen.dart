@@ -1,4 +1,6 @@
 import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar_image_title.dart';
+import 'package:Kiffy/screen_module/common/google_admob/admob_banner_widget.dart';
+import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/wish/section/other_wish_user_profile_section.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,9 @@ class _LikedListPageState extends ConsumerState<OtherWishUserScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
+            const Space(height: 8),
+            const AdmobBannerWidget(),
+            const Space(height: 8),
             SizedBox(
               height: 100,
               child: Center(
