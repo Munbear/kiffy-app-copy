@@ -1,4 +1,5 @@
 import 'package:Kiffy/screen/explore/explore_screen.dart';
+import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/match/matching_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/modify/modify_screen.dart';
@@ -61,6 +62,12 @@ List<RouteBase> get _routes => [
         path: WithdrawalScreen.routeLocation,
         name: WithdrawalScreen.routeName,
         builder: (context, _) => const WithdrawalScreen(),
+      ),
+      GoRoute(
+        // 회원 탈퇴 화면
+        path: MainScreen.routeLocation,
+        name: MainScreen.routeName,
+        builder: (context, _) => const MainScreen(),
       ),
       // GoRoute(
       //   // 탐색 탭

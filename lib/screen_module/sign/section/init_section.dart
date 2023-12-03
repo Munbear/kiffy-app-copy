@@ -1,5 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
+import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
@@ -42,6 +43,7 @@ class _InitSectionState extends ConsumerState<InitSection> {
           ref.read(routerProvider).replace(AddProfileScreen.routeLocation);
           break;
         case UserStatusEnumView.APPROVED:
+          // ref.read(routerProvider).replace(MainScreen.routeLocation);
           ref.read(routerProvider).replace(ExploreScreen.routeLocation);
           break;
         default:
