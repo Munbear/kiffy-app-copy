@@ -10,6 +10,17 @@ class KiffyInputStyle {
     );
   }
 
+  static InputDecoration inputReadOnlyDecoration(String hintText) {
+    return InputDecoration(
+      hintText: hintText,
+      enabledBorder: enabledBorder(),
+      focusedBorder: enabledBorder(),
+      contentPadding: const EdgeInsets.all(18),
+      filled: true,
+      fillColor: const Color(0xffe0e0e0),
+    );
+  }
+
   static OutlineInputBorder enabledBorder() {
     return const OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xffcecece), width: 2.0),
