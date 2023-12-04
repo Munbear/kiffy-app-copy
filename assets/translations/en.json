@@ -1,6 +1,6 @@
 {
     "text.female": "woman",
-    "text.hello": "Hello",
+    "text.hello": "Kiffy",
     "text.male": "man",
     "text.match.cancel": "Canceling a match",
     "text.match.detail.contact1.female": "\ud83d\udc8c How to contact him",
@@ -37,7 +37,8 @@
     "text.profile.gender.validation": "Please select a gender",
     "text.profile.input_profile.complete": "Look up Kiffy!",
     "text.profile.input_profile.complete_text": "Meet a variety of people at Kiffy!",
-    "text.profile.input_profile.contact": "If a match is made, it will be shown to the other party",
+    "text.profile.input_profile.contact": "If a match is made, it will be shown to only matched person",
+    "text.profile.input_profile.contact.female": "This Information is not displayed to other people",
     "text.profile.input_profile.immutable": "* Once entered, it cannot be changed",
     "text.profile.input_profile.intro": "Work hard on your bio and you'll increase your chances of being matched!",
     "text.profile.input_profile.intro_title": "Please enter your profile information",

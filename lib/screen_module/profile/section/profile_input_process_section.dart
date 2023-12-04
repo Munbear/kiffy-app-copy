@@ -69,15 +69,15 @@ class _ProfileInputProcessSectionState
           setState(() => process++);
         }
         break;
+      // case 3:
+      //   if (profileInputContactVerify()) {
+      //     setState(() => process++);
+      //   }
+      //   break;
       case 3:
-        if (profileInputContactVerify()) {
-          setState(() => process++);
-        }
-        break;
-      case 4:
         setState(() => process++);
         break;
-      case 5:
+      case 4:
         if (ref.read(profileInputValidatorProvider).verifyMedias(medias)) {
           complete();
         }
@@ -96,10 +96,10 @@ class _ProfileInputProcessSectionState
                 b.id = media.id;
                 b.orderNum = index;
               })));
-      b.contacts.add(EditUserProfileRequestContactsInner((b) {
-        b.contactId = contactId;
-        b.contactType = contactType!.toContactEnumView();
-      }));
+      // b.contacts.add(EditUserProfileRequestContactsInner((b) {
+      //   b.contactId = contactId;
+      //   b.contactType = contactType!.toContactEnumView();
+      // }));
       b.countryNumber = countryAndPhoneNumber.countryNumber;
       b.phoneNumber = countryAndPhoneNumber.phoneNumber;
     });
@@ -140,26 +140,26 @@ class _ProfileInputProcessSectionState
             ),
           ],
         );
+      // case 3:
+      //   return Column(
+      //     children: [
+      //       Padding(
+      //         padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
+      //         child: profileInputContact(),
+      //       ),
+      //       profileInputContactVerify()
+      //           ? Padding(
+      //               padding: const EdgeInsets.symmetric(horizontal: 39),
+      //               child: ProfileInputNextButton(
+      //                 onPressed: () {
+      //                   next();
+      //                 },
+      //               ),
+      //             )
+      //           : Space()
+      //     ],
+      //   );
       case 3:
-        return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 39, right: 39, bottom: 39),
-              child: profileInputContact(),
-            ),
-            profileInputContactVerify()
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 39),
-                    child: ProfileInputNextButton(
-                      onPressed: () {
-                        next();
-                      },
-                    ),
-                  )
-                : Space()
-          ],
-        );
-      case 4:
         return Column(
           children: [
             Padding(
@@ -174,7 +174,7 @@ class _ProfileInputProcessSectionState
             )
           ],
         );
-      case 5:
+      case 4:
         return Column(
           children: [
             Padding(
@@ -256,6 +256,7 @@ class _ProfileInputProcessSectionState
         Space(height: 20),
         ProfileInputContactId(
           contactId: contactId,
+          gender: gender,
           onChanged: (inputContactId) => setState(() {
             contactId = inputContactId;
           }),

@@ -1,3 +1,4 @@
+import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
@@ -8,10 +9,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProfileInputContactId extends ConsumerWidget {
   final String? contactId;
+  final Gender? gender;
   final ValueChanged<String> onChanged;
 
   const ProfileInputContactId({
     super.key,
+    this.gender,
     required this.contactId,
     required this.onChanged,
   });
@@ -31,7 +34,9 @@ class ProfileInputContactId extends ConsumerWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: ProfileInputValidationText(
-        normalText: tr("text.profile.input_profile.contact"),
+        normalText: gender == Gender.MALE
+            ? tr("text.profile.input_profile.contact")
+            : tr("text.profile.input_profile.contact.female"),
         violatedText: tr("text.profile.contact.contact_id.validation"),
         check: () =>
             ref.read(profileInputValidatorProvider).verifyContactId(contactId),
