@@ -17,21 +17,41 @@ class _MainScreenBottomNavBarSectionState
     extends ConsumerState<MainScreenBottomNavBarSection> {
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      onTap: (a) {
-        ref.read(mainScreenProviderV2.notifier).update((state) => state = a);
-        print("@@@@@@");
-      },
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      items: MainTabStatus.values.map((tab) {
-        return BottomNavigationBarItem(
-          icon: CustomBottomNavBAr(
-            iconPath: tab.tabIcon,
-          ),
-          label: describeEnum(tab),
-        );
-      }).toList(),
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.14),
+            blurRadius: 20,
+            offset: const Offset(8, 0),
+          )
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        child: BottomNavigationBar(
+          onTap: (a) {
+            ref.read(mainScreenProvider.notifier).update((state) => state = a);
+          },
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: MainTabStatus.values.map(
+            (tab) {
+              final currentTabIndex = ref.watch(mainScreenProvider);
+              return BottomNavigationBarItem(
+                icon: CustomBottomNavBar(
+                  iconPath: tab.tabIcon,
+                  isFocus: tab.index == currentTabIndex,
+                ),
+                label: describeEnum(tab),
+              );
+            },
+          ).toList(),
+        ),
+      ),
     );
   }
 }

@@ -17,22 +17,11 @@ class MatchingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        title: Image.asset(
-          width: 70,
-          height: 55,
-          "assets/images/kiffy_logo_purple.png",
-        ),
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // 위시 리스트
-          OtherWishPreviewSection(),
+          const OtherWishPreviewSection(),
 
           const Space(height: 8),
           const AdmobBannerWidget(),
@@ -43,7 +32,7 @@ class MatchingScreen extends StatelessWidget {
             padding: const EdgeInsets.only(left: 26, top: 12),
             child: Text(
               tr("text.match.my_matches"),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xff494949),
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
@@ -52,11 +41,8 @@ class MatchingScreen extends StatelessWidget {
           ),
 
           // 매칭된 유저 카드 섹션
-          MatchedUserCardSection(),
+          const MatchedUserCardSection(),
         ],
-      ),
-      bottomNavigationBar: CustomBottomNavBar(
-        currentPath: MatchingScreen.routeLocation,
       ),
     );
   }

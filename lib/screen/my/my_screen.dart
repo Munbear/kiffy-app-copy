@@ -21,27 +21,15 @@ class _MyPageState extends ConsumerState<MyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        title: Image.asset(
-          width: 70,
-          height: 55,
-          "assets/images/kiffy_logo_purple.png",
-        ),
-      ),
-      body: const Column(
+      body: Column(
         children: [
           MyProfileCardSection(),
           Space(height: 16),
           MyButtonSection(),
         ],
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
     );
   }
 }

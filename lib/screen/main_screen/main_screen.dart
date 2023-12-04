@@ -10,7 +10,17 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        title: Image.asset(
+          width: 70,
+          height: 55,
+          "assets/images/kiffy_logo_purple.png",
+        ),
+      ),
       body: const MainScreenSection(),
       bottomNavigationBar: const MainScreenBottomNavBarSection(),
     );

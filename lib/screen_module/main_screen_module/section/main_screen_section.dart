@@ -1,4 +1,6 @@
-import 'package:Kiffy/constant/main_tab_status.dart';
+import 'package:Kiffy/screen/explore/explore_screen.dart';
+import 'package:Kiffy/screen/match/matching_screen.dart';
+import 'package:Kiffy/screen/my/my_screen.dart';
 import 'package:Kiffy/screen_module/main_screen_module/provider/main_screen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,15 +21,15 @@ class _MainScreenSectionState extends ConsumerState<MainScreenSection> {
     super.initState();
 
     screens = [
-      Container(width: 100, height: 100, color: Colors.red),
-      Container(width: 100, height: 100, color: Colors.green),
-      Container(width: 100, height: 100, color: Colors.blue),
+      const ExploreScreen(),
+      const MatchingScreen(),
+      const MyScreen(),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    final currentScreenIndex = ref.watch(mainScreenProviderV2);
+    final currentScreenIndex = ref.watch(mainScreenProvider);
     return IndexedStack(
       index: currentScreenIndex,
       children: screens,

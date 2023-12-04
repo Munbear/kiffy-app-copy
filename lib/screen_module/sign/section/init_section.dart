@@ -43,8 +43,8 @@ class _InitSectionState extends ConsumerState<InitSection> {
           ref.read(routerProvider).replace(AddProfileScreen.routeLocation);
           break;
         case UserStatusEnumView.APPROVED:
-          // ref.read(routerProvider).replace(MainScreen.routeLocation);
-          ref.read(routerProvider).replace(ExploreScreen.routeLocation);
+          ref.read(routerProvider).replace(MainScreen.routeLocation);
+          // ref.read(routerProvider).replace(ExploreScreen.routeLocation);
           break;
         default:
           break;

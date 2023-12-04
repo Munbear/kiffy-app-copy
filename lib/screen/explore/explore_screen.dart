@@ -11,20 +11,9 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        title: Image.asset(
-          width: 70,
-          height: 55,
-          "assets/images/kiffy_logo_purple.png",
-        ),
-      ),
-      body: const SafeArea(
+      body: SafeArea(
         bottom: false,
         child: Column(
           children: [
@@ -34,9 +23,6 @@ class ExploreScreen extends StatelessWidget {
             ExploreUserProfileCardSection(),
           ],
         ),
-      ),
-      bottomNavigationBar: CustomBottomNavBar(
-        currentPath: ExploreScreen.routeLocation,
       ),
     );
   }
