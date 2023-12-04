@@ -1,6 +1,6 @@
 {
     "text.female": "mujer",
-    "text.hello": "Hola",
+    "text.hello": "Kiffy",
     "text.male": "hombre",
     "text.match.cancel": "Cancelaci\u00f3n de un partido",
     "text.match.detail.contact1.female": "\ud83d\udc8c C\u00f3mo contactar con \u00e9l",
@@ -37,7 +37,8 @@
     "text.profile.gender.validation": "Seleccione un g\u00e9nero",
     "text.profile.input_profile.complete": "Busca Kiffy",
     "text.profile.input_profile.complete_text": "\u00a1Conoce a gente diversa en Kiffy!",
-    "text.profile.input_profile.contact": "Si se produce una coincidencia, se mostrar\u00e1 a la otra parte",
+    "text.profile.input_profile.contact": "Si se produce una coincidencia, s\u00f3lo se mostrar\u00e1 a la persona coincidente",
+    "text.profile.input_profile.contact.female": "Esta informaci\u00f3n no se muestra a otras personas",
     "text.profile.input_profile.immutable": "* Una vez introducido, no se puede cambiar",
     "text.profile.input_profile.intro": "Esfu\u00e9rzate en tu biograf\u00eda y aumentar\u00e1s tus posibilidades de ser emparejado.",
     "text.profile.input_profile.intro_title": "Introduzca los datos de su perfil",

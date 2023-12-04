@@ -1,6 +1,6 @@
 {
     "text.female": "perempuan",
-    "text.hello": "Hai",
+    "text.hello": "Kiffy",
     "text.male": "laki-laki",
     "text.match.cancel": "Membatalkan pertandingan",
     "text.match.detail.contact1.female": "\ud83d\udc8c Cara menghubunginya",
@@ -37,7 +37,8 @@
     "text.profile.gender.validation": "Silakan pilih jenis kelamin",
     "text.profile.input_profile.complete": "Carilah Kiffy!",
     "text.profile.input_profile.complete_text": "Temui beragam orang di Kiffy!",
-    "text.profile.input_profile.contact": "Jika ada kecocokan, maka akan ditampilkan ke pihak lain",
+    "text.profile.input_profile.contact": "Jika ada kecocokan, maka hanya akan ditampilkan kepada orang yang cocok",
+    "text.profile.input_profile.contact.female": "Informasi ini tidak ditampilkan kepada orang lain",
     "text.profile.input_profile.immutable": "* Setelah dimasukkan, tidak dapat diubah",
     "text.profile.input_profile.intro": "Bekerja keraslah dalam membuat biodata Anda dan Anda akan meningkatkan peluang Anda untuk dijodohkan!",
     "text.profile.input_profile.intro_title": "Silakan masukkan informasi profil Anda",
