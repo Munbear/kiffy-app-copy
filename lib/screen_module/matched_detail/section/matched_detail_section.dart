@@ -30,7 +30,7 @@ class _MatchedDetailSectionState extends ConsumerState<MatchedDetailSection> {
         ),
         const SizedBox(height: 8),
         MatchedUserDetailInfoContainer(
-          // contactInfo: widget.matchedUser.userProfile.contacts,
+          contactInfo: widget.matchedUser.userProfile.contacts.toList(),
           lastCheck: widget.matchedUser.lastKnockedAt,
           emoji: widget.matchedUser.emojis,
         ),

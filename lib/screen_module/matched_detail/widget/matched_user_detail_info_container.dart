@@ -6,13 +6,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
 class MatchedUserDetailInfoContainer extends ConsumerWidget {
-  // final BuiltList<UserProfileContactView> contactInfo;
+  final List<UserProfileContactView> contactInfo;
   final DateTime lastCheck;
   final String emoji;
 
   const MatchedUserDetailInfoContainer({
     super.key,
-    // required this.contactInfo,
+    required this.contactInfo,
     required this.lastCheck,
     required this.emoji,
   });
@@ -37,8 +37,8 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final myGender = ref.read(myProvider.notifier).getProfile().gender;
-    // final contactType = contactInfo.map((item) => item.contactType);
-    // final contactId = contactInfo.map((item) => item.contactId);
+    final contactType = contactInfo.map((item) => item.contactType);
+    final contactId = contactInfo.map((item) => item.contactId);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 11),
       child: Column(
@@ -54,26 +54,26 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
 
-          // Container(
-          //   margin: const EdgeInsets.only(left: 30),
-          //   width: MediaQuery.of(context).size.width,
-          //   padding: const EdgeInsets.symmetric(vertical: 10),
-          //   decoration: const BoxDecoration(
-          //     border: Border(
-          //       bottom: BorderSide(color: Colors.grey),
-          //     ),
-          //   ),
-          //   child: myGender == GenderEnumView.FEMALE
-          //       ? Row(
-          //           children: [
-          //             snsImage(contactType.first.name),
-          //             const SizedBox(width: 9),
-          //             Text(contactId.first.toString()),
-          //           ],
-          //         )
-          //       : Text(lastCheck.toString()),
-          // ),
-          // const SizedBox(height: 20),
+          Container(
+            margin: const EdgeInsets.only(left: 30),
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.grey),
+              ),
+            ),
+            child: myGender == GenderEnumView.FEMALE
+                ? Row(
+                    children: [
+                      snsImage(contactType.first.name),
+                      const SizedBox(width: 9),
+                      Text(contactId.first.toString()),
+                    ],
+                  )
+                : Text(lastCheck.toString()),
+          ),
+          const SizedBox(height: 20),
 
           Text(
             myGender == GenderEnumView.FEMALE

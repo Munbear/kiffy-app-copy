@@ -2,6 +2,7 @@ import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/section/profile_input_complete_section.dart';
 import 'package:Kiffy/screen_module/profile/widget/new_profile_input_birthday.dart';
+import 'package:Kiffy/screen_module/profile/widget/new_profile_input_contact.dart';
 import 'package:Kiffy/screen_module/profile/widget/new_profile_input_images.dart';
 import 'package:Kiffy/screen_module/profile/widget/new_profile_input_loading.dart';
 import 'package:Kiffy/screen_module/profile/widget/new_profile_input_phone.dart';
@@ -60,19 +61,29 @@ final profileInputProcessWidgets = StateProvider(
 
         switch (gender) {
           case Gender.MALE:
+            ref.read(profileInputProcessProvider.notifier).state += 1;
             break;
           case Gender.FEMALE:
+            ref.read(profileInputProcessProvider.notifier).state += 2;
             break;
         }
-
+      },
+    ),
+    ProfileInputContact(
+      onNext: (contactType, contactId) {
+        ref
+            .read(profileInputValueProvider.notifier)
+            .setContactType(contactType);
+        ref.read(profileInputValueProvider.notifier).setContactId(contactId);
         ref.read(profileInputProcessProvider.notifier).state += 1;
       },
     ),
-    ProfileInputBirthday(onNext: (birthday) {
-      ref.read(profileInputValueProvider.notifier).setBirthday(birthday);
-      ref.read(profileInputProcessProvider.notifier).state += 1;
-      // ref.read(profileInputValueProvider.notifier).save();
-    }),
+    ProfileInputBirthday(
+      onNext: (birthday) {
+        ref.read(profileInputValueProvider.notifier).setBirthday(birthday);
+        ref.read(profileInputProcessProvider.notifier).state += 1;
+      },
+    ),
     ProfileInputLoading(
       onNext: () => ref.read(profileInputProcessProvider.notifier).state += 1,
     ),
