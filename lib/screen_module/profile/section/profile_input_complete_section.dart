@@ -1,6 +1,7 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/proifle_input_complete_welcome_box.dart';
 import 'package:dartlin/control_flow.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -23,7 +24,8 @@ class _ProfileInputCompleteSectionState
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.read(myProvider.notifier).init();
       setState(() {
         myProfile = ref.read(myProvider.notifier).getProfile();
       });
@@ -32,10 +34,14 @@ class _ProfileInputCompleteSectionState
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 36),
+    if (myProfile == null) {
+      return CircularProgressIndicator();
+    }
+
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: myProfile?.medias.first.url.let(
@@ -43,19 +49,10 @@ class _ProfileInputCompleteSectionState
                 SizedBox(),
           ),
           // start button
-          ElevatedButton(
-            onPressed: () {
-              ref.read(routerProvider).replace(ExploreScreen.routeLocation);
-            },
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.only(top: 15, bottom: 15),
-              textStyle: const TextStyle(fontSize: 20, color: Colors.white),
-              backgroundColor: const Color(0xFF0031AA),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Text(tr("text.start_kiffy").toString()),
+          ProfileInputNextButton(
+            text: tr("text.start_kiffy"),
+            onPressed: () =>
+                ref.read(routerProvider).replace(ExploreScreen.routeLocation),
           ),
           const SizedBox(height: 20),
         ],

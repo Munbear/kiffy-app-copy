@@ -24,7 +24,15 @@ class ProfileInputValidator {
     return true;
   }
 
-  bool verifyPhoneNumber(CountryAndPhoneNumber countryAndPhoneNumber) {
+  bool verifyPhoneNumber(String countryDialCode, String phoneNumber) {
+    var countryNumberRegex = RegExp("^\\+\\d+\$");
+    var phoneNumberRegex = RegExp("^\\d+\$");
+
+    return countryNumberRegex.hasMatch(countryDialCode) &&
+        phoneNumberRegex.hasMatch(phoneNumber);
+  }
+
+  bool legacyverifyPhoneNumber(CountryAndPhoneNumber countryAndPhoneNumber) {
     var countryNumberRegex = RegExp("^\\+\\d+\$");
     var phoneNumberRegex = RegExp("^\\d+\$");
 
