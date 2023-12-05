@@ -32,14 +32,17 @@ class CountryAndPhoneNumber {
 
   static CountryAndPhoneNumber of(
       {required String countryNumber, required String phoneNumber}) {
-    String zeroStripPhoneNumber = phoneNumber;
-    while (zeroStripPhoneNumber.startsWith("0")) {
-      zeroStripPhoneNumber.substring(0, 1);
-    }
+    String zeroStripPhoneNumber = int.parse(phoneNumber).toString();
+    print('====hello world======');
+    print(zeroStripPhoneNumber);
+
     zeroStripPhoneNumber = zeroStripPhoneNumber.replaceAll(" ", "");
+    zeroStripPhoneNumber = zeroStripPhoneNumber.replaceAll("-", "");
 
     return CountryAndPhoneNumber(
-        countryNumber: countryNumber, phoneNumber: phoneNumber);
+      countryNumber: countryNumber,
+      phoneNumber: zeroStripPhoneNumber,
+    );
   }
 
   static CountryAndPhoneNumber empty() {
@@ -138,7 +141,7 @@ class _ProfileInputPhoneState extends ConsumerState<ProfileInputPhone> {
 
       await userCredentials.user?.updatePhoneNumber(credentials);
 
-      widget.onNext(CountryAndPhoneNumber(
+      widget.onNext(CountryAndPhoneNumber.of(
         countryNumber: selectedCountry.countryNumber,
         phoneNumber: userCredentials.user!.phoneNumber!
             .replaceAll(selectedCountry.countryNumber, ""),

@@ -1,6 +1,8 @@
 import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/constant/gender_type.dart';
+import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
@@ -33,6 +35,17 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
 
   bool isGenderValidated() {
     return ref.read(profileInputValidatorProvider).verifyGender(state.gender);
+  }
+
+  void setBirthday(DateTime birthday) {
+    state.birthDay = birthday;
+    state = state;
+  }
+
+  bool isBirthdayValidated() {
+    return ref
+        .read(profileInputValidatorProvider)
+        .verifyBirthday(state.birthDay);
   }
 
   void setContactType(ContactType contactType) {
@@ -94,6 +107,32 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
           state.phoneNumber!.phoneNumber,
         );
   }
+
+  Future<void> save() async {
+    await ref.read(openApiProvider).getMyApi().apiUserV2MyProfilePost(
+        createUserProfileRequestV2: CreateUserProfileRequestV2((b) {
+      b.name = state.nickName;
+      b.gender = state.gender!.toGenderEnumView();
+      b.medias.addAll(state.medias
+          .mapIndexed((index, media) => EditUserProfileRequestMediasInner((b) {
+                b.id = media.id;
+                b.orderNum = index;
+              })));
+
+      if (state.contactType != null && state.contactId.isNotEmpty) {
+        b.contacts.add(EditUserProfileRequestContactsInner((b) {
+          b.contactId = state.contactId;
+          b.contactType = state.contactType!.toContactEnumView();
+        }));
+      }
+
+      b.birthDate = state.birthDay!.toUtc();
+      b.intro = "";
+
+      b.countryNumber = state.phoneNumber!.countryDialCode;
+      b.phoneNumber = state.phoneNumber!.phoneNumber;
+    }));
+  }
 }
 
 class CountryDialCodeAndPhoneNumber {
@@ -104,11 +143,25 @@ class CountryDialCodeAndPhoneNumber {
     required this.countryDialCode,
     required this.phoneNumber,
   });
+
+  static CountryDialCodeAndPhoneNumber of(
+      {required String countryDialCode, required String phoneNumber}) {
+    String zeroStripPhoneNumber = phoneNumber.replaceAll(RegExp(r'^0+'), '');
+
+    zeroStripPhoneNumber = zeroStripPhoneNumber.replaceAll(" ", "");
+    zeroStripPhoneNumber = zeroStripPhoneNumber.replaceAll("-", "");
+
+    return CountryDialCodeAndPhoneNumber(
+      countryDialCode: countryDialCode,
+      phoneNumber: zeroStripPhoneNumber,
+    );
+  }
 }
 
 class ProfileInputValue {
   String nickName;
   Gender? gender;
+  DateTime? birthDay;
   ContactType? contactType;
   String contactId;
   String intro;

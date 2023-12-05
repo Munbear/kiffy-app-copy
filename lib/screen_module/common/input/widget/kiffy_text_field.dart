@@ -6,11 +6,13 @@ class KiffyTextField extends StatelessWidget {
   final String hintText;
   final ValueChanged<String> onChanged;
   final bool? readOnly;
+  final TextInputType? keyboardType;
 
   KiffyTextField({
     super.key,
     this.value,
     this.readOnly,
+    this.keyboardType,
     required this.hintText,
     required this.onChanged,
   });
@@ -19,6 +21,7 @@ class KiffyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: value,
+      keyboardType: keyboardType ?? TextInputType.text,
       onChanged: (t) => onChanged(t),
       style: const TextStyle(fontSize: 20, color: Color(0xFF6C6C6C)),
       decoration: readOnly == true

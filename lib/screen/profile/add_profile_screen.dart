@@ -1,4 +1,3 @@
-import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/section/profile_input_process_section.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +12,10 @@ class AddProfileScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            ProfileInputProcessSection(),
-            Space(height: 40),
-          ],
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: ProfileInputProcessSection(),
         ),
       ),
     );
