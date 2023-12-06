@@ -27,7 +27,7 @@ class _ProfileInputLoadingState extends ConsumerState<ProfileInputLoading> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
+      child: const Center(
         child: SizedBox(
           width: 20,
           height: 20,
