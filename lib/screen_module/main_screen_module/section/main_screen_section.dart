@@ -30,17 +30,32 @@ class _MainScreenSectionState extends ConsumerState<MainScreenSection> {
         pages: const [
           MaterialPage(child: ExploreScreen()),
         ],
+        onPopPage: (route, result) {
+          return true;
+        },
       ),
 
       // 매칭 탭
-      const MatchingScreen(),
+      Navigator(
+        key: matchingNavigatorKey,
+        pages: const [
+          MaterialPage(child: MatchingScreen()),
+        ],
+        onPopPage: (route, result) {
+          return true;
+        },
+      ),
 
       // 마이 탭
+      // MyScreen()
       Navigator(
         key: myScreenNavigatorKey,
         pages: const [
           MaterialPage(child: MyScreen()),
         ],
+        onPopPage: (route, result) {
+          return true;
+        },
       ),
     ];
   }

@@ -37,13 +37,12 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
     var userStatus = ref.read(myProvider.notifier).getStatus();
     switch (userStatus.status) {
       case UserStatusEnumView.JOINER:
-        ref.read(routerProvider).replace(AddProfileScreen.routeLocation);
+        context.replace(AddProfileScreen.routeLocation);
+        // ref.read(routerProvider).replace(AddProfileScreen.routeLocation);
         ref.read(loginLoading.notifier).update((state) => state = false);
         break;
       case UserStatusEnumView.APPROVED:
         context.replace(MainScreen.routeLocation);
-        // ref.read(routerProvider).replace(MainScreen.routeLocation);
-        // ref.read(routerProvider).replace(ExploreScreen.routeLocation);
         ref.read(loginLoading.notifier).update((state) => state = false);
         break;
       default:

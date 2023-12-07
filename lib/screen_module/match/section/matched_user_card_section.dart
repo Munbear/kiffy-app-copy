@@ -84,19 +84,30 @@ class _MatchedUserCardSectionState
               return MatchingUserCard(
                 onTap: () {
                   // TODO
-                  context
-                      .pushNamed(
-                    MatchedDetailScreen.routeName,
-                    extra: items,
-                  )
-                      .then((_) {
-                    setState(() {
-                      setState(() {
-                        // TODO 매칭 제거하면 바로 없어지도록 변경 필요
-                        _pagingController.refresh();
-                      });
-                    });
-                  });
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return MatchedDetailScreen(matchedUser: items);
+                      },
+                    ),
+                  );
+                  // ).then((value) {
+                  //   setState(() {
+                  //     _pagingController.refresh();
+                  //   });
+                  // });
+                  // context
+                  //     .pushNamed(MatchedDetailScreen.routeName, extra: items)
+                  //     .then(
+                  //   (_) {
+                  //     setState(() {
+                  //       setState(() {
+                  //         // TODO 매칭 제거하면 바로 없어지도록 변경 필요
+                  //         _pagingController.refresh();
+                  //       });
+                  //     });
+                  //   },
+                  // );
                 },
                 userProfile: items,
               );
