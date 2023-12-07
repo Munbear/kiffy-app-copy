@@ -26,7 +26,13 @@ class _MyButtonSectionState extends ConsumerState<MyButtonSection> {
           // 프로필 수정
           MyButton(
             onTap: () {
-              context.pushNamed(ModifyScreen.routeName);
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return const ModifyScreen();
+                  },
+                ),
+              );
             },
             text: tr("text.my.modify_profile"),
             iconPath: "assets/images/modify_x3.png",

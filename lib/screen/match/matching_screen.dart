@@ -7,9 +7,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class MatchingScreen extends StatelessWidget {
-  static String get routeLocation => "/matching";
-  static String get routeName => "matching";
-
   const MatchingScreen({
     super.key,
   });
@@ -17,6 +14,17 @@ class MatchingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        title: Image.asset(
+          width: 70,
+          height: 55,
+          "assets/images/kiffy_logo_purple.png",
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

@@ -15,15 +15,33 @@ class MainScreenSection extends ConsumerStatefulWidget {
 
 class _MainScreenSectionState extends ConsumerState<MainScreenSection> {
   late final List<Widget> screens;
+  final exploreNavigatorKey = GlobalKey<NavigatorState>();
+  final matchingNavigatorKey = GlobalKey<NavigatorState>();
+  final myScreenNavigatorKey = GlobalKey<NavigatorState>();
 
   @override
   void initState() {
     super.initState();
 
     screens = [
-      const ExploreScreen(),
+      // 탐색 탭
+      Navigator(
+        key: exploreNavigatorKey,
+        pages: const [
+          MaterialPage(child: ExploreScreen()),
+        ],
+      ),
+
+      // 매칭 탭
       const MatchingScreen(),
-      const MyScreen(),
+
+      // 마이 탭
+      Navigator(
+        key: myScreenNavigatorKey,
+        pages: const [
+          MaterialPage(child: MyScreen()),
+        ],
+      ),
     ];
   }
 

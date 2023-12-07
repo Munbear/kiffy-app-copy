@@ -19,6 +19,7 @@ class _MainScreenBottomNavBarSectionState
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color: Colors.transparent,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.14),

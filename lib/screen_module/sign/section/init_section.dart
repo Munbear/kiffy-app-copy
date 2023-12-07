@@ -5,8 +5,10 @@ import 'package:Kiffy/screen/profile/add_profile_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 
 class InitSection extends ConsumerStatefulWidget {
@@ -43,7 +45,8 @@ class _InitSectionState extends ConsumerState<InitSection> {
           ref.read(routerProvider).replace(AddProfileScreen.routeLocation);
           break;
         case UserStatusEnumView.APPROVED:
-          ref.read(routerProvider).replace(MainScreen.routeLocation);
+          context.replace(MainScreen.routeLocation);
+          // ref.read(routerProvider).replace(MainScreen.routeLocation);
           // ref.read(routerProvider).replace(ExploreScreen.routeLocation);
           break;
         default:

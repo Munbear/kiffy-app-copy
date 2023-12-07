@@ -66,7 +66,6 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
           const Spacer(),
         ],
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPath: "/mypage"),
     );
   }
 }

@@ -1,11 +1,13 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
+import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
 import 'package:Kiffy/screen_module/sign/widget/google_sgin_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 
 class SignInSection extends ConsumerStatefulWidget {
@@ -39,7 +41,9 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
         ref.read(loginLoading.notifier).update((state) => state = false);
         break;
       case UserStatusEnumView.APPROVED:
-        ref.read(routerProvider).replace(ExploreScreen.routeLocation);
+        context.replace(MainScreen.routeLocation);
+        // ref.read(routerProvider).replace(MainScreen.routeLocation);
+        // ref.read(routerProvider).replace(ExploreScreen.routeLocation);
         ref.read(loginLoading.notifier).update((state) => state = false);
         break;
       default:

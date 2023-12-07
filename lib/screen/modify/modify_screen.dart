@@ -20,7 +20,7 @@ class ModifyScreen extends StatelessWidget {
         elevation: 0.5,
         title: CustomAppBar(
           title: tr("text.my.modify_profile"),
-          titleColor: Color(0xff828282),
+          titleColor: const Color(0xff0031AA),
           fontSize: 20,
         ),
       ),
@@ -29,9 +29,6 @@ class ModifyScreen extends StatelessWidget {
           padding: EdgeInsets.all(39),
           child: ModifyProfileSection(),
         ),
-      ),
-      bottomNavigationBar: CustomBottomNavBar(
-        currentPath: ModifyScreen.routeLocation,
       ),
     );
   }
