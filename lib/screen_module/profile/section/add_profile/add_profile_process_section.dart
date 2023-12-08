@@ -1,25 +1,25 @@
 import 'package:Kiffy/constant/gender_type.dart';
-import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
-import 'package:Kiffy/screen_module/profile/section/profile_input_complete_section.dart';
-import 'package:Kiffy/screen_module/profile/widget/new_profile_input_birthday.dart';
+import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/section/add_profile/add_profile_complete_section.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_birthday.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_images.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_phone.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_loading.dart';
 import 'package:Kiffy/screen_module/profile/widget/new_profile_input_contact.dart';
-import 'package:Kiffy/screen_module/profile/widget/new_profile_input_images.dart';
-import 'package:Kiffy/screen_module/profile/widget/new_profile_input_loading.dart';
-import 'package:Kiffy/screen_module/profile/widget/new_profile_input_phone.dart';
 import 'package:Kiffy/screen_module/profile/widget/new_profile_input_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfileInputProcessSection extends ConsumerStatefulWidget {
-  const ProfileInputProcessSection({super.key});
+class AddProfileProcessSection extends ConsumerStatefulWidget {
+  const AddProfileProcessSection({super.key});
 
   @override
-  ConsumerState<ProfileInputProcessSection> createState() =>
+  ConsumerState<AddProfileProcessSection> createState() =>
       _ProfileInputProcessSectionState();
 }
 
 class _ProfileInputProcessSectionState
-    extends ConsumerState<ProfileInputProcessSection> {
+    extends ConsumerState<AddProfileProcessSection> {
   @override
   void initState() {
     super.initState();
@@ -41,14 +41,14 @@ class _ProfileInputProcessSectionState
 final profileInputProcessProvider = StateProvider((ref) => 0);
 final profileInputProcessWidgets = StateProvider(
   (ref) => [
-    ProfileInputPhone(
+    AddProfileInputPhone(
       onNext: (phoneNumber) {
         ref.read(profileInputValueProvider.notifier).setPhoneNumber(
             phoneNumber.countryDialCode, phoneNumber.phoneNumber);
         ref.read(profileInputProcessProvider.notifier).state += 1;
       },
     ),
-    ProfileInputImages(
+    AddProfileInputImages(
       onNext: (medias) {
         ref.read(profileInputValueProvider.notifier).setMedias(medias);
         ref.read(profileInputProcessProvider.notifier).state += 1;
@@ -78,16 +78,16 @@ final profileInputProcessWidgets = StateProvider(
         ref.read(profileInputProcessProvider.notifier).state += 1;
       },
     ),
-    ProfileInputBirthday(
+    AddProfileInputBirthday(
       onNext: (birthday) {
         ref.read(profileInputValueProvider.notifier).setBirthday(birthday);
         ref.read(profileInputProcessProvider.notifier).state += 1;
       },
     ),
-    ProfileInputLoading(
+    AddProfileLoading(
       onNext: () => ref.read(profileInputProcessProvider.notifier).state += 1,
     ),
-    ProfileInputCompleteSection(),
+    AddProfileCompleteSection(),
   ],
 );
 

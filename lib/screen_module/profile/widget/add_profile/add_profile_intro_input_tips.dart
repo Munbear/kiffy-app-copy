@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ExampleIntroTipsBottomSheet extends StatelessWidget {
-  ExampleIntroTipsBottomSheet({super.key});
+class AddProfileIntroInputTips extends StatelessWidget {
+  AddProfileIntroInputTips({super.key});
 
   List<String> example = [
     tr("text.profile.intro.hint1"),

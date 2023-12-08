@@ -4,7 +4,6 @@ import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/modify/section/modify_reset_button.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_images.dart';
-import 'package:Kiffy/screen_module/profile/widget/profile_input_intro.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -102,16 +101,16 @@ class _ModifyProfileSectionState extends ConsumerState<ModifyProfileSection> {
         //       )
         //     : Space(),
         const Space(height: 20),
-        intro != "" && intro != null
-            ? ProfileInputIntro(
-                textController: TextEditingController(text: intro),
-                onChanged: (inputIntro) => setState(
-                  () {
-                    intro = inputIntro;
-                  },
-                ),
-              )
-            : const Space(),
+        // intro != "" && intro != null
+        //     ? ProfileInputIntro(
+        //         textController: TextEditingController(text: intro),
+        //         onChanged: (inputIntro) => setState(
+        //           () {
+        //             intro = inputIntro;
+        //           },
+        //         ),
+        //       )
+        //     : const Space(),
         const Space(height: 20),
         ModifyResetButton(
           onPressed: () => completeModifyProfile(ref).then((_) {

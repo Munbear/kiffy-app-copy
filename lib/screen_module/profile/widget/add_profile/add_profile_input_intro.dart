@@ -1,11 +1,10 @@
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field_multiline.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
-import 'package:Kiffy/screen_module/profile/widget/example_intro_tips_bottom_sheet.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_intro_input_tips.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_validation.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ProfileInputIntro extends ConsumerWidget {
   final ValueChanged<String> onChanged;
@@ -53,7 +52,7 @@ class ProfileInputIntro extends ConsumerWidget {
         maxHeight: MediaQuery.of(context).size.height / 2,
       ),
       builder: (BuildContext lcontext) {
-        return ExampleIntroTipsBottomSheet();
+        return AddProfileIntroInputTips();
       },
     );
   }

@@ -11,10 +11,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:openapi/openapi.dart';
 
-class ProfileInputImages extends ConsumerWidget {
+final _mediaViewsProvider = StateProvider<List<MediaView>>((ref) => []);
+
+class AddProfileInputImages extends ConsumerWidget {
   final Function(List<MediaView> medias) onNext;
 
-  const ProfileInputImages({super.key, required this.onNext});
+  const AddProfileInputImages({super.key, required this.onNext});
 
   bool _verify(WidgetRef ref) {
     var isValidated = ref
@@ -131,5 +133,3 @@ class ProfileInputImagesSelect extends ConsumerWidget {
     );
   }
 }
-
-final _mediaViewsProvider = StateProvider<List<MediaView>>((ref) => []);

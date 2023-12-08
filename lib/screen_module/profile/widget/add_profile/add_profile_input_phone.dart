@@ -4,7 +4,7 @@ import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
-import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_header.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_storage_provider.dart';
@@ -16,10 +16,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:openapi/openapi.dart';
 
-class ProfileInputPhone extends ConsumerWidget {
+final _processProvider = StateProvider<ProfileInputPhoneProcess>(
+  (ref) => ProfileInputPhoneProcess.VERIFY_PHONE_NUMBER,
+);
+final _verificationIdProvider = StateProvider((ref) => "");
+final _smsCodeProvider = StateProvider((ref) => "");
+
+final _phoneAuthProvider = Provider((ref) => _PhoneAuthProvider(ref: ref));
+final _phoneAuthCodeSentRemainDurationProvider = StateProvider(
+  (ref) => const Duration(seconds: 100),
+);
+final phoneNumberProvider = StateProvider<String>((ref) => "");
+final countryDialCodeProvider = StateProvider<String>((ref) => "+62");
+final countryCodeProvider = StateProvider<String>((ref) => "ID");
+
+class AddProfileInputPhone extends ConsumerWidget {
   final Function(CountryDialCodeAndPhoneNumber phoneNumber) onNext;
 
-  const ProfileInputPhone({super.key, required this.onNext});
+  const AddProfileInputPhone({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,10 +61,6 @@ class ProfileInputPhone extends ConsumerWidget {
     }
   }
 }
-
-final _processProvider = StateProvider<ProfileInputPhoneProcess>(
-  (ref) => ProfileInputPhoneProcess.VERIFY_PHONE_NUMBER,
-);
 
 enum ProfileInputPhoneProcess {
   VERIFY_PHONE_NUMBER,
@@ -165,14 +175,6 @@ class ProfileInputPhoneVerifyCodeProcessTimer extends ConsumerWidget {
     );
   }
 }
-
-final _verificationIdProvider = StateProvider((ref) => "");
-final _smsCodeProvider = StateProvider((ref) => "");
-
-final _phoneAuthProvider = Provider((ref) => _PhoneAuthProvider(ref: ref));
-final _phoneAuthCodeSentRemainDurationProvider = StateProvider(
-  (ref) => const Duration(seconds: 100),
-);
 
 /// ***********************************
 ///          전화번호 인증 Provider
@@ -335,10 +337,6 @@ class ProfileInputPhoneCountryAndNumber extends ConsumerWidget {
     );
   }
 }
-
-final phoneNumberProvider = StateProvider<String>((ref) => "");
-final countryDialCodeProvider = StateProvider<String>((ref) => "+62");
-final countryCodeProvider = StateProvider<String>((ref) => "ID");
 
 /// ***********************************
 ///        국제번호 입력 Picker

@@ -8,10 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class ProfileInputBirthday extends ConsumerWidget {
+final birthdayProvider = StateProvider((ref) => "");
+
+class AddProfileInputBirthday extends ConsumerWidget {
   final Function(DateTime birthday) onNext;
 
-  const ProfileInputBirthday({super.key, required this.onNext});
+  const AddProfileInputBirthday({super.key, required this.onNext});
 
   bool _verify(WidgetRef ref) {
     try {
@@ -65,8 +67,6 @@ class ProfileInputBirthday extends ConsumerWidget {
         ],
       );
 }
-
-final birthdayProvider = StateProvider((ref) => "");
 
 class ProfileInputBirthdayHeader extends StatelessWidget {
   const ProfileInputBirthdayHeader({super.key});
