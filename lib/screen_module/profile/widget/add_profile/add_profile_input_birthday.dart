@@ -51,6 +51,7 @@ class AddProfileInputBirthday extends ConsumerWidget {
           ProfileInputBirthdayExample(),
           KiffyTextField(
             hintText: "YYYYMMDD",
+            keyboardType: TextInputType.number,
             onChanged: (t) {
               ref.read(birthdayProvider.notifier).state = t;
             },
