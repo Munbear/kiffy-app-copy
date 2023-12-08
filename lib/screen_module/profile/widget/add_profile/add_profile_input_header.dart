@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ProfileInputHeaderTitle extends StatelessWidget {
+class AddProfileInputHeaderTitle extends StatelessWidget {
   final String text;
 
-  const ProfileInputHeaderTitle({super.key, required this.text});
+  const AddProfileInputHeaderTitle({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,10 @@ class ProfileInputHeaderTitle extends StatelessWidget {
   }
 }
 
-class ProfileInputHeaderSubTitle extends StatelessWidget {
+class AddProfileInputHeaderSubTitle extends StatelessWidget {
   final String text;
 
-  const ProfileInputHeaderSubTitle({super.key, required this.text});
+  const AddProfileInputHeaderSubTitle({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

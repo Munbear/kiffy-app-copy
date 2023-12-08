@@ -3,7 +3,7 @@ import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/common/style/widget/border._style.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
-import 'package:Kiffy/screen_module/profile/widget/profile_input_header.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_header.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +13,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 final contactIdProvider = StateProvider((ref) => "");
 final contactTypeProvider = StateProvider<ContactType?>((ref) => null);
 
-class ProfileInputContact extends ConsumerWidget {
+class AddProfileInputContact extends ConsumerWidget {
   final Function(ContactType contactType, String contactId) onNext;
 
-  const ProfileInputContact({super.key, required this.onNext});
+  const AddProfileInputContact({super.key, required this.onNext});
 
   bool _verify(WidgetRef ref) {
     if (!ref
@@ -79,9 +79,9 @@ class ProfileInputContactHeader extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProfileInputHeaderTitle(
+            AddProfileInputHeaderTitle(
                 text: tr("text.profile.contact.contact_type")),
-            ProfileInputHeaderSubTitle(
+            AddProfileInputHeaderSubTitle(
                 text: tr("text.profile.input_profile.last_process")),
           ],
         ),

@@ -1,17 +1,19 @@
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
-import 'package:Kiffy/screen_module/profile/widget/profile_input_header.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_header.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class ProfileInputBirthday extends ConsumerWidget {
+final birthdayProvider = StateProvider((ref) => "");
+
+class AddProfileInputBirthday extends ConsumerWidget {
   final Function(DateTime birthday) onNext;
 
-  const ProfileInputBirthday({super.key, required this.onNext});
+  const AddProfileInputBirthday({super.key, required this.onNext});
 
   bool _verify(WidgetRef ref) {
     try {
@@ -49,6 +51,7 @@ class ProfileInputBirthday extends ConsumerWidget {
           ProfileInputBirthdayExample(),
           KiffyTextField(
             hintText: "YYYYMMDD",
+            keyboardType: TextInputType.number,
             onChanged: (t) {
               ref.read(birthdayProvider.notifier).state = t;
             },
@@ -66,8 +69,6 @@ class ProfileInputBirthday extends ConsumerWidget {
       );
 }
 
-final birthdayProvider = StateProvider((ref) => "");
-
 class ProfileInputBirthdayHeader extends StatelessWidget {
   const ProfileInputBirthdayHeader({super.key});
 
@@ -77,8 +78,8 @@ class ProfileInputBirthdayHeader extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProfileInputHeaderTitle(text: tr("text.profile.birthday")),
-            ProfileInputHeaderSubTitle(
+            AddProfileInputHeaderTitle(text: tr("text.profile.birthday")),
+            AddProfileInputHeaderSubTitle(
                 text: tr("text.profile.input_profile.last_process")),
           ],
         ),

@@ -9,16 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-class ProfileInputCompleteSection extends ConsumerStatefulWidget {
-  const ProfileInputCompleteSection({super.key});
+class AddProfileCompleteSection extends ConsumerStatefulWidget {
+  const AddProfileCompleteSection({super.key});
 
   @override
-  ConsumerState<ProfileInputCompleteSection> createState() =>
+  ConsumerState<AddProfileCompleteSection> createState() =>
       _ProfileInputCompleteSectionState();
 }
 
 class _ProfileInputCompleteSectionState
-    extends ConsumerState<ProfileInputCompleteSection> {
+    extends ConsumerState<AddProfileCompleteSection> {
   UserProfileView? myProfile;
 
   @override

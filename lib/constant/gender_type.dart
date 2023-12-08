@@ -24,6 +24,17 @@ enum Gender {
     }
   }
 
+  static Gender fromGenderEnumView(GenderEnumView gender) {
+    switch (gender) {
+      case GenderEnumView.MALE:
+        return Gender.MALE;
+      case GenderEnumView.FEMALE:
+        return Gender.FEMALE;
+    }
+
+    throw Exception();
+  }
+
   GenderEnumView toGenderEnumView() {
     if (this == Gender.MALE) {
       return GenderEnumView.MALE;

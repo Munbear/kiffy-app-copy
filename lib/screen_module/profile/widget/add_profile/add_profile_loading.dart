@@ -1,19 +1,18 @@
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
-import 'package:Kiffy/screen_module/profile/provider/profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfileInputLoading extends ConsumerStatefulWidget {
+class AddProfileLoading extends ConsumerStatefulWidget {
   final VoidCallback onNext;
 
-  const ProfileInputLoading({super.key, required this.onNext});
+  const AddProfileLoading({super.key, required this.onNext});
 
   @override
-  ConsumerState<ProfileInputLoading> createState() =>
-      _ProfileInputLoadingState();
+  ConsumerState<AddProfileLoading> createState() => _ProfileInputLoadingState();
 }
 
-class _ProfileInputLoadingState extends ConsumerState<ProfileInputLoading> {
+class _ProfileInputLoadingState extends ConsumerState<AddProfileLoading> {
   @override
   void initState() {
     super.initState();

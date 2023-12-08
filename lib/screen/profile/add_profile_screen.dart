@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/profile/section/profile_input_process_section.dart';
+import 'package:Kiffy/screen_module/profile/section/add_profile/add_profile_process_section.dart';
 import 'package:flutter/material.dart';
 
 class AddProfileScreen extends StatelessWidget {
@@ -15,7 +15,7 @@ class AddProfileScreen extends StatelessWidget {
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          child: ProfileInputProcessSection(),
+          child: AddProfileProcessSection(),
         ),
       ),
     );
