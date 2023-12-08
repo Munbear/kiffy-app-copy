@@ -79,16 +79,19 @@ class ModifyProfileSection extends ConsumerWidget {
               ? ModifyProfileInputContact()
               : Space(),
           Space(height: 20),
-          ProfileInputNextButton(onPressed: () {
-            if (!_verify(ref, Gender.fromGenderEnumView(myProfile.gender))) {
-              return;
-            }
+          ProfileInputNextButton(
+              text: tr("text.modify"),
+              onPressed: () {
+                if (!_verify(
+                    ref, Gender.fromGenderEnumView(myProfile.gender))) {
+                  return;
+                }
 
-            ref
-                .read(modifyProfileInputValueProvider.notifier)
-                .save()
-                .then((value) => context.pop());
-          }),
+                ref
+                    .read(modifyProfileInputValueProvider.notifier)
+                    .save()
+                    .then((value) => context.pop());
+              }),
         ],
       ),
     );
