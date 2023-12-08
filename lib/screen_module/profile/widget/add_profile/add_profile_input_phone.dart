@@ -5,7 +5,7 @@ import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
-import 'package:Kiffy/screen_module/profile/widget/profile_input_header.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_header.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_storage_provider.dart';
 import 'package:country_code_picker/country_code_picker.dart';
@@ -387,10 +387,10 @@ class ProfileInputPhoneHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ProfileInputHeaderTitle(
+        AddProfileInputHeaderTitle(
           text: tr("text.profile.input_profile.phone.title"),
         ),
-        ProfileInputHeaderSubTitle(
+        AddProfileInputHeaderSubTitle(
           text: tr("text.profile.input_profile.phone.subtitle"),
         ),
       ],

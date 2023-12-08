@@ -1,8 +1,8 @@
 import 'package:Kiffy/screen_module/common/input/section/kiffy_image_field_section.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_header.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_image_tip_bottom_sheet.dart';
-import 'package:Kiffy/screen_module/profile/widget/profile_input_header.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:dartlin/dartlin.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -64,7 +64,7 @@ class ProfileInputImagesHeader extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ProfileInputHeaderTitle(
+        AddProfileInputHeaderTitle(
           text: tr("text.profile.media"),
         ),
       ],

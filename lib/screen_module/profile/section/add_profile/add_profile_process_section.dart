@@ -2,11 +2,11 @@ import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_profile_complete_section.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_birthday.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_contact.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_images.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_phone.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_user.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_loading.dart';
-import 'package:Kiffy/screen_module/profile/widget/new_profile_input_contact.dart';
-import 'package:Kiffy/screen_module/profile/widget/new_profile_input_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -54,7 +54,7 @@ final profileInputProcessWidgets = StateProvider(
         ref.read(profileInputProcessProvider.notifier).state += 1;
       },
     ),
-    ProfileInputUser(
+    AddProfileInputUser(
       onNext: (name, gender) {
         ref.read(profileInputValueProvider.notifier).setNickName(name);
         ref.read(profileInputValueProvider.notifier).setGender(gender);
@@ -69,7 +69,7 @@ final profileInputProcessWidgets = StateProvider(
         }
       },
     ),
-    ProfileInputContact(
+    AddProfileInputContact(
       onNext: (contactType, contactId) {
         ref
             .read(profileInputValueProvider.notifier)

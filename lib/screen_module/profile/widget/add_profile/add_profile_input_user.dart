@@ -3,7 +3,7 @@ import 'package:Kiffy/screen_module/common/input/widget/kiffy_input_button.dart'
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
-import 'package:Kiffy/screen_module/profile/widget/profile_input_header.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_header.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +13,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 final genderProvider = StateProvider<Gender?>((ref) => null);
 final nameProvider = StateProvider((ref) => "");
 
-class ProfileInputUser extends ConsumerWidget {
+class AddProfileInputUser extends ConsumerWidget {
   final Function(String name, Gender gender) onNext;
 
-  const ProfileInputUser({super.key, required this.onNext});
+  const AddProfileInputUser({super.key, required this.onNext});
 
   bool _verify(WidgetRef ref) {
     if (!ref
@@ -76,10 +76,10 @@ class ProfileInputUserHeader extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProfileInputHeaderTitle(
+            AddProfileInputHeaderTitle(
               text: tr("text.profile.input_profile.intro_title"),
             ),
-            ProfileInputHeaderSubTitle(
+            AddProfileInputHeaderSubTitle(
               text: tr("text.profile.input_profile.sub_title"),
             ),
           ],
