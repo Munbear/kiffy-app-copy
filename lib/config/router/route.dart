@@ -1,10 +1,11 @@
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
-import 'package:Kiffy/screen/modify/modify_screen.dart';
+import 'package:Kiffy/screen/my/my_screen.dart';
 import 'package:Kiffy/screen/my/setting/withdraw_screen.dart';
 import 'package:Kiffy/screen/my/setting_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_screen.dart';
+import 'package:Kiffy/screen/profile/modify_profile_screen.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
 import 'package:Kiffy/screen/wish/other_wish_user_detail_screen.dart';

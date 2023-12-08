@@ -1,6 +1,6 @@
 import 'package:Kiffy/screen_module/common/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
-import 'package:Kiffy/screen_module/modify/section/modify_profile_section.dart';
+import 'package:Kiffy/screen_module/profile/section/modify_profile/modify_profile_section.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +26,7 @@ class ModifyScreen extends StatelessWidget {
       ),
       body: const SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(39),
+          padding: EdgeInsets.all(30),
           child: ModifyProfileSection(),
         ),
       ),

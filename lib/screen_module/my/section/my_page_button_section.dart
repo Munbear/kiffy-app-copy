@@ -1,5 +1,5 @@
-import 'package:Kiffy/screen/modify/modify_screen.dart';
 import 'package:Kiffy/screen/my/setting_screen.dart';
+import 'package:Kiffy/screen/profile/modify_profile_screen.dart';
 import 'package:Kiffy/screen_module/my/widget/my_page_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

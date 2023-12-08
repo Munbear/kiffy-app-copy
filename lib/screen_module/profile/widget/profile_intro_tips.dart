@@ -1,8 +1,29 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ExampleIntroTipsBottomSheet extends StatelessWidget {
-  ExampleIntroTipsBottomSheet({super.key});
+class ProfileIntroTipsIcon extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const ProfileIntroTipsIcon({super.key, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 18,
+      height: 18,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Image.asset(
+          "assets/icons/alert_icon.png",
+          color: const Color(0xffcecece),
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileIntroTips extends StatelessWidget {
+  ProfileIntroTips({super.key});
 
   List<String> example = [
     tr("text.profile.intro.hint1"),

@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/profile/section/profile_input_complete_section.dart';
+import 'package:Kiffy/screen_module/profile/section/add_profile/add_profile_complete_section.dart';
 import 'package:flutter/material.dart';
 
 class AddProfileCompleteScreen extends StatelessWidget {
@@ -19,7 +19,7 @@ class AddProfileCompleteScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           title: Image.asset("assets/images/kiffy_logo_purple.png", width: 69),
         ),
-        body: const ProfileInputCompleteSection(),
+        body: const AddProfileCompleteSection(),
       ),
     );
   }

@@ -1,8 +1,5 @@
-import 'package:Kiffy/screen_module/common/input/section/kiffy_image_field_section.dart';
 import 'package:Kiffy/screen_module/common/input/style/kiffy_input_style.dart';
-import 'package:Kiffy/screen_module/modify/provider/modify_profile_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
 
@@ -37,6 +34,31 @@ class KiffyImageField extends StatelessWidget {
   }
 }
 
+class KiffyImageFieldLoading extends StatelessWidget {
+  const KiffyImageFieldLoading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 93,
+      height: 133,
+      clipBehavior: Clip.hardEdge,
+      padding: const EdgeInsets.all(0),
+      decoration: KiffyInputStyle.boxDecorationRounded(isBordered: true),
+      child: Center(
+        child: SizedBox(
+          width: 14,
+          height: 14,
+          child: CircularProgressIndicator(
+            color: Color(0xff0031AA),
+            strokeWidth: 3,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class KiffyImageFieldEmpty extends StatelessWidget {
   final ValueChanged<String> onAdded;
 
@@ -63,37 +85,20 @@ class KiffyImageFieldEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        final loading = ref.watch(imageLoading);
-        return Stack(
-          children: [
-            loading
-                ? const Center(
-                    child: SizedBox(
-                      width: 14,
-                      height: 14,
-                      child: CircularProgressIndicator(
-                        color: Color(0xff0031AA),
-                        strokeWidth: 3,
-                      ),
-                    ),
-                  )
-                : InkWell(
-                    onTap: () {
-                      addImage();
-                    },
-                    child: const Center(
-                      child: Text(
-                        "+",
-                        style:
-                            TextStyle(fontSize: 20, color: Color(0xFFCECECE)),
-                      ),
-                    ),
-                  ),
-          ],
-        );
-      },
+    return Stack(
+      children: [
+        InkWell(
+          onTap: () {
+            addImage();
+          },
+          child: const Center(
+            child: Text(
+              "+",
+              style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

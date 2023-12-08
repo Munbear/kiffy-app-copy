@@ -1,5 +1,4 @@
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
-import 'package:built_collection/src/list.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
 class MatchedUserDetailInfoContainer extends ConsumerWidget {
-  final BuiltList<UserProfileContactView> contactInfo;
+  final List<UserProfileContactView> contactInfo;
   final DateTime lastCheck;
   final String emoji;
 
