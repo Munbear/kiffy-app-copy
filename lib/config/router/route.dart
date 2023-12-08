@@ -99,7 +99,8 @@ List<RouteBase> get _routes => [
         path: OtherWishUserDetailScreen.routeLocation,
         name: OtherWishUserDetailScreen.routeName,
         builder: (context, state) => OtherWishUserDetailScreen(
-          wishId: state.params["wishId"],
+          wishId: state.queryParams["wishId"],
+          // wishId: state.params["wishId"],
         ),
       ),
     ];

@@ -41,7 +41,13 @@ class _MyButtonSectionState extends ConsumerState<MyButtonSection> {
           // 설정
           MyButton(
             onTap: () {
-              context.pushNamed(SettingScreen.routeName);
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return const SettingScreen();
+                  },
+                ),
+              );
             },
             text: tr("text.my.setting"),
             iconPath: "assets/images/setting_x3.png",
