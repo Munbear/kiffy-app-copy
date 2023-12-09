@@ -35,13 +35,15 @@ class _MainScreenBottomNavBarSectionState
         ),
         child: BottomNavigationBar(
           onTap: (a) {
-            ref.read(mainScreenProvider.notifier).update((state) => state = a);
+            ref
+                .read(currentScreenIndexProvider.notifier)
+                .update((state) => state = a);
           },
           showSelectedLabels: false,
           showUnselectedLabels: false,
           items: MainTabStatus.values.map(
             (tab) {
-              final currentTabIndex = ref.watch(mainScreenProvider);
+              final currentTabIndex = ref.watch(currentScreenIndexProvider);
               return BottomNavigationBarItem(
                 icon: CustomBottomNavBar(
                   iconPath: tab.tabIcon,

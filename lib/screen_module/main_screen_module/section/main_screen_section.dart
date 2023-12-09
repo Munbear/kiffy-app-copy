@@ -62,7 +62,7 @@ class _MainScreenSectionState extends ConsumerState<MainScreenSection> {
 
   @override
   Widget build(BuildContext context) {
-    final currentScreenIndex = ref.watch(mainScreenProvider);
+    final currentScreenIndex = ref.watch(currentScreenIndexProvider);
     return IndexedStack(
       index: currentScreenIndex,
       children: screens,
