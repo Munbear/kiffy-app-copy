@@ -40,6 +40,19 @@ class ProfileInputValidator {
   }
 
   bool verifyBirthday(DateTime? birthday) {
+    final now = DateTime.now();
+    if ( // 80세 이상이라면
+        birthday?.isBefore(DateTime(now.year - 80, now.month, now.day)) ??
+            false) {
+      return false;
+    }
+
+    if ( // 18세 미만이라면
+        birthday?.isAfter(DateTime(now.year - 17, now.month, now.day)) ??
+            false) {
+      return false;
+    }
+
     return birthday != null;
   }
 }
