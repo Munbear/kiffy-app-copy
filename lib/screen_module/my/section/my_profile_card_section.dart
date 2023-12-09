@@ -34,7 +34,7 @@ class _MyProfileCardSectionState extends ConsumerState<MyProfileCardSection> {
     }
 
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: SizedBox(
         height: 400,
         child: my.requireValue.profile != null

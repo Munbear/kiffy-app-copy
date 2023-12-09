@@ -22,7 +22,7 @@ class WithdrawalScreen extends StatelessWidget {
         elevation: 0.5,
         title: CustomAppBar(
           title: tr("text.my.setting.withdrawal"),
-          titleColor: Color(0xff828282),
+          titleColor: const Color(0xff828282),
           fontSize: 20,
         ),
       ),
