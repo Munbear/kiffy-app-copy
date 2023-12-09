@@ -28,7 +28,7 @@ class _WithdrawalSectionState extends ConsumerState<WithdrawalSection> {
           const SizedBox(height: 18),
           Text(
             tr("text.my_setting.withdrawal.question"),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               color: Color(0xff6c6c6c),
               fontWeight: FontWeight.w400,
@@ -53,17 +53,17 @@ class _WithdrawalSectionState extends ConsumerState<WithdrawalSection> {
                 STEP = 2;
               });
             },
-            child: Text(
-              tr("text.next"),
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ),
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 20),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               backgroundColor: const Color(0xff0031AA),
+            ),
+            child: Text(
+              tr("text.next"),
+              style: const TextStyle(
+                fontSize: 20,
+              ),
             ),
           ),
           const SizedBox(height: 26),

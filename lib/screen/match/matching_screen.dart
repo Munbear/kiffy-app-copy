@@ -7,9 +7,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class MatchingScreen extends StatelessWidget {
-  static String get routeLocation => "/matching";
-  static String get routeName => "matching";
-
   const MatchingScreen({
     super.key,
   });
@@ -32,7 +29,7 @@ class MatchingScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // 위시 리스트
-          OtherWishPreviewSection(),
+          const OtherWishPreviewSection(),
 
           const Space(height: 8),
           const AdmobBannerWidget(),
@@ -43,7 +40,7 @@ class MatchingScreen extends StatelessWidget {
             padding: const EdgeInsets.only(left: 26, top: 12),
             child: Text(
               tr("text.match.my_matches"),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xff494949),
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
@@ -52,11 +49,8 @@ class MatchingScreen extends StatelessWidget {
           ),
 
           // 매칭된 유저 카드 섹션
-          MatchedUserCardSection(),
+          const MatchedUserCardSection(),
         ],
-      ),
-      bottomNavigationBar: CustomBottomNavBar(
-        currentPath: MatchingScreen.routeLocation,
       ),
     );
   }

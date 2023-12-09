@@ -1,5 +1,6 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
+import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/profile/widget/proifle_input_complete_welcome_box.dart';
@@ -7,6 +8,7 @@ import 'package:dartlin/control_flow.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 
 class AddProfileCompleteSection extends ConsumerStatefulWidget {
@@ -51,8 +53,8 @@ class _ProfileInputCompleteSectionState
           // start button
           ProfileInputNextButton(
             text: tr("text.start_kiffy"),
-            onPressed: () =>
-                ref.read(routerProvider).replace(ExploreScreen.routeLocation),
+            onPressed: () => context.replaceNamed(MainScreen.routeName),
+            // ref.read(routerProvider).replace(ExploreScreen.routeLocation),
           ),
           const SizedBox(height: 20),
         ],
