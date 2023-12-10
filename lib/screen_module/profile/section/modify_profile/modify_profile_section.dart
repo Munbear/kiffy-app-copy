@@ -10,7 +10,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 
 class ModifyProfileSection extends ConsumerWidget {
@@ -90,7 +89,7 @@ class ModifyProfileSection extends ConsumerWidget {
                 ref
                     .read(modifyProfileInputValueProvider.notifier)
                     .save()
-                    .then((value) => context.pop());
+                    .then((value) => Navigator.of(context).pop());
               }),
         ],
       ),
