@@ -29,10 +29,86 @@ class _ProfileInputProcessSectionState
   Widget build(BuildContext context) {
     var process = ref.watch(profileInputProcessProvider);
 
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.all(30),
-        child: ref.read(profileInputProcessWidgets)[process],
+    // return Container(
+    //   padding: const EdgeInsets.all(30),
+    //   child: ref.read(profileInputProcessWidgets)[process],
+    // );
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: PageView(
+              children: [
+                AddProfileInputPhone(
+                  onNext: (phoneNumber) {
+                    ref.read(profileInputValueProvider.notifier).setPhoneNumber(
+                        phoneNumber.countryDialCode, phoneNumber.phoneNumber);
+                    ref.read(profileInputProcessProvider.notifier).state += 1;
+                  },
+                ),
+                // 이미지 등록
+                AddProfileInputImages(
+                  onNext: (medias) {
+                    ref
+                        .read(profileInputValueProvider.notifier)
+                        .setMedias(medias);
+                    ref.read(profileInputProcessProvider.notifier).state += 1;
+                  },
+                ),
+                // 기본 정보 입력
+                AddProfileInputUser(
+                  onNext: (name, gender) {
+                    ref
+                        .read(profileInputValueProvider.notifier)
+                        .setNickName(name);
+                    ref
+                        .read(profileInputValueProvider.notifier)
+                        .setGender(gender);
+
+                    switch (gender) {
+                      case Gender.MALE:
+                        ref.read(profileInputProcessProvider.notifier).state +=
+                            1;
+                        break;
+                      case Gender.FEMALE:
+                        ref.read(profileInputProcessProvider.notifier).state +=
+                            2;
+                        break;
+                    }
+                  },
+                ),
+                // sns 정보 입력
+                AddProfileInputContact(
+                  onNext: (contactType, contactId) {
+                    ref
+                        .read(profileInputValueProvider.notifier)
+                        .setContactType(contactType);
+                    ref
+                        .read(profileInputValueProvider.notifier)
+                        .setContactId(contactId);
+                    ref.read(profileInputProcessProvider.notifier).state += 1;
+                  },
+                ),
+                // 생년 월일 입력
+                AddProfileInputBirthday(
+                  onNext: (birthday) {
+                    ref
+                        .read(profileInputValueProvider.notifier)
+                        .setBirthday(birthday);
+                    ref.read(profileInputProcessProvider.notifier).state += 1;
+                  },
+                ),
+                // 로딩 화면
+                AddProfileLoading(
+                  onNext: () =>
+                      ref.read(profileInputProcessProvider.notifier).state += 1,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -41,6 +117,7 @@ class _ProfileInputProcessSectionState
 final profileInputProcessProvider = StateProvider((ref) => 0);
 final profileInputProcessWidgets = StateProvider(
   (ref) => [
+    // 핸드폰 인증
     AddProfileInputPhone(
       onNext: (phoneNumber) {
         ref.read(profileInputValueProvider.notifier).setPhoneNumber(
@@ -48,12 +125,14 @@ final profileInputProcessWidgets = StateProvider(
         ref.read(profileInputProcessProvider.notifier).state += 1;
       },
     ),
+    // 이미지 등록
     AddProfileInputImages(
       onNext: (medias) {
         ref.read(profileInputValueProvider.notifier).setMedias(medias);
         ref.read(profileInputProcessProvider.notifier).state += 1;
       },
     ),
+    // 기본 정보 입력
     AddProfileInputUser(
       onNext: (name, gender) {
         ref.read(profileInputValueProvider.notifier).setNickName(name);
@@ -69,6 +148,7 @@ final profileInputProcessWidgets = StateProvider(
         }
       },
     ),
+    // sns 정보 입력
     AddProfileInputContact(
       onNext: (contactType, contactId) {
         ref
@@ -78,15 +158,18 @@ final profileInputProcessWidgets = StateProvider(
         ref.read(profileInputProcessProvider.notifier).state += 1;
       },
     ),
+    // 생년 월일 입력
     AddProfileInputBirthday(
       onNext: (birthday) {
         ref.read(profileInputValueProvider.notifier).setBirthday(birthday);
         ref.read(profileInputProcessProvider.notifier).state += 1;
       },
     ),
+    // 로딩 화면
     AddProfileLoading(
       onNext: () => ref.read(profileInputProcessProvider.notifier).state += 1,
     ),
+    // 회원 가입 완료
     AddProfileCompleteSection(),
   ],
 );

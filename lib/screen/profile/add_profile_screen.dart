@@ -9,14 +9,10 @@ class AddProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: AddProfileProcessSection(),
-        ),
+        child: AddProfileProcessSection(),
       ),
     );
   }
