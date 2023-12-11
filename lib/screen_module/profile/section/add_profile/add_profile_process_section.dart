@@ -1,4 +1,5 @@
 import 'package:Kiffy/constant/gender_type.dart';
+import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_profile_complete_section.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_birthday.dart';
@@ -9,6 +10,7 @@ import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class AddProfileProcessSection extends ConsumerStatefulWidget {
   const AddProfileProcessSection({super.key});
@@ -34,13 +36,32 @@ class _ProfileInputProcessSectionState
     //   child: ref.read(profileInputProcessWidgets)[process],
     // );
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          LinearPercentIndicator(
+            padding: EdgeInsets.zero,
+            animation: true,
+            animationDuration: 300,
+            lineHeight: 12.0,
+            percent: 0.9,
+            barRadius: const Radius.circular(20),
+            backgroundColor: Colors.grey[200],
+            linearGradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xffBA00FF),
+                Color(0xff0031AA),
+              ],
+            ),
+          ),
+          const Space(height: 16),
           Expanded(
             child: PageView(
               children: [
+                // 전화 번호 인증
                 AddProfileInputPhone(
                   onNext: (phoneNumber) {
                     ref.read(profileInputValueProvider.notifier).setPhoneNumber(
