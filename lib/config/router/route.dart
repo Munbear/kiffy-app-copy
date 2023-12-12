@@ -2,7 +2,6 @@ import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/my/setting/withdraw_screen.dart';
 import 'package:Kiffy/screen/my/setting_screen.dart';
-import 'package:Kiffy/screen/profile/add_option_profile_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/add_basic_profile_screen.dart';
 import 'package:Kiffy/screen/profile/modify_profile_screen.dart';
@@ -25,7 +24,8 @@ final routerProvider = Provider<GoRouter>(
       debugLogDiagnostics: true,
       routerNeglect: true,
       initialLocation:
-          AddBasicProfileScreen.routeLocation, //InitScreen.routeLoaction,
+          //InitScreen.routeLoaction,
+          AddBasicProfileScreen.routeLocation,
       routes: _routes,
     );
   },
@@ -49,12 +49,6 @@ List<RouteBase> get _routes => [
         path: AddBasicProfileScreen.routeLocation,
         name: AddBasicProfileScreen.routeName,
         builder: (context, _) => const AddBasicProfileScreen(),
-      ),
-      // 유저 프로필 옵션 정포 입력 페이지
-      GoRoute(
-        path: AddOptionProfileScreen.routeLocation,
-        name: AddOptionProfileScreen.routeName,
-        builder: (context, _) => const AddOptionProfileScreen(),
       ),
       // 프로필 등록 완료 페이지
       GoRoute(

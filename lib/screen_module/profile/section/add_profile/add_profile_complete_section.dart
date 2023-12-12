@@ -1,5 +1,3 @@
-import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/profile/widget/profile_input_next_button.dart';
@@ -37,10 +35,10 @@ class _ProfileInputCompleteSectionState
   @override
   Widget build(BuildContext context) {
     if (myProfile == null) {
-      return CircularProgressIndicator();
+      return const CircularProgressIndicator();
     }
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
       child: Column(
@@ -48,7 +46,7 @@ class _ProfileInputCompleteSectionState
           Expanded(
             child: myProfile?.medias.first.url.let(
                     (it) => ProfileInputCompleteWelcomeBox(boxImageUrl: it)) ??
-                SizedBox(),
+                const SizedBox(),
           ),
           // start button
           ProfileInputNextButton(
