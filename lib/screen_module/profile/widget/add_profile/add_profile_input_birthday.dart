@@ -44,11 +44,14 @@ class AddProfileInputBirthday extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => Column(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
         children: [
-          ProfileInputBirthdayHeader(),
-          Space(height: 20),
-          ProfileInputBirthdayExample(),
+          const ProfileInputBirthdayHeader(),
+          const Space(height: 20),
+          const ProfileInputBirthdayExample(),
           KiffyTextField(
             hintText: "YYYYMMDD",
             keyboardType: TextInputType.number,
@@ -56,7 +59,7 @@ class AddProfileInputBirthday extends ConsumerWidget {
               ref.read(birthdayProvider.notifier).state = t;
             },
           ),
-          Space(height: 20),
+          const Space(height: 20),
           ProfileInputNextButton(
             onPressed: () {
               if (!_verify(ref)) {
@@ -66,34 +69,45 @@ class AddProfileInputBirthday extends ConsumerWidget {
             },
           ),
         ],
-      );
+      ),
+    );
+  }
 }
 
 class ProfileInputBirthdayHeader extends StatelessWidget {
   const ProfileInputBirthdayHeader({super.key});
 
   @override
-  Widget build(BuildContext context) => Align(
-        alignment: Alignment.topLeft,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AddProfileInputHeaderTitle(text: tr("text.profile.birthday")),
-            AddProfileInputHeaderSubTitle(
-                text: tr("text.profile.input_profile.last_process")),
-          ],
-        ),
-      );
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AddProfileInputHeaderTitle(text: tr("text.profile.birthday")),
+          AddProfileInputHeaderSubTitle(
+              text: tr("text.profile.input_profile.last_process")),
+        ],
+      ),
+    );
+  }
 }
 
+/// 생년월일 입력 예시
 class ProfileInputBirthdayExample extends StatelessWidget {
   const ProfileInputBirthdayExample({super.key});
 
   @override
-  Widget build(BuildContext context) => Align(
-        alignment: Alignment.topLeft,
-        child: Text(
-            "example : ${DateFormat("yyyyMMdd").format(DateTime.now())}",
-            style: TextStyle(fontSize: 12, color: Color(0xff6c6c6c))),
-      );
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Text(
+        "example : ${DateFormat("yyyyMMdd").format(DateTime.now())}",
+        style: const TextStyle(
+          fontSize: 12,
+          color: Color(0xff6c6c6c),
+        ),
+      ),
+    );
+  }
 }

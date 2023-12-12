@@ -29,19 +29,19 @@ class ProfileInputCompleteWelcomeBox extends StatelessWidget {
             ),
           ),
         ),
-        Space(height: 20),
+        const Space(height: 20),
         Text(
           tr("text.profile.input_profile.complete"),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 30,
             color: Color(0xFF0031AA),
             fontWeight: FontWeight.bold,
           ),
         ),
-        Space(height: 8),
+        const Space(height: 8),
         Text(
           tr("text.profile.input_profile.complete_text"),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             color: Color(0xFF494949),
           ),

@@ -1,7 +1,7 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
-import 'package:Kiffy/screen/profile/add_profile_screen.dart';
+import 'package:Kiffy/screen/profile/add_basic_profile_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
 import 'package:Kiffy/screen_module/sign/widget/google_sgin_in_button.dart';
@@ -37,7 +37,7 @@ class _SignInSectionState extends ConsumerState<SignInSection> {
     var userStatus = ref.read(myProvider.notifier).getStatus();
     switch (userStatus.status) {
       case UserStatusEnumView.JOINER:
-        context.replace(AddProfileScreen.routeLocation);
+        context.replace(AddBasicProfileScreen.routeLocation);
         // ref.read(routerProvider).replace(AddProfileScreen.routeLocation);
         ref.read(loginLoading.notifier).update((state) => state = false);
         break;

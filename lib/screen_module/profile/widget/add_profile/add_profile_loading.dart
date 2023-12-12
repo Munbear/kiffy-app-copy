@@ -16,6 +16,7 @@ class _ProfileInputLoadingState extends ConsumerState<AddProfileLoading> {
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(profileInputValueProvider.notifier).save();
       await ref.read(myProvider.notifier).init();
@@ -25,15 +26,13 @@ class _ProfileInputLoadingState extends ConsumerState<AddProfileLoading> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Center(
-        child: SizedBox(
-          width: 20,
-          height: 20,
-          child: CircularProgressIndicator(
-            color: Color(0xff0031AA),
-            strokeWidth: 3,
-          ),
+    return const Center(
+      child: SizedBox(
+        width: 20,
+        height: 20,
+        child: CircularProgressIndicator(
+          color: Color(0xff0031AA),
+          strokeWidth: 3,
         ),
       ),
     );

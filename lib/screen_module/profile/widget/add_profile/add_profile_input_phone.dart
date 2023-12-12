@@ -31,7 +31,8 @@ final countryDialCodeProvider = StateProvider<String>((ref) => "+62");
 final countryCodeProvider = StateProvider<String>((ref) => "ID");
 
 class AddProfileInputPhone extends ConsumerWidget {
-  final Function(CountryDialCodeAndPhoneNumber phoneNumber) onNext;
+  // final Function(CountryDialCodeAndPhoneNumber phoneNumber) onNext;
+  final ValueChanged<CountryDialCodeAndPhoneNumber> onNext;
 
   const AddProfileInputPhone({super.key, required this.onNext});
 
@@ -40,6 +41,7 @@ class AddProfileInputPhone extends ConsumerWidget {
     var process = ref.watch(_processProvider);
 
     switch (process) {
+      // 전화 번호 입력 화면
       case ProfileInputPhoneProcess.VERIFY_PHONE_NUMBER:
         return ProfileInputPhoneVerifyPhoneNumberProcess(
           onSuccess: () => onNext(
@@ -78,45 +80,48 @@ class ProfileInputPhoneVerifyPhoneNumberProcess extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        const ProfileInputPhoneHeader(),
-        const Space(height: 20),
-        ProfileInputPhoneCountryAndNumber(),
-        const Space(height: 20),
-        ProfileInputNextButton(
-          text: tr("text.profile.input_profile.phone.submit"),
-          onPressed: () async {
-            var phoneNumber = ref
-                .read(phoneNumberProvider)
-                .replaceAll(RegExp(r'^0+'), '')
-                .replaceAll(" ", "")
-                .replaceAll("-", "");
-            if (await ref.read(_phoneAuthProvider).isAlreadyRegistered(
-                  ref.read(countryDialCodeProvider),
-                  phoneNumber,
-                )) {
-              Fluttertoast.showToast(
-                msg: tr("text.profile.input_profile.phone.already_exists"),
-                fontSize: 16,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.CENTER,
-              );
-
-              return;
-            }
-
-            ref.read(_phoneAuthProvider).verifyPhoneNumber(
-                  dialCode: ref.read(countryDialCodeProvider),
-                  phoneNumber: ref.read(phoneNumberProvider),
-                  onSuccess: onSuccess,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          const ProfileInputPhoneHeader(),
+          const Space(height: 20),
+          ProfileInputPhoneCountryAndNumber(),
+          const Space(height: 20),
+          ProfileInputNextButton(
+            text: tr("text.profile.input_profile.phone.submit"),
+            onPressed: () async {
+              var phoneNumber = ref
+                  .read(phoneNumberProvider)
+                  .replaceAll(RegExp(r'^0+'), '')
+                  .replaceAll(" ", "")
+                  .replaceAll("-", "");
+              if (await ref.read(_phoneAuthProvider).isAlreadyRegistered(
+                    ref.read(countryDialCodeProvider),
+                    phoneNumber,
+                  )) {
+                Fluttertoast.showToast(
+                  msg: tr("text.profile.input_profile.phone.already_exists"),
+                  fontSize: 16,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
                 );
 
-            ref.read(_processProvider.notifier).state =
-                ProfileInputPhoneProcess.VERIFY_CODE;
-          },
-        ),
-      ],
+                return;
+              }
+
+              ref.read(_phoneAuthProvider).verifyPhoneNumber(
+                    dialCode: ref.read(countryDialCodeProvider),
+                    phoneNumber: ref.read(phoneNumberProvider),
+                    onSuccess: onSuccess,
+                  );
+
+              ref.read(_processProvider.notifier).state =
+                  ProfileInputPhoneProcess.VERIFY_CODE;
+            },
+          ),
+        ],
+      ),
     );
   }
 }
@@ -132,27 +137,30 @@ class ProfileInputPhoneVerifyCodeProcess extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        const ProfileInputPhoneHeader(),
-        const Space(height: 20),
-        ProfileInputPhoneCountryAndNumber(disable: true),
-        const Space(height: 20),
-        const ProfileInputPhoneVerifyCodeProcessTimer(),
-        KiffyTextField(
-          hintText: "XXXXXX",
-          keyboardType: TextInputType.number,
-          onChanged: (t) => ref.read(_smsCodeProvider.notifier).state = t,
-        ),
-        const Space(height: 20),
-        ProfileInputNextButton(onPressed: () async {
-          await ref.read(_phoneAuthProvider).verifyCode(
-                verificationId: ref.read(_verificationIdProvider),
-                smsCode: ref.read(_smsCodeProvider),
-                onSuccess: onSuccess,
-              );
-        }),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          const ProfileInputPhoneHeader(),
+          const Space(height: 20),
+          ProfileInputPhoneCountryAndNumber(disable: true),
+          const Space(height: 20),
+          const ProfileInputPhoneVerifyCodeProcessTimer(),
+          KiffyTextField(
+            hintText: "XXXXXX",
+            keyboardType: TextInputType.number,
+            onChanged: (t) => ref.read(_smsCodeProvider.notifier).state = t,
+          ),
+          const Space(height: 20),
+          ProfileInputNextButton(onPressed: () async {
+            await ref.read(_phoneAuthProvider).verifyCode(
+                  verificationId: ref.read(_verificationIdProvider),
+                  smsCode: ref.read(_smsCodeProvider),
+                  onSuccess: onSuccess,
+                );
+          }),
+        ],
+      ),
     );
   }
 }
@@ -208,7 +216,7 @@ class _PhoneAuthProvider {
     var sendPhoneNumber = "$dialCode $phoneNumber";
 
     ref.read(_phoneAuthCodeSentRemainDurationProvider.notifier).state =
-        Duration(seconds: 100);
+        const Duration(seconds: 100);
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       ref
           .read(

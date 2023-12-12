@@ -48,21 +48,24 @@ class AddProfileInputUser extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        ProfileInputUserHeader(),
-        Space(height: 20),
-        ProfileInputUserName(),
-        Space(height: 10),
-        ProfileInputUserGender(),
-        Space(height: 20),
-        ProfileInputNextButton(onPressed: () {
-          if (!_verify(ref)) {
-            return;
-          }
-          onNext(ref.read(nameProvider), ref.read(genderProvider)!);
-        }),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          const ProfileInputUserHeader(),
+          const Space(height: 20),
+          const ProfileInputUserName(),
+          const Space(height: 10),
+          const ProfileInputUserGender(),
+          const Space(height: 20),
+          ProfileInputNextButton(onPressed: () {
+            if (!_verify(ref)) {
+              return;
+            }
+            onNext(ref.read(nameProvider), ref.read(genderProvider)!);
+          }),
+        ],
+      ),
     );
   }
 }
@@ -95,19 +98,17 @@ class ProfileInputUserName extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      child: Column(
-        children: [
-          ProfileInputUserNameTitle(),
-          Space(height: 8),
-          KiffyTextField(
-            hintText: tr("text.profile.input_profile.nickname.placeholder"),
-            onChanged: (nickname) =>
-                ref.read(nameProvider.notifier).state = nickname,
-          ),
-          Space(height: 2),
-        ],
-      ),
+    return Column(
+      children: [
+        const ProfileInputUserNameTitle(),
+        const Space(height: 8),
+        KiffyTextField(
+          hintText: tr("text.profile.input_profile.nickname.placeholder"),
+          onChanged: (nickname) =>
+              ref.read(nameProvider.notifier).state = nickname,
+        ),
+        const Space(height: 2),
+      ],
     );
   }
 }
@@ -118,8 +119,8 @@ class ProfileInputUserNameTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Align(
         alignment: Alignment.topLeft,
-        child:
-            Text(tr("text.profile.nickname"), style: TextStyle(fontSize: 20)),
+        child: Text(tr("text.profile.nickname"),
+            style: const TextStyle(fontSize: 20)),
       );
 }
 
@@ -144,8 +145,8 @@ class ProfileInputUserGender extends ConsumerWidget {
 
     return Column(
       children: [
-        ProfileInputUserGenderTitle(),
-        Space(height: 8),
+        const ProfileInputUserGenderTitle(),
+        const Space(height: 8),
         Row(
           children: [
             Expanded(
@@ -156,7 +157,7 @@ class ProfileInputUserGender extends ConsumerWidget {
               onPressed: () =>
                   ref.read(genderProvider.notifier).state = Gender.MALE,
             )),
-            Space(width: 10),
+            const Space(width: 10),
             Expanded(
                 child: KiffyInputButton(
               isSelected: gender == Gender.FEMALE,
@@ -167,7 +168,7 @@ class ProfileInputUserGender extends ConsumerWidget {
             )),
           ],
         ),
-        Space(height: 2),
+        const Space(height: 2),
       ],
     );
   }
@@ -179,6 +180,9 @@ class ProfileInputUserGenderTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Align(
         alignment: Alignment.topLeft,
-        child: Text(tr("text.profile.gender"), style: TextStyle(fontSize: 20)),
+        child: Text(
+          tr("text.profile.gender"),
+          style: const TextStyle(fontSize: 20),
+        ),
       );
 }

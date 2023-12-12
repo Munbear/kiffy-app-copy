@@ -41,7 +41,12 @@ class _ProfileInputNextButtonState extends State<ProfileInputNextButton> {
                 color: Colors.white,
                 strokeWidth: 3,
               )
-            : Text(widget.text != null ? widget.text! : tr("text.next")),
+            : Text(
+                widget.text != null ? widget.text! : tr("text.next"),
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
       ),
     );
   }

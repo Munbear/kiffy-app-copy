@@ -1,7 +1,7 @@
 import 'package:Kiffy/config/router/route.dart';
 import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
-import 'package:Kiffy/screen/profile/add_profile_screen.dart';
+import 'package:Kiffy/screen/profile/add_basic_profile_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
@@ -42,7 +42,7 @@ class _InitSectionState extends ConsumerState<InitSection> {
       var userStatus = ref.read(myProvider.notifier).getStatus();
       switch (userStatus.status) {
         case UserStatusEnumView.JOINER:
-          ref.read(routerProvider).replace(AddProfileScreen.routeLocation);
+          ref.read(routerProvider).replace(AddBasicProfileScreen.routeLocation);
           break;
         case UserStatusEnumView.APPROVED:
           context.replace(MainScreen.routeLocation);

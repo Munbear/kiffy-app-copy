@@ -47,22 +47,25 @@ class AddProfileInputContact extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        ProfileInputContactHeader(),
-        Space(height: 20),
-        ProfileInputContactTypeSelector(),
-        Space(height: 20),
-        ProfileInputContactIdInput(),
-        Space(height: 20),
-        ProfileInputNextButton(onPressed: () {
-          if (!_verify(ref)) {
-            return;
-          }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          const ProfileInputContactHeader(),
+          const Space(height: 20),
+          const ProfileInputContactTypeSelector(),
+          const Space(height: 20),
+          const ProfileInputContactIdInput(),
+          const Space(height: 20),
+          ProfileInputNextButton(onPressed: () {
+            if (!_verify(ref)) {
+              return;
+            }
 
-          onNext(ref.read(contactTypeProvider)!, ref.read(contactIdProvider));
-        }),
-      ],
+            onNext(ref.read(contactTypeProvider)!, ref.read(contactIdProvider));
+          }),
+        ],
+      ),
     );
   }
 }
@@ -98,48 +101,46 @@ class ProfileInputContactTypeSelector extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var selectedContactType = ref.watch(contactTypeProvider);
 
-    return Container(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: ContactType.values.map((contactType) {
-            return GestureDetector(
-              onTap: () {
-                ref.read(contactTypeProvider.notifier).state = contactType;
-              },
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: ContactType.values.map((contactType) {
+          return GestureDetector(
+            onTap: () {
+              ref.read(contactTypeProvider.notifier).state = contactType;
+            },
+            child: Container(
+              height: 55,
+              width: 55,
+              margin: const EdgeInsets.only(right: 10),
+              decoration: selectedContactType == contactType
+                  ? BorderGradientCircleShape.outlineGradientBoxDecoration
+                  : null,
               child: Container(
-                height: 55,
-                width: 55,
-                margin: const EdgeInsets.only(right: 10),
-                decoration: selectedContactType == contactType
-                    ? BorderGradientCircleShape.outlineGradientBoxDecoration
-                    : null,
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BorderGradientCircleShape.innerDecoration,
-                  child: Stack(
-                    children: [
-                      // icon Image
-                      Container(
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(shape: BoxShape.circle),
-                        child: ContactType.contactAppIcon(contactType),
+                padding: const EdgeInsets.all(4),
+                decoration: BorderGradientCircleShape.innerDecoration,
+                child: Stack(
+                  children: [
+                    // icon Image
+                    Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: const BoxDecoration(shape: BoxShape.circle),
+                      child: ContactType.contactAppIcon(contactType),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: contactType == contactType
+                            ? null
+                            : Colors.white.withOpacity(0.7),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: contactType == contactType
-                              ? null
-                              : Colors.white.withOpacity(0.7),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            );
-          }).toList(),
-        ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }
@@ -156,12 +157,12 @@ class ProfileInputContactIdInput extends ConsumerWidget {
     return Column(
       children: [
         const ProfileInputContactIdInputTitle(),
-        Space(height: 8),
+        const Space(height: 8),
         KiffyTextField(
           hintText: "",
           onChanged: (t) => ref.read(contactIdProvider.notifier).state = t,
         ),
-        Space(height: 2),
+        const Space(height: 2),
         Align(
           alignment: Alignment.topLeft,
           child: Text(
@@ -185,8 +186,11 @@ class ProfileInputContactIdInputTitle extends StatelessWidget {
         alignment: Alignment.topLeft,
         child: Text(
           tr("text.profile.contact.contact_id"),
-          style: TextStyle(
-              fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+          style: const TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       );
 }

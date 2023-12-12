@@ -38,17 +38,20 @@ class AddProfileInputImages extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        const ProfileInputImagesHeader(),
-        const Space(height: 20),
-        const ProfileInputImagesSelect(),
-        const Space(height: 20),
-        ProfileInputNextButton(onPressed: () {
-          _verify(ref);
-          onNext(ref.read(_mediaViewsProvider));
-        }),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          const ProfileInputImagesHeader(),
+          const Space(height: 20),
+          const ProfileInputImagesSelect(),
+          const Space(height: 20),
+          ProfileInputNextButton(onPressed: () {
+            _verify(ref);
+            onNext(ref.read(_mediaViewsProvider));
+          }),
+        ],
+      ),
     );
   }
 }
@@ -114,6 +117,7 @@ class ProfileInputImagesSelect extends ConsumerWidget {
     ref.watch(_mediaViewsProvider);
 
     return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.start,
       spacing: 15,
       runSpacing: 15,
       children: List.generate(6, (index) {
