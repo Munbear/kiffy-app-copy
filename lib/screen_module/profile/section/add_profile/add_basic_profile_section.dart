@@ -1,6 +1,7 @@
 import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_option_profile_client_page.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_option_profile_server_page.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_birthday.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_contact.dart';
@@ -150,7 +151,7 @@ class _ProfileInputProcessSectionState
                 const AddOptionProfileServerPage(),
 
                 /// 프로필 옵션 정보 입력 2 #6
-                const AddOptionProfileServerPage()
+                const AddOptionProfileClientPage()
 
                 /// 로딩 화면 및 정보 저장 :: 프로필 옵션 스크린 다음 노출
                 // AddProfileLoading(
