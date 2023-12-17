@@ -1,3 +1,4 @@
+import 'package:Kiffy/common/custom_chip.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:flutter/material.dart';
 
@@ -35,9 +36,7 @@ class OptionProfileSelector extends StatelessWidget {
             (e) {
               return GestureDetector(
                 onTap: () => onTap(),
-                child: Chip(
-                  label: Text(e.text),
-                ),
+                child: CustomChip(text: e.text),
               );
             },
           ).toList(),
