@@ -25,6 +25,8 @@ final openApiProvider = StateProvider<Openapi>((ref) {
   dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) async {
     String? accessToken = await AuthStorage.getAccessToken();
 
+    //토큰
+    print(accessToken);
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
     }

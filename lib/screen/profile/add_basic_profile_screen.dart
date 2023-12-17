@@ -12,6 +12,7 @@ class AddBasicProfileScreen extends StatelessWidget {
     return const Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
+        bottom: true,
         child: AddBasicProfileSection(),
       ),
     );

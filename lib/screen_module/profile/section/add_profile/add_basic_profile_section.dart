@@ -1,7 +1,7 @@
 import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
-import 'package:Kiffy/screen_module/profile/widget/add_profile/add_option_profile_client_page.dart';
+import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_client_section.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_option_profile_server_page.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_birthday.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_contact.dart';
@@ -25,7 +25,7 @@ class AddBasicProfileSection extends ConsumerStatefulWidget {
 
 class _ProfileInputProcessSectionState
     extends ConsumerState<AddBasicProfileSection> {
-  final PageController _pageController = PageController(initialPage: 5);
+  final PageController _pageController = PageController(initialPage: 6);
 
   @override
   void initState() {
@@ -55,7 +55,7 @@ class _ProfileInputProcessSectionState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 32),
+      padding: const EdgeInsets.only(top: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -80,7 +80,7 @@ class _ProfileInputProcessSectionState
           Expanded(
             child: PageView(
               controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(),
+              // physics: const NeverScrollableScrollPhysics(),
               children: [
                 /// 전화 번호 인증 #0
                 AddProfileInputPhone(
@@ -151,7 +151,7 @@ class _ProfileInputProcessSectionState
                 const AddOptionProfileServerPage(),
 
                 /// 프로필 옵션 정보 입력 2 #6
-                const AddOptionProfileClientPage()
+                const AddOptionProfileClientSection()
 
                 /// 로딩 화면 및 정보 저장 :: 프로필 옵션 스크린 다음 노출
                 // AddProfileLoading(
