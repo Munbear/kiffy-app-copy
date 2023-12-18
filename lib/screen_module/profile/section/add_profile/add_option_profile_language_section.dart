@@ -18,7 +18,7 @@ class _OptionProfileLanguageSectionState
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          "What kind of relationship are you looking for?",
+          "What language do you speak?",
           style: TextStyle(
             color: Colors.black,
             fontSize: 20,

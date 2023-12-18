@@ -1,10 +1,15 @@
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-final optionProfileTagProvider = FutureProvider.autoDispose<List<dynamic>>(
+// <List<ProfileTagViewTagTypesInner>>
+final optionProfileTagProvider =
+    FutureProvider.autoDispose<List<ProfileTagViewTagTypesInner>>(
   (ref) async {
-    final res = ref.read(openApiProvider).getTagApi().apiTagV1TagGet();
-    return [];
+    Response<ProfileTagView> res =
+        await ref.read(openApiProvider).getTagApi().apiTagV1TagGet();
+    List<ProfileTagViewTagTypesInner> data = res.data!.tagTypes.toList();
+    return data;
   },
 );

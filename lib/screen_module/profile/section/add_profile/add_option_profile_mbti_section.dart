@@ -25,7 +25,9 @@ class AddOptionProfileMbtiSection extends ConsumerWidget {
         Row(
           children: [
             MbtiChip(
-              onSelectFirst: () {},
+              onSelectFirst: () {
+                print("hello");
+              },
               onSelectSecond: () {},
               textFirst: MBTI.e.text,
               textSecond: MBTI.i.text,
@@ -53,9 +55,10 @@ class AddOptionProfileMbtiSection extends ConsumerWidget {
             ),
           ],
         ),
-        const Space(height: 16),
-        const Divider(),
-        const Space(height: 25),
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 25),
+          child: const Divider(),
+        ),
       ],
     );
   }

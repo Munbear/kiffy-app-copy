@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CustomChip extends StatelessWidget {
@@ -13,8 +14,8 @@ class CustomChip extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50),
       ),
-      side: BorderSide(color: Colors.transparent),
-      backgroundColor: Color(0xFFF5F5F5),
+      side: const BorderSide(color: Colors.transparent),
+      backgroundColor: const Color(0xFFF5F5F5),
       label: Text(text),
     );
   }

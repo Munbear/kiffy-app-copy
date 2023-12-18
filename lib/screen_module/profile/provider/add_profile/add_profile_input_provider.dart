@@ -3,6 +3,7 @@ import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
 import 'package:collection/collection.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
@@ -110,28 +111,38 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
 
   Future<void> save() async {
     await ref.read(openApiProvider).getMyApi().apiUserV2MyProfilePost(
-        createUserProfileRequestV2: CreateUserProfileRequestV2((b) {
-      b.name = state.nickName;
-      b.gender = state.gender!.toGenderEnumView();
-      b.medias.addAll(state.medias
-          .mapIndexed((index, media) => EditUserProfileRequestMediasInner((b) {
-                b.id = media.id;
-                b.orderNum = index;
-              })));
+      createUserProfileRequestV2: CreateUserProfileRequestV2(
+        (b) {
+          b.name = state.nickName;
+          b.gender = state.gender!.toGenderEnumView();
+          b.medias.addAll(state.medias.mapIndexed(
+              (index, media) => EditUserProfileRequestMediasInner((b) {
+                    b.id = media.id;
+                    b.orderNum = index;
+                  })));
 
-      if (state.contactType != null && state.contactId.isNotEmpty) {
-        b.contacts.add(EditUserProfileRequestContactsInner((b) {
-          b.contactId = state.contactId;
-          b.contactType = state.contactType!.toContactEnumView();
-        }));
-      }
+          if (state.contactType != null && state.contactId.isNotEmpty) {
+            b.contacts.add(EditUserProfileRequestContactsInner((b) {
+              b.contactId = state.contactId;
+              b.contactType = state.contactType!.toContactEnumView();
+            }));
+          }
 
-      b.birthDate = state.birthDay!.toUtc();
-      b.intro = "";
+          b.birthDate = state.birthDay!.toUtc();
+          b.intro = "";
 
-      b.countryNumber = state.phoneNumber!.countryDialCode;
-      b.phoneNumber = state.phoneNumber!.phoneNumber;
-    }));
+          b.countryNumber = state.phoneNumber!.countryDialCode;
+          b.phoneNumber = state.phoneNumber!.phoneNumber;
+        },
+      ),
+    );
+  }
+
+  Future<List<ProfileTagViewTagTypesInner>> getTags() async {
+    Response<ProfileTagView> res =
+        await ref.read(openApiProvider).getTagApi().apiTagV1TagGet();
+    List<ProfileTagViewTagTypesInner> data = res.data!.tagTypes.toList();
+    return data;
   }
 }
 

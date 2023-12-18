@@ -1,12 +1,27 @@
 // ignore_for_file: unused_element
 
+import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
+import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/provider/option_tag/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_coffee_section.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_language_section.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_relation_section.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/option_profile_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+class _AddOptionProfileServerPageInit extends ConsumerWidget {
+  final Widget child;
+  const _AddOptionProfileServerPageInit({required this.child});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(profileInputValueProvider.notifier).getTags();
+    return child;
+  }
+}
 
 class AddOptionProfileServerPage extends ConsumerWidget {
   const AddOptionProfileServerPage({super.key});
@@ -66,16 +81,5 @@ class AddOptionProfileServerPage extends ConsumerWidget {
         ),
       ),
     );
-  }
-}
-
-class _AddOptionProfileServerPageInit extends ConsumerWidget {
-  final Widget child;
-  const _AddOptionProfileServerPageInit({required this.child});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(optionProfileTagProvider);
-    return child;
   }
 }

@@ -25,7 +25,7 @@ class AddBasicProfileSection extends ConsumerStatefulWidget {
 
 class _ProfileInputProcessSectionState
     extends ConsumerState<AddBasicProfileSection> {
-  final PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController(initialPage: 5);
 
   @override
   void initState() {

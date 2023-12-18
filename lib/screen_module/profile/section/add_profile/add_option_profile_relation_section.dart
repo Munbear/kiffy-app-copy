@@ -1,4 +1,8 @@
+import 'package:Kiffy/common/custom_chip.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
+import 'package:Kiffy/screen_module/profile/provider/option_tag/option_profile_tag_provider.dart';
+import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,45 +18,34 @@ class _OptionProfileRelationSectionState
     extends ConsumerState<AddOptionProfileRelationSection> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          "What kind of relationship are you looking for?",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
+    final items = ref.watch(optionProfileTagProvider);
+    if (items.value != null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            "What kind of relationship are you looking for?",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+            ),
           ),
-        ),
-        Space(height: 10),
-        Wrap(
-          direction: Axis.vertical,
-          children: [
-            Chip(
-              label: Text("A Serious love affair"),
-            ),
-            Chip(
-              label: Text(
-                "I'm looking for a serious relationship,\nbut it's okay to be casual",
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Chip(
-              label: Text("A Serious love affair"),
-            ),
-            Chip(
-              label: Text("A Serious love affair"),
-            ),
-            Chip(
-              label: Text("A Serious love affair"),
-            ),
-          ],
-        ),
-        Space(height: 16),
-        Divider(),
-      ],
-    );
+          const Space(height: 10),
+          Wrap(
+            direction: Axis.vertical,
+            children: items.value![1].tags!.map(
+              (e) {
+                return CustomChip(text: e.i18nKey.tr());
+              },
+            ).toList(),
+          ),
+          const Space(height: 16),
+          const Divider(),
+        ],
+      );
+    } else {
+      return const SizedBox();
+    }
   }
 }
