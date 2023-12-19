@@ -1,9 +1,18 @@
+import 'package:Kiffy/common/custom_chip.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
+import 'package:Kiffy/screen_module/profile/provider/option_tag/option_profile_tag_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 class AddOptionProfileLanguageSection extends ConsumerStatefulWidget {
-  const AddOptionProfileLanguageSection({super.key});
+  final ProfileTagViewTagTypesInner items;
+
+  const AddOptionProfileLanguageSection({
+    super.key,
+    required this.items,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -17,7 +26,7 @@ class _OptionProfileLanguageSectionState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
+        const Text(
           "What language do you speak?",
           style: TextStyle(
             color: Colors.black,
@@ -25,33 +34,19 @@ class _OptionProfileLanguageSectionState
             fontWeight: FontWeight.w400,
           ),
         ),
-        Space(height: 10),
+        const Space(height: 10),
         Wrap(
           direction: Axis.vertical,
-          children: [
-            Chip(
-              label: Text("A Serious love affair"),
-            ),
-            Chip(
-              label: Text(
-                "I'm looking for a serious relationship,\nbut it's okay to be casual",
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Chip(
-              label: Text("A Serious love affair"),
-            ),
-            Chip(
-              label: Text("A Serious love affair"),
-            ),
-            Chip(
-              label: Text("A Serious love affair"),
-            ),
-          ],
+          children: widget.items.tags!.map(
+            (e) {
+              return CustomChip(
+                text: e.i18nKey.tr(),
+              );
+            },
+          ).toList(),
         ),
-        Space(height: 16),
-        Divider(),
+        const Space(height: 16),
+        const Divider(),
       ],
     );
   }

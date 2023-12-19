@@ -1,51 +1,58 @@
 import 'package:Kiffy/common/custom_chip.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
-import 'package:Kiffy/screen_module/profile/provider/option_tag/option_profile_tag_provider.dart';
-import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
-class AddOptionProfileRelationSection extends ConsumerStatefulWidget {
-  const AddOptionProfileRelationSection({super.key});
+class OptionProfileSeverForm extends StatelessWidget {
+  // final VoidCallback onTap;
+  final String title;
+  final ProfileTagViewTagTypesInner items;
+  final bool hasDivider;
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _OptionProfileRelationSectionState();
-}
+  const OptionProfileSeverForm({
+    super.key,
+    // required this.onTap,
+    required this.title,
+    required this.items,
+    required this.hasDivider,
+  });
 
-class _OptionProfileRelationSectionState
-    extends ConsumerState<AddOptionProfileRelationSection> {
   @override
   Widget build(BuildContext context) {
-    final items = ref.watch(optionProfileTagProvider);
-    if (items.value != null) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Text(
-            "What kind of relationship are you looking for?",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
           ),
-          const Space(height: 10),
-          Wrap(
-            direction: Axis.vertical,
-            children: items.value![1].tags!.map(
-              (e) {
-                return CustomChip(text: e.i18nKey.tr());
-              },
-            ).toList(),
+        ),
+        const Space(height: 10),
+        Wrap(
+          direction: Axis.vertical,
+          children: items.tags!.map(
+            (e) {
+              return GestureDetector(
+                onTap: () {
+                  print(e.i18nKey.tr());
+                },
+                child: CustomChip(
+                  text: e.i18nKey.tr(),
+                ),
+              );
+            },
+          ).toList(),
+        ),
+        if (hasDivider)
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 16),
+            child: const Divider(),
           ),
-          const Space(height: 16),
-          const Divider(),
-        ],
-      );
-    } else {
-      return const SizedBox();
-    }
+      ],
+    );
   }
 }

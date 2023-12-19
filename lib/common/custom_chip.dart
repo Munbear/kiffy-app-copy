@@ -15,8 +15,13 @@ class CustomChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       side: const BorderSide(color: Colors.transparent),
-      backgroundColor: const Color(0xFFF5F5F5),
-      label: Text(text),
+      backgroundColor: Colors.grey[200],
+      label: Text(
+        text,
+        softWrap: true,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 }

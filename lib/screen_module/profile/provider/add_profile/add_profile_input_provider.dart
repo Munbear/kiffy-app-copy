@@ -138,12 +138,12 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
     );
   }
 
-  Future<List<ProfileTagViewTagTypesInner>> getTags() async {
-    Response<ProfileTagView> res =
-        await ref.read(openApiProvider).getTagApi().apiTagV1TagGet();
-    List<ProfileTagViewTagTypesInner> data = res.data!.tagTypes.toList();
-    return data;
-  }
+  // Future<List<ProfileTagViewTagTypesInner>> getTags() async {
+  //   Response<ProfileTagView> res =
+  //       await ref.read(openApiProvider).getTagApi().apiTagV1TagGet();
+  //   List<ProfileTagViewTagTypesInner> data = res.data!.tagTypes.toList();
+  //   return data;
+  // }
 }
 
 class CountryDialCodeAndPhoneNumber {
