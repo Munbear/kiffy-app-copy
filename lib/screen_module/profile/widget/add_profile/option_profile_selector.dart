@@ -1,18 +1,18 @@
 import 'package:Kiffy/common/custom_chip.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
+import 'package:Kiffy/screen_module/profile/provider/option_tag/option_profile_tag_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class OptionProfileSelector extends StatelessWidget {
   final String title;
   final List<dynamic> itemList;
-  final VoidCallback onTap;
   final bool showDivider;
 
   const OptionProfileSelector({
     super.key,
     required this.title,
     required this.itemList,
-    required this.onTap,
     required this.showDivider,
   });
 
@@ -34,9 +34,21 @@ class OptionProfileSelector extends StatelessWidget {
           direction: Axis.vertical,
           children: itemList.map(
             (e) {
-              return GestureDetector(
-                onTap: () => onTap(),
-                child: CustomChip(text: e.text),
+              return Consumer(
+                builder: (context, ref, child) {
+                  final selectedZodiac = ref.watch(selecteZodiac);
+                  return GestureDetector(
+                    onTap: () {
+                      ref
+                          .read(selecteZodiac.notifier)
+                          .update((state) => state = e.value);
+                    },
+                    child: CustomChip(
+                      isChecked: selectedZodiac == e.value,
+                      text: e.text,
+                    ),
+                  );
+                },
               );
             },
           ).toList(),

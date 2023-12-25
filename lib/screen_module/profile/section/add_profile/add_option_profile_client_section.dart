@@ -1,6 +1,7 @@
 import 'package:Kiffy/constant/personality_type.dart';
 import 'package:Kiffy/constant/zodiac_type.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
+import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_personnality.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_mbti_section.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_option_profile_text_form.dart';
@@ -57,28 +58,15 @@ class _AddOptionProfileClientPageState
             ),
             const Space(height: 32),
 
-            /// 남에게 듣는 성격
-            Consumer(
-              builder: (context, ref, child) {
-                return OptionProfileSelector(
-                  onTap: () {
-                    print("hello");
-                  },
-                  title: "What kind of personality do you hear from others?",
-                  itemList: Personality.values,
-                  showDivider: true,
-                );
-              },
-            ),
             // const AddOptionProfilePersonality(),
 
             /// 키 && 몸무게
-            Consumer(
-              builder: (context, ref, child) {
-                return AddOptionProfileTextForm(
-                  onChagedTall: (tall) {},
-                  onChagedWeight: (weight) {},
-                );
+            AddOptionProfileTextForm(
+              onChagedTall: (tall) {
+                ref.read(profileInputValueProvider.notifier).setTall(tall);
+              },
+              onChagedWeight: (weight) {
+                ref.read(profileInputValueProvider.notifier).setWeight(weight);
               },
             ),
 
@@ -86,17 +74,10 @@ class _AddOptionProfileClientPageState
             const AddOptionProfileMbtiSection(),
 
             /// 별자리
-            Consumer(
-              builder: (context, ref, child) {
-                return OptionProfileSelector(
-                  onTap: () {
-                    print("hello");
-                  },
-                  title: "What's your zodiac sign?",
-                  itemList: Zodiac.values,
-                  showDivider: false,
-                );
-              },
+            const OptionProfileSelector(
+              title: "What's your zodiac sign?",
+              itemList: Zodiac.values,
+              showDivider: false,
             ),
           ],
         ),

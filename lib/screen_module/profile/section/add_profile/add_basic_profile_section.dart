@@ -8,6 +8,7 @@ import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_images.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_phone.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_input_user.dart';
+import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_loading.dart';
 import 'package:Kiffy/screen_module/profile/widget/progress_gauge_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,11 +26,18 @@ class AddBasicProfileSection extends ConsumerStatefulWidget {
 
 class _ProfileInputProcessSectionState
     extends ConsumerState<AddBasicProfileSection> {
-  final PageController _pageController = PageController(initialPage: 5);
+  final PageController _pageController = PageController(initialPage: 0);
+  late int currentPage;
 
   @override
   void initState() {
+    currentPage = 0;
+    _pageController.addListener(_pl);
     super.initState();
+  }
+
+  _pl() {
+    currentPage = _pageController.page!.toInt();
   }
 
   // 다음 페이지
@@ -54,6 +62,7 @@ class _ProfileInputProcessSectionState
 
   @override
   Widget build(BuildContext context) {
+    // final currentPage = _pageController.page ?? 0.0;
     return Padding(
       padding: const EdgeInsets.only(top: 32),
       child: Column(
@@ -61,7 +70,8 @@ class _ProfileInputProcessSectionState
         children: [
           // 프로그레서 게이지
           const ProgressGaugeBar(),
-          // if (_pageController.page == 5.0 || _pageController.page == 6)
+          // 현제 페이지가 5이상 6이하 일때 노출
+          // if (currentPage <= 5 || currentPage >= 6.0)
           GestureDetector(
             onTap: () {
               print("다음 옵션 화면으로 이동");
@@ -151,7 +161,7 @@ class _ProfileInputProcessSectionState
                 const AddOptionProfileServerPage(),
 
                 /// 프로필 옵션 정보 입력 2 #6
-                const AddOptionProfileClientSection()
+                const AddOptionProfileClientSection(),
 
                 /// 로딩 화면 및 정보 저장 :: 프로필 옵션 스크린 다음 노출
                 // AddProfileLoading(

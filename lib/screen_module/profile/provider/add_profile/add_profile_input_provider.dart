@@ -5,6 +5,7 @@ import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_pro
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/retry.dart';
 import 'package:openapi/openapi.dart';
 
 final profileInputValueProvider =
@@ -109,6 +110,18 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
         );
   }
 
+  // 키 정보 받아오기
+  void setTall(tall) {
+    state.tall = tall;
+    state = state;
+  }
+
+  // 몸무게 정보 받아오기
+  void setWeight(weight) {
+    state.weight = weight;
+    state = state;
+  }
+
   Future<void> save() async {
     await ref.read(openApiProvider).getMyApi().apiUserV2MyProfilePost(
       createUserProfileRequestV2: CreateUserProfileRequestV2(
@@ -137,13 +150,6 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
       ),
     );
   }
-
-  // Future<List<ProfileTagViewTagTypesInner>> getTags() async {
-  //   Response<ProfileTagView> res =
-  //       await ref.read(openApiProvider).getTagApi().apiTagV1TagGet();
-  //   List<ProfileTagViewTagTypesInner> data = res.data!.tagTypes.toList();
-  //   return data;
-  // }
 }
 
 class CountryDialCodeAndPhoneNumber {
@@ -178,12 +184,22 @@ class ProfileInputValue {
   String intro;
   List<MediaView> medias;
   CountryDialCodeAndPhoneNumber? phoneNumber;
+  String? mbti;
+  String? zodiac;
+  List<int>? tags;
+  String? tall;
+  String? weight;
 
   ProfileInputValue({
     required this.nickName,
     required this.contactId,
     required this.intro,
     required this.medias,
+    required this.mbti,
+    required this.zodiac,
+    required this.tags,
+    required this.tall,
+    required this.weight,
   });
 
   factory ProfileInputValue.empty() {
@@ -192,6 +208,11 @@ class ProfileInputValue {
       contactId: "",
       intro: "",
       medias: List.empty(growable: true),
+      mbti: "",
+      zodiac: "",
+      tags: [],
+      tall: null,
+      weight: null,
     );
   }
 }

@@ -40,6 +40,7 @@ class _OptionProfileLanguageSectionState
           children: widget.items.tags!.map(
             (e) {
               return CustomChip(
+                isChecked: false,
                 text: e.i18nKey.tr(),
               );
             },

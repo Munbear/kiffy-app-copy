@@ -1,12 +1,17 @@
 import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/constant/gender_type.dart';
+import 'package:Kiffy/screen_module/profile/provider/option_tag/option_profile_tag_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
 final profileInputValidatorProvider =
-    Provider((ref) => ProfileInputValidator());
+    Provider<ProfileInputValidator>((ref) => ProfileInputValidator(ref));
 
 class ProfileInputValidator {
+  final Ref ref;
+
+  ProfileInputValidator(this.ref);
+
   bool verifyNickname(String? nickname) {
     return nickname != null && nickname.isNotEmpty && nickname.length <= 20;
   }
@@ -54,5 +59,14 @@ class ProfileInputValidator {
     }
 
     return birthday != null;
+  }
+
+  void optionProfileMultiSelector(List<int> selectedItems, int id) {
+    if (selectedItems.contains(id)) {
+      selectedItems.remove(id);
+    } else {
+      selectedItems.add(id);
+    }
+    ref.read(multiSelecteState.notifier).update((state) => [...selectedItems]);
   }
 }
