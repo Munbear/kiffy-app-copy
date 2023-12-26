@@ -52,6 +52,7 @@ class AddProfileInputUser extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
+          const Space(height: 16),
           const ProfileInputUserHeader(),
           const Space(height: 20),
           const ProfileInputUserName(),

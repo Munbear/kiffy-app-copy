@@ -7,7 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddOptionProfileServerPage extends ConsumerWidget {
-  const AddOptionProfileServerPage({super.key});
+  final VoidCallback onTap;
+
+  const AddOptionProfileServerPage({
+    super.key,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,6 +28,20 @@ class AddOptionProfileServerPage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            GestureDetector(
+              onTap: () {
+                ref.read(profilePageController).jumpToPage(6);
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                margin: const EdgeInsets.only(top: 4),
+                alignment: Alignment.topRight,
+                child: const Text("Skipping"),
+              ),
+            ),
+
+            const Space(height: 16),
+
             /// header text
             const Text(
               "Appeal yourself!",
@@ -113,7 +132,7 @@ class AddOptionProfileServerPage extends ConsumerWidget {
             const Space(height: 24),
 
             MainBlueButton(
-              onClick: () {},
+              onTap: () => onTap(),
               text: "Next",
             ),
             const Space(height: 24),

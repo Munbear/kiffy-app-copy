@@ -25,8 +25,8 @@ final routerProvider = Provider<GoRouter>(
       routerNeglect: true,
       initialLocation:
           // MainScreen.routeLocation,
-          // InitScreen.routeLoaction,
-          AddBasicProfileScreen.routeLocation,
+          InitScreen.routeLoaction,
+      // AddBasicProfileScreen.routeLocation,
       routes: _routes,
     );
   },

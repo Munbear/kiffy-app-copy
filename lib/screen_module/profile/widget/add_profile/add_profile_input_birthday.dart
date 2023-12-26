@@ -49,6 +49,7 @@ class AddProfileInputBirthday extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
+          const Space(height: 16),
           const ProfileInputBirthdayHeader(),
           const Space(height: 20),
           const ProfileInputBirthdayExample(),

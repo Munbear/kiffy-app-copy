@@ -1,9 +1,12 @@
 import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/screen_module/profile/provider/option_tag/option_profile_tag_provider.dart';
+import 'package:Kiffy/screen_module/profile/section/add_profile/add_basic_profile_section.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
+// 프로필 생성 유효성 검사 프로바이더
 final profileInputValidatorProvider =
     Provider<ProfileInputValidator>((ref) => ProfileInputValidator(ref));
 
@@ -69,4 +72,21 @@ class ProfileInputValidator {
     }
     ref.read(multiSelecteState.notifier).update((state) => [...selectedItems]);
   }
+
+  void nextStep() {
+    final pageController = ref.read(profilePageController);
+    pageController
+        .nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    )
+        .then(
+      (value) {
+        ref.read(progressGauge.notifier).update((state) => state + 0.16);
+      },
+    );
+  }
 }
+
+final profilePageController = StateProvider.autoDispose<PageController>(
+    (ref) => PageController(initialPage: 0));

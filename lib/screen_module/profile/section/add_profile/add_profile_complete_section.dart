@@ -35,7 +35,9 @@ class _ProfileInputCompleteSectionState
   @override
   Widget build(BuildContext context) {
     if (myProfile == null) {
-      return const CircularProgressIndicator();
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
     }
 
     return SizedBox(

@@ -84,6 +84,7 @@ class ProfileInputPhoneVerifyPhoneNumberProcess extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
+          const Space(height: 16),
           const ProfileInputPhoneHeader(),
           const Space(height: 20),
           ProfileInputPhoneCountryAndNumber(),

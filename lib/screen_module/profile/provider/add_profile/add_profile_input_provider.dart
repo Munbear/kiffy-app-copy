@@ -3,11 +3,11 @@ import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
 import 'package:collection/collection.dart';
-import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/retry.dart';
 import 'package:openapi/openapi.dart';
 
+// 프로필 생성
 final profileInputValueProvider =
     NotifierProvider<ProfileInputValueNotifier, ProfileInputValue>(
   () => ProfileInputValueNotifier(),
@@ -175,6 +175,7 @@ class CountryDialCodeAndPhoneNumber {
   }
 }
 
+// 프로필 생성 객체
 class ProfileInputValue {
   String nickName;
   Gender? gender;

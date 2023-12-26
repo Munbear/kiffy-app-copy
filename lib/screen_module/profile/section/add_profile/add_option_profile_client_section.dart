@@ -2,6 +2,7 @@ import 'package:Kiffy/constant/personality_type.dart';
 import 'package:Kiffy/constant/zodiac_type.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_personnality.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_mbti_section.dart';
 import 'package:Kiffy/screen_module/profile/widget/add_profile/add_option_profile_text_form.dart';
@@ -26,6 +27,19 @@ class _AddOptionProfileClientPageState
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
+            GestureDetector(
+              onTap: () {
+                ref.read(profileInputValidatorProvider).nextStep();
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                margin: const EdgeInsets.only(top: 4),
+                alignment: Alignment.topRight,
+                child: const Text("Skipping"),
+              ),
+            ),
+
+            const Space(height: 16),
             const Text(
               "Appeal yourself!",
               style: TextStyle(
