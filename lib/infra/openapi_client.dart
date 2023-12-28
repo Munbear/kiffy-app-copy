@@ -41,7 +41,8 @@ final openApiProvider = StateProvider<Openapi>((ref) {
     return handler.next(response);
   }, onError: (DioError err, handler) {
     print(err.response?.data ?? "");
-    print('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions}');
+    print(
+        'ERROR[${err.requestOptions.uri}][${err.response?.statusCode}] => PATH: ${err.requestOptions}');
     return handler.next(err);
   }));
 
