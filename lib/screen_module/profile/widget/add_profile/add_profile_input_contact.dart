@@ -47,26 +47,26 @@ class AddProfileInputContact extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        children: [
-          const Space(height: 16),
-          const ProfileInputContactHeader(),
-          const Space(height: 20),
-          const ProfileInputContactTypeSelector(),
-          const Space(height: 20),
-          const ProfileInputContactIdInput(),
-          const Space(height: 20),
-          ProfileInputNextButton(onPressed: () {
+    return Column(
+      children: [
+        const Space(height: 16),
+        const ProfileInputContactHeader(),
+        const Space(height: 20),
+        const ProfileInputContactTypeSelector(),
+        const Space(height: 20),
+        const ProfileInputContactIdInput(),
+        const Space(height: 20),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: ProfileInputNextButton(onPressed: () {
             if (!_verify(ref)) {
               return;
             }
 
             onNext(ref.read(contactTypeProvider)!, ref.read(contactIdProvider));
           }),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -80,14 +80,17 @@ class ProfileInputContactHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Align(
         alignment: Alignment.topLeft,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AddProfileInputHeaderTitle(
-                text: tr("text.profile.contact.contact_type")),
-            AddProfileInputHeaderSubTitle(
-                text: tr("text.profile.input_profile.last_process")),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AddProfileInputHeaderTitle(
+                  text: tr("text.profile.contact.contact_type")),
+              AddProfileInputHeaderSubTitle(
+                  text: tr("text.profile.input_profile.last_process")),
+            ],
+          ),
         ),
       );
 }
@@ -155,26 +158,29 @@ class ProfileInputContactIdInput extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        const ProfileInputContactIdInputTitle(),
-        const Space(height: 8),
-        KiffyTextField(
-          hintText: "",
-          onChanged: (t) => ref.read(contactIdProvider.notifier).state = t,
-        ),
-        const Space(height: 2),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            tr("text.profile.input_profile.contact"),
-            style: const TextStyle(
-              fontSize: 13,
-              color: Color(0xFF0031AA),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          const ProfileInputContactIdInputTitle(),
+          const Space(height: 8),
+          KiffyTextField(
+            hintText: "",
+            onChanged: (t) => ref.read(contactIdProvider.notifier).state = t,
+          ),
+          const Space(height: 2),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              tr("text.profile.input_profile.contact"),
+              style: const TextStyle(
+                fontSize: 13,
+                color: Color(0xFF0031AA),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

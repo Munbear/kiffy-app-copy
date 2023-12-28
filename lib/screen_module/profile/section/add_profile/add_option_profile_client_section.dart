@@ -1,5 +1,6 @@
 import 'package:Kiffy/constant/personality_type.dart';
 import 'package:Kiffy/constant/zodiac_type.dart';
+import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
@@ -11,7 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddOptionProfileClientSection extends ConsumerStatefulWidget {
-  const AddOptionProfileClientSection({super.key});
+  final VoidCallback onTap;
+
+  const AddOptionProfileClientSection({
+    super.key,
+    required this.onTap,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -26,16 +32,18 @@ class _AddOptionProfileClientPageState
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             GestureDetector(
               onTap: () {
                 ref.read(profileInputValidatorProvider).nextStep();
               },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                margin: const EdgeInsets.only(top: 4),
-                alignment: Alignment.topRight,
-                child: const Text("Skipping"),
+              child: const Padding(
+                padding: EdgeInsets.only(top: 5),
+                child: Text(
+                  "Skipping",
+                  textAlign: TextAlign.right,
+                ),
               ),
             ),
 
@@ -93,6 +101,15 @@ class _AddOptionProfileClientPageState
               itemList: Zodiac.values,
               showDivider: false,
             ),
+
+            const SizedBox(height: 20),
+
+            MainBlueButton(
+              onTap: () => widget.onTap(),
+              text: "Next",
+            ),
+
+            const SizedBox(height: 24),
           ],
         ),
       ),

@@ -15,13 +15,11 @@ final optionProfileTagProvider =
   },
 );
 
+// id 값 받기
 final multiSelecteState = StateProvider.autoDispose<List<int>>((ref) => []);
-
+// 남에게 듣는 성격 id
 final singleSelecteState = StateProvider.autoDispose<int?>((ref) => null);
-
+// mbti
+final selectedMbitState = StateProvider.autoDispose<String?>((ref) => null);
+// 별자리
 final selecteZodiac = StateProvider.autoDispose<String?>((ref) => null);
-
-final selectedMbitFirst = StateProvider.autoDispose<String?>((ref) => null);
-final selectedMbitSecond = StateProvider.autoDispose<String?>((ref) => null);
-final selectedMbitThird = StateProvider.autoDispose<String?>((ref) => null);
-final selectedMbitFourth = StateProvider.autoDispose<String?>((ref) => null);

@@ -15,5 +15,15 @@
         "group": "json"
       }
     ]
+  },
+  "upload": {
+    "forceCurrent": true,
+    "type": "json",
+    "files": {
+      "type": "json",
+      "pattern": "*.json",
+      "excludes": ["localazy.json"],
+      "lang": "${autodetectLang}"
+    }
   }
 }

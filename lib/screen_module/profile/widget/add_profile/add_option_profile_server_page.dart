@@ -32,11 +32,12 @@ class AddOptionProfileServerPage extends ConsumerWidget {
               onTap: () {
                 ref.read(profilePageController).jumpToPage(6);
               },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                margin: const EdgeInsets.only(top: 4),
-                alignment: Alignment.topRight,
-                child: const Text("Skipping"),
+              child: const Padding(
+                padding: EdgeInsets.only(top: 4),
+                child: Text(
+                  "Skipping",
+                  textAlign: TextAlign.right,
+                ),
               ),
             ),
 

@@ -29,11 +29,11 @@ class AddOptionProfileMbtiSection extends ConsumerWidget {
             (e) {
               return Consumer(
                 builder: (context, ref, child) {
-                  final selectedMbti = ref.watch(selectedMbitFirst);
+                  final selectedMbti = ref.watch(selectedMbitState);
                   return GestureDetector(
                     onTap: () {
                       ref
-                          .read(selectedMbitFirst.notifier)
+                          .read(selectedMbitState.notifier)
                           .update((state) => state = e.text);
                     },
                     child: CustomChip(

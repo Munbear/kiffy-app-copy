@@ -88,5 +88,6 @@ class ProfileInputValidator {
   }
 }
 
+// 프로필 생성 페이지 뷰 프로바이더
 final profilePageController = StateProvider.autoDispose<PageController>(
     (ref) => PageController(initialPage: 0));

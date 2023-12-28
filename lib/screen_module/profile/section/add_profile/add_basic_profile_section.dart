@@ -154,20 +154,22 @@ class _ProfileInputProcessSectionState
                 ),
 
                 /// 프로필 옵션 정보 입력 2 #6
-                const AddOptionProfileClientSection(),
+                AddOptionProfileClientSection(
+                  onTap: () {},
+                ),
 
                 /// 로딩 화면 및 정보 저장 :: 프로필 옵션 스크린 다음 노출
-                // AddProfileLoading(
-                //   onNext: () {
-                //     //TODO 프로필 정보 선택 화면으로 이동
-                //     ref.read(profilePageController).nextPage(
-                //         duration: const Duration(milliseconds: 300),
-                //         curve: Curves.easeInOut);
-                //   },
-                // ),
+                AddProfileLoading(
+                  onNext: () {
+                    //TODO 프로필 정보 선택 화면으로 이동
+                    ref.read(profilePageController).nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut);
+                  },
+                ),
 
                 /// 회원 가입 완료 :: 프로필 옵션 스크린 다음 노출
-                AddProfileCompleteSection(),
+                const AddProfileCompleteSection(),
               ],
             ),
           ),

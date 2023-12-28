@@ -1,6 +1,10 @@
 {
-    "text.female": "female",
+    "text.test": "Test",
     "text.hello": "Hello",
+    "text.year": "Year",
+    "text.month":  "Month",
+    "text.day": "Day",
+    "text.female": "female",
     "text.male": "male",
     "text.match.cancel": "Cancel Matching",
     "text.match.detail.contact1.female": "\ud83d\udc8c How to contact him",
@@ -70,5 +74,24 @@
     "text.wish.other_wishes.expired": "Expired Wish",
     "text.wish.other_wishes.see_more": "Show more",
     "text.wish_detail.remained.comment": "If you don't reply within the given time, the heart will disappear",
-    "text.wish_detail.remained.title": "\ud83d\udd51 Reply within the given time!"
+    "text.wish_detail.remained.title": "\ud83d\udd51 Reply within the given time!",
+    "text.tag.language.bahasa_indonesia" : "Indonesian",
+    "text.tag.language.bahasa_melayu" : "Malaysian",
+    "text.tag.language.bahasa_jawa" : "Javanese",
+    "text.tag.relationship.looking_for_serious" : "Serious relationships",
+    "text.tag.relationship.looking_for_serious_relationship_but_casual_is_fine" : "Looking for a serious relationship, but casual is fine",
+    "text.tag.relationship.looking_for_casual_relationship_but_serious_is_fine" : "Looking for a casual relationship but don't mind being serious",
+    "text.tag.relationship.looking_for_friend_to_meet_up_casually" : "Casual friends",
+    "text.tag.relationship.looking_for_new_neighborhood_friends" : "New neighborhood friends",
+    "text.tag.relationship.dont_know_yet" : "I don't know yet",
+    "text.tag.personality.bright_and_friendly" : "Bright and friendly",
+    "text.tag.personality.chic_but_secretly_caring" : "Chic but secretly caring",
+    "text.tag.personality.timid_but_has_something_to_say" :"Timid but talkative",
+    "text.tag.personality.shy_and_withdrawn" : "Shy personality",
+    "text.tag.favorite_coffee.kintamani" : "Kintamani",
+    "text.tag.favorite_coffee.torija" : "Torija",
+    "text.tag.favorite_coffee.aceh_gayo" : "Aceh Gayo",
+    "text.tag.favorite_coffee.flores_bajawa" : "Flores Bajawa",
+    "text.tag.favorite_coffee.luwak" : "Luwak"
+
 }

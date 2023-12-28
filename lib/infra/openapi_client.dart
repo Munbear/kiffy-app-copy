@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:Kiffy/screen_module/sign/provider/auth_storage_provider.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
@@ -42,6 +43,8 @@ final openApiProvider = StateProvider<Openapi>((ref) {
   }, onError: (DioError err, handler) {
     print(err.response?.data ?? "");
     print(
+        'ERROR[${err.requestOptions.uri}][${err.response?.statusCode}] => PATH: ${err.requestOptions}');
+    debugPrint(
         'ERROR[${err.requestOptions.uri}][${err.response?.statusCode}] => PATH: ${err.requestOptions}');
     return handler.next(err);
   }));
