@@ -2,8 +2,8 @@ import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/my/setting/withdraw_screen.dart';
 import 'package:Kiffy/screen/my/setting_screen.dart';
-import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/add_basic_profile_screen.dart';
+import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/modify_profile_screen.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
@@ -23,9 +23,7 @@ final routerProvider = Provider<GoRouter>(
       navigatorKey: _rootNavKey,
       debugLogDiagnostics: true,
       routerNeglect: true,
-      initialLocation: MainScreen.routeLocation,
-      // InitScreen.routeLoaction,
-      // AddBasicProfileScreen.routeLocation,
+      initialLocation: InitScreen.routeLoaction,
       routes: _routes,
     );
   },
