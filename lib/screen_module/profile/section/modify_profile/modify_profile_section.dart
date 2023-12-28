@@ -70,14 +70,14 @@ class ModifyProfileSection extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ModifyProfileInputImages(),
-          Space(height: 20),
-          ModifyProfileInputIntro(),
-          Space(height: 20),
+          const ModifyProfileInputImages(),
+          const Space(height: 20),
+          const ModifyProfileInputIntro(),
+          const Space(height: 20),
           myProfile!.gender == GenderEnumView.MALE
-              ? ModifyProfileInputContact()
-              : Space(),
-          Space(height: 20),
+              ? const ModifyProfileInputContact()
+              : const Space(),
+          const Space(height: 20),
           ProfileInputNextButton(
               text: tr("text.modify"),
               onPressed: () {

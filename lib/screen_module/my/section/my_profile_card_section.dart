@@ -41,7 +41,7 @@ class _MyProfileCardSectionState extends ConsumerState<MyProfileCardSection> {
             ? UserProfileCardPage(
                 userProfile: my.requireValue.profile!,
               )
-            : Space(),
+            : const Space(),
       ),
     );
   }
