@@ -77,7 +77,7 @@ List<RouteBase> get _routes => [
       GoRoute(
         path: EditOptionProfileScreen.routeLocation,
         name: EditOptionProfileScreen.routeName,
-        builder: (context, _) => const EditOptionProfileScreen(),
+        builder: (context, state) => EditOptionProfileScreen(),
       ),
       // 매칭 디테일 화면
       GoRoute(

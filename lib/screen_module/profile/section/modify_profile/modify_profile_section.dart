@@ -179,7 +179,10 @@ class ModifyOptionProfileSection extends ConsumerWidget {
               Navigator.of(context).push(
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) {
-                    return const EditOptionProfileScreen();
+                    return EditOptionProfileScreen(
+                        // editProfileType: e,
+                        // title: e.title,
+                        );
                   },
                 ),
               );
