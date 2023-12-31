@@ -1,5 +1,4 @@
 import 'package:Kiffy/constant/gender_type.dart';
-import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_client_section.dart';
@@ -14,7 +13,6 @@ import 'package:Kiffy/screen_module/profile/widget/add_profile/add_profile_loadi
 import 'package:Kiffy/screen_module/profile/widget/progress_gauge_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 // 프로필 등록  프로그레스 바
 final progressGauge = StateProvider.autoDispose<double>((ref) => 0.0);
@@ -29,32 +27,13 @@ class AddBasicProfileSection extends ConsumerStatefulWidget {
 
 class _ProfileInputProcessSectionState
     extends ConsumerState<AddBasicProfileSection> {
-  // final PageController _pageController = PageController(initialPage: 0);
-  // late final int currentPage;
-
   @override
   void initState() {
-    // currentPage = 0;
     super.initState();
   }
 
-  // 다음 페이지
-  // void nextStep() {
-  //   _pageController
-  //       .nextPage(
-  //     duration: const Duration(milliseconds: 300),
-  //     curve: Curves.easeInOut,
-  //   )
-  //       .then(
-  //     (value) {
-  //       ref.read(progressGauge.notifier).update((state) => state + 0.16);
-  //     },
-  //   );
-  // }
-
   @override
   void dispose() {
-    // _pageController.dispose();
     super.dispose();
   }
 
@@ -109,12 +88,11 @@ class _ProfileInputProcessSectionState
                     switch (gender) {
                       case Gender.MALE:
                         ref.read(profileInputValidatorProvider).nextStep();
-                        // nextStep();
                         break;
                       case Gender.FEMALE:
-                        pageController.animateToPage(4,
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut);
+                        ref
+                            .read(profileInputValidatorProvider)
+                            .nextStep(isFemale: true);
                         break;
                     }
                   },

@@ -16,7 +16,7 @@ class ModifyProfileInputImages extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ModifyProfileHeaderTitle(text: tr("text.profile.media")),
-        Space(height: 8),
+        const Space(height: 8),
         const ModifyProfileInputImagesSelect(),
       ],
     );
@@ -38,19 +38,22 @@ class ModifyProfileInputImagesSelect extends ConsumerWidget {
     return Wrap(
       spacing: 15,
       runSpacing: 15,
-      children: List.generate(6, (index) {
-        return KiffyImageFieldSection(
-          media: medias.getOrNull(index),
-          onDeleted: () {
-            ref
+      children: List.generate(
+        6,
+        (index) {
+          return KiffyImageFieldSection(
+            media: medias.getOrNull(index),
+            onDeleted: () {
+              ref
+                  .read(modifyProfileInputValueProvider.notifier)
+                  .deleteMedia(index);
+            },
+            onAdded: (media) => ref
                 .read(modifyProfileInputValueProvider.notifier)
-                .deleteMedia(index);
-          },
-          onAdded: (media) => ref
-              .read(modifyProfileInputValueProvider.notifier)
-              .addMedia(media),
-        );
-      }),
+                .addMedia(media),
+          );
+        },
+      ),
     );
   }
 }

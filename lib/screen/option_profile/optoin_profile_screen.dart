@@ -1,15 +1,15 @@
 import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
-import 'package:Kiffy/screen_module/profile/section/modify_profile/modify_profile_section.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ModifyScreen extends StatelessWidget {
-  static String get routeLocation => "/modifyScreen";
-  static String get routeName => "modifyScreen";
-  const ModifyScreen({super.key});
+class EditOptionProfileScreen extends ConsumerWidget {
+  static String get routeName => "editOptionProfile";
+  static String get routeLocation => "/editOptionProfile";
+  const EditOptionProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -23,11 +23,8 @@ class ModifyScreen extends StatelessWidget {
           fontSize: 20,
         ),
       ),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(30),
-          child: ModifyProfileSection(),
-        ),
+      body: Column(
+        children: [],
       ),
     );
   }

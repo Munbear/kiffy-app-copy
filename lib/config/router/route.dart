@@ -2,6 +2,7 @@ import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/my/setting/withdraw_screen.dart';
 import 'package:Kiffy/screen/my/setting_screen.dart';
+import 'package:Kiffy/screen/option_profile/optoin_profile_screen.dart';
 import 'package:Kiffy/screen/profile/add_basic_profile_screen.dart';
 import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
 import 'package:Kiffy/screen/profile/modify_profile_screen.dart';
@@ -71,6 +72,12 @@ List<RouteBase> get _routes => [
         path: ModifyScreen.routeLocation,
         name: ModifyScreen.routeName,
         builder: (context, _) => const ModifyScreen(),
+      ),
+      // 옵션 프로필 정포 화면
+      GoRoute(
+        path: EditOptionProfileScreen.routeLocation,
+        name: EditOptionProfileScreen.routeName,
+        builder: (context, _) => const EditOptionProfileScreen(),
       ),
       // 매칭 디테일 화면
       GoRoute(

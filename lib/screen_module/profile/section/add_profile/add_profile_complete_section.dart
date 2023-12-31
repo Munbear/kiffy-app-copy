@@ -51,12 +51,15 @@ class _ProfileInputCompleteSectionState
                 const SizedBox(),
           ),
           // start button
-          ProfileInputNextButton(
-            text: tr("text.start_kiffy"),
-            onPressed: () => context.replaceNamed(MainScreen.routeName),
-            // ref.read(routerProvider).replace(ExploreScreen.routeLocation),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: ProfileInputNextButton(
+              text: tr("text.start_kiffy"),
+              onPressed: () => context.replaceNamed(MainScreen.routeName),
+              // ref.read(routerProvider).replace(ExploreScreen.routeLocation),
+            ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 32),
         ],
       ),
     );

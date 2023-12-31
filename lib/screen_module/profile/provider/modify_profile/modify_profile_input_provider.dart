@@ -1,4 +1,5 @@
 import 'package:Kiffy/constant/contact_type.dart';
+import 'package:Kiffy/constant/edit_profile_type.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
@@ -67,11 +68,16 @@ class ModifyProfileInputValueNotifier
     await ref.read(openApiProvider).getMyApi().apiUserV1MyProfilePut(
       editUserProfileRequest: EditUserProfileRequest((b) {
         b.intro = state.intro;
-        b.medias.addAll(state.medias.mapIndexed(
-            (index, media) => EditUserProfileRequestMediasInner((b) {
-                  b.id = media.id;
-                  b.orderNum = index;
-                })));
+        b.medias.addAll(
+          state.medias.mapIndexed(
+            (index, media) => EditUserProfileRequestMediasInner(
+              (b) {
+                b.id = media.id;
+                b.orderNum = index;
+              },
+            ),
+          ),
+        );
 
         if (state.contactType != null &&
             state.contactId != null &&
@@ -88,17 +94,32 @@ class ModifyProfileInputValueNotifier
   }
 }
 
+// 프로필 텝바 상태
+final currentEditProfileSectionState =
+    StateProvider.autoDispose<EditProfileType>((ref) => EditProfileType.basic);
+
+// 프로필 수정 하기 모델
 class ModifyProfileInputValue {
   ContactType? contactType;
   String? contactId;
   String intro;
   List<MediaView> medias;
+  String? height;
+  String? weight;
+  String? mbti;
+  String? zodiac;
+  List<String>? tags;
 
   ModifyProfileInputValue({
     required this.intro,
     required this.medias,
     this.contactType,
     this.contactId,
+    this.height,
+    this.weight,
+    this.mbti,
+    this.zodiac,
+    this.tags,
   });
 
   factory ModifyProfileInputValue.from(UserProfileView myProfile) {
@@ -117,6 +138,11 @@ class ModifyProfileInputValue {
       medias: [],
       contactType: null,
       contactId: "",
+      height: "",
+      weight: "",
+      mbti: null,
+      zodiac: null,
+      tags: [],
     );
   }
 
@@ -125,12 +151,22 @@ class ModifyProfileInputValue {
     String? contactId,
     String? intro,
     List<MediaView>? medias,
+    String? height,
+    String? weight,
+    String? mbti,
+    String? zodiac,
+    List<String>? tags,
   }) {
     return ModifyProfileInputValue(
       contactType: contactType ?? this.contactType,
       contactId: contactId ?? this.contactId,
       intro: intro ?? this.intro,
       medias: medias ?? this.medias,
+      height: height ?? this.height,
+      weight: weight ?? this.weight,
+      mbti: mbti ?? this.mbti,
+      zodiac: zodiac ?? this.zodiac,
+      tags: tags ?? this.tags,
     );
   }
 }
