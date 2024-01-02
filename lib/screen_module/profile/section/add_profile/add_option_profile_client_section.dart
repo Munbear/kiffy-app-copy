@@ -93,10 +93,12 @@ class _AddOptionProfileClientPageState
             ),
 
             /// mbti
-            const AddOptionProfileMbtiSection(),
+            const AddOptionProfileMbtiSection(
+              hasDivider: true,
+            ),
 
             /// 별자리
-            const OptionProfileSelector(
+            const ZodiacSelectorSection(
               title: "What's your zodiac sign?",
               itemList: Zodiac.values,
               showDivider: false,

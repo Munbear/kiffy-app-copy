@@ -180,9 +180,9 @@ class ModifyOptionProfileSection extends ConsumerWidget {
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) {
                     return EditOptionProfileScreen(
-                        // editProfileType: e,
-                        // title: e.title,
-                        );
+                      editProfileType: e,
+                      title: e.title,
+                    );
                   },
                 ),
               );

@@ -6,7 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddOptionProfileMbtiSection extends ConsumerWidget {
-  const AddOptionProfileMbtiSection({super.key});
+  final bool hasDivider;
+
+  const AddOptionProfileMbtiSection({
+    super.key,
+    required this.hasDivider,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,10 +51,11 @@ class AddOptionProfileMbtiSection extends ConsumerWidget {
             },
           ).toList(),
         ),
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 25),
-          child: const Divider(),
-        ),
+        if (hasDivider)
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 25),
+            child: const Divider(),
+          ),
         // const DiagonalWidget(),
         // Row(
         //   children: [

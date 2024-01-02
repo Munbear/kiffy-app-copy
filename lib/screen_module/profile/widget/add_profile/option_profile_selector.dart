@@ -4,12 +4,12 @@ import 'package:Kiffy/screen_module/profile/provider/option_tag/option_profile_t
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class OptionProfileSelector extends StatelessWidget {
+class ZodiacSelectorSection extends StatelessWidget {
   final String title;
   final List<dynamic> itemList;
   final bool showDivider;
 
-  const OptionProfileSelector({
+  const ZodiacSelectorSection({
     super.key,
     required this.title,
     required this.itemList,

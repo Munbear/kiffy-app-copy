@@ -2,17 +2,17 @@ enum OptionProfileType {
   relationship(
     text: "relationship",
     imagePath: "assets/images/relationship.png",
-    title: "관계",
+    title: "What kind of relationship are you looking for?",
   ),
   personality(
     text: "personality",
     imagePath: "assets/images/personality.png",
-    title: "성격",
+    title: "What kind of personality do you hear from others?",
   ),
   coffee(
     text: "coffee",
     imagePath: "assets/images/coffee.png",
-    title: "커피",
+    title: "What kind of coffee do you like?",
   ),
   language(
     text: "language",
@@ -22,17 +22,17 @@ enum OptionProfileType {
   physical(
     text: "physical",
     imagePath: "assets/images/physical.png",
-    title: "피지컬",
+    title: "How tall are you?",
   ),
   mbti(
     text: "mbti",
     imagePath: "assets/images/mbti.png",
-    title: "ㅇmbti",
+    title: "select your MBTI",
   ),
   zodiac(
     text: "zodiac",
     imagePath: "assets/images/zodiac.png",
-    title: "별자리",
+    title: "What's your zodiac sign?",
   );
 
   const OptionProfileType({

@@ -1,5 +1,4 @@
 import 'package:Kiffy/config/router/route.dart';
-import 'package:Kiffy/screen_module/common/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
 import 'package:Kiffy/screen_module/my/widget/setting_button.dart';
 import 'package:easy_localization/easy_localization.dart';

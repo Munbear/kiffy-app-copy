@@ -1,3 +1,4 @@
+import 'package:Kiffy/constant/option_profile_type.dart';
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/my/setting/withdraw_screen.dart';
@@ -77,7 +78,10 @@ List<RouteBase> get _routes => [
       GoRoute(
         path: EditOptionProfileScreen.routeLocation,
         name: EditOptionProfileScreen.routeName,
-        builder: (context, state) => EditOptionProfileScreen(),
+        builder: (context, state) => EditOptionProfileScreen(
+          editProfileType: state.extra as OptionProfileType,
+          title: state.uri.queryParameters["title"] ?? "",
+        ),
       ),
       // 매칭 디테일 화면
       GoRoute(
@@ -105,7 +109,7 @@ List<RouteBase> get _routes => [
         path: OtherWishUserDetailScreen.routeLocation,
         name: OtherWishUserDetailScreen.routeName,
         builder: (context, state) => OtherWishUserDetailScreen(
-          wishId: state.queryParams["wishId"],
+          wishId: state.uri.queryParameters["wishId"],
           // wishId: state.params["wishId"],
         ),
       ),

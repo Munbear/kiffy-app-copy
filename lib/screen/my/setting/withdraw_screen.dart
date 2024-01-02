@@ -1,4 +1,3 @@
-import 'package:Kiffy/screen_module/common/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
 import 'package:Kiffy/screen_module/my_setting/section/withdrawal_section.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -27,7 +26,8 @@ class WithdrawalScreen extends StatelessWidget {
         ),
       ),
       body: WithdrawalSection(),
-      bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
+      //TODO
+      // bottomNavigationBar: const CustomBottomNavBar(currentPath: "/mypage"),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomAppBar extends ConsumerWidget {
   final String title;
@@ -19,11 +20,10 @@ class CustomAppBar extends ConsumerWidget {
     return Row(
       children: [
         const SizedBox(width: 20),
-        GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: SvgPicture.asset("assets/svg/arrow_back.svg"),
+        IconButton(
+          padding: EdgeInsets.zero,
+          onPressed: () => context.pop(),
+          icon: SvgPicture.asset("assets/svg/arrow_back.svg"),
         ),
         const Spacer(),
         Text(

@@ -1,4 +1,3 @@
-import 'package:Kiffy/screen_module/common/bottom_nav/widget/bottom_nav_bar.dart';
 import 'package:Kiffy/screen_module/common/google_admob/admob_banner_widget.dart';
 import 'package:Kiffy/screen_module/common/other_wish_user/section/other_wish_preview_section.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
