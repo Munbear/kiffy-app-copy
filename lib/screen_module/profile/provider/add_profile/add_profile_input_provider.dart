@@ -122,9 +122,26 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
     state = state;
   }
 
+  // mbti 받아오기
+  void setMbti(String? mbti) {}
+
+  // 별자리 받아오기
+  void setZodiac(String? zodiac) {}
+
+  // tags 아디 값 받아오기
+  void setTags(List<int> multiTags, int? tag) {
+    List<int> newTags = List.from(multiTags);
+    if (tag != null) {
+      newTags.add(tag);
+    }
+
+    state.tags = newTags;
+    state = state;
+  }
+
   Future<void> save() async {
-    await ref.read(openApiProvider).getMyApi().apiUserV2MyProfilePost(
-      createUserProfileRequestV2: CreateUserProfileRequestV2(
+    await ref.read(openApiProvider).getMyApi().apiUserV3MyProfilePost(
+      createUserProfileRequestV3: CreateUserProfileRequestV3(
         (b) {
           b.name = state.nickName;
           b.gender = state.gender!.toGenderEnumView();
@@ -146,6 +163,9 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
 
           b.countryNumber = state.phoneNumber!.countryDialCode;
           b.phoneNumber = state.phoneNumber!.phoneNumber;
+          b.tags.addAll(state.tags!.map((e) => TagRequestInner((b) {
+                b.id = e;
+              })));
         },
       ),
     );

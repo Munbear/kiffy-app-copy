@@ -1,5 +1,6 @@
 import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/screen_module/profile/provider/add_profile/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/profile/provider/option_tag/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_client_section.dart';
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_profile_complete_section.dart';
@@ -126,14 +127,24 @@ class _ProfileInputProcessSectionState
                 // 프로필 옵션 정보 입력 페이지  #5
                 AddOptionProfileServerPage(
                   onTap: () {
+                    ref.read(profileInputValueProvider.notifier).setTags(
+                          ref.read(multiSelecteState),
+                          ref.read(singleSelecteState),
+                        );
                     ref.read(profileInputValidatorProvider).nextStep();
-                    // nextStep();
                   },
                 ),
 
                 /// 프로필 옵션 정보 입력 2 #6
                 AddOptionProfileClientSection(
-                  onTap: () {},
+                  onTap: () {
+                    ref.read(profileInputValueProvider.notifier).setMbti(
+                          ref.read(selectedMbitState),
+                        );
+                    ref.read(profileInputValueProvider.notifier).setZodiac(
+                          ref.read(selecteZodiac),
+                        );
+                  },
                 ),
 
                 /// 로딩 화면 및 정보 저장 :: 프로필 옵션 스크린 다음 노출

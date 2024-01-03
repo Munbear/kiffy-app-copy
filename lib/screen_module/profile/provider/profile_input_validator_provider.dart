@@ -64,6 +64,7 @@ class ProfileInputValidator {
     return birthday != null;
   }
 
+  // tags id 값 받아오기
   void optionProfileMultiSelector(List<int> selectedItems, int id) {
     if (selectedItems.contains(id)) {
       selectedItems.remove(id);

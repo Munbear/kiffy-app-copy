@@ -5,6 +5,7 @@ import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_pro
 import 'package:Kiffy/screen_module/profile/section/add_profile/add_option_profile_server_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 class AddOptionProfileServerPage extends ConsumerWidget {
   final VoidCallback onTap;

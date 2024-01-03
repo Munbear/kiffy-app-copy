@@ -230,7 +230,6 @@ class _ModifyProfileInputLoader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(modifyProfileInputValueProvider);
-
     return child;
   }
 }
