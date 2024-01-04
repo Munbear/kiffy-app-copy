@@ -41,10 +41,10 @@ class ZodiacSelectorSection extends StatelessWidget {
                     onTap: () {
                       ref
                           .read(selecteZodiac.notifier)
-                          .update((state) => state = e.value);
+                          .update((state) => state = e);
                     },
                     child: CustomChip(
-                      isChecked: selectedZodiac == e.value,
+                      isChecked: selectedZodiac == e,
                       text: e.text,
                     ),
                   );

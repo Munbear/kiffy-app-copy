@@ -1,5 +1,7 @@
 import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/constant/gender_type.dart';
+import 'package:Kiffy/constant/mbti_type.dart';
+import 'package:Kiffy/constant/zodiac_type.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/profile/provider/profile_input_validator_provider.dart';
 import 'package:collection/collection.dart';
@@ -123,10 +125,16 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
   }
 
   // mbti 받아오기
-  void setMbti(String? mbti) {}
+  void setMbti(MBTI? mbti) {
+    state.mbti = mbti;
+    state = state;
+  }
 
   // 별자리 받아오기
-  void setZodiac(String? zodiac) {}
+  void setZodiac(Zodiac? zodiac) {
+    state.zodiac = zodiac;
+    state = state;
+  }
 
   // tags 아디 값 받아오기
   void setTags(List<int> multiTags, int? tag) {
@@ -163,9 +171,17 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
 
           b.countryNumber = state.phoneNumber!.countryDialCode;
           b.phoneNumber = state.phoneNumber!.phoneNumber;
+
           b.tags.addAll(state.tags!.map((e) => TagRequestInner((b) {
                 b.id = e;
               })));
+          b.mbti = state.mbti!.convertToEnumView();
+          b.zodiac = state.zodiac!.convertToEnumView();
+
+          //TODO
+          // 키몸무게 필요
+          // b.tall = state.tall
+          // b.weight = state.weight
         },
       ),
     );
@@ -205,8 +221,8 @@ class ProfileInputValue {
   String intro;
   List<MediaView> medias;
   CountryDialCodeAndPhoneNumber? phoneNumber;
-  String? mbti;
-  String? zodiac;
+  MBTI? mbti;
+  Zodiac? zodiac;
   List<int>? tags;
   String? tall;
   String? weight;
@@ -229,8 +245,8 @@ class ProfileInputValue {
       contactId: "",
       intro: "",
       medias: List.empty(growable: true),
-      mbti: "",
-      zodiac: "",
+      mbti: null,
+      zodiac: null,
       tags: [],
       tall: null,
       weight: null,

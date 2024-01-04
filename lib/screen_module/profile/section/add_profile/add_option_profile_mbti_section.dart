@@ -39,11 +39,11 @@ class AddOptionProfileMbtiSection extends ConsumerWidget {
                     onTap: () {
                       ref
                           .read(selectedMbitState.notifier)
-                          .update((state) => state = e.text);
+                          .update((state) => state = e);
                     },
                     child: CustomChip(
                       text: e.text,
-                      isChecked: selectedMbti == e.text,
+                      isChecked: selectedMbti == e,
                     ),
                   );
                 },
@@ -56,65 +56,6 @@ class AddOptionProfileMbtiSection extends ConsumerWidget {
             margin: const EdgeInsets.symmetric(vertical: 25),
             child: const Divider(),
           ),
-        // const DiagonalWidget(),
-        // Row(
-        //   children: [
-        //     Consumer(
-        //       builder: (context, ref, child) {
-        //         final isSelectedFirst = ref.watch(selectedMbitFirst);
-        //         return MbtiChip(
-        //           onTap: (index, value) {
-        //             ref
-        //                 .read(selectedMbitFirst.notifier)
-        //                 .update((state) => state = value);
-        //           },
-        //           mbtiTypes: mbtis,
-        //           isSelected: false,
-        //         );
-        //       },
-        //     ),
-        //     const DiagonalWidget(),
-        //     // Consumer(
-        //     //   builder: (context, ref, child) {
-        //     //     return MbtiChip(
-        //     //       onTap: (text) {},
-        //     //       onSelectSecond: (text) {},
-        //     //       textFirst: MBTI.n.text,
-        //     //       textSecond: MBTI.s.text,
-        //     //       isSelected: false,
-        //     //     );
-        //     //   },
-        //     // ),
-        //     // const DiagonalWidget(),
-        //     // Consumer(
-        //     //   builder: (context, ref, child) {
-        //     //     return MbtiChip(
-        //     //       onTap: (text) {},
-        //     //       onSelectSecond: (text) {},
-        //     //       textFirst: MBTI.t.text,
-        //     //       textSecond: MBTI.f.text,
-        //     //       isSelected: false,
-        //     //     );
-        //     //   },
-        //     // ),
-        //     // const DiagonalWidget(),
-        //     // Consumer(
-        //     //   builder: (context, ref, child) {
-        //     //     return MbtiChip(
-        //     //       onTap: (text) {},
-        //     //       onSelectSecond: (text) {},
-        //     //       textFirst: MBTI.j.text,
-        //     //       textSecond: MBTI.p.text,
-        //     //       isSelected: false,
-        //     //     );
-        //     //   },
-        //     // ),
-        //   ],
-        // ),
-        // Container(
-        //   margin: const EdgeInsets.symmetric(vertical: 25),
-        //   child: const Divider(),
-        // ),
       ],
     );
   }

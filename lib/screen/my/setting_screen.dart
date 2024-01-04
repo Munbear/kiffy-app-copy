@@ -28,11 +28,23 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         titleSpacing: 0,
-        elevation: 0.5,
-        title: const CustomAppBar(
-          title: "Setting",
-          titleColor: Color(0xff0031AA),
-          fontSize: 20,
+        elevation: 0,
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            size: 18,
+          ),
+        ),
+        title: const Text(
+          "Setting",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Color(0xff0031AA),
+          ),
         ),
       ),
       body: Column(

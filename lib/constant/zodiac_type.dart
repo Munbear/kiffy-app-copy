@@ -1,3 +1,5 @@
+import 'package:openapi/openapi.dart';
+
 enum Zodiac {
   aquarius(text: "Aquarius : 1/20 ~ 2/18", value: "Aquarius"),
   pisces(text: "Pisces : 2/19 ~ 3/20", value: "Pisces"),
@@ -16,4 +18,35 @@ enum Zodiac {
 
   final String text;
   final String value;
+
+  ZodiacTypeEnumView convertToEnumView() {
+    switch (this) {
+      case Zodiac.aquarius:
+        return ZodiacTypeEnumView.AQUARIUS;
+      case Zodiac.pisces:
+        return ZodiacTypeEnumView.PISCES;
+      case Zodiac.aries:
+        return ZodiacTypeEnumView.ARIES;
+      case Zodiac.taurus:
+        return ZodiacTypeEnumView.TAURUS;
+      case Zodiac.gemini:
+        return ZodiacTypeEnumView.GEMINI;
+      case Zodiac.cancer:
+        return ZodiacTypeEnumView.CANCER;
+      case Zodiac.leo:
+        return ZodiacTypeEnumView.LEO;
+      case Zodiac.virgo:
+        return ZodiacTypeEnumView.VIRGO;
+      case Zodiac.libra:
+        return ZodiacTypeEnumView.LIBRA;
+      case Zodiac.scorpio:
+        return ZodiacTypeEnumView.SCORPIO;
+      case Zodiac.sagittarius:
+        return ZodiacTypeEnumView.SAGITTARIUS;
+      case Zodiac.capricorn:
+        return ZodiacTypeEnumView.CAPRICORN;
+      default:
+        throw Exception();
+    }
+  }
 }

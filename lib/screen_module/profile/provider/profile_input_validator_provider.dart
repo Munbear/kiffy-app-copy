@@ -74,7 +74,12 @@ class ProfileInputValidator {
     ref.read(multiSelecteState.notifier).update((state) => [...selectedItems]);
   }
 
-  void nextStep({bool isFemale = false}) {
+  Future<void> jumpPage() async {
+    final pageController = ref.read(profilePageController);
+    pageController.jumpToPage(4);
+  }
+
+  void nextStep({bool isFemale = false, bool isLastPage = false}) {
     final pageController = ref.read(profilePageController);
 
     if (!isFemale) {
@@ -85,17 +90,15 @@ class ProfileInputValidator {
       )
           .then(
         (value) {
-          ref.read(progressGauge.notifier).update((state) => state + 0.16);
+          if (!isLastPage) {
+            ref.read(progressGauge.notifier).update((state) => state + 0.16);
+          } else {
+            ref.read(progressGauge.notifier).update((state) => state + 0.04);
+          }
         },
       );
     } else {
-      pageController
-          .animateToPage(
-        4,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      )
-          .then(
+      jumpPage().then(
         (value) {
           ref.read(progressGauge.notifier).update((state) => state + 0.32);
         },
