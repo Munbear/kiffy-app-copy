@@ -13,17 +13,9 @@ class WithdrawalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        titleSpacing: 0,
-        elevation: 0.5,
-        title: CustomAppBar(
-          title: tr("text.my.setting.withdrawal"),
-          titleColor: const Color(0xff828282),
-          fontSize: 20,
-        ),
+      appBar: CustomAppBar(
+        hasLeading: false,
+        title: tr("text.my.setting.withdrawal"),
       ),
       body: WithdrawalSection(),
       //TODO

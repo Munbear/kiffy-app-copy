@@ -27,6 +27,7 @@ final openApiProvider = StateProvider<Openapi>((ref) {
     String? accessToken = await AuthStorage.getAccessToken();
 
     //토큰
+    debugPrint(accessToken);
     print(accessToken);
     if (accessToken != null) {
       options.headers['Authorization'] = 'Bearer $accessToken';
