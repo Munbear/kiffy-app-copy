@@ -1,12 +1,11 @@
 import 'package:Kiffy/constant/option_profile_type.dart';
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
-import 'package:Kiffy/screen/my/setting/withdraw_screen.dart';
-import 'package:Kiffy/screen/my/setting_screen.dart';
-import 'package:Kiffy/screen/option_profile/optoin_profile_screen.dart';
-import 'package:Kiffy/screen/profile/add_basic_profile_screen.dart';
-import 'package:Kiffy/screen/profile/add_profile_complete_screen.dart';
-import 'package:Kiffy/screen/profile/modify_profile_screen.dart';
+import 'package:Kiffy/screen/withdraw_screen/withdraw_screen.dart';
+import 'package:Kiffy/screen/setting_screen/setting_screen.dart';
+import 'package:Kiffy/screen/edit_option_profile/optoin_profile_screen.dart';
+import 'package:Kiffy/screen/add_profile/add_basic_profile_screen.dart';
+import 'package:Kiffy/screen/edit_profile/edit_profile_screen.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
 import 'package:Kiffy/screen/wish/other_wish_user_detail_screen.dart';
@@ -50,12 +49,6 @@ List<RouteBase> get _routes => [
         name: AddBasicProfileScreen.routeName,
         builder: (context, _) => const AddBasicProfileScreen(),
       ),
-      // 프로필 등록 완료 페이지
-      GoRoute(
-        path: AddProfileCompleteScreen.routeLocation,
-        name: AddProfileCompleteScreen.routeName,
-        builder: (context, _) => const AddProfileCompleteScreen(),
-      ),
       // 회원 탈퇴 화면
       GoRoute(
         path: WithdrawalScreen.routeLocation,
@@ -70,9 +63,9 @@ List<RouteBase> get _routes => [
       ),
       // 프로필 수정 화면
       GoRoute(
-        path: ModifyScreen.routeLocation,
-        name: ModifyScreen.routeName,
-        builder: (context, _) => const ModifyScreen(),
+        path: EditProfileScreen.routeLocation,
+        name: EditProfileScreen.routeName,
+        builder: (context, _) => const EditProfileScreen(),
       ),
       // 옵션 프로필 정포 화면
       GoRoute(

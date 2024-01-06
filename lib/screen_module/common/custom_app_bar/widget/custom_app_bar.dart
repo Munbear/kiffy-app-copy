@@ -49,26 +49,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           : Image.asset("assets/images/kiffy_logo_purple.png", width: 69),
       actions: action,
     );
-    //   return Row(
-    //     children: [
-    //       const SizedBox(width: 20),
-    //       IconButton(
-    //         padding: EdgeInsets.zero,
-    //         onPressed: () => context.pop(),
-    //         icon: SvgPicture.asset("assets/svg/arrow_back.svg"),
-    //       ),
-    //       const Spacer(),
-    //       Text(
-    //         title,
-    //         style: TextStyle(
-    //           fontSize: fontSize,
-    //           fontWeight: FontWeight.w600,
-    //           color: titleColor,
-    //         ),
-    //       ),
-    //       const SizedBox(width: 32),
-    //       const Spacer(),
-    //     ],
-    //   );
   }
 }
