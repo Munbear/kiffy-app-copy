@@ -1,7 +1,6 @@
 import 'package:Kiffy/constant/main_tab_status.dart';
 import 'package:Kiffy/screen_module/main_screen_module/provider/main_screen_provider.dart';
 import 'package:Kiffy/screen_module/main_screen_module/widget/cutom_bottom_nav_bar.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -34,6 +33,7 @@ class _MainScreenBottomNavBarSectionState
           topRight: Radius.circular(20),
         ),
         child: BottomNavigationBar(
+          backgroundColor: Colors.white,
           onTap: (a) {
             ref
                 .read(currentScreenIndexProvider.notifier)
@@ -49,7 +49,7 @@ class _MainScreenBottomNavBarSectionState
                   iconPath: tab.tabIcon,
                   isFocus: tab.index == currentTabIndex,
                 ),
-                label: describeEnum(tab),
+                label: tab.value,
               );
             },
           ).toList(),

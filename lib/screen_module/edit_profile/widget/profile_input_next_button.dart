@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 
 class ProfileInputNextButton extends StatefulWidget {
   final VoidCallback onPressed;
-  String? text;
-  Color? color;
+  final String? text;
+  final Color? color;
 
-  ProfileInputNextButton(
-      {super.key, required this.onPressed, this.text, this.color});
+  const ProfileInputNextButton({
+    super.key,
+    required this.onPressed,
+    this.text,
+    this.color,
+  });
 
   @override
   State<ProfileInputNextButton> createState() => _ProfileInputNextButtonState();

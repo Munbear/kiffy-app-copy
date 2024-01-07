@@ -8,7 +8,7 @@ import 'package:dartlin/control_flow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-final modifyProfileInputValueProvider = StateNotifierProvider.autoDispose<
+final editProfileProvider = StateNotifierProvider.autoDispose<
     ModifyProfileInputValueNotifier, ModifyProfileInputValue>(
   (ref) => ModifyProfileInputValueNotifier(
     ModifyProfileInputValue.from(ref.read(myProvider).requireValue.profile!),

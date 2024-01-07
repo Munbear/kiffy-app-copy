@@ -2,12 +2,12 @@ import 'package:Kiffy/constant/option_profile_type.dart';
 import 'package:Kiffy/constant/zodiac_type.dart';
 import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';
-import 'package:Kiffy/screen_module/edit_profile/provider/option_profile_tag_provider.dart';
+import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
-import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_mbti_section.dart';
+import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_mbti.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_server_form.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_option_profile_text_form.dart';
-import 'package:Kiffy/screen_module/add_profile/widget/option_profile_selector.dart';
+import 'package:Kiffy/screen_module/add_profile/widget/zodiac_list.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -133,11 +133,11 @@ class EditOptionProfileScreen extends ConsumerWidget {
                           },
                         );
                       case OptionProfileType.mbti:
-                        return const AddOptionProfileMbtiSection(
+                        return const AddOptionProfileMbti(
                           hasDivider: false,
                         );
                       case OptionProfileType.zodiac:
-                        return ZodiacSelectorSection(
+                        return ZodiacList(
                           title: title,
                           itemList: Zodiac.values,
                           showDivider: false,

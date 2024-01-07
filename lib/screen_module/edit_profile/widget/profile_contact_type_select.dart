@@ -14,11 +14,11 @@ class ProfileContactTypeSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: ContactType.values.map((contactType) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: ContactType.values.map(
+          (contactType) {
             return GestureDetector(
               onTap: () {
                 onTap(contactType);
@@ -38,7 +38,7 @@ class ProfileContactTypeSelect extends StatelessWidget {
                       // icon Image
                       Container(
                         clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(shape: BoxShape.circle),
+                        decoration: const BoxDecoration(shape: BoxShape.circle),
                         child: ContactType.contactAppIcon(contactType),
                       ),
                       Container(
@@ -54,8 +54,8 @@ class ProfileContactTypeSelect extends StatelessWidget {
                 ),
               ),
             );
-          }).toList(),
-        ),
+          },
+        ).toList(),
       ),
     );
   }

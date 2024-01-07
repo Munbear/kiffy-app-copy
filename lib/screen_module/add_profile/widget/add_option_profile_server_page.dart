@@ -1,6 +1,6 @@
 import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
-import 'package:Kiffy/screen_module/edit_profile/provider/option_profile_tag_provider.dart';
+import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_server_form.dart';
 import 'package:flutter/material.dart';

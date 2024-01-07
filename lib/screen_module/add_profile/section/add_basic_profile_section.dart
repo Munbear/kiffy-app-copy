@@ -1,6 +1,6 @@
 import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';
-import 'package:Kiffy/screen_module/edit_profile/provider/option_profile_tag_provider.dart';
+import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_client_section.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_profile_complete_section.dart';
@@ -11,7 +11,7 @@ import 'package:Kiffy/screen_module/add_profile/widget/add_profile_input_images.
 import 'package:Kiffy/screen_module/add_profile/widget/add_profile_input_phone.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_profile_input_user.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_profile_loading.dart';
-import 'package:Kiffy/screen_module/edit_profile/widget/progress_gauge_bar.dart';
+import 'package:Kiffy/screen_module/add_profile/widget/progress_gauge_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -136,7 +136,7 @@ class _ProfileInputProcessSectionState
                 ),
 
                 /// 프로필 옵션 정보 입력 2 #6
-                AddOptionProfileClientSection(
+                AddOptionProfileClientPage(
                   onTap: () {
                     ref.read(profileInputValueProvider.notifier).setMbti(
                           ref.read(selectedMbitState),

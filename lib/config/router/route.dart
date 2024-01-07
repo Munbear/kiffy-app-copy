@@ -3,7 +3,7 @@ import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/withdraw_screen/withdraw_screen.dart';
 import 'package:Kiffy/screen/setting_screen/setting_screen.dart';
-import 'package:Kiffy/screen/edit_option_profile/optoin_profile_screen.dart';
+import 'package:Kiffy/screen/edit_option_profile/edit_option_profile_screen.dart';
 import 'package:Kiffy/screen/add_profile/add_basic_profile_screen.dart';
 import 'package:Kiffy/screen/edit_profile/edit_profile_screen.dart';
 import 'package:Kiffy/screen/sign/init_screen.dart';

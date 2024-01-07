@@ -1,20 +1,19 @@
-import 'package:Kiffy/constant/personality_type.dart';
+import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/constant/zodiac_type.dart';
 import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
-import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_personnality.dart';
-import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_mbti_section.dart';
+import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_mbti.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_option_profile_text_form.dart';
-import 'package:Kiffy/screen_module/add_profile/widget/option_profile_selector.dart';
+import 'package:Kiffy/screen_module/add_profile/widget/zodiac_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddOptionProfileClientSection extends ConsumerStatefulWidget {
+class AddOptionProfileClientPage extends ConsumerStatefulWidget {
   final VoidCallback onTap;
 
-  const AddOptionProfileClientSection({
+  const AddOptionProfileClientPage({
     super.key,
     required this.onTap,
   });
@@ -25,7 +24,7 @@ class AddOptionProfileClientSection extends ConsumerStatefulWidget {
 }
 
 class _AddOptionProfileClientPageState
-    extends ConsumerState<AddOptionProfileClientSection> {
+    extends ConsumerState<AddOptionProfileClientPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -93,25 +92,24 @@ class _AddOptionProfileClientPageState
             ),
 
             /// mbti
-            const AddOptionProfileMbtiSection(
+            const AddOptionProfileMbti(
               hasDivider: true,
             ),
 
             /// 별자리
-            const ZodiacSelectorSection(
+            const ZodiacList(
               title: "What's your zodiac sign?",
               itemList: Zodiac.values,
               showDivider: false,
             ),
-
-            const SizedBox(height: 20),
+            Gab.height20,
 
             MainBlueButton(
               onTap: () => widget.onTap(),
               text: "Next",
             ),
 
-            const SizedBox(height: 24),
+            Gab.height24,
           ],
         ),
       ),

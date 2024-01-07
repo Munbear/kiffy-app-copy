@@ -1,5 +1,5 @@
 import 'package:Kiffy/constant/mbti_type.dart';
-import 'package:Kiffy/screen_module/edit_profile/provider/option_profile_tag_provider.dart';
+import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';

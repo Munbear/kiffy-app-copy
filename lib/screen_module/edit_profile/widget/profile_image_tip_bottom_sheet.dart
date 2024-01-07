@@ -6,7 +6,7 @@ class ExampleProfileImageTipBottomSheet extends StatelessWidget {
 
   PageController controller = PageController(initialPage: 0);
 
-  List<String> items = [
+  static List<String> items = [
     "assets/images/dummy_image.jpg",
     "assets/images/dummy_image.jpg",
     "assets/images/dummy_image.jpg",

@@ -1,13 +1,13 @@
 import 'package:Kiffy/constant/edit_profile_type.dart';
 import 'package:Kiffy/constant/gender_type.dart';
 import 'package:Kiffy/constant/option_profile_type.dart';
-import 'package:Kiffy/screen/edit_option_profile/optoin_profile_screen.dart';
+import 'package:Kiffy/screen/edit_option_profile/edit_option_profile_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
-import 'package:Kiffy/screen_module/edit_profile/provider/modify_profile_input_provider.dart';
-import 'package:Kiffy/screen_module/edit_profile/widget/modify_profile_input_contact.dart';
-import 'package:Kiffy/screen_module/edit_profile/widget/modify_profile_input_images.dart';
-import 'package:Kiffy/screen_module/edit_profile/widget/modify_profile_input_intro.dart';
+import 'package:Kiffy/screen_module/edit_profile/provider/edit_profile_provider.dart';
+import 'package:Kiffy/screen_module/edit_profile/widget/edit_profile_input_contact.dart';
+import 'package:Kiffy/screen_module/edit_profile/widget/edit_profile_input_images.dart';
+import 'package:Kiffy/screen_module/edit_profile/widget/edit_profile_input_intro.dart';
 import 'package:Kiffy/screen_module/edit_profile/widget/profile_input_next_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -88,9 +88,7 @@ class ModifyBasicProfileSection extends ConsumerWidget {
   const ModifyBasicProfileSection({super.key});
 
   bool _verify(WidgetRef ref, Gender gender) {
-    if (!ref
-        .read(modifyProfileInputValueProvider.notifier)
-        .isMediaValidated()) {
+    if (!ref.read(editProfileProvider.notifier).isMediaValidated()) {
       Fluttertoast.showToast(
         msg: tr("text.profile.profile_input.media"),
         fontSize: 16,
@@ -102,9 +100,7 @@ class ModifyBasicProfileSection extends ConsumerWidget {
     }
 
     if (gender == Gender.MALE) {
-      if (!ref
-          .read(modifyProfileInputValueProvider.notifier)
-          .isContactIdValidated()) {
+      if (!ref.read(editProfileProvider.notifier).isContactIdValidated()) {
         Fluttertoast.showToast(
           msg: tr("text.profile.contact.contact_id.validation"),
           fontSize: 16,
@@ -115,9 +111,7 @@ class ModifyBasicProfileSection extends ConsumerWidget {
         return false;
       }
 
-      if (!ref
-          .read(modifyProfileInputValueProvider.notifier)
-          .isContactTypeValidated()) {
+      if (!ref.read(editProfileProvider.notifier).isContactTypeValidated()) {
         Fluttertoast.showToast(
           msg: tr("text.profile.contact.contact_type.validation"),
           fontSize: 16,
@@ -139,12 +133,12 @@ class ModifyBasicProfileSection extends ConsumerWidget {
     );
     return Column(
       children: [
-        const ModifyProfileInputImages(),
+        const EditProfileInputImages(),
         const Space(height: 20),
-        const ModifyProfileInputIntro(),
+        const EditProfileInputIntro(),
         const Space(height: 20),
         myProfile!.gender == GenderEnumView.MALE
-            ? const ModifyProfileInputContact()
+            ? const EditProfileInputContact()
             : const Space(),
         const Space(height: 20),
         ProfileInputNextButton(
@@ -155,7 +149,7 @@ class ModifyBasicProfileSection extends ConsumerWidget {
             }
 
             ref
-                .read(modifyProfileInputValueProvider.notifier)
+                .read(editProfileProvider.notifier)
                 .save()
                 .then((value) => Navigator.of(context).pop());
           },
@@ -229,7 +223,7 @@ class _ModifyProfileInputLoader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(modifyProfileInputValueProvider);
+    ref.watch(editProfileProvider);
     return child;
   }
 }

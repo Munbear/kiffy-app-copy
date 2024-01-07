@@ -1,6 +1,6 @@
 import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/constant/gender_type.dart';
-import 'package:Kiffy/screen_module/edit_profile/provider/option_profile_tag_provider.dart';
+import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_basic_profile_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
