@@ -1,5 +1,7 @@
 import 'package:Kiffy/constant/contact_type.dart';
 import 'package:Kiffy/constant/edit_profile_type.dart';
+import 'package:Kiffy/constant/mbti_type.dart';
+import 'package:Kiffy/constant/zodiac_type.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
@@ -64,9 +66,35 @@ class ModifyProfileInputValueNotifier
     return ref.read(profileInputValidatorProvider).verifyMedias(state.medias);
   }
 
+  void resetWeight(String height) {
+    state = state.copyWith(height: height);
+  }
+
+  void resetHeight(String weight) {
+    state = state.copyWith(weight: weight);
+  }
+
+  Future<void> resetProfile(
+    List<int> multiTags,
+    int? tag,
+    MBTI? mbti,
+    Zodiac? zodiac,
+  ) async {
+    List<int> newTags = List.from(multiTags);
+    if (tag != null) {
+      newTags.add(tag);
+    }
+
+    state = state.copyWith(
+      tags: newTags,
+      mbti: mbti,
+      zodiac: zodiac,
+    );
+  }
+
   Future<void> save() async {
-    await ref.read(openApiProvider).getMyApi().apiUserV1MyProfilePut(
-      editUserProfileRequest: EditUserProfileRequest((b) {
+    await ref.read(openApiProvider).getMyApi().apiUserV2MyProfilePut(
+      editUserProfileRequestV2: EditUserProfileRequestV2((b) {
         b.intro = state.intro;
         b.medias.addAll(
           state.medias.mapIndexed(
@@ -78,6 +106,10 @@ class ModifyProfileInputValueNotifier
             ),
           ),
         );
+        b.height = state.height;
+        b.weight = state.weight;
+        b.mbti = state.mbti?.convertToEnumView();
+        b.zodiac = state.zodiac?.convertToEnumView();
 
         if (state.contactType != null &&
             state.contactId != null &&
@@ -106,9 +138,9 @@ class ModifyProfileInputValue {
   List<MediaView> medias;
   String? height;
   String? weight;
-  String? mbti;
-  String? zodiac;
-  List<String>? tags;
+  MBTI? mbti;
+  Zodiac? zodiac;
+  List<int>? tags;
 
   ModifyProfileInputValue({
     required this.intro,
@@ -153,9 +185,9 @@ class ModifyProfileInputValue {
     List<MediaView>? medias,
     String? height,
     String? weight,
-    String? mbti,
-    String? zodiac,
-    List<String>? tags,
+    MBTI? mbti,
+    Zodiac? zodiac,
+    List<int>? tags,
   }) {
     return ModifyProfileInputValue(
       contactType: contactType ?? this.contactType,

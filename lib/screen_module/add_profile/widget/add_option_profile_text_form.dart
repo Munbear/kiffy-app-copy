@@ -1,7 +1,10 @@
+import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:flutter/material.dart';
 
 class AddOptionProfileTextForm extends StatelessWidget {
+  final String? initHeight;
+  final String? initWeight;
   final ValueChanged<String> onChagedTall;
   final ValueChanged<String> onChagedWeight;
 
@@ -9,6 +12,8 @@ class AddOptionProfileTextForm extends StatelessWidget {
     super.key,
     required this.onChagedTall,
     required this.onChagedWeight,
+    this.initHeight,
+    this.initWeight,
   });
 
   @override
@@ -48,15 +53,17 @@ class AddOptionProfileTextForm extends StatelessWidget {
           height: 48,
           child: TextFormField(
             onChanged: (tall) => onChagedTall(tall),
+            initialValue: initHeight,
             textAlignVertical: TextAlignVertical.center,
             keyboardType: TextInputType.number,
             style: const TextStyle(
               color: Color(0xFF0031AA),
             ),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              hintText: initHeight == null ? "키를 입력 해 주세요" : null,
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              enabledBorder: OutlineInputBorder(
+                  const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFFCECECE), width: 2),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(16),
@@ -64,7 +71,7 @@ class AddOptionProfileTextForm extends StatelessWidget {
                   bottomLeft: Radius.circular(16),
                 ),
               ),
-              disabledBorder: OutlineInputBorder(
+              disabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFF0031AA), width: 2),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(16),
@@ -72,7 +79,7 @@ class AddOptionProfileTextForm extends StatelessWidget {
                   bottomLeft: Radius.circular(16),
                 ),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFF0031AA), width: 2),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(16),
@@ -116,15 +123,17 @@ class AddOptionProfileTextForm extends StatelessWidget {
           height: 48,
           child: TextFormField(
             onChanged: (weight) => onChagedWeight(weight),
+            initialValue: initWeight,
             textAlignVertical: TextAlignVertical.center,
             keyboardType: TextInputType.number,
             style: const TextStyle(
               color: Color(0xFF0031AA),
             ),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              hintText: initWeight == null ? "몸무게를 입력해 주세요" : null,
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              enabledBorder: OutlineInputBorder(
+                  const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFFCECECE), width: 2),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(16),
@@ -132,7 +141,7 @@ class AddOptionProfileTextForm extends StatelessWidget {
                   bottomLeft: Radius.circular(16),
                 ),
               ),
-              disabledBorder: OutlineInputBorder(
+              disabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFF0031AA), width: 2),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(16),
@@ -140,7 +149,7 @@ class AddOptionProfileTextForm extends StatelessWidget {
                   bottomLeft: Radius.circular(16),
                 ),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFF0031AA), width: 2),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(16),
@@ -152,9 +161,10 @@ class AddOptionProfileTextForm extends StatelessWidget {
           ),
         ),
         // 구분선
-        const Space(height: 16),
+        Gab.height16,
+
         const Divider(),
-        const Space(height: 25),
+        Gab.height24
       ],
     );
   }

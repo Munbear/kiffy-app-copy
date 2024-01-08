@@ -176,10 +176,8 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
               })));
           b.mbti = state.mbti!.convertToEnumView();
           b.zodiac = state.zodiac!.convertToEnumView();
-          //TODO
-          // 키몸무게 필요
-          // b.tall = state.tall
-          // b.weight = state.weight
+          b.height = state.tall;
+          b.weight = state.weight;
         },
       ),
     );

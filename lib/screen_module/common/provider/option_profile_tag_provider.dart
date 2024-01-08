@@ -16,6 +16,16 @@ final optionProfileTagProvider =
   },
 );
 
+class Physical {
+  Physical({
+    required this.height,
+    required this.weight,
+  });
+
+  String height;
+  String weight;
+}
+
 // id 값 받기
 final multiSelecteState = StateProvider.autoDispose<List<int>>((ref) => []);
 // 남에게 듣는 성격 id

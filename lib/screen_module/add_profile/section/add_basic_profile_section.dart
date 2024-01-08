@@ -144,6 +144,7 @@ class _ProfileInputProcessSectionState
                     ref.read(profileInputValueProvider.notifier).setZodiac(
                           ref.read(selecteZodiac),
                         );
+
                     ref
                         .read(profileInputValidatorProvider)
                         .nextStep(isLastPage: true);

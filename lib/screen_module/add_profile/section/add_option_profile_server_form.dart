@@ -1,4 +1,5 @@
 import 'package:Kiffy/common/custom_chip.dart';
+import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
@@ -39,25 +40,27 @@ class OptionProfileSeverForm extends StatelessWidget {
         const Space(height: 10),
         Wrap(
           direction: Axis.vertical,
-          children: items.tags!.map(
-            (e) {
-              return Consumer(
-                builder: (context, ref, child) {
-                  List<int> selectedItems = ref.watch(multiSelecteState);
-                  int? seletedItem = ref.watch(singleSelecteState);
-                  return GestureDetector(
-                    onTap: () => onTap(e.id),
-                    child: CustomChip(
-                      isChecked: isMultiSelecte
-                          ? selectedItems.contains(e.id)
-                          : seletedItem == e.id,
-                      text: e.i18nKey.tr(),
-                    ),
-                  );
-                },
-              );
-            },
-          ).toList(),
+          children: items.tags != null
+              ? items.tags!.map(
+                  (e) {
+                    return Consumer(
+                      builder: (context, ref, child) {
+                        List<int> selectedItems = ref.watch(multiSelecteState);
+                        int? seletedItem = ref.watch(singleSelecteState);
+                        return GestureDetector(
+                          onTap: () => onTap(e.id),
+                          child: CustomChip(
+                            isChecked: isMultiSelecte
+                                ? selectedItems.contains(e.id)
+                                : seletedItem == e.id,
+                            text: e.i18nKey.tr(),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ).toList()
+              : [],
         ),
         if (hasDivider)
           Container(

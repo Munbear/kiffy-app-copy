@@ -1,16 +1,20 @@
+import 'package:Kiffy/constant/mbti_type.dart';
 import 'package:Kiffy/constant/option_profile_type.dart';
 import 'package:Kiffy/constant/zodiac_type.dart';
 import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';
+import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_mbti.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_server_form.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_option_profile_text_form.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/zodiac_list.dart';
+import 'package:Kiffy/screen_module/edit_profile/provider/edit_profile_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class EditOptionProfileScreen extends ConsumerWidget {
   static String get routeName => "editOptionProfile";
@@ -32,6 +36,10 @@ class EditOptionProfileScreen extends ConsumerWidget {
     } else if (items.hasError) {
       return const Text("Oops something wrong");
     }
+
+    final myProfile = ref.watch(
+      myProvider.select((value) => value.requireValue.profile),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -121,15 +129,17 @@ class EditOptionProfileScreen extends ConsumerWidget {
                         );
                       case OptionProfileType.physical:
                         return AddOptionProfileTextForm(
-                          onChagedTall: (tall) {
+                          initHeight: myProfile?.height,
+                          initWeight: myProfile?.weight,
+                          onChagedTall: (height) {
                             ref
-                                .read(profileInputValueProvider.notifier)
-                                .setTall(tall);
+                                .read(editProfileProvider.notifier)
+                                .resetHeight(height);
                           },
                           onChagedWeight: (weight) {
                             ref
-                                .read(profileInputValueProvider.notifier)
-                                .setWeight(weight);
+                                .read(editProfileProvider.notifier)
+                                .resetWeight(weight);
                           },
                         );
                       case OptionProfileType.mbti:
@@ -150,7 +160,22 @@ class EditOptionProfileScreen extends ConsumerWidget {
               ),
             ),
             MainBlueButton(
-              onTap: () {},
+              onTap: () {
+                ref
+                    .read(editProfileProvider.notifier)
+                    .resetProfile(
+                      ref.read(multiSelecteState),
+                      ref.read(singleSelecteState),
+                      ref.read(selectedMbitState),
+                      ref.read(selecteZodiac),
+                    )
+                    .then(
+                  (value) {
+                    ref.read(editProfileProvider.notifier).save();
+                    Navigator.pop(context);
+                  },
+                );
+              },
               text: "수정하기",
             ),
           ],

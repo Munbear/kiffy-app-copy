@@ -1,3 +1,4 @@
+import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
@@ -91,7 +92,7 @@ class AddOptionProfileServerPage extends ConsumerWidget {
               isMultiSelecte: true,
             ),
 
-            /// 찾는 관계 복수
+            // /// 찾는 관계 복수
             OptionProfileSeverForm(
               onTap: (id) {
                 ref
@@ -131,13 +132,13 @@ class AddOptionProfileServerPage extends ConsumerWidget {
               hasDivider: false,
               isMultiSelecte: true,
             ),
-            const Space(height: 24),
+            Gab.height24,
 
             MainBlueButton(
               onTap: () => onTap(),
               text: "Next",
             ),
-            const Space(height: 24),
+            Gab.height24,
           ],
         ),
       ),

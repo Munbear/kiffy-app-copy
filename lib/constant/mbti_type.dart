@@ -43,7 +43,7 @@ enum MBTI {
       case MBTI.ESTP:
         return MBTITypeEnumView.ESTP;
       case MBTI.ESFP:
-        return MBTITypeEnumView.ESEP;
+        return MBTITypeEnumView.ESFP;
       case MBTI.ENFP:
         return MBTITypeEnumView.ENFP;
       case MBTI.ENTP:
