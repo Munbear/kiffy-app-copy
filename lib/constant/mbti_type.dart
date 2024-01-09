@@ -1,5 +1,8 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:openapi/openapi.dart';
 
+// 대문자에서 소문자로 바궈도 서버랑 잘 매칭 됨
+// @JsonEnum(fieldRename: FieldRename.screamingSnake)
 enum MBTI {
   ISTJ(text: "ISTJ"),
   ISFJ(text: "ISFJ"),
@@ -21,6 +24,45 @@ enum MBTI {
   const MBTI({required this.text});
 
   final String text;
+
+  static MBTI? enumViewToEnum(MBTITypeEnumView? enumView) {
+    switch (enumView) {
+      case MBTITypeEnumView.ISTJ:
+        return MBTI.ISTJ;
+      case MBTITypeEnumView.ISFJ:
+        return MBTI.ISFJ;
+      case MBTITypeEnumView.INFJ:
+        return MBTI.INFJ;
+      case MBTITypeEnumView.INTJ:
+        return MBTI.INTJ;
+      case MBTITypeEnumView.ISTP:
+        return MBTI.ISTP;
+      case MBTITypeEnumView.ISFP:
+        return MBTI.ISFP;
+      case MBTITypeEnumView.INFP:
+        return MBTI.INFP;
+      case MBTITypeEnumView.INTP:
+        return MBTI.INTP;
+      case MBTITypeEnumView.ESTP:
+        return MBTI.ESTP;
+      case MBTITypeEnumView.ESFP:
+        return MBTI.ESFP;
+      case MBTITypeEnumView.ENFP:
+        return MBTI.ENFP;
+      case MBTITypeEnumView.ENTP:
+        return MBTI.ENTP;
+      case MBTITypeEnumView.ESTJ:
+        return MBTI.ESTJ;
+      case MBTITypeEnumView.ESFJ:
+        return MBTI.ESFJ;
+      case MBTITypeEnumView.ENFJ:
+        return MBTI.ENFJ;
+      case MBTITypeEnumView.ENTJ:
+        return MBTI.ENTJ;
+      default:
+        throw Exception();
+    }
+  }
 
   MBTITypeEnumView convertToEnumView() {
     switch (this) {

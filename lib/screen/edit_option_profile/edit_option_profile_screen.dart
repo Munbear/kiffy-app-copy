@@ -41,6 +41,7 @@ class EditOptionProfileScreen extends ConsumerWidget {
       myProvider.select((value) => value.requireValue.profile),
     );
 
+    myProfile?.zodiac;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -129,8 +130,6 @@ class EditOptionProfileScreen extends ConsumerWidget {
                         );
                       case OptionProfileType.physical:
                         return AddOptionProfileTextForm(
-                          initHeight: myProfile?.height,
-                          initWeight: myProfile?.weight,
                           onChagedTall: (height) {
                             ref
                                 .read(editProfileProvider.notifier)
@@ -141,16 +140,20 @@ class EditOptionProfileScreen extends ConsumerWidget {
                                 .read(editProfileProvider.notifier)
                                 .resetWeight(weight);
                           },
+                          initHeight: myProfile?.height,
+                          initWeight: myProfile?.weight,
                         );
                       case OptionProfileType.mbti:
-                        return const AddOptionProfileMbti(
+                        return AddOptionProfileMbti(
                           hasDivider: false,
+                          initValue: myProfile?.mbti,
                         );
                       case OptionProfileType.zodiac:
                         return ZodiacList(
                           title: title,
                           itemList: Zodiac.values,
                           showDivider: false,
+                          initValue: myProfile?.zodiac,
                         );
                       default:
                         return Container();

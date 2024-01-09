@@ -66,12 +66,12 @@ class ModifyProfileInputValueNotifier
     return ref.read(profileInputValidatorProvider).verifyMedias(state.medias);
   }
 
-  void resetWeight(String height) {
-    state = state.copyWith(height: height);
+  void resetWeight(String weight) {
+    state = state.copyWith(weight: weight);
   }
 
-  void resetHeight(String weight) {
-    state = state.copyWith(weight: weight);
+  void resetHeight(String height) {
+    state = state.copyWith(height: height);
   }
 
   Future<void> resetProfile(

@@ -49,4 +49,35 @@ enum Zodiac {
         throw Exception();
     }
   }
+
+  static Zodiac? enumViewToEnum(ZodiacTypeEnumView? enumView) {
+    switch (enumView) {
+      case ZodiacTypeEnumView.AQUARIUS:
+        return Zodiac.aquarius;
+      case ZodiacTypeEnumView.PISCES:
+        return Zodiac.pisces;
+      case ZodiacTypeEnumView.ARIES:
+        return Zodiac.aries;
+      case ZodiacTypeEnumView.TAURUS:
+        return Zodiac.taurus;
+      case ZodiacTypeEnumView.GEMINI:
+        return Zodiac.gemini;
+      case ZodiacTypeEnumView.CANCER:
+        return Zodiac.cancer;
+      case ZodiacTypeEnumView.LEO:
+        return Zodiac.leo;
+      case ZodiacTypeEnumView.VIRGO:
+        return Zodiac.virgo;
+      case ZodiacTypeEnumView.LIBRA:
+        return Zodiac.libra;
+      case ZodiacTypeEnumView.SCORPIO:
+        return Zodiac.scorpio;
+      case ZodiacTypeEnumView.SAGITTARIUS:
+        return Zodiac.sagittarius;
+      case ZodiacTypeEnumView.CAPRICORN:
+        return Zodiac.capricorn;
+      default:
+        throw Exception();
+    }
+  }
 }
