@@ -85,6 +85,7 @@ class ModifyProfileInputValueNotifier
       newTags.add(tag);
     }
 
+    print(newTags);
     state = state.copyWith(
       tags: newTags,
       mbti: mbti,
@@ -110,6 +111,9 @@ class ModifyProfileInputValueNotifier
         b.weight = state.weight;
         b.mbti = state.mbti?.convertToEnumView();
         b.zodiac = state.zodiac?.convertToEnumView();
+        b.tags.addAll(state.tags!.map((e) => TagRequestInner((b) {
+              b.id = e;
+            })));
 
         if (state.contactType != null &&
             state.contactId != null &&

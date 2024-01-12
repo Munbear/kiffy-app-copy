@@ -15,6 +15,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:openapi/openapi.dart';
 
 class EditOptionProfileScreen extends ConsumerWidget {
   static String get routeName => "editOptionProfile";
@@ -41,7 +42,19 @@ class EditOptionProfileScreen extends ConsumerWidget {
       myProvider.select((value) => value.requireValue.profile),
     );
 
-    myProfile?.zodiac;
+    final bb = myProfile?.tags?.tagTypes.map((p0) => p0.tags!.map((e) => e.id));
+    List<int> initOptionProfileInfo =
+        bb?.expand((element) => element).map((e) => e.toInt()).toList() ?? [];
+
+    // 성격 id
+    final optionPersonalityValue = myProfile?.tags?.tagTypes
+        .where((element) => element.tagType == TagTypeEnumView.PERSONALITY_TYPE)
+        .map((e) => e.tags?.map((p0) => p0.id))
+        .toString();
+    final cleanedString =
+        optionPersonalityValue!.replaceAll('(', '').replaceAll(')', '');
+    final initPersonalityValue = int.tryParse(cleanedString.trim());
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -87,6 +100,7 @@ class EditOptionProfileScreen extends ConsumerWidget {
                           },
                           title: title,
                           items: items.value![1],
+                          initOptionProfileValue: initOptionProfileInfo,
                           hasDivider: false,
                           isMultiSelecte: true,
                         );
@@ -99,6 +113,7 @@ class EditOptionProfileScreen extends ConsumerWidget {
                           },
                           title: title,
                           items: items.value![2],
+                          initPersonalityValue: initPersonalityValue,
                           hasDivider: false,
                           isMultiSelecte: false,
                         );
@@ -111,9 +126,10 @@ class EditOptionProfileScreen extends ConsumerWidget {
                                     ref.read(multiSelecteState), id);
                           },
                           title: title,
+                          initOptionProfileValue: initOptionProfileInfo,
                           items: items.value![3],
                           hasDivider: false,
-                          isMultiSelecte: false,
+                          isMultiSelecte: true,
                         );
                       case OptionProfileType.language:
                         return OptionProfileSeverForm(
@@ -125,6 +141,7 @@ class EditOptionProfileScreen extends ConsumerWidget {
                           },
                           title: "What language do you speak?",
                           items: items.value![0],
+                          initOptionProfileValue: initOptionProfileInfo,
                           hasDivider: false,
                           isMultiSelecte: true,
                         );
