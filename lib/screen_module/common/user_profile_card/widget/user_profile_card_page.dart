@@ -19,9 +19,26 @@ class UserProfileCardPage extends StatefulWidget {
 class _UserProfileCardPageState extends State<UserProfileCardPage> {
   double page = 0;
   PageController pageController = PageController(initialPage: 0);
+  late final ZodiacTypeEnumView? zodiac;
+  late final MBTITypeEnumView? mbti;
+  late final String? weight;
+  late final String? height;
+  late final List<String>? tags;
+  late final List<ProfileTagViewTagTypesInner>? tagTypes;
 
   @override
   void initState() {
+    zodiac = widget.userProfile.zodiac;
+    mbti = widget.userProfile.mbti;
+    weight = widget.userProfile.weight;
+    height = widget.userProfile.height;
+    tags = widget.userProfile.tags?.tagTypes
+        .map((e) => e.tags)
+        .map((e) => e?.map((e) => e.i18nKey))
+        .expand((element) => element!)
+        .toList();
+    tagTypes = widget.userProfile.tags?.tagTypes.toList();
+
     super.initState();
   }
 
@@ -32,14 +49,21 @@ class _UserProfileCardPageState extends State<UserProfileCardPage> {
     page = 0;
   }
 
-  List<Widget> UserProfilePageItems() {
+  List<Widget> userProfilePageItems() {
     return [
       ...widget.userProfile.medias
-          .mapIndexed((index, media) => UserProfileCardPageDefault(
+          .mapIndexed(
+            (index, media) => UserProfileCardPageDefault(
                 profileImageUrl: media.url,
                 name: widget.userProfile.name,
                 age: BirthDateUtil.getAge(widget.userProfile.birthDate),
-              ))
+                zodiac: zodiac,
+                mbti: mbti,
+                weight: weight,
+                height: height,
+                tags: tags,
+                tagTypes: tagTypes),
+          )
           .toList(),
       UserProfileCardPageIntro(
         profileImageUrl: widget.userProfile.medias.last.url,
@@ -50,7 +74,7 @@ class _UserProfileCardPageState extends State<UserProfileCardPage> {
 
   @override
   Widget build(BuildContext context) {
-    var pageItems = [...UserProfilePageItems()];
+    var pageItems = [...userProfilePageItems()];
 
     return Container(
       clipBehavior: Clip.hardEdge,
@@ -71,6 +95,8 @@ class _UserProfileCardPageState extends State<UserProfileCardPage> {
             controller: pageController,
             children: pageItems,
           ),
+
+          // 프로그레스 바
           SizedBox(
             height: 30,
             child: Center(
@@ -80,6 +106,7 @@ class _UserProfileCardPageState extends State<UserProfileCardPage> {
               ),
             ),
           ),
+          // 터치 영역
           PageControllerButton(
             prevButton: () async {
               await pageController.previousPage(
