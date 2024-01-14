@@ -9,8 +9,13 @@ import 'package:openapi/openapi.dart';
 
 class UserProfileCardPage extends StatefulWidget {
   final UserProfileView userProfile;
+  final bool isMyScreen;
 
-  const UserProfileCardPage({super.key, required this.userProfile});
+  const UserProfileCardPage({
+    super.key,
+    required this.userProfile,
+    this.isMyScreen = false,
+  });
 
   @override
   State<UserProfileCardPage> createState() => _UserProfileCardPageState();
@@ -54,15 +59,17 @@ class _UserProfileCardPageState extends State<UserProfileCardPage> {
       ...widget.userProfile.medias
           .mapIndexed(
             (index, media) => UserProfileCardPageDefault(
-                profileImageUrl: media.url,
-                name: widget.userProfile.name,
-                age: BirthDateUtil.getAge(widget.userProfile.birthDate),
-                zodiac: zodiac,
-                mbti: mbti,
-                weight: weight,
-                height: height,
-                tags: tags,
-                tagTypes: tagTypes),
+              profileImageUrl: media.url,
+              name: widget.userProfile.name,
+              age: BirthDateUtil.getAge(widget.userProfile.birthDate),
+              zodiac: zodiac,
+              mbti: mbti,
+              weight: weight,
+              height: height,
+              tags: tags,
+              tagTypes: tagTypes,
+              isMyScreen: widget.isMyScreen,
+            ),
           )
           .toList(),
       UserProfileCardPageIntro(

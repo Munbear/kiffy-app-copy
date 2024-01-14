@@ -17,6 +17,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 프로필 등록  프로그레스 바
 final progressGauge = StateProvider.autoDispose<double>((ref) => 0.0);
+final progressGaug2 = StateProvider.autoDispose<int>((ref) => 0);
 
 class AddBasicProfileSection extends ConsumerStatefulWidget {
   const AddBasicProfileSection({super.key});
@@ -53,15 +54,16 @@ class _ProfileInputProcessSectionState
           Expanded(
             child: PageView(
               controller: pageController,
-              physics: const NeverScrollableScrollPhysics(),
+              // physics: const NeverScrollableScrollPhysics(),
               children: [
                 /// 전화 번호 인증 #0
                 AddProfileInputPhone(
                   onNext: (phoneNumber) {
                     ref.read(profileInputValueProvider.notifier).setPhoneNumber(
                         phoneNumber.countryDialCode, phoneNumber.phoneNumber);
-                    ref.read(profileInputValidatorProvider).nextStep();
-                    // nextStep();
+                    ref.read(profileInputValidatorProvider).nextStep(
+                          currentPage: pageController.page!.toInt(),
+                        );
                   },
                 ),
 
@@ -71,8 +73,9 @@ class _ProfileInputProcessSectionState
                     ref
                         .read(profileInputValueProvider.notifier)
                         .setMedias(medias);
-                    ref.read(profileInputValidatorProvider).nextStep();
-                    // nextStep();
+                    ref.read(profileInputValidatorProvider).nextStep(
+                          currentPage: pageController.page!.toInt(),
+                        );
                   },
                 ),
 
@@ -88,12 +91,14 @@ class _ProfileInputProcessSectionState
 
                     switch (gender) {
                       case Gender.MALE:
-                        ref.read(profileInputValidatorProvider).nextStep();
+                        ref.read(profileInputValidatorProvider).nextStep(
+                            currentPage: pageController.page!.toInt());
                         break;
                       case Gender.FEMALE:
-                        ref
-                            .read(profileInputValidatorProvider)
-                            .nextStep(isFemale: true);
+                        ref.read(profileInputValidatorProvider).nextStep(
+                              isFemale: true,
+                              currentPage: pageController.page!.toInt() + 1,
+                            );
                         break;
                     }
                   },
@@ -108,7 +113,9 @@ class _ProfileInputProcessSectionState
                     ref
                         .read(profileInputValueProvider.notifier)
                         .setContactId(contactId);
-                    ref.read(profileInputValidatorProvider).nextStep();
+                    ref
+                        .read(profileInputValidatorProvider)
+                        .nextStep(currentPage: pageController.page!.toInt());
                     // nextStep();
                   },
                 ),
@@ -119,7 +126,9 @@ class _ProfileInputProcessSectionState
                     ref
                         .read(profileInputValueProvider.notifier)
                         .setBirthday(birthday);
-                    ref.read(profileInputValidatorProvider).nextStep();
+                    ref
+                        .read(profileInputValidatorProvider)
+                        .nextStep(currentPage: pageController.page!.toInt());
                     // nextStep();
                   },
                 ),
@@ -131,7 +140,9 @@ class _ProfileInputProcessSectionState
                           ref.read(multiSelecteState),
                           ref.read(singleSelecteState),
                         );
-                    ref.read(profileInputValidatorProvider).nextStep();
+                    ref.read(profileInputValidatorProvider).nextStep(
+                          currentPage: pageController.page!.toInt(),
+                        );
                   },
                 ),
 
@@ -145,16 +156,16 @@ class _ProfileInputProcessSectionState
                           ref.read(selecteZodiac),
                         );
 
-                    ref
-                        .read(profileInputValidatorProvider)
-                        .nextStep(isLastPage: true);
+                    ref.read(profileInputValidatorProvider).nextStep(
+                          isLastPage: true,
+                          currentPage: pageController.page!.toInt() + 1,
+                        );
                   },
                 ),
 
                 /// 로딩 화면 및 정보 저장 :: 프로필 옵션 스크린 다음 노출
                 AddProfileLoading(
                   onNext: () {
-                    //TODO 프로필 정보 선택 화면으로 이동
                     ref.read(profilePageController).nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeInOut);

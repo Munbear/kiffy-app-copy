@@ -60,7 +60,7 @@ class AddOptionProfileTextForm extends StatelessWidget {
               color: Color(0xFF0031AA),
             ),
             decoration: InputDecoration(
-              hintText: initHeight == null ? "키를 입력 해 주세요" : null,
+              hintText: initHeight == null ? "please enter your tall" : null,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               enabledBorder: const OutlineInputBorder(
@@ -130,7 +130,7 @@ class AddOptionProfileTextForm extends StatelessWidget {
               color: Color(0xFF0031AA),
             ),
             decoration: InputDecoration(
-              hintText: initWeight == null ? "몸무게를 입력해 주세요" : null,
+              hintText: initWeight == null ? "please enter your weight" : null,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               enabledBorder: const OutlineInputBorder(

@@ -79,8 +79,11 @@ class ProfileInputValidator {
     pageController.jumpToPage(4);
   }
 
-  void nextStep({bool isFemale = false, bool isLastPage = false}) {
+  void nextStep(
+      {bool isFemale = false, bool isLastPage = false, int currentPage = 0}) {
     final pageController = ref.read(profilePageController);
+    int pageValue = currentPage + 1;
+    int gaugeValue = (pageValue / 8 * 100).round();
 
     if (!isFemale) {
       pageController
@@ -91,16 +94,25 @@ class ProfileInputValidator {
           .then(
         (value) {
           if (!isLastPage) {
-            ref.read(progressGauge.notifier).update((state) => state + 0.16);
+            ref
+                .read(progressGaug2.notifier)
+                .update((state) => state = gaugeValue);
+            // ref.read(progressGauge.notifier).update((state) => state + 0.16);
           } else {
-            ref.read(progressGauge.notifier).update((state) => state + 0.04);
+            ref
+                .read(progressGaug2.notifier)
+                .update((state) => state = gaugeValue);
+            // ref.read(progressGauge.notifier).update((state) => state + 0.04);
           }
         },
       );
     } else {
       jumpPage().then(
         (value) {
-          ref.read(progressGauge.notifier).update((state) => state + 0.32);
+          ref
+              .read(progressGaug2.notifier)
+              .update((state) => state = gaugeValue);
+          // ref.read(progressGauge.notifier).update((state) => state + 0.32);
         },
       );
     }

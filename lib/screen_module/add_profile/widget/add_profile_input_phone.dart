@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
@@ -84,11 +86,11 @@ class ProfileInputPhoneVerifyPhoneNumberProcess extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          const Space(height: 16),
+          Gab.height16,
           const ProfileInputPhoneHeader(),
-          const Space(height: 20),
+          Gab.height20,
           ProfileInputPhoneCountryAndNumber(),
-          const Space(height: 20),
+          Gab.height20,
           ProfileInputNextButton(
             text: tr("text.profile.input_profile.phone.submit"),
             onPressed: () async {
@@ -143,9 +145,9 @@ class ProfileInputPhoneVerifyCodeProcess extends ConsumerWidget {
       child: Column(
         children: [
           const ProfileInputPhoneHeader(),
-          const Space(height: 20),
+          Gab.height20,
           ProfileInputPhoneCountryAndNumber(disable: true),
-          const Space(height: 20),
+          Gab.height20,
           const ProfileInputPhoneVerifyCodeProcessTimer(),
           KiffyTextField(
             hintText: "XXXXXX",
@@ -179,7 +181,10 @@ class ProfileInputPhoneVerifyCodeProcessTimer extends ConsumerWidget {
       alignment: Alignment.bottomLeft,
       child: Text(
         "${duration.inSeconds}",
-        style: TextStyle(fontSize: 12, color: Color(0xff0031AA)),
+        style: const TextStyle(
+          fontSize: 12,
+          color: Color(0xff0031AA),
+        ),
       ),
     );
   }
@@ -367,8 +372,10 @@ class ProfileInputPhoneCountryCodePicker extends StatelessWidget {
     return Container(
       height: 61,
       decoration: BoxDecoration(
-        color: disable != null && disable! ? Color(0xffe0e0e0) : Colors.white,
-        border: Border.all(color: Color(0xffcecece), width: 2.0),
+        color: disable != null && disable!
+            ? const Color(0xffe0e0e0)
+            : Colors.white,
+        border: Border.all(color: const Color(0xffcecece), width: 2.0),
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(15),
           bottomRight: Radius.circular(15),

@@ -35,7 +35,10 @@ class _AddOptionProfileClientPageState
           children: [
             GestureDetector(
               onTap: () {
-                ref.read(profileInputValidatorProvider).nextStep();
+                ref.read(profileInputValidatorProvider).nextStep(
+                      isLastPage: true,
+                      currentPage: 7,
+                    );
               },
               child: const Padding(
                 padding: EdgeInsets.only(top: 5),

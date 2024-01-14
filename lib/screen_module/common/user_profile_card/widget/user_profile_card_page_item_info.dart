@@ -101,10 +101,11 @@ class UserProfileCardPageItemInfo extends StatelessWidget {
                     );
                   },
                 ),
-              OptionProfilChip(
-                iconPath: OptionProfileType.physical.imagePath,
-                label: "$height/$weight",
-              ),
+              if (height != null && weight != null)
+                OptionProfilChip(
+                  iconPath: OptionProfileType.physical.imagePath,
+                  label: "$height/$weight",
+                ),
               if (mbti != null)
                 OptionProfilChip(
                   iconPath: OptionProfileType.mbti.imagePath,

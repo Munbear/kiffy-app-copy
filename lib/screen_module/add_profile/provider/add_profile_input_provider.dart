@@ -174,8 +174,8 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
           b.tags.addAll(state.tags!.map((e) => TagRequestInner((b) {
                 b.id = e;
               })));
-          b.mbti = state.mbti!.convertToEnumView();
-          b.zodiac = state.zodiac!.convertToEnumView();
+          b.mbti = state.mbti?.convertToEnumView();
+          b.zodiac = state.zodiac?.convertToEnumView();
           b.height = state.tall;
           b.weight = state.weight;
         },

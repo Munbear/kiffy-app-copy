@@ -32,7 +32,10 @@ class AddOptionProfileServerPage extends ConsumerWidget {
           children: [
             GestureDetector(
               onTap: () {
-                ref.read(profilePageController).jumpToPage(6);
+                // ref.read(profilePageController).jumpToPage(6);
+                ref
+                    .read(profileInputValidatorProvider)
+                    .nextStep(currentPage: 5);
               },
               child: const Padding(
                 padding: EdgeInsets.only(top: 4),

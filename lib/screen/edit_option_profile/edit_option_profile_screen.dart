@@ -196,7 +196,7 @@ class EditOptionProfileScreen extends ConsumerWidget {
                   },
                 );
               },
-              text: "수정하기",
+              text: "Edit",
             ),
           ],
         ),
