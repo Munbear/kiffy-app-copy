@@ -45,7 +45,7 @@ class KiffyImageFieldLoading extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       padding: const EdgeInsets.all(0),
       decoration: KiffyInputStyle.boxDecorationRounded(isBordered: true),
-      child: Center(
+      child: const Center(
         child: SizedBox(
           width: 14,
           height: 14,
@@ -85,20 +85,16 @@ class KiffyImageFieldEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        InkWell(
-          onTap: () {
-            addImage();
-          },
-          child: const Center(
-            child: Text(
-              "+",
-              style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)),
-            ),
-          ),
+    return InkWell(
+      onTap: () {
+        addImage();
+      },
+      child: const Center(
+        child: Text(
+          "+",
+          style: TextStyle(fontSize: 20, color: Color(0xFFCECECE)),
         ),
-      ],
+      ),
     );
   }
 }

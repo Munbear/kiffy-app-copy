@@ -51,7 +51,7 @@ class _ExploreUserCardSectionState
           ),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(16),
             ),
             child: const Skeleton(),
           ),

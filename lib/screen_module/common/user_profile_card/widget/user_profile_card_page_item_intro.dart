@@ -10,7 +10,7 @@ class UserProfileCardPageItemIntro extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
-        padding: EdgeInsets.only(left: 20, bottom: 20, right: 120),
+        padding: const EdgeInsets.only(left: 20, bottom: 20),
         width: MediaQuery.of(context).size.width,
         child: Text(
           intro,

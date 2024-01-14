@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
@@ -29,7 +30,7 @@ class MyProvider extends AsyncNotifier<MyInfo> {
     }
 
     try {
-      var profileResponse =
+      Response<UserProfileView> profileResponse =
           await ref.read(openApiProvider).getMyApi().apiUserV1MyProfileGet();
       if (profileResponse.statusCode != 200) {
         return;

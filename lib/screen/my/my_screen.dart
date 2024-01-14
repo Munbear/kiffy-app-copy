@@ -1,3 +1,4 @@
+import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/my/section/my_page_button_section.dart';
 import 'package:Kiffy/screen_module/my/section/my_profile_card_section.dart';
@@ -14,19 +15,11 @@ class MyScreen extends ConsumerStatefulWidget {
 class _MyPageState extends ConsumerState<MyScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        title: Image.asset(
-          width: 70,
-          height: 55,
-          "assets/images/kiffy_logo_purple.png",
-        ),
+    return const Scaffold(
+      appBar: CustomAppBar(
+        hasLeading: false,
       ),
-      body: const Column(
+      body: Column(
         children: [
           MyProfileCardSection(),
           Space(height: 16),

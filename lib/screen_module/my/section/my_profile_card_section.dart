@@ -40,8 +40,9 @@ class _MyProfileCardSectionState extends ConsumerState<MyProfileCardSection> {
         child: my.requireValue.profile != null
             ? UserProfileCardPage(
                 userProfile: my.requireValue.profile!,
+                isMyScreen: true,
               )
-            : Space(),
+            : const Space(),
       ),
     );
   }

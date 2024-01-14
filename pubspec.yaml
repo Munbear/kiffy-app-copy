@@ -43,6 +43,7 @@ dependencies:
   flutter_svg: ^1.1.6
   infinite_scroll_pagination: ^4.0.0
   shimmer: ^3.0.0
+  percent_indicator: ^4.2.3
 
   fluttertoast: ^8.2.4
 
@@ -50,7 +51,7 @@ dependencies:
   flutter_riverpod: ^2.4.3
 
   http: ^0.13.5
-  go_router: ^6.5.6
+  go_router: ^13.0.0
   easy_localization: ^3.0.1
   flutter_secure_storage: ^8.0.0
   freezed_annotation: ^2.2.0
@@ -66,7 +67,7 @@ dependencies:
     git:
       url: git@github.com:kiiffy/idl.git
       path: openapi/gen/api/dart-dio
-      ref: 4c8ea3d6f5ce8843d0b043038a76b90af44aa2be
+      ref: c2d5347ab5f3c0ede923e9136e7fcd286860fc0b
 
 dev_dependencies:
   flutter_test:

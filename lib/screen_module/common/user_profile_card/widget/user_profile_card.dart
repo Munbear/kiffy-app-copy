@@ -28,7 +28,7 @@ class _UserProfileCardState extends State<UserProfileCard> {
       children: [
         UserProfileCardPage(userProfile: widget.userProfile),
         Positioned(
-          right: 25,
+          right: 20,
           bottom: 20,
           child: Column(
             children: [
