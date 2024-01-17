@@ -54,7 +54,7 @@ class _ProfileInputProcessSectionState
           Expanded(
             child: PageView(
               controller: pageController,
-              // physics: const NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               children: [
                 /// 전화 번호 인증 #0
                 AddProfileInputPhone(
@@ -73,9 +73,14 @@ class _ProfileInputProcessSectionState
                     ref
                         .read(profileInputValueProvider.notifier)
                         .setMedias(medias);
-                    ref.read(profileInputValidatorProvider).nextStep(
-                          currentPage: pageController.page!.toInt(),
-                        );
+
+                    if (ref
+                        .read(profileInputValueProvider.notifier)
+                        .isMediasValidated()) {
+                      ref.read(profileInputValidatorProvider).nextStep(
+                            currentPage: pageController.page!.toInt(),
+                          );
+                    }
                   },
                 ),
 

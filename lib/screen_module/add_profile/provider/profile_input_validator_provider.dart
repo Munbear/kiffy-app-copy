@@ -19,10 +19,12 @@ class ProfileInputValidator {
     return nickname != null && nickname.isNotEmpty && nickname.length <= 20;
   }
 
+  // 성별
   bool verifyGender(Gender? gender) {
     return gender != null;
   }
 
+  // 이미지
   bool verifyMedias(List<MediaView> medias) {
     if (medias.length < 2) {
       return false;
