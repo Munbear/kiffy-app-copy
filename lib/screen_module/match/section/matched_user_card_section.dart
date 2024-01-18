@@ -1,7 +1,9 @@
+import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_card_skeleton.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_user_card.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -68,6 +70,34 @@ class _MatchedUserCardSectionState
             mainAxisSpacing: 6,
           ),
           builderDelegate: PagedChildBuilderDelegate<MatchedUserView>(
+            noItemsFoundIndicatorBuilder: (context) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "text.tag.be_more_matched_soon".tr(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(0xFF0031AA),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Gab.height4,
+                  Text(
+                    "text.tag.be_more_activity_and_explore_more".tr(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontFamily: 'AppleSDGothicNeoL00',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
+                  ),
+                ],
+              );
+            },
             firstPageProgressIndicatorBuilder: (context) {
               // 스켈레톤
               return const MatchingCardSkeleton();

@@ -17,13 +17,12 @@ class MatchingCardSkeleton extends StatelessWidget {
           6,
           (index) {
             return Container(
-                    height: 205,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(10),
-                    ))
-                .animate(onPlay: (controller) => controller.repeat())
-                .shimmer(
+              height: 205,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ).animate(onPlay: (controller) => controller.repeat()).shimmer(
                   duration: const Duration(milliseconds: 700),
                   curve: Curves.easeOutQuad,
                 );
