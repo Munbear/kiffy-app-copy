@@ -17,16 +17,14 @@ class _MainScreenBottomNavBarSectionState
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.14),
-            blurRadius: 20,
-            offset: const Offset(8, 0),
-          )
-        ],
-      ),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(20), boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.5),
+          offset: const Offset(0, 8),
+          blurRadius: 8,
+        ),
+      ]),
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),

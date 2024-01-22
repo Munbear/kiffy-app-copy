@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hasLeading;
   final String? title;
   final List<Widget>? action;
-  final double? elevation;
 
   const CustomAppBar({
     super.key,
     required this.hasLeading,
     this.title,
     this.action,
-    this.elevation = 0,
   }) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   @override
@@ -23,11 +18,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xffffffff),
       automaticallyImplyLeading: false,
       centerTitle: true,
-      titleSpacing: elevation,
-      elevation: elevation,
+      titleSpacing: 0,
       leading: hasLeading
           ? IconButton(
               padding: EdgeInsets.zero,

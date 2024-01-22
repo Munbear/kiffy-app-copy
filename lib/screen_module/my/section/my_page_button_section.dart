@@ -3,16 +3,10 @@ import 'package:Kiffy/screen/edit_profile/edit_profile_screen.dart';
 import 'package:Kiffy/screen_module/my/widget/my_page_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyButtonSection extends ConsumerStatefulWidget {
+class MyButtonSection extends StatelessWidget {
   const MyButtonSection({super.key});
 
-  @override
-  ConsumerState<MyButtonSection> createState() => _MyButtonSectionState();
-}
-
-class _MyButtonSectionState extends ConsumerState<MyButtonSection> {
   @override
   Widget build(BuildContext context) {
     return Padding(

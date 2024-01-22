@@ -28,11 +28,6 @@ class SettingButton extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 icon,
-                // Image(
-                //   width: 22,
-                //   height: 22,
-                //   image: AssetImage(IconPath),
-                // ),
                 const SizedBox(width: 14),
                 Text(text),
               ],

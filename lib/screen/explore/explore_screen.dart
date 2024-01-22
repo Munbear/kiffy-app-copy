@@ -8,11 +8,11 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: Colors.white,
-        elevation: 0.5,
         title: Image.asset(
           width: 70,
           height: 55,
