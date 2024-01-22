@@ -7,12 +7,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hasLeading;
   final String? title;
   final List<Widget>? action;
+  final double? elevation;
 
   const CustomAppBar({
     super.key,
     required this.hasLeading,
     this.title,
     this.action,
+    this.elevation = 0,
   }) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   @override
@@ -24,8 +26,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
       centerTitle: true,
-      titleSpacing: 0,
-      elevation: 0,
+      titleSpacing: elevation,
+      elevation: elevation,
       leading: hasLeading
           ? IconButton(
               padding: EdgeInsets.zero,
