@@ -2,12 +2,14 @@ import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page_default.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page_indicator.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page_intro.dart';
+import 'package:Kiffy/screen_module/explore/provider/explore_users_provider.dart';
 import 'package:Kiffy/util/BirthDateUtil.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-class UserProfileCardPage extends StatefulWidget {
+class UserProfileCardPage extends ConsumerStatefulWidget {
   final UserProfileView userProfile;
   final bool isMyScreen;
 
@@ -18,10 +20,11 @@ class UserProfileCardPage extends StatefulWidget {
   });
 
   @override
-  State<UserProfileCardPage> createState() => _UserProfileCardPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UserProfileCardPageState();
 }
 
-class _UserProfileCardPageState extends State<UserProfileCardPage> {
+class _UserProfileCardPageState extends ConsumerState<UserProfileCardPage> {
   double page = 0;
   PageController pageController = PageController(initialPage: 0);
   late final ZodiacTypeEnumView? zodiac;
@@ -48,41 +51,15 @@ class _UserProfileCardPageState extends State<UserProfileCardPage> {
   }
 
   @override
-  void didUpdateWidget(_) {
-    super.didUpdateWidget(_);
+  void didUpdateWidget(covariant UserProfileCardPage oldWidget) {
+    // TODO: implement didUpdateWidget
     pageController.jumpToPage(0);
-    page = 0;
-  }
-
-  List<Widget> userProfilePageItems() {
-    return [
-      ...widget.userProfile.medias
-          .mapIndexed(
-            (index, media) => UserProfileCardPageDefault(
-              profileImageUrl: media.url,
-              name: widget.userProfile.name,
-              age: BirthDateUtil.getAge(widget.userProfile.birthDate),
-              zodiac: zodiac,
-              mbti: mbti,
-              weight: weight,
-              height: height,
-              tags: tags,
-              tagTypes: tagTypes,
-              isMyScreen: widget.isMyScreen,
-            ),
-          )
-          .toList(),
-      UserProfileCardPageIntro(
-        profileImageUrl: widget.userProfile.medias.last.url,
-        intro: widget.userProfile.intro,
-      )
-    ];
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
-    var pageItems = [...userProfilePageItems()];
-
+    final currenteImagePage = ref.watch(currentImagePage);
     return Container(
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
@@ -92,7 +69,28 @@ class _UserProfileCardPageState extends State<UserProfileCardPage> {
         children: [
           PageView(
             controller: pageController,
-            children: pageItems,
+            children: [
+              ...widget.userProfile.medias
+                  .mapIndexed(
+                    (index, media) => UserProfileCardPageDefault(
+                      profileImageUrl: media.url,
+                      name: widget.userProfile.name,
+                      age: BirthDateUtil.getAge(widget.userProfile.birthDate),
+                      zodiac: zodiac,
+                      mbti: mbti,
+                      weight: weight,
+                      height: height,
+                      tags: tags,
+                      tagTypes: tagTypes,
+                      isMyScreen: widget.isMyScreen,
+                    ),
+                  )
+                  .toList(),
+              UserProfileCardPageIntro(
+                profileImageUrl: widget.userProfile.medias.last.url,
+                intro: widget.userProfile.intro,
+              )
+            ],
           ),
 
           // 프로그레스 바
@@ -100,30 +98,38 @@ class _UserProfileCardPageState extends State<UserProfileCardPage> {
             height: 30,
             child: Center(
               child: UserProfileCardPageIndicator(
-                page: page,
-                totalPage: pageItems.length,
+                page: currenteImagePage, // page
+                totalPage: widget.userProfile.medias.length + 1,
               ),
             ),
           ),
           // 터치 영역
           PageControllerButton(
-            prevButton: () async {
-              await pageController.previousPage(
+            prevButton: () {
+              pageController
+                  .previousPage(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-              );
-              setState(() {
-                page = pageController.page ?? 0.0;
+              )
+                  .then((value) {
+                ref
+                    .read(currentImagePage.notifier)
+                    .update((state) => state = pageController.page ?? 0.0);
               });
             },
-            nextButton: () async {
-              await pageController.nextPage(
+            nextButton: () {
+              pageController
+                  .nextPage(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
+              )
+                  .then(
+                (value) {
+                  ref
+                      .read(currentImagePage.notifier)
+                      .update((state) => state = pageController.page ?? 0.0);
+                },
               );
-              setState(() {
-                page = pageController.page ?? 0.0;
-              });
             },
           ),
         ],

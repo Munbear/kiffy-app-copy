@@ -36,3 +36,5 @@ class ExploreUsersProvider extends AutoDisposeAsyncNotifier<ExploreUsers> {
     state = AsyncData(ExploreUsers(userProfiles: response.data!.list.toList()));
   }
 }
+
+final currentImagePage = StateProvider.autoDispose<double>((ref) => 0.0);

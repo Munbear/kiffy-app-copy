@@ -14,14 +14,14 @@ class UserProfileCardPageIndicator extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       child: Container(
         width: 100,
-        height: 3,
+        height: 4,
         color: Colors.white.withOpacity(0.5),
         alignment: Alignment.centerLeft,
         child: Container(
           width: 100 / totalPage,
-          height: 3,
+          height: 4,
           color: Colors.white,
-        ).animate().slideX(begin: 0.0, end: page.toDouble()),
+        ).animate().slideX(begin: 0.0, end: page),
       ),
     );
   }

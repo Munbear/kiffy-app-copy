@@ -43,12 +43,7 @@ class _ExploreUserCardSectionState
         exploreUsers.isReloading) {
       return Expanded(
         child: Container(
-          padding: const EdgeInsets.only(
-            top: 20,
-            left: 20,
-            right: 20,
-            bottom: 40,
-          ),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -62,12 +57,7 @@ class _ExploreUserCardSectionState
     if (exploreUsers.requireValue.userProfiles.isEmpty) {
       return Expanded(
         child: Container(
-          padding: const EdgeInsets.only(
-            top: 20,
-            left: 20,
-            right: 20,
-            bottom: 40,
-          ),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
           child: const ExploreUserCardEmpty(),
         ),
       );
@@ -75,12 +65,7 @@ class _ExploreUserCardSectionState
 
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.only(
-          top: 20,
-          left: 20,
-          right: 20,
-          bottom: 40,
-        ),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
         child: CardSwiper(
           controller: controller,
           allowedSwipeDirection: const AllowedSwipeDirection.none(),
