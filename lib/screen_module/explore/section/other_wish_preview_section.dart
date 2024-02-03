@@ -1,5 +1,5 @@
 import 'package:Kiffy/screen/wish/other_wish_user_detail_screen.dart';
-import 'package:Kiffy/screen_module/common/other_wish_user/widget/other_wish_preview_chips.dart';
+import 'package:Kiffy/screen_module/explore/widget/other_wish_preview_chips.dart';
 import 'package:Kiffy/screen_module/explore/provider/explore_users_provider.dart';
 import 'package:Kiffy/screen_module/wish/provider/other_wish_users_reader.dart';
 import 'package:Kiffy/screen_module/wish/provider/wish_remain_calculator.dart';
