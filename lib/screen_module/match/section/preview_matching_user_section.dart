@@ -30,64 +30,74 @@ class _PreviewMatchingUserSectionState
         itemCount: testIndex + 1,
         itemBuilder: (context, index) {
           if (index == testIndex) {
-            return Column(
-              children: [
-                GestureDetector(
-                  child: Container(
-                    width: 64,
-                    height: 64,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey[200]!,
+            return GestureDetector(
+              onTap: () {
+                print("매칭 상세화면을 이동");
+              },
+              child: Column(
+                children: [
+                  GestureDetector(
+                    child: Container(
+                      width: 64,
+                      height: 64,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey[200]!,
+                      ),
+                      child: const Icon(Icons.people),
                     ),
-                    child: const Icon(Icons.people),
                   ),
-                ),
-                SizedBox(
-                  width: 72,
-                  child: Text(
-                    "more",
-                    style: textStyle.titleSmall,
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  SizedBox(
+                    width: 72,
+                    child: Text(
+                      "more",
+                      style: textStyle.titleSmall,
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           }
 
           return Column(
             children: [
-              Container(
-                width: 64,
-                height: 64,
-                padding: const EdgeInsets.all(2),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  // 프로필 확인 했을 때
-                  // color: Colors.grey[300]!,
-                  // 프로필 확인 안했을 때
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xffBA00ff),
-                      Color(0xff0031AA),
-                    ],
-                  ),
-                ),
+              GestureDetector(
+                onTap: () {
+                  print("user deatil profile");
+                },
                 child: Container(
+                  width: 64,
+                  height: 64,
                   padding: const EdgeInsets.all(2),
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white,
+                    // 프로필 확인 했을 때
+                    // color: Colors.grey[300]!,
+                    // 프로필 확인 안했을 때
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xffBA00ff),
+                        Color(0xff0031AA),
+                      ],
+                    ),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.asset(
-                      "assets/images/test_image.png",
-                      fit: BoxFit.cover,
+                  child: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        "assets/images/test_image.png",
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
