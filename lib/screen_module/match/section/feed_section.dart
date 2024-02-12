@@ -1,6 +1,9 @@
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
+
+typedef Preview = List<Map<String, dynamic>>;
 
 class FeedSection extends ConsumerStatefulWidget {
   const FeedSection({super.key});
@@ -21,11 +24,17 @@ class _FeedSectionState extends ConsumerState<FeedSection> {
     "assets/images/test_image.png",
   ];
 
+  Preview aaa = [
+    {"aaa": "bbb", "cccc": "dddd"},
+    {"aaa": "bbb", "cccc": "dddd"},
+  ];
+
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
     return ListView.builder(
       itemCount: 10,
+      physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,7 +55,7 @@ class _FeedSectionState extends ConsumerState<FeedSection> {
                       ),
                     ),
                   ),
-                  Gab.width6,
+                  Gab.width8,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -71,26 +80,23 @@ class _FeedSectionState extends ConsumerState<FeedSection> {
             // feed photo
             AspectRatio(
               aspectRatio: 1 / 1,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                // TODO 스크롤 애니메이션 변경
-                physics: PageScrollPhysics(),
-                itemCount: testImages.length,
-                itemBuilder: (context, index) {
-                  final image = testImages[index];
-                  return Image.asset(
-                    image,
-                    fit: BoxFit.cover,
-                  );
-                },
+              child: PageView(
+                children: testImages.map(
+                  (item) {
+                    return Image.asset(
+                      item,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ).toList(),
               ),
             ),
             Gab.height8,
             // comment
-            const Row(
+            Row(
               children: [
                 Gab.width16,
-                Icon(Icons.mode_comment_outlined),
+                SvgPicture.asset("assets/svg/icn_comment.svg"),
                 Gab.width4,
                 Text("6"),
               ],
@@ -104,6 +110,42 @@ class _FeedSectionState extends ConsumerState<FeedSection> {
               ),
             ),
             Gab.height12,
+            // 댓글
+            GestureDetector(
+              onTap: () {
+                print("댓글 보기");
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  "View all comments",
+                  style: textStyle.labelMedium!.apply(color: Colors.grey[500]),
+                ),
+              ),
+            ),
+            Gab.height4,
+
+            // 댓글 미리보기
+            ...aaa.map((preview) {
+              print(preview);
+              return Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Row(
+                  children: [
+                    Text(
+                      "kiffy",
+                      style: textStyle.labelLarge,
+                    ),
+                    Gab.width8,
+                    Text(
+                      "Hello world",
+                      style:
+                          textStyle.labelMedium!.apply(color: Colors.grey[700]),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ],
         );
       },
