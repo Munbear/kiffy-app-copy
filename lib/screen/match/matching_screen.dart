@@ -7,6 +7,7 @@ import 'package:Kiffy/screen_module/match/section/matched_user_card_section.dart
 import 'package:Kiffy/screen_module/match/section/preview_matching_user_section.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class MatchingScreen extends StatelessWidget {
   const MatchingScreen({
@@ -38,7 +39,30 @@ class MatchingScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         onPressed: () {},
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Container(
+          width: 48,
+          height: 48,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xffBA00FF),
+                Color(0xff0031AA),
+              ],
+            ),
+          ),
+          child: Center(
+            child: SvgPicture.asset("assets/svg/icn_write.svg"),
+          ),
+        ),
       ),
     );
   }
