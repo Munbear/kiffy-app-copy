@@ -1,4 +1,5 @@
 import 'package:Kiffy/constant/option_profile_type.dart';
+import 'package:Kiffy/screen/create_feed/create_feed_screen.dart';
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/withdraw_screen/withdraw_screen.dart';
@@ -105,5 +106,10 @@ List<RouteBase> get _routes => [
           wishId: state.uri.queryParameters["wishId"],
           // wishId: state.params["wishId"],
         ),
+      ),
+      GoRoute(
+        path: CreateFeedScreen.routeLocation,
+        name: CreateFeedScreen.routeName,
+        builder: (context, _) => const CreateFeedScreen(),
       ),
     ];

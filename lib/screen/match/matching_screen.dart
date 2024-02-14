@@ -1,4 +1,5 @@
 import 'package:Kiffy/constant/style/gab.dart';
+import 'package:Kiffy/screen/create_feed/create_feed_screen.dart';
 import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
 import 'package:Kiffy/screen_module/common/google_admob/admob_banner_widget.dart';
 import 'package:Kiffy/screen_module/explore/section/other_wish_preview_section.dart';
@@ -8,6 +9,7 @@ import 'package:Kiffy/screen_module/match/section/preview_matching_user_section.
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class MatchingScreen extends StatelessWidget {
   const MatchingScreen({
@@ -40,7 +42,9 @@ class MatchingScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
-        onPressed: () {},
+        onPressed: () {
+          context.pushNamed(CreateFeedScreen.routeName);
+        },
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
