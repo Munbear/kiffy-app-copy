@@ -1,7 +1,9 @@
 import 'package:Kiffy/constant/style/gab.dart';
+import 'package:Kiffy/screen/custom_album/custom_album_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateFeedScreen extends StatelessWidget {
   static String get routeName => 'createFeed';
@@ -131,7 +133,9 @@ class CreateFeedScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pushNamed(CustomAlbumScreen.routeName);
+                    },
                     icon: SvgPicture.asset("assets/svg/gallery.svg"),
                   ),
                   Text(
