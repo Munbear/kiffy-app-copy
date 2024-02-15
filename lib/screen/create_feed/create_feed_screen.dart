@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen/custom_album/custom_album_screen.dart';
 import 'package:flutter/material.dart';
@@ -134,7 +136,8 @@ class CreateFeedScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      context.pushNamed(CustomAlbumScreen.routeName);
+                      context
+                          .pushNamed<List<File>?>(CustomAlbumScreen.routeName);
                     },
                     icon: SvgPicture.asset("assets/svg/gallery.svg"),
                   ),
