@@ -113,9 +113,4 @@ List<RouteBase> get _routes => [
         name: CreateFeedScreen.routeName,
         builder: (context, _) => const CreateFeedScreen(),
       ),
-      GoRoute(
-        path: CustomAlbumScreen.routeLocation,
-        name: CustomAlbumScreen.routeName,
-        builder: (context, _) => const CustomAlbumScreen(),
-      ),
     ];

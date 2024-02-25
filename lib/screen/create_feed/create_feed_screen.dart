@@ -1,17 +1,45 @@
 import 'dart:io';
 
 import 'package:Kiffy/constant/style/gab.dart';
-import 'package:Kiffy/screen/custom_album/custom_album_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 
-class CreateFeedScreen extends StatelessWidget {
+class CreateFeedScreen extends StatefulWidget {
   static String get routeName => 'createFeed';
   static String get routeLocation => '/createFeed';
 
   const CreateFeedScreen({super.key});
+
+  @override
+  State<CreateFeedScreen> createState() => _CreateFeedScreenState();
+}
+
+class _CreateFeedScreenState extends State<CreateFeedScreen> {
+  List<XFile> selectedImages = [];
+
+  Future<void> getLostData() async {
+    final ImagePicker picker = ImagePicker();
+    List<XFile>? images = await picker.pickMultiImage();
+    if (images.length > 10) {
+      Fluttertoast.showToast(
+          msg: "사진은 최대 10까지 선택 가능 합니다.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+      images.clear();
+    } else {
+      setState(() {
+        selectedImages = images;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,25 +129,42 @@ class CreateFeedScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+            // 업로드 할 이미지 프리뷰
             SizedBox(
               height: 128,
               child: ListView.separated(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: selectedImages.length,
                 separatorBuilder: (context, index) {
                   return Gab.width4;
                 },
                 itemBuilder: (context, index) {
+                  final image = selectedImages[index].path;
                   return Stack(
                     children: [
                       SizedBox(
                         width: 112,
                         height: 112,
-                        child: Image.asset(
-                          "assets/images/test_image.png",
+                        child: Image.file(
+                          File(image),
                           fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              selectedImages.remove(selectedImages[index]);
+                            });
+                          },
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
                         ),
                       )
                     ],
@@ -127,6 +172,7 @@ class CreateFeedScreen extends StatelessWidget {
                 },
               ),
             ),
+
             // 사진 불러오기 영역
             Container(
               color: Colors.grey[200],
@@ -136,8 +182,9 @@ class CreateFeedScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      context
-                          .pushNamed<List<File>?>(CustomAlbumScreen.routeName);
+                      getLostData();
+                      // context
+                      //     .pushNamed<List<File>?>(CustomAlbumScreen.routeName);
                     },
                     icon: SvgPicture.asset("assets/svg/gallery.svg"),
                   ),

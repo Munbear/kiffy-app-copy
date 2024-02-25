@@ -44,7 +44,6 @@ dependencies:
   infinite_scroll_pagination: ^4.0.0
   shimmer: ^3.0.0
   percent_indicator: ^4.2.3
-  photo_manager: ^3.0.0-dev.4
 
   fluttertoast: ^8.2.4
 
