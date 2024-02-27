@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreateFeedScreen extends StatefulWidget {
@@ -42,47 +44,55 @@ class _CreateFeedScreenState extends State<CreateFeedScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
+    final iconButtonStyle = Theme.of(context).iconButtonTheme;
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        leadingWidth: 96,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: TextButton(
+            onPressed: () {
+              context.pop();
+            },
+            child: Text(
+              "cancel",
+              style: textStyle.titleSmall,
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+                padding: EdgeInsets.zero,
+                backgroundColor: const Color(0xff0031AA),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                "Share",
+                style: textStyle.titleSmall!.apply(color: Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 헤더
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Cancel",
-                      style: textStyle.bodyMedium!.apply(color: Colors.red),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      backgroundColor: const Color(0xff0031AA),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Text(
-                      "Share",
-                      style: textStyle.bodySmall!.apply(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // 포스팅 컨트롤 바
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -105,23 +115,27 @@ class _CreateFeedScreenState extends State<CreateFeedScreen> {
                           ),
                           Gab.width12,
                           Text(
-                            "userName",
-                            style: textStyle.bodyMedium,
+                            "kiffy",
+                            style: textStyle.titleSmall,
                           )
                         ],
                       ),
                       Gab.height12,
-                      const Divider(),
+                      // divider
+                      Container(height: 1, color: Colors.grey[400]),
                       // 텍스트 영역
                       TextFormField(
+                        autofocus: true,
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(500),
                         ],
                         maxLines: null,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
+                          hintStyle: textStyle.bodyLarge!
+                              .apply(color: Colors.grey[400]),
                           contentPadding: EdgeInsets.zero,
                           border: InputBorder.none,
-                          hintText: "내용을 입력해 주세요",
+                          hintText: "write here",
                         ),
                       ),
                     ],
@@ -144,29 +158,43 @@ class _CreateFeedScreenState extends State<CreateFeedScreen> {
                   final image = selectedImages[index].path;
                   return Stack(
                     children: [
-                      SizedBox(
-                        width: 112,
-                        height: 112,
-                        child: Image.file(
-                          File(image),
-                          fit: BoxFit.cover,
+                      ShaderMask(
+                        blendMode: BlendMode.srcATop,
+                        shaderCallback: (Rect bound) {
+                          return LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Colors.transparent,
+                              Colors.black.withOpacity(0.4),
+                            ],
+                            stops: const [0.8, 1],
+                          ).createShader(bound);
+                        },
+                        child: SizedBox(
+                          width: 112,
+                          height: 112,
+                          child: Image.file(
+                            File(image),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       Positioned(
-                        top: 0,
-                        right: 0,
+                        top: -10,
+                        right: -10,
                         child: IconButton(
                           onPressed: () {
                             setState(() {
                               selectedImages.remove(selectedImages[index]);
                             });
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.close,
                             color: Colors.white,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   );
                 },
@@ -183,8 +211,6 @@ class _CreateFeedScreenState extends State<CreateFeedScreen> {
                   IconButton(
                     onPressed: () {
                       getLostData();
-                      // context
-                      //     .pushNamed<List<File>?>(CustomAlbumScreen.routeName);
                     },
                     icon: SvgPicture.asset("assets/svg/gallery.svg"),
                   ),
