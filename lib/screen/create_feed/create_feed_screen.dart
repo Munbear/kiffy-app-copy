@@ -145,81 +145,116 @@ class _CreateFeedScreenState extends State<CreateFeedScreen> {
             ),
 
             // 업로드 할 이미지 프리뷰
-            SizedBox(
+            Container(
               height: 128,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: Colors.grey[200]!,
+                  ),
+                ),
+              ),
               child: ListView.separated(
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                 scrollDirection: Axis.horizontal,
-                itemCount: selectedImages.length,
-                separatorBuilder: (context, index) {
-                  return Gab.width4;
-                },
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                itemCount: 5,
                 itemBuilder: (context, index) {
-                  final image = selectedImages[index].path;
-                  return Stack(
-                    children: [
-                      ShaderMask(
-                        blendMode: BlendMode.srcATop,
-                        shaderCallback: (Rect bound) {
-                          return LinearGradient(
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withOpacity(0.4),
-                            ],
-                            stops: const [0.8, 1],
-                          ).createShader(bound);
-                        },
-                        child: SizedBox(
-                          width: 112,
-                          height: 112,
-                          child: Image.file(
-                            File(image),
-                            fit: BoxFit.cover,
-                          ),
+                  return Material(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(12),
+                    child: InkWell(
+                      onTap: () {},
+                      borderRadius: BorderRadius.circular(12),
+                      child: SizedBox(
+                        width: 128,
+                        child: Center(
+                          child: SvgPicture.asset("assets/svg/gallery.svg"),
                         ),
                       ),
-                      Positioned(
-                        top: -10,
-                        right: -10,
-                        child: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              selectedImages.remove(selectedImages[index]);
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.close,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   );
                 },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(width: 4);
+                },
               ),
             ),
+            // SizedBox(
+            //   height: 128,
+            //   child: ListView.separated(
+            //     padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+            //     scrollDirection: Axis.horizontal,
+            //     itemCount: selectedImages.length,
+            //     separatorBuilder: (context, index) {
+            //       return Gab.width4;
+            //     },
+            //     itemBuilder: (context, index) {
+            //       final image = selectedImages[index].path;
+            //       return Stack(
+            //         children: [
+            //           ShaderMask(
+            //             blendMode: BlendMode.srcATop,
+            //             shaderCallback: (Rect bound) {
+            //               return LinearGradient(
+            //                 begin: Alignment.bottomLeft,
+            //                 end: Alignment.topRight,
+            //                 colors: [
+            //                   Colors.transparent,
+            //                   Colors.black.withOpacity(0.4),
+            //                 ],
+            //                 stops: const [0.8, 1],
+            //               ).createShader(bound);
+            //             },
+            //             child: SizedBox(
+            //               width: 112,
+            //               height: 112,
+            //               child: Image.file(
+            //                 File(image),
+            //                 fit: BoxFit.cover,
+            //               ),
+            //             ),
+            //           ),
+            //           Positioned(
+            //             top: -10,
+            //             right: -10,
+            //             child: IconButton(
+            //               onPressed: () {
+            //                 setState(() {
+            //                   selectedImages.remove(selectedImages[index]);
+            //                 });
+            //               },
+            //               icon: const Icon(
+            //                 Icons.close,
+            //                 color: Colors.white,
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       );
+            //     },
+            //   ),
+            // ),
 
-            // 사진 불러오기 영역
-            Container(
-              color: Colors.grey[200],
-              padding: const EdgeInsets.only(right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      getLostData();
-                    },
-                    icon: SvgPicture.asset("assets/svg/gallery.svg"),
-                  ),
-                  Text(
-                    "0 / 500",
-                  ),
-                ],
-              ),
-            ),
+            // // 사진 불러오기 영역
+            // Container(
+            //   color: Colors.grey[200],
+            //   padding: const EdgeInsets.only(right: 20),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       IconButton(
+            //         onPressed: () {
+            //           getLostData();
+            //         },
+            //         icon: SvgPicture.asset("assets/svg/gallery.svg"),
+            //       ),
+            //       Text(
+            //         "0 / 500",
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),
