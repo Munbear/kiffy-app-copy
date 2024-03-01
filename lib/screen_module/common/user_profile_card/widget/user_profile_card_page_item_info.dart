@@ -1,4 +1,4 @@
-import 'package:Kiffy/constant/option_profile_type.dart';
+import 'package:Kiffy/constant/enum/option_profile_type.dart';
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/option_profile_chip.dart';
 import 'package:easy_localization/easy_localization.dart';

@@ -1,8 +1,6 @@
-import 'package:Kiffy/constant/mbti_type.dart';
-import 'package:Kiffy/constant/option_profile_type.dart';
-import 'package:Kiffy/constant/zodiac_type.dart';
+import 'package:Kiffy/constant/enum/option_profile_type.dart';
+import 'package:Kiffy/constant/enum/zodiac_type.dart';
 import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
-import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
@@ -14,7 +12,6 @@ import 'package:Kiffy/screen_module/edit_profile/provider/edit_profile_provider.
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 
 class EditOptionProfileScreen extends ConsumerWidget {

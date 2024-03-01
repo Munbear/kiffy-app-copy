@@ -1,5 +1,5 @@
+import 'package:Kiffy/constant/enum/zodiac_type.dart';
 import 'package:Kiffy/constant/style/gab.dart';
-import 'package:Kiffy/constant/zodiac_type.dart';
 import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';

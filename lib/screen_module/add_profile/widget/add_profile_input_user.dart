@@ -1,4 +1,4 @@
-import 'package:Kiffy/constant/gender_type.dart';
+import 'package:Kiffy/constant/enum/gender_type.dart';
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_input_button.dart';
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';

@@ -77,38 +77,49 @@ class _FeedSectionState extends ConsumerState<FeedSection> {
                 ],
               ),
             ),
-            // feed photo
-            AspectRatio(
-              aspectRatio: 1 / 1,
-              child: PageView(
-                children: testImages.map(
-                  (item) {
-                    return Image.asset(
-                      item,
-                      fit: BoxFit.cover,
-                    );
-                  },
-                ).toList(),
+
+            // 피드 사진
+            Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              child: AspectRatio(
+                aspectRatio: 1 / 1,
+                child: PageView(
+                  children: testImages.map(
+                    (item) {
+                      return Image.asset(
+                        item,
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ).toList(),
+                ),
               ),
             ),
-            Gab.height8,
-            // comment
-            Row(
-              children: [
-                Gab.width16,
-                SvgPicture.asset("assets/svg/icn_comment.svg"),
-                Gab.width4,
-                Text("6"),
-              ],
+
+            // 댓글
+            GestureDetector(
+              onTap: () {
+                print('댓글 바텀 시트 열림');
+              },
+              child: Row(
+                children: [
+                  Gab.width16,
+                  SvgPicture.asset("assets/svg/icn_comment.svg"),
+                  Gab.width4,
+                  Text("6"),
+                ],
+              ),
             ),
-            Gab.height6,
-            // 내용
+
+            Gab.height4,
+            // 피드 글
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "Is there anyone you're meeting tonight? I'm bored. Is there anyone you're meeting tonight? I'm bored. Is there anyone you're meeting tonight? I'm bored. Is there ...",
               ),
             ),
+
             Gab.height12,
             // 댓글
             GestureDetector(

@@ -1,4 +1,4 @@
-import 'package:Kiffy/constant/main_tab_status.dart';
+import 'package:Kiffy/constant/enum/main_tab_status.dart';
 import 'package:Kiffy/screen_module/main_screen_module/provider/main_screen_provider.dart';
 import 'package:Kiffy/screen_module/main_screen_module/widget/cutom_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';

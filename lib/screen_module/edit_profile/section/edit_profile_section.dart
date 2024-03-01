@@ -1,6 +1,6 @@
-import 'package:Kiffy/constant/edit_profile_type.dart';
-import 'package:Kiffy/constant/gender_type.dart';
-import 'package:Kiffy/constant/option_profile_type.dart';
+import 'package:Kiffy/constant/enum/edit_profile_type.dart';
+import 'package:Kiffy/constant/enum/gender_type.dart';
+import 'package:Kiffy/constant/enum/option_profile_type.dart';
 import 'package:Kiffy/screen/edit_option_profile/edit_option_profile_screen.dart';
 import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';

@@ -1,7 +1,7 @@
-import 'package:Kiffy/constant/contact_type.dart';
-import 'package:Kiffy/constant/gender_type.dart';
-import 'package:Kiffy/constant/mbti_type.dart';
-import 'package:Kiffy/constant/zodiac_type.dart';
+import 'package:Kiffy/constant/enum/contact_type.dart';
+import 'package:Kiffy/constant/enum/gender_type.dart';
+import 'package:Kiffy/constant/enum/mbti_type.dart';
+import 'package:Kiffy/constant/enum/zodiac_type.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
 import 'package:collection/collection.dart';

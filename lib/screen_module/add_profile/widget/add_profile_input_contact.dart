@@ -1,4 +1,4 @@
-import 'package:Kiffy/constant/contact_type.dart';
+import 'package:Kiffy/constant/enum/contact_type.dart';
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/common/style/widget/border._style.dart';

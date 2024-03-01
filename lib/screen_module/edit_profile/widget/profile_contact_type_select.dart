@@ -1,4 +1,4 @@
-import 'package:Kiffy/constant/contact_type.dart';
+import 'package:Kiffy/constant/enum/contact_type.dart';
 import 'package:Kiffy/screen_module/common/style/widget/border._style.dart';
 import 'package:flutter/material.dart';
 

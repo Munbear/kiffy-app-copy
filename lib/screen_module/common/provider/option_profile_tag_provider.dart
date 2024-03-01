@@ -1,5 +1,5 @@
-import 'package:Kiffy/constant/mbti_type.dart';
-import 'package:Kiffy/constant/zodiac_type.dart';
+import 'package:Kiffy/constant/enum/mbti_type.dart';
+import 'package:Kiffy/constant/enum/zodiac_type.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

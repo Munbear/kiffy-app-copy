@@ -1,6 +1,5 @@
-import 'package:Kiffy/constant/option_profile_type.dart';
+import 'package:Kiffy/constant/enum/option_profile_type.dart';
 import 'package:Kiffy/screen/create_feed/create_feed_screen.dart';
-import 'package:Kiffy/screen/custom_album/custom_album_screen.dart';
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen/withdraw_screen/withdraw_screen.dart';

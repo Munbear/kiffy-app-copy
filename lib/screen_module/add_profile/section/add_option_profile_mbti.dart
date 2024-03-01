@@ -1,5 +1,5 @@
 import 'package:Kiffy/common/custom_chip.dart';
-import 'package:Kiffy/constant/mbti_type.dart';
+import 'package:Kiffy/constant/enum/mbti_type.dart';
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:flutter/material.dart';

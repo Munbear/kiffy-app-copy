@@ -1,4 +1,4 @@
-import 'package:Kiffy/constant/gender_type.dart';
+import 'package:Kiffy/constant/enum/gender_type.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';

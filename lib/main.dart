@@ -1,5 +1,6 @@
 import 'package:Kiffy/config/firebase/dev/firebase_options.dart';
 import 'package:Kiffy/config/firebase/prod/firebase_options.dart';
+import 'package:Kiffy/config/provider/provider_logger.dart';
 import 'package:Kiffy/kiffy_app.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -71,7 +72,12 @@ void main() async {
       useFallbackTranslations: true,
       saveLocale: true,
       useOnlyLangCode: true,
-      child: const ProviderScope(child: KiffyApp()),
+      child: ProviderScope(
+        observers: [
+          ProviderLogger(),
+        ],
+        child: const KiffyApp(),
+      ),
     ),
   );
 }
