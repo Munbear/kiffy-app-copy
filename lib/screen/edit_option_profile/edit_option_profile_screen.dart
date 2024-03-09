@@ -1,7 +1,7 @@
 import 'package:Kiffy/constant/enum/option_profile_type.dart';
 import 'package:Kiffy/constant/enum/zodiac_type.dart';
 import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
-import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_mbti.dart';

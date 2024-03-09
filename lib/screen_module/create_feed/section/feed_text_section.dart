@@ -1,3 +1,4 @@
+import 'package:Kiffy/screen_module/create_feed/provider/create_feed_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,9 +8,16 @@ class FeedTextSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final textController = ref.read(feedTextController);
     final textStyle = Theme.of(context).textTheme;
     return TextFormField(
       autofocus: true,
+      controller: textController,
+      onChanged: (v) {
+        ref
+            .read(feedTextLengthState.notifier)
+            .update((state) => state = v.length);
+      },
       inputFormatters: [
         LengthLimitingTextInputFormatter(500),
       ],

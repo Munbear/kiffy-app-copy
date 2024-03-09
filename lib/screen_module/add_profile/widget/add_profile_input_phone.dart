@@ -4,7 +4,7 @@ import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/common/input/widget/kiffy_text_field.dart';
-import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_profile_input_header.dart';

@@ -1,3 +1,4 @@
+import 'package:Kiffy/util/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProviderLogger extends ProviderObserver {
@@ -7,7 +8,7 @@ class ProviderLogger extends ProviderObserver {
     Object? value,
     ProviderContainer container,
   ) {
-    print('Provider : $provider was initialized with $value');
+    logger.d('Provider : $provider was initialized with $value');
   }
 
   @override
@@ -15,7 +16,7 @@ class ProviderLogger extends ProviderObserver {
     ProviderBase<Object?> provider,
     ProviderContainer container,
   ) {
-    print('Provider : $provider was disposed');
+    logger.d('Provider : $provider was disposed');
   }
 
   @override
@@ -25,7 +26,7 @@ class ProviderLogger extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    print('Provider : $provider updated from $previousValue to $newValue');
+    logger.d('Provider : $provider updated from $previousValue to $newValue');
   }
 
   @override
@@ -35,6 +36,6 @@ class ProviderLogger extends ProviderObserver {
     StackTrace stackTrace,
     ProviderContainer container,
   ) {
-    print('Provider : $provider threw $error at $stackTrace');
+    logger.d('Provider : $provider threw $error at $stackTrace');
   }
 }

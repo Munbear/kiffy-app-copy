@@ -1,11 +1,10 @@
 import 'dart:io';
 
 import 'package:Kiffy/constant/style/gab.dart';
+import 'package:Kiffy/screen_module/create_feed/provider/create_feed_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:image_picker/image_picker.dart';
 
 class CreateFeedImageSection extends ConsumerStatefulWidget {
   const CreateFeedImageSection({super.key});
@@ -17,36 +16,9 @@ class CreateFeedImageSection extends ConsumerStatefulWidget {
 
 class _CreateFeedImageSectionState
     extends ConsumerState<CreateFeedImageSection> {
-  List<XFile> selectedImages = [];
-
-  Future<void> getLostData() async {
-    final ImagePicker picker = ImagePicker();
-    List<XFile>? images = await picker.pickMultiImage();
-    if (images.length > 10) {
-      Fluttertoast.showToast(
-          msg: "사진은 최대 10까지 선택 가능 합니다.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-
-      images.clear();
-    } else {
-      setState(() {
-        selectedImages = images;
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final selectedImages = ref.watch(imageFileState);
     return Column(
       children: [
         SizedBox(
@@ -91,8 +63,11 @@ class _CreateFeedImageSectionState
                     right: -10,
                     child: IconButton(
                       onPressed: () {
-                        setState(() {
-                          selectedImages.remove(selectedImages[index]);
+                        ref
+                            .read(createFeedProvider.notifier)
+                            .removeImage(index)
+                            .then((value) {
+                          setState(() {});
                         });
                       },
                       icon: const Icon(
@@ -103,23 +78,29 @@ class _CreateFeedImageSectionState
                   ),
 
                   // 사진 로딩
+
                   Consumer(
                     builder: (context, ref, child) {
-                      return Positioned.fill(
-                        child: Container(
-                          color: Colors.black.withOpacity(0.5),
-                          child: const Center(
-                            child: SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 3,
-                                color: Colors.white,
+                      final uploadImageList = ref.watch(imageUploadState);
+                      if (uploadImageList.isEmpty) {
+                        return Positioned.fill(
+                          child: Container(
+                            color: Colors.black.withOpacity(0.5),
+                            child: const Center(
+                              child: SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 3,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
+                        );
+                      } else {
+                        return const SizedBox();
+                      }
                     },
                   ),
                 ],
@@ -135,13 +116,22 @@ class _CreateFeedImageSectionState
             children: [
               IconButton(
                 onPressed: () {
-                  getLostData();
+                  // 업로드 이미지 지우기
+                  if (ref.read(imageUploadState).isNotEmpty) {
+                    ref.invalidate(imageUploadState);
+                  }
+
+                  // 이미지 선택하기
+                  ref.read(createFeedProvider.notifier).getImageFilesV2();
                 },
                 icon: SvgPicture.asset("assets/svg/gallery.svg"),
               ),
-              Text(
-                "0 / 500",
-              ),
+              Consumer(builder: (context, ref, child) {
+                final textLenght = ref.watch(feedTextLengthState);
+                return Text(
+                  "$textLenght/500",
+                );
+              }),
             ],
           ),
         ),

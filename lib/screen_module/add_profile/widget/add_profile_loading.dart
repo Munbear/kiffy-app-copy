@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

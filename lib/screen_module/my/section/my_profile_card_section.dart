@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/common/skeleton/widget/skeleton.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page.dart';

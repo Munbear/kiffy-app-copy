@@ -1,5 +1,5 @@
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
-import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/edit_profile/widget/profile_input_next_button.dart';
 import 'package:Kiffy/screen_module/edit_profile/widget/proifle_input_complete_welcome_box.dart';
 import 'package:dartlin/control_flow.dart';

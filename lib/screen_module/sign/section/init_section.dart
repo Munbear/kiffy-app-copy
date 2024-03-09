@@ -3,7 +3,7 @@ import 'package:Kiffy/screen/explore/explore_screen.dart';
 import 'package:Kiffy/screen/main_screen/main_screen.dart';
 import 'package:Kiffy/screen/add_profile/add_basic_profile_screen.dart';
 import 'package:Kiffy/screen/sign/sign_in_screen.dart';
-import 'package:Kiffy/screen_module/common/my/provider/my_provider.dart';
+import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/screen_module/sign/provider/auth_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
