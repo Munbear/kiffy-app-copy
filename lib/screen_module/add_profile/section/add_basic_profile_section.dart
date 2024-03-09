@@ -1,6 +1,5 @@
 import 'package:Kiffy/constant/enum/gender_type.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/add_profile_input_provider.dart';
-import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/provider/profile_input_validator_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_option_profile_client_section.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_profile_complete_section.dart';
@@ -8,10 +7,10 @@ import 'package:Kiffy/screen_module/add_profile/widget/add_option_profile_server
 import 'package:Kiffy/screen_module/add_profile/widget/add_profile_input_birthday.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_profile_input_contact.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_profile_input_images.dart';
-import 'package:Kiffy/screen_module/add_profile/widget/add_profile_input_phone.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_profile_input_user.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/add_profile_loading.dart';
 import 'package:Kiffy/screen_module/add_profile/widget/progress_gauge_bar.dart';
+import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -56,16 +55,16 @@ class _ProfileInputProcessSectionState
               controller: pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                /// 전화 번호 인증 #0
-                AddProfileInputPhone(
-                  onNext: (phoneNumber) {
-                    ref.read(profileInputValueProvider.notifier).setPhoneNumber(
-                        phoneNumber.countryDialCode, phoneNumber.phoneNumber);
-                    ref.read(profileInputValidatorProvider).nextStep(
-                          currentPage: pageController.page!.toInt(),
-                        );
-                  },
-                ),
+                /// 전화 번호 인증 제거 #0
+                // AddProfileInputPhone(
+                //   onNext: (phoneNumber) {
+                //     ref.read(profileInputValueProvider.notifier).setPhoneNumber(
+                //         phoneNumber.countryDialCode, phoneNumber.phoneNumber);
+                //     ref.read(profileInputValidatorProvider).nextStep(
+                //           currentPage: pageController.page!.toInt(),
+                //         );
+                //   },
+                // ),
 
                 /// 이미지 등록 #1
                 AddProfileInputImages(

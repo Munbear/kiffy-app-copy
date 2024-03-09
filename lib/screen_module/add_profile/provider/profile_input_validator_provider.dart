@@ -1,7 +1,7 @@
 import 'package:Kiffy/constant/enum/contact_type.dart';
 import 'package:Kiffy/constant/enum/gender_type.dart';
-import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:Kiffy/screen_module/add_profile/section/add_basic_profile_section.dart';
+import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
@@ -78,7 +78,7 @@ class ProfileInputValidator {
 
   Future<void> jumpPage() async {
     final pageController = ref.read(profilePageController);
-    pageController.jumpToPage(4);
+    pageController.jumpToPage(3);
   }
 
   void nextStep(
