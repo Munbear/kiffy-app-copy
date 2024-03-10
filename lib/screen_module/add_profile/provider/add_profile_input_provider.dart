@@ -147,8 +147,8 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
   }
 
   Future<void> save() async {
-    await ref.read(openApiProvider).getMyApi().apiUserV3MyProfilePost(
-      createUserProfileRequestV3: CreateUserProfileRequestV3(
+    await ref.read(openApiProvider).getMyApi().apiUserV4MyProfilePost(
+      createUserProfileRequestV4: CreateUserProfileRequestV4(
         (b) {
           b.name = state.nickName;
           b.gender = state.gender!.toGenderEnumView();
@@ -167,9 +167,6 @@ class ProfileInputValueNotifier extends Notifier<ProfileInputValue> {
 
           b.birthDate = state.birthDay!.toUtc();
           b.intro = "";
-
-          b.countryNumber = state.phoneNumber!.countryDialCode;
-          b.phoneNumber = state.phoneNumber!.phoneNumber;
 
           b.tags.addAll(state.tags!.map((e) => TagRequestInner((b) {
                 b.id = e;
