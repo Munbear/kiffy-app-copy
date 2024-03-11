@@ -15,12 +15,21 @@ final createFeedProvider =
 class CreateFeed extends AutoDisposeAsyncNotifier<CreateFeedModel> {
   @override
   CreateFeedModel build() {
+    // your logic here
+    void testing() {
+      print(state);
+    }
+
+    print(state);
+
     return CreateFeedModel(
       content: "",
       mediaIds: [],
     );
   }
+  // your methods here
 
+  // 사진 파일 가져오기
   Future<void> getImageFilesV2() async {
     final ImagePicker picker = ImagePicker();
     List<XFile>? images = await picker.pickMultiImage();
@@ -54,9 +63,7 @@ class CreateFeed extends AutoDisposeAsyncNotifier<CreateFeedModel> {
               type: "image", file: await MultipartFile.fromFile(image.path));
       uploadedIds.add(res.data!.id);
     }
-    ref
-        .read(imageUploadState.notifier)
-        .update((state) => [...state, ...uploadedIds]);
+    ref.read(imageUploadState.notifier).update((state) => state = uploadedIds);
   }
 
   // 이미지 지우기
@@ -73,6 +80,15 @@ class CreateFeed extends AutoDisposeAsyncNotifier<CreateFeedModel> {
     ref
         .read(imageUploadState.notifier)
         .update((state) => state = currentUploadState);
+  }
+
+  // 요청 보내기
+  void postFeed(text, imageIds) {
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    print("내용: $text");
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    print("이미지 아이디 : $imageIds");
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
   }
 }
 
