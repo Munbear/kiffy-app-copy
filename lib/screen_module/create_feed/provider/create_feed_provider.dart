@@ -83,12 +83,23 @@ class CreateFeed extends AutoDisposeAsyncNotifier<CreateFeedModel> {
   }
 
   // 요청 보내기
-  void postFeed(text, imageIds) {
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    print("내용: $text");
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    print("이미지 아이디 : $imageIds");
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  Future<void> postFeed(text, imageIds) async {
+    if (text != "") {
+      await ref.read(openApiProvider).getPostApi().createPost(
+        createPostRequestV1: CreatePostRequestV1(
+          (b) {
+            b.content = text.toString();
+            b.mediaIds.addAll([]);
+          },
+        ),
+      ).then((value) {
+        print(
+            "###################################################################");
+        print(value);
+        print(
+            "###################################################################");
+      });
+    }
   }
 }
 

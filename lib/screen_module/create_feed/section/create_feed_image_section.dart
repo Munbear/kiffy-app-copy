@@ -78,7 +78,6 @@ class _CreateFeedImageSectionState
                   ),
 
                   // 사진 로딩
-
                   Consumer(
                     builder: (context, ref, child) {
                       final uploadImageList = ref.watch(imageUploadState);

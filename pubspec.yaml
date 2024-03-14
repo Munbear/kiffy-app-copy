@@ -68,7 +68,7 @@ dependencies:
     git:
       url: git@github.com:kiiffy/idl.git
       path: openapi/gen/api/dart-dio
-      ref: 09786ff623df078bd28f907fa432661590f41648
+      ref: a1fa2685d0dd7b048da444ae43e63b6761256d8f
 
 dev_dependencies:
   flutter_test:

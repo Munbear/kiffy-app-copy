@@ -10,27 +10,59 @@ class FeedSubmitSection extends ConsumerWidget {
     final textStyle = Theme.of(context).textTheme;
     final textController = ref.watch(feedTextController);
     final uploadImageIds = ref.watch(imageUploadState);
+    final selectedImages = ref.watch(imageFileState);
     return Padding(
       padding: const EdgeInsets.only(right: 16),
-      child: ElevatedButton(
-        onPressed: () {
-          ref
-              .read(createFeedProvider.notifier)
-              .postFeed(textController.text, uploadImageIds);
-        },
-        style: ElevatedButton.styleFrom(
-          elevation: 0,
-          padding: EdgeInsets.zero,
-          backgroundColor: const Color(0xff0031AA),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-        child: Text(
-          "Share",
-          style: textStyle.titleSmall!.apply(color: Colors.white),
-        ),
-      ),
+      child: selectedImages.isNotEmpty
+          ? ElevatedButton(
+              onPressed: uploadImageIds.isEmpty
+                  ? null
+                  : () {
+                      ref
+                          .read(createFeedProvider.notifier)
+                          .postFeed(textController.text, uploadImageIds);
+                    },
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+                padding: EdgeInsets.zero,
+                backgroundColor: const Color(0xff0031AA),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: uploadImageIds.isEmpty
+                  ? const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : Text(
+                      "Share",
+                      style: textStyle.titleSmall!.apply(color: Colors.white),
+                    ),
+            )
+          : ElevatedButton(
+              onPressed: () {
+                ref
+                    .read(createFeedProvider.notifier)
+                    .postFeed(textController.text, uploadImageIds);
+              },
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+                padding: EdgeInsets.zero,
+                backgroundColor: const Color(0xff0031AA),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                "Share",
+                style: textStyle.titleSmall!.apply(color: Colors.white),
+              ),
+            ),
     );
   }
 }
