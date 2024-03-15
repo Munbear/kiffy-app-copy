@@ -10,11 +10,11 @@ class MainAppBar extends ConsumerWidget {
       automaticallyImplyLeading: false,
       centerTitle: true,
       backgroundColor: Colors.white,
-      elevation: 0.5,
+      elevation: 0,
       title: Image.asset(
         width: 70,
         height: 55,
-        "assets/images/kiffy_logo_purple.png",
+        "assets/images/kiffy_logo.png",
       ),
     );
   }

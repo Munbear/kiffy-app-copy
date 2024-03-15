@@ -22,6 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       centerTitle: true,
       titleSpacing: 0,
+      elevation: 0,
       leading: hasLeading
           ? IconButton(
               padding: EdgeInsets.zero,
@@ -42,7 +43,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 color: Color(0xff0031AA),
               ),
             )
-          : Image.asset("assets/images/kiffy_logo_purple.png", width: 69),
+          : Image.asset("assets/images/kiffy_logo.png", width: 69),
       actions: action,
     );
   }

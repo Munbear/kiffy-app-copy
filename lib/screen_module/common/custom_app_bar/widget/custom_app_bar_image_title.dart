@@ -18,7 +18,7 @@ class CustomAppBarImageTitle extends ConsumerWidget {
         Image.asset(
           width: 70,
           height: 55,
-          "assets/images/kiffy_logo_purple.png",
+          "assets/images/kiffy_logo.png",
         ),
         const SizedBox(width: 32),
         const Spacer(),
