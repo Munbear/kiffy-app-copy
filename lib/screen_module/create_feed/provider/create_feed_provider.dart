@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:openapi/openapi.dart';
 
@@ -16,11 +15,6 @@ class CreateFeed extends AutoDisposeAsyncNotifier<CreateFeedModel> {
   @override
   CreateFeedModel build() {
     // your logic here
-    void testing() {
-      print(state);
-    }
-
-    print(state);
 
     return CreateFeedModel(
       content: "",
@@ -83,22 +77,38 @@ class CreateFeed extends AutoDisposeAsyncNotifier<CreateFeedModel> {
   }
 
   // 요청 보내기
-  Future<void> postFeed(text, imageIds) async {
-    if (text != "") {
+  postFeed(String text, List<String> imageIds) async {
+    int statusCode = 0;
+    if (text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "내용을 입력해 주세요",
+        fontSize: 16,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+      );
+    }
+
+    if (text.isNotEmpty && text.length < 10) {
+      Fluttertoast.showToast(
+        msg: "10글잘 이상 입력해 주세요",
+        fontSize: 16,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+      );
+    }
+
+    if (text != "" && text.length > 10) {
       await ref.read(openApiProvider).getPostApi().createPost(
         createPostRequestV1: CreatePostRequestV1(
           (b) {
-            b.content = text.toString();
-            b.mediaIds.addAll([]);
+            b.content = text;
+            b.mediaIds.addAll(imageIds);
           },
         ),
       ).then((value) {
-        print(
-            "###################################################################");
-        print(value);
-        print(
-            "###################################################################");
+        statusCode = value.statusCode ?? 0;
       });
+      return statusCode;
     }
   }
 }

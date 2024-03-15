@@ -1,6 +1,7 @@
 import 'package:Kiffy/screen_module/create_feed/provider/create_feed_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class FeedSubmitSection extends ConsumerWidget {
   const FeedSubmitSection({super.key});
@@ -20,7 +21,15 @@ class FeedSubmitSection extends ConsumerWidget {
                   : () {
                       ref
                           .read(createFeedProvider.notifier)
-                          .postFeed(textController.text, uploadImageIds);
+                          .postFeed(textController.text, uploadImageIds)
+                          .then(
+                        (statusCode) {
+                          if (statusCode == 200) {
+                            context.pop(true);
+                          }
+                          //  context.pop(true)
+                        },
+                      );
                     },
               style: ElevatedButton.styleFrom(
                 elevation: 0,
@@ -48,7 +57,14 @@ class FeedSubmitSection extends ConsumerWidget {
               onPressed: () {
                 ref
                     .read(createFeedProvider.notifier)
-                    .postFeed(textController.text, uploadImageIds);
+                    .postFeed(textController.text, uploadImageIds)
+                    .then(
+                  (statusCode) {
+                    if (statusCode == 200) {
+                      context.pop(true);
+                    }
+                  },
+                );
               },
               style: ElevatedButton.styleFrom(
                 elevation: 0,
