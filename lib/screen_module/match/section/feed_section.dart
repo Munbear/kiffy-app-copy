@@ -1,4 +1,7 @@
 import 'package:Kiffy/constant/style/gab.dart';
+import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/screen_module/match/provider/feed_provider.dart';
+import 'package:Kiffy/util/screen_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,7 +15,13 @@ class FeedSection extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _FeedSectionState();
 }
 
-class _FeedSectionState extends ConsumerState<FeedSection> {
+class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
+  @override
+  void initState() {
+    // ref.read(feedListProvider.notifier).getFeedList();
+    super.initState();
+  }
+
   static List<String> testImages = [
     "assets/images/test_image.png",
     "assets/images/test_image.png",
@@ -99,7 +108,7 @@ class _FeedSectionState extends ConsumerState<FeedSection> {
             // 댓글
             GestureDetector(
               onTap: () {
-                print('댓글 바텀 시트 열림');
+                showCommentBottomSheet();
               },
               child: Row(
                 children: [
@@ -124,7 +133,7 @@ class _FeedSectionState extends ConsumerState<FeedSection> {
             // 댓글
             GestureDetector(
               onTap: () {
-                print("댓글 보기");
+                showCommentBottomSheet();
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 16),
@@ -138,7 +147,6 @@ class _FeedSectionState extends ConsumerState<FeedSection> {
 
             // 댓글 미리보기
             ...aaa.map((preview) {
-              print(preview);
               return Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Row(
