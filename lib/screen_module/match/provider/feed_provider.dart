@@ -14,8 +14,10 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
   }
 
   /// methods herer
-  Future<void> getFeedList({String? nexyKey}) async {
-    final res = await ref.read(openApiProvider).getPostApi().getFeed();
+  Future<void> getFeedList({String? nextPage}) async {
+    final res = await ref.read(openApiProvider).getPostApi().getFeed(
+          getFeedRequestV1: GetFeedRequestV1(),
+        );
     print(res);
   }
 }

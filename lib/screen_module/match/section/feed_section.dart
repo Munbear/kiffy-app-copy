@@ -18,7 +18,7 @@ class FeedSection extends ConsumerStatefulWidget {
 class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
   @override
   void initState() {
-    // ref.read(feedListProvider.notifier).getFeedList();
+    ref.read(feedListProvider.notifier).getFeedList();
     super.initState();
   }
 
