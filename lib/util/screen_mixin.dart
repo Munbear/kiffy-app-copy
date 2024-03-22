@@ -8,12 +8,14 @@ mixin ScreenMixin<T extends StatefulWidget> on State<T> {
       useRootNavigator: true,
       showDragHandle: true,
       isScrollControlled: true,
-      // constraints: BoxConstraints(
-      //   maxHeight: MediaQuery.of(context).size.height * 0.8,
-      //   maxWidth: double.infinity,
-      // ),
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.7,
+        minWidth: double.infinity,
+      ),
       builder: (context) {
-        return CommentSection();
+        return SizedBox(
+          child: CommentSection(),
+        );
       },
     );
   }
