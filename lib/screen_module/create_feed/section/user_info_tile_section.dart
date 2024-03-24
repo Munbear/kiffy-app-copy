@@ -9,7 +9,7 @@ class UserInfoTileSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textStyle = Theme.of(context).textTheme;
-    var my = ref.read(myProvider);
+    final my = ref.read(myProvider);
     return Row(
       children: [
         SizedBox(
