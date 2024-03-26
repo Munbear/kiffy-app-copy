@@ -1,23 +1,28 @@
 import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart';
 import 'package:openapi/openapi.dart';
 
 final feedListProvider =
-    AsyncNotifierProvider.autoDispose<FeedList, List<PostViewV1>>(FeedList.new);
+    AsyncNotifierProvider.autoDispose<FeedList, FeedPageViewV1>(FeedList.new);
 
-class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
+// List<PostViewV1>
+class FeedList extends AutoDisposeAsyncNotifier<FeedPageViewV1> {
   @override
-  Future<List<PostViewV1>> build() async {
-    /// logic here
-    return [];
-  }
-
-  /// methods herer
-  Future<void> getFeedList({String? nextPage}) async {
+  Future<FeedPageViewV1> build() async {
     final res = await ref.read(openApiProvider).getPostApi().getFeed(
           getFeedRequestV1: GetFeedRequestV1(),
         );
-    print(res);
+    return res.data!;
+  }
+
+  // 업데이트 리스트
+  Future<void> updateFeedList({String? nextPage}) async {
+    final res = await ref.read(openApiProvider).getPostApi().getFeed(
+          getFeedRequestV1: GetFeedRequestV1(),
+        );
+    print(res.data);
+    List<PostViewV1> itemList = res.data!.posts.toList();
+    // state = AsyncValue.data([...state, ...itemList]);
+    print(state);
   }
 }
