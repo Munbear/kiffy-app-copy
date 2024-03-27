@@ -21,12 +21,7 @@ class MatchingScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // 프리뷰 매칭 리스트
-          // TODO api 연결
           PreviewMatchingUserSection(),
-
-          // Gab.height8,
-          // AdmobBannerWidget(),
-          // Gab.height8,
 
           // 게시글 네비게이션 바
           FeedNavBarSection(),

@@ -1,6 +1,7 @@
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/match/provider/feed_provider.dart';
 import 'package:Kiffy/util/screen_mixin.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -50,8 +51,22 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
       },
       data: (data) {
         final feedList = data.posts;
+        if (kDebugMode) {
+          return Expanded(
+            child: Column(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    showCommentBottomSheet();
+                  },
+                  child: Text("comment"),
+                ),
+              ],
+            ),
+          );
+        }
         return Expanded(
-          child: feedList.isEmpty
+          child: feedList.isNotEmpty
               ? const Center(child: Text("아직 매칭된 사용자가 없거나 게시글이 존재 하지 않습니다."))
               : RefreshIndicator(
                   onRefresh: () async {
