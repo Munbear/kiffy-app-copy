@@ -11,17 +11,7 @@ class RejectCircleButton extends ConsumerWidget {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.white, width: 2.0),
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xffBA00FF),
-            Color(0xff0031AA),
-          ],
-        ),
-      ),
+          shape: BoxShape.circle, color: Colors.white.withOpacity(0.6)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: SizedBox(
@@ -31,7 +21,11 @@ class RejectCircleButton extends ConsumerWidget {
             color: Colors.transparent,
             child: InkWell(
               onTap: () => onClick(),
-              child: const Icon(Icons.close, color: Colors.white, size: 40),
+              child: const Icon(
+                Icons.close,
+                color: Color(0xff495057),
+                size: 30,
+              ),
             ),
           ),
         ),

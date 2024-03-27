@@ -13,16 +13,17 @@ class WishCircleButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: Colors.white, width: 2.0),
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFEFC6FF),
-              Color(0xFFFF0F57),
-            ],
-          )),
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.white, width: 2.0),
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xffBA00FF),
+            Color(0xff0031AA),
+          ],
+        ),
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: SizedBox(
