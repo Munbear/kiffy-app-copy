@@ -66,7 +66,7 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
           );
         }
         return Expanded(
-          child: feedList.isNotEmpty
+          child: feedList.isEmpty
               ? const Center(child: Text("아직 매칭된 사용자가 없거나 게시글이 존재 하지 않습니다."))
               : RefreshIndicator(
                   onRefresh: () async {
