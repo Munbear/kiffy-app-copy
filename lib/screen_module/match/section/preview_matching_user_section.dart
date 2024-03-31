@@ -3,6 +3,7 @@ import 'package:Kiffy/screen_module/common/google_admob/admob_banner_widget.dart
 import 'package:Kiffy/screen_module/match/provider/matched_user_provider.dart';
 import 'package:Kiffy/util/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PreviewMatchingUserSection extends ConsumerStatefulWidget {
@@ -30,7 +31,7 @@ class _PreviewMatchingUserSectionState
         logger.d("$error");
         return const SizedBox();
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => const _MatchedUserPreviewSkeleton(),
       data: (data) {
         final matchedUserList = data;
         return matchedUserList.isEmpty
@@ -139,6 +140,32 @@ class _PreviewMatchingUserSectionState
                 ),
               );
       },
+    );
+  }
+}
+
+class _MatchedUserPreviewSkeleton extends StatelessWidget {
+  const _MatchedUserPreviewSkeleton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 96,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        children: List.generate(6, (index) {
+          return Container(
+            margin: const EdgeInsets.only(right: 8),
+            child: CircleAvatar(
+              radius: 32,
+              backgroundColor: Colors.grey[200],
+            )
+                .animate(onPlay: (controller) => controller.repeat())
+                .shimmer(duration: 1500.ms),
+          );
+        }),
+      ),
     );
   }
 }

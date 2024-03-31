@@ -62,9 +62,10 @@ class _MainScreenSectionState extends ConsumerState<MainScreenSection> {
 
   @override
   Widget build(BuildContext context) {
-    final currentScreenIndex = ref.watch(currentScreenIndexProvider);
-    return IndexedStack(
-      index: currentScreenIndex,
+    final pageController = ref.watch(mainPageController);
+    return PageView(
+      controller: pageController,
+      physics: const NeverScrollableScrollPhysics(),
       children: screens,
     );
   }

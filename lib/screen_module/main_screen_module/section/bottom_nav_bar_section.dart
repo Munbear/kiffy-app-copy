@@ -32,20 +32,19 @@ class _MainScreenBottomNavBarSectionState
         ),
         child: BottomNavigationBar(
           backgroundColor: Colors.white,
-          onTap: (a) {
-            ref
-                .read(currentScreenIndexProvider.notifier)
-                .update((state) => state = a);
+          onTap: (index) {
+            ref.read(mainPageController).jumpToPage(index);
+            ref.read(currentPage.notifier).update((state) => state = index);
           },
           showSelectedLabels: false,
           showUnselectedLabels: false,
           items: MainTabStatus.values.map(
             (tab) {
-              final currentTabIndex = ref.watch(currentScreenIndexProvider);
+              final currentPageIndex = ref.watch(currentPage);
               return BottomNavigationBarItem(
                 icon: CustomBottomNavBar(
                   iconPath: tab.tabIcon,
-                  isFocus: tab.index == currentTabIndex,
+                  isFocus: tab.index == currentPageIndex,
                 ),
                 label: tab.value,
               );
