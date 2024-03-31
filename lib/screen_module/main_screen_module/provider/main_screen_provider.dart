@@ -3,4 +3,4 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final mainPageController =
     StateProvider<PageController>((ref) => PageController());
-final currentPage = StateProvider<int>((ref) => 0);
+final currentPage = StateProvider.autoDispose<int>((ref) => 0);

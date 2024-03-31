@@ -22,10 +22,6 @@ class _OtherWishPreviewSectionState
   Widget build(BuildContext context) {
     final otherWishState = ref.watch(otherWishUsersReaderProvider);
 
-    if (otherWishState.isLoading) {
-      return const SizedBox(height: 95, child: OtherWishPreviewChipsSkeleton());
-    }
-
     final List<OtherWishUserProfileView> remainedOtherWishUsers =
         otherWishState.requireValue.otherWishes.isNotEmpty
             ? otherWishState.requireValue.otherWishes
@@ -37,9 +33,13 @@ class _OtherWishPreviewSectionState
                 .toList()
             : [];
 
+    // if (otherWishState.isLoading) {
+    //   return const SizedBox(height: 95, child: OtherWishPreviewChipsSkeleton());
+    // }
+
     return remainedOtherWishUsers.isNotEmpty
         ? SizedBox(
-            height: 95,
+            height: 100,
             child: OtherWishPreviewChips(
               otherWishes: remainedOtherWishUsers,
               onTap: (wishId) {
@@ -47,10 +47,12 @@ class _OtherWishPreviewSectionState
                   pageBuilder: (context, animation, secondaryAnimation) {
                     return OtherWishUserDetailScreen(wishId: wishId);
                   },
-                )).then((value) {
-                  ref.read(otherWishUsersReaderProvider.notifier).refresh();
-                  ref.read(exploreUsersProvider.notifier).refresh();
-                });
+                )).then(
+                  (value) {
+                    ref.read(otherWishUsersReaderProvider.notifier).refresh();
+                    ref.read(exploreUsersProvider.notifier).refresh();
+                  },
+                );
 
                 // context.pushNamed(OtherWishUserDetailScreen.routeName).then(
                 //   (value) {
