@@ -33,9 +33,9 @@ class _OtherWishPreviewSectionState
                 .toList()
             : [];
 
-    // if (otherWishState.isLoading) {
-    //   return const SizedBox(height: 95, child: OtherWishPreviewChipsSkeleton());
-    // }
+    if (otherWishState.isLoading) {
+      return const SizedBox(height: 95, child: OtherWishPreviewChipsSkeleton());
+    }
 
     return remainedOtherWishUsers.isNotEmpty
         ? SizedBox(

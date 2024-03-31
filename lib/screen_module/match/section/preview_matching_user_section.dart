@@ -44,8 +44,6 @@ class _PreviewMatchingUserSectionState
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                   itemCount: matchedUserList.length + 1,
                   itemBuilder: (context, index) {
-                    final matchedUser = matchedUserList[index];
-
                     /// 매칭된 유저 상세보기 화면 버튼
                     if (index == matchedUserList.length) {
                       return GestureDetector(
@@ -79,6 +77,8 @@ class _PreviewMatchingUserSectionState
                         ),
                       );
                     }
+
+                    final matchedUser = matchedUserList[index];
 
                     /// 매칭된 유저 Preview UI
                     return Column(
