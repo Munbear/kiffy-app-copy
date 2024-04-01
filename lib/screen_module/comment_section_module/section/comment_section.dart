@@ -1,3 +1,4 @@
+import 'package:Kiffy/screen_module/comment_section_module/provider/comments_provider.dart';
 import 'package:Kiffy/screen_module/comment_section_module/widget/comment_tile.dart';
 import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:flutter/material.dart';
@@ -5,17 +6,37 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class CommentSection extends ConsumerStatefulWidget {
-  const CommentSection({super.key});
+  final String commentId;
+
+  const CommentSection({
+    super.key,
+    required this.commentId,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CommentSectionState();
 }
 
 class _CommentSectionState extends ConsumerState<CommentSection> {
+  late final TextEditingController textController;
+
+  @override
+  void initState() {
+    textController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final my = ref.read(myProvider);
     final textStyle = Theme.of(context).textTheme;
+
     return Padding(
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -84,6 +105,7 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
           SizedBox(
             height: 52,
             child: TextFormField(
+              controller: textController,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: const Color(0xffF1F3F5),
@@ -121,7 +143,15 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                     heightFactor: 1,
                     child: ElevatedButton(
                       onPressed: () {
-                        print("ehllo");
+                        ref
+                            .read(leaveCommentProvider.notifier)
+                            .postLeaveCommnet(
+                              widget.commentId,
+                              textController.text,
+                            )
+                            .then((value) {
+                          textController.clear();
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xff0031AA),

@@ -93,10 +93,6 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
                                       feed.author.profileImageUrl,
                                       fit: BoxFit.cover,
                                     ),
-                                    // child: Image.asset(
-                                    //   "assets/images/test_image.png",
-                                    //   fit: BoxFit.cover,
-                                    // ),
                                   ),
                                 ),
                                 Gab.width8,
@@ -127,35 +123,46 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
                           ),
 
                           // 피드 사진
-                          Container(
-                            margin: const EdgeInsets.only(bottom: 8),
-                            child: AspectRatio(
-                              aspectRatio: 1 / 1,
-                              child: PageView(
-                                children: feed.medias.map(
-                                  (item) {
-                                    return Image.network(
-                                      item.url,
-                                      fit: BoxFit.cover,
-                                    );
-                                  },
-                                ).toList(),
+                          if (feed.medias.isNotEmpty)
+                            Container(
+                              margin: const EdgeInsets.only(bottom: 8),
+                              child: AspectRatio(
+                                aspectRatio: 1 / 1,
+                                child: PageView(
+                                  children: feed.medias.map(
+                                    (item) {
+                                      return Image.network(
+                                        item.url,
+                                        fit: BoxFit.cover,
+                                      );
+                                    },
+                                  ).toList(),
+                                ),
                               ),
                             ),
-                          ),
 
                           // 댓글
                           GestureDetector(
                             onTap: () {
-                              showCommentBottomSheet();
+                              /// 댓글 바텀 시트 열기
+                              showCommentBottomSheet(feed.id);
                             },
-                            child: Row(
-                              children: [
-                                Gab.width16,
-                                SvgPicture.asset("assets/svg/icn_comment.svg"),
-                                Gab.width4,
-                                const Text("6"),
-                              ],
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Gab.width16,
+                                  SvgPicture.asset(
+                                      "assets/svg/icn_comment.svg"),
+                                  Gab.width4,
+                                  feed.firstComments.isEmpty
+                                      ? Text(
+                                          "Write the first Comment",
+                                          style: textStyle.labelSmall!
+                                              .apply(color: Colors.grey[500]),
+                                        )
+                                      : const Text("댓글 숫자"),
+                                ],
+                              ),
                             ),
                           ),
 
@@ -170,7 +177,7 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
                           // 댓글
                           GestureDetector(
                             onTap: () {
-                              showCommentBottomSheet();
+                              showCommentBottomSheet(feed.id);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(left: 16),

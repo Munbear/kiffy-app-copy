@@ -1,11 +1,11 @@
-import 'package:Kiffy/screen_module/comment_section_module/comment_section.dart';
+import 'package:Kiffy/screen_module/comment_section_module/section/comment_section.dart';
 import 'package:Kiffy/screen_module/match/widget/feed_filter_contaienr.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_cancel_container.dart';
 import 'package:flutter/material.dart';
 
 mixin ScreenMixin<T extends StatefulWidget> on State<T> {
   // 댓글 바텀 시트
-  Future<void> showCommentBottomSheet() {
+  Future<void> showCommentBottomSheet(String commentId) {
     return showModalBottomSheet(
       context: context,
       useRootNavigator: true,
@@ -17,7 +17,7 @@ mixin ScreenMixin<T extends StatefulWidget> on State<T> {
         minWidth: double.infinity,
       ),
       builder: (context) {
-        return const CommentSection();
+        return CommentSection(commentId: commentId);
       },
     );
   }
