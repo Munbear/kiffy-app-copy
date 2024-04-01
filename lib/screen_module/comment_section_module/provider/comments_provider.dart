@@ -2,24 +2,19 @@ import 'package:Kiffy/infra/openapi_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
-final leaveCommentProvider =
-    AsyncNotifierProvider.autoDispose<CreateComment, PostCommentViewV1>(
-        CreateComment.new);
+final commentsProvider = AsyncNotifierProvider.autoDispose
+    .family<Comments, PostCommentPageView, String>(
+  Comments.new,
+);
 
-class CreateComment extends AutoDisposeAsyncNotifier<PostCommentViewV1> {
+class Comments
+    extends AutoDisposeFamilyAsyncNotifier<PostCommentPageView, String> {
   @override
-  Future<PostCommentViewV1> build() async {
-    return PostCommentViewV1();
-  }
-
-  Future postLeaveCommnet(String commentId, String commentText) async {
-    await ref.read(openApiProvider).getPostApi().createPostComment(
+  Future<PostCommentPageView> build(String commentId) async {
+    final data = await ref.read(openApiProvider).getPostApi().getPostComments(
           postId: commentId,
-          createPostCommentRequestV1: CreatePostCommentRequestV1(
-            (builderItem) {
-              builderItem.content = commentText;
-            },
-          ),
+          getCommentsRequestV1: GetCommentsRequestV1(),
         );
+    return data.data!;
   }
 }

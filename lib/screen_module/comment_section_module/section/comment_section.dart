@@ -1,9 +1,12 @@
 import 'package:Kiffy/screen_module/comment_section_module/provider/comments_provider.dart';
+import 'package:Kiffy/screen_module/comment_section_module/provider/leave_comment_provider.dart';
 import 'package:Kiffy/screen_module/comment_section_module/widget/comment_tile.dart';
 import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
+import 'package:Kiffy/util/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:openapi/openapi.dart';
 
 class CommentSection extends ConsumerStatefulWidget {
   final String commentId;
@@ -36,143 +39,176 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
   Widget build(BuildContext context) {
     final my = ref.read(myProvider);
     final textStyle = Theme.of(context).textTheme;
-
-    return Padding(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Column(
-        children: [
-          // 댓글 리스트 영역
-          Expanded(
-            child: ListView.builder(
-              itemCount: 20,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    // 댓글
-                    Slidable(
-                      endActionPane: ActionPane(
-                        extentRatio: 0.2,
-                        motion: const ScrollMotion(),
-                        children: [
-                          SlidableAction(
-                            onPressed: (context) {},
-                            backgroundColor: const Color(0xffF04646),
-                            icon: Icons.delete,
-                          ),
-                        ],
+    final comments = ref.watch(commentsProvider(widget.commentId));
+    return comments.when(
+      error: (e, errorStack) {
+        logger.e(e);
+        return const SizedBox();
+      },
+      loading: () => const Center(),
+      data: (data) {
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: data.comments.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Write the first comment",
+                        style: textStyle.titleLarge!.apply(
+                          color: Colors.black,
+                        ),
                       ),
-                      child: const CommentTile(
-                        profileImageUrl: "assets/images/test_image.png",
-                        userName: "kiffy",
-                        text: "hello everyone do you know who i am?",
+                      Text(
+                        "\nThere are no comments yet",
+                        style: textStyle.titleSmall!.apply(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : Column(
+                  children: [
+                    // 댓글 리스트 영역
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: data.comments.length,
+                        itemBuilder: (context, index) {
+                          final comment = data.comments[index];
+                          return Column(
+                            children: [
+                              // 댓글
+                              Slidable(
+                                endActionPane: ActionPane(
+                                  extentRatio: 0.2,
+                                  motion: const ScrollMotion(),
+                                  children: [
+                                    SlidableAction(
+                                      onPressed: (context) {},
+                                      backgroundColor: const Color(0xffF04646),
+                                      icon: Icons.delete,
+                                    ),
+                                  ],
+                                ),
+                                child: CommentTile(
+                                  profileImageUrl:
+                                      comment.author.profileImageUrl,
+                                  userName: comment.author.name,
+                                  text: comment.content,
+                                ),
+                              ),
+                              // 대댓글
+                              // ListView.builder(
+                              //   itemCount: 3,
+                              //   shrinkWrap: true,
+                              //   physics: const NeverScrollableScrollPhysics(),
+                              //   itemBuilder: (context, index) {
+                              //     return Slidable(
+                              //       endActionPane: ActionPane(
+                              //         extentRatio: 0.2,
+                              //         motion: const ScrollMotion(),
+                              //         children: [
+                              //           SlidableAction(
+                              //             onPressed: (context) {},
+                              //             backgroundColor: const Color(0xffF04646),
+                              //             icon: Icons.delete,
+                              //           ),
+                              //         ],
+                              //       ),
+                              //       child: const CommentTile(
+                              //         isReply: true,
+                              //         profileImageUrl:
+                              //             "assets/images/dummy_image.jpg",
+                              //         userName: "kiffy",
+                              //         text: "hello everyone do you know who i am?",
+                              //       ),
+                              //     );
+                              //   },
+                              // ),
+                            ],
+                          );
+                        },
                       ),
                     ),
-                    // 대댓글
-                    ListView.builder(
-                      itemCount: 3,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return Slidable(
-                          endActionPane: ActionPane(
-                            extentRatio: 0.2,
-                            motion: const ScrollMotion(),
-                            children: [
-                              SlidableAction(
-                                onPressed: (context) {},
-                                backgroundColor: const Color(0xffF04646),
-                                icon: Icons.delete,
+
+                    /// 글 작성 영역
+                    SizedBox(
+                      height: 52,
+                      child: TextFormField(
+                        controller: textController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xffF1F3F5),
+                          hintText: "땡땡님 게시글에 댓글 추가",
+                          hintStyle: textStyle.labelMedium!.apply(
+                            color: Colors.grey[600],
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: InputBorder.none,
+                          prefixIcon: Align(
+                            widthFactor: 1,
+                            heightFactor: 1,
+                            child: SizedBox(
+                              width: 28,
+                              height: 28,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.network(
+                                  my.requireValue.profile!.medias.first.url,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ],
+                            ),
                           ),
-                          child: const CommentTile(
-                            isReply: true,
-                            profileImageUrl: "assets/images/dummy_image.jpg",
-                            userName: "kiffy",
-                            text: "hello everyone do you know who i am?",
+                          suffixIconConstraints: const BoxConstraints(
+                            maxHeight: 32,
+                            maxWidth: 96,
                           ),
-                        );
-                      },
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: Align(
+                              widthFactor: 1,
+                              heightFactor: 1,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  ref
+                                      .read(leaveCommentProvider.notifier)
+                                      .postLeaveCommnet(
+                                        widget.commentId,
+                                        textController.text,
+                                      )
+                                      .then((value) {
+                                    textController.clear();
+                                  });
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xff0031AA),
+                                  foregroundColor: Colors.grey[200],
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  elevation: 0,
+                                ),
+                                child: Text(
+                                  "post",
+                                  style: textStyle.labelSmall!
+                                      .apply(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
-                );
-              },
-            ),
-          ),
-
-          /// 글 작성 영역
-          SizedBox(
-            height: 52,
-            child: TextFormField(
-              controller: textController,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: const Color(0xffF1F3F5),
-                hintText: "땡땡님 게시글에 댓글 추가",
-                hintStyle: textStyle.labelMedium!.apply(
-                  color: Colors.grey[600],
                 ),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                ),
-                focusedBorder: InputBorder.none,
-                prefixIcon: Align(
-                  widthFactor: 1,
-                  heightFactor: 1,
-                  child: SizedBox(
-                    width: 28,
-                    height: 28,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.network(
-                        my.requireValue.profile!.medias.first.url,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                suffixIconConstraints: const BoxConstraints(
-                  maxHeight: 32,
-                  maxWidth: 96,
-                ),
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: Align(
-                    widthFactor: 1,
-                    heightFactor: 1,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        ref
-                            .read(leaveCommentProvider.notifier)
-                            .postLeaveCommnet(
-                              widget.commentId,
-                              textController.text,
-                            )
-                            .then((value) {
-                          textController.clear();
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xff0031AA),
-                        foregroundColor: Colors.grey[200],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        elevation: 0,
-                      ),
-                      child: Text(
-                        "post",
-                        style: textStyle.labelSmall!.apply(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

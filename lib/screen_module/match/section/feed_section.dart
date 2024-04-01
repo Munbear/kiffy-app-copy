@@ -160,7 +160,7 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
                                           style: textStyle.labelSmall!
                                               .apply(color: Colors.grey[500]),
                                         )
-                                      : const Text("댓글 숫자"),
+                                      : Text("${feed.firstComments.length}"),
                                 ],
                               ),
                             ),

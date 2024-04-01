@@ -31,7 +31,7 @@ class CommentTile extends StatelessWidget {
             height: 32,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child: Image.asset(
+              child: Image.network(
                 profileImageUrl,
                 fit: BoxFit.cover,
               ),
