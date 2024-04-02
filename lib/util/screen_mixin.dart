@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 mixin ScreenMixin<T extends StatefulWidget> on State<T> {
   // 댓글 바텀 시트
-  Future<void> showCommentBottomSheet(String commentId) {
+  Future<void> showCommentBottomSheet(String postId, String author) {
     return showModalBottomSheet(
       context: context,
       useRootNavigator: true,
@@ -17,7 +17,7 @@ mixin ScreenMixin<T extends StatefulWidget> on State<T> {
         minWidth: double.infinity,
       ),
       builder: (context) {
-        return CommentSection(commentId: commentId);
+        return CommentSection(postId: postId, author: author);
       },
     );
   }

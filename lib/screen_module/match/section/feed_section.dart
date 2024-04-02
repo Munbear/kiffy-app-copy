@@ -1,7 +1,6 @@
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/match/provider/feed_provider.dart';
 import 'package:Kiffy/util/screen_mixin.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,17 +23,6 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
   void initState() {
     super.initState();
   }
-
-  static List<String> testImages = [
-    "assets/images/test_image.png",
-    "assets/images/test_image.png",
-    "assets/images/test_image.png",
-    "assets/images/test_image.png",
-    "assets/images/test_image.png",
-    "assets/images/test_image.png",
-    "assets/images/test_image.png",
-    "assets/images/test_image.png",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +133,7 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
                           GestureDetector(
                             onTap: () {
                               /// 댓글 바텀 시트 열기
-                              showCommentBottomSheet(feed.id);
+                              showCommentBottomSheet(feed.id, feed.author.name);
                             },
                             child: SizedBox(
                               child: Row(
@@ -177,7 +165,7 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
                           // 댓글
                           GestureDetector(
                             onTap: () {
-                              showCommentBottomSheet(feed.id);
+                              showCommentBottomSheet(feed.id, feed.author.name);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(left: 16),

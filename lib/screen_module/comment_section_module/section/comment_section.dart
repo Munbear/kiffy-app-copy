@@ -6,13 +6,18 @@ import 'package:Kiffy/util/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:openapi/openapi.dart';
+
+enum CommentType { comment, reply }
 
 class CommentSection extends ConsumerStatefulWidget {
-  final String commentId;
+  final String postId;
+  final String author;
 
   const CommentSection({
     super.key,
-    required this.commentId,
+    required this.author,
+    required this.postId,
   });
 
   @override
@@ -38,7 +43,9 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
   Widget build(BuildContext context) {
     final my = ref.read(myProvider);
     final textStyle = Theme.of(context).textTheme;
-    final comments = ref.watch(commentsProvider(widget.commentId));
+    AsyncValue<PostCommentPageView> comments =
+        ref.watch(commentsProvider(widget.postId));
+
     return comments.when(
       error: (e, errorStack) {
         logger.e(e);
@@ -93,40 +100,25 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                                   ],
                                 ),
                                 child: CommentTile(
+                                  onTap: () {
+                                    ref
+                                        .read(commentHintTextState.notifier)
+                                        .update(
+                                          (state) => state = CommentInfo(
+                                            commentId: comment.id,
+                                            author: comment.author.name,
+                                          ),
+                                        );
+                                  },
+                                  commentType: comment.parentId != null
+                                      ? CommentType.reply
+                                      : CommentType.comment,
                                   profileImageUrl:
                                       comment.author.profileImageUrl,
                                   userName: comment.author.name,
                                   text: comment.content,
                                 ),
                               ),
-                              // 대댓글
-                              // ListView.builder(
-                              //   itemCount: 3,
-                              //   shrinkWrap: true,
-                              //   physics: const NeverScrollableScrollPhysics(),
-                              //   itemBuilder: (context, index) {
-                              //     return Slidable(
-                              //       endActionPane: ActionPane(
-                              //         extentRatio: 0.2,
-                              //         motion: const ScrollMotion(),
-                              //         children: [
-                              //           SlidableAction(
-                              //             onPressed: (context) {},
-                              //             backgroundColor: const Color(0xffF04646),
-                              //             icon: Icons.delete,
-                              //           ),
-                              //         ],
-                              //       ),
-                              //       child: const CommentTile(
-                              //         isReply: true,
-                              //         profileImageUrl:
-                              //             "assets/images/dummy_image.jpg",
-                              //         userName: "kiffy",
-                              //         text: "hello everyone do you know who i am?",
-                              //       ),
-                              //     );
-                              //   },
-                              // ),
                             ],
                           );
                         },
@@ -136,73 +128,95 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                     /// 글 작성 영역
                     SizedBox(
                       height: 52,
-                      child: TextFormField(
-                        controller: textController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color(0xffF1F3F5),
-                          hintText: "땡땡님 게시글에 댓글 추가",
-                          hintStyle: textStyle.labelMedium!.apply(
-                            color: Colors.grey[600],
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: InputBorder.none,
-                          prefixIcon: Align(
-                            widthFactor: 1,
-                            heightFactor: 1,
-                            child: SizedBox(
-                              width: 28,
-                              height: 28,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.network(
-                                  my.requireValue.profile!.medias.first.url,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                      child: Consumer(builder: (context, ref, child) {
+                        final replyTo = ref.watch(commentHintTextState);
+                        return TextFormField(
+                          controller: textController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xffF1F3F5),
+                            hintText: replyTo?.author != null
+                                ? "${replyTo?.author} 게시글에 댓글 추가"
+                                : "${widget.author} 게시글에 댓글 추가",
+                            hintStyle: textStyle.labelMedium!.apply(
+                              color: Colors.grey[600],
                             ),
-                          ),
-                          suffixIconConstraints: const BoxConstraints(
-                            maxHeight: 32,
-                            maxWidth: 96,
-                          ),
-                          suffixIcon: Padding(
-                            padding: const EdgeInsets.only(right: 16),
-                            child: Align(
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: InputBorder.none,
+                            prefixIcon: Align(
                               widthFactor: 1,
                               heightFactor: 1,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  ref
-                                      .read(leaveCommentProvider.notifier)
-                                      .postLeaveCommnet(
-                                        widget.commentId,
-                                        textController.text,
-                                      )
-                                      .then((value) {
-                                    textController.clear();
-                                  });
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xff0031AA),
-                                  foregroundColor: Colors.grey[200],
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                              child: SizedBox(
+                                width: 28,
+                                height: 28,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.network(
+                                    my.requireValue.profile!.medias.first.url,
+                                    fit: BoxFit.cover,
                                   ),
-                                  elevation: 0,
                                 ),
-                                child: Text(
-                                  "post",
-                                  style: textStyle.labelSmall!
-                                      .apply(color: Colors.white),
+                              ),
+                            ),
+                            suffixIconConstraints: const BoxConstraints(
+                              maxHeight: 32,
+                              maxWidth: 96,
+                            ),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Align(
+                                widthFactor: 1,
+                                heightFactor: 1,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    replyTo?.author != null
+                                        // 대댓글
+                                        ? ref
+                                            .read(leaveCommentProvider.notifier)
+                                            .postLeaveReply(
+                                              postId: widget.postId,
+                                              commentId: replyTo!.commentId,
+                                              replyText: textController.text,
+                                            )
+                                            .then((value) {
+                                            textController.clear();
+                                            ref.invalidate(
+                                                commentHintTextState);
+                                          })
+                                        // 댓글
+                                        : ref
+                                            .read(leaveCommentProvider.notifier)
+                                            .postLeaveCommnet(
+                                              widget.postId,
+                                              textController.text,
+                                            )
+                                            .then(
+                                            (value) {
+                                              textController.clear();
+                                            },
+                                          );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xff0031AA),
+                                    foregroundColor: Colors.grey[200],
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    elevation: 0,
+                                  ),
+                                  child: Text(
+                                    "post",
+                                    style: textStyle.labelSmall!
+                                        .apply(color: Colors.white),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
+                        );
+                      }),
                     ),
                   ],
                 ),
