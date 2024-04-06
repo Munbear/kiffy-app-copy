@@ -24,4 +24,11 @@ class FeedList extends AutoDisposeAsyncNotifier<FeedPageViewV1> {
     // state = AsyncValue.data([...state, ...itemList]);
     print(state);
   }
+
+  Future<FeedPageViewV1> initFeed() async {
+    final res = await ref.read(openApiProvider).getPostApi().getFeed(
+          getFeedRequestV1: GetFeedRequestV1(),
+        );
+    return res.data!;
+  }
 }

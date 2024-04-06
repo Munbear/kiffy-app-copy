@@ -1,5 +1,4 @@
 import 'package:Kiffy/screen_module/comment_section_module/provider/comments_provider.dart';
-import 'package:Kiffy/screen_module/comment_section_module/provider/leave_comment_provider.dart';
 import 'package:Kiffy/screen_module/comment_section_module/widget/comment_tile.dart';
 import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/util/logger.dart';
@@ -43,47 +42,49 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
   Widget build(BuildContext context) {
     final my = ref.read(myProvider);
     final textStyle = Theme.of(context).textTheme;
-    AsyncValue<PostCommentPageView> comments =
+    AsyncValue<List<PostCommentViewV1>> comments =
         ref.watch(commentsProvider(widget.postId));
-
+    comments.copyWithPrevious(comments);
     return comments.when(
       error: (e, errorStack) {
         logger.e(e);
         return const SizedBox();
       },
-      loading: () => const Center(),
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),
       data: (data) {
         return Padding(
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: data.comments.isEmpty
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Write the first comment",
-                        style: textStyle.titleLarge!.apply(
-                          color: Colors.black,
+          child: Column(
+            children: [
+              // 댓글 리스트 영역
+              Expanded(
+                child: data.isEmpty
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Write the first comment",
+                              style: textStyle.titleLarge!.apply(
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              "\nThere are no comments yet",
+                              style: textStyle.titleSmall!.apply(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      Text(
-                        "\nThere are no comments yet",
-                        style: textStyle.titleSmall!.apply(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              : Column(
-                  children: [
-                    // 댓글 리스트 영역
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: data.comments.length,
+                      )
+                    : ListView.builder(
+                        itemCount: data.length,
                         itemBuilder: (context, index) {
-                          final comment = data.comments[index];
+                          final comment = data[index];
                           return Column(
                             children: [
                               // 댓글
@@ -123,103 +124,106 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                           );
                         },
                       ),
-                    ),
+              ),
 
-                    /// 글 작성 영역
-                    SizedBox(
-                      height: 52,
-                      child: Consumer(builder: (context, ref, child) {
-                        final replyTo = ref.watch(commentHintTextState);
-                        return TextFormField(
-                          controller: textController,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: const Color(0xffF1F3F5),
-                            hintText: replyTo?.author != null
-                                ? "${replyTo?.author} 게시글에 댓글 추가"
-                                : "${widget.author} 게시글에 댓글 추가",
-                            hintStyle: textStyle.labelMedium!.apply(
-                              color: Colors.grey[600],
-                            ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                            focusedBorder: InputBorder.none,
-                            prefixIcon: Align(
-                              widthFactor: 1,
-                              heightFactor: 1,
-                              child: SizedBox(
-                                width: 28,
-                                height: 28,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.network(
-                                    my.requireValue.profile!.medias.first.url,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            suffixIconConstraints: const BoxConstraints(
-                              maxHeight: 32,
-                              maxWidth: 96,
-                            ),
-                            suffixIcon: Padding(
-                              padding: const EdgeInsets.only(right: 16),
-                              child: Align(
-                                widthFactor: 1,
-                                heightFactor: 1,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    replyTo?.author != null
-                                        // 대댓글
-                                        ? ref
-                                            .read(leaveCommentProvider.notifier)
-                                            .postLeaveReply(
-                                              postId: widget.postId,
-                                              commentId: replyTo!.commentId,
-                                              replyText: textController.text,
-                                            )
-                                            .then((value) {
-                                            textController.clear();
-                                            ref.invalidate(
-                                                commentHintTextState);
-                                          })
-                                        // 댓글
-                                        : ref
-                                            .read(leaveCommentProvider.notifier)
-                                            .postLeaveCommnet(
-                                              widget.postId,
-                                              textController.text,
-                                            )
-                                            .then(
-                                            (value) {
-                                              textController.clear();
-                                            },
-                                          );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xff0031AA),
-                                    foregroundColor: Colors.grey[200],
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    elevation: 0,
-                                  ),
-                                  child: Text(
-                                    "post",
-                                    style: textStyle.labelSmall!
-                                        .apply(color: Colors.white),
-                                  ),
-                                ),
-                              ),
+              /// 글 작성 영역
+              SizedBox(
+                height: 52,
+                child: Consumer(builder: (context, ref, child) {
+                  final replyTo = ref.watch(commentHintTextState);
+                  return TextFormField(
+                    controller: textController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffF1F3F5),
+                      hintText: replyTo?.author != null
+                          ? "${replyTo?.author} 게시글에 댓글 추가"
+                          : "${widget.author} 게시글에 댓글 추가",
+                      hintStyle: textStyle.labelMedium!.apply(
+                        color: Colors.grey[600],
+                      ),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: InputBorder.none,
+                      prefixIcon: Align(
+                        widthFactor: 1,
+                        heightFactor: 1,
+                        child: SizedBox(
+                          width: 28,
+                          height: 28,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.network(
+                              my.requireValue.profile!.medias.first.url,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        );
-                      }),
+                        ),
+                      ),
+                      suffixIconConstraints: const BoxConstraints(
+                        maxHeight: 32,
+                        maxWidth: 96,
+                      ),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Align(
+                          widthFactor: 1,
+                          heightFactor: 1,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              replyTo?.author != null
+                                  // 대댓글
+                                  ? ref
+                                      .read(commentsProvider(widget.postId)
+                                          .notifier)
+                                      .postLeaveReply(
+                                        postId: widget.postId,
+                                        commentId: replyTo!.commentId,
+                                        replyText: textController.text,
+                                      )
+                                      .then(
+                                      (value) {
+                                        textController.clear();
+                                        ref.invalidate(commentHintTextState);
+                                      },
+                                    )
+                                  // 댓글
+                                  : ref
+                                      .read(commentsProvider(widget.postId)
+                                          .notifier)
+                                      .postLeaveCommnet(
+                                        widget.postId,
+                                        textController.text,
+                                      )
+                                      .then(
+                                      (value) {
+                                        textController.clear();
+                                      },
+                                    );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xff0031AA),
+                              foregroundColor: Colors.grey[200],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              elevation: 0,
+                            ),
+                            child: Text(
+                              "post",
+                              style: textStyle.labelSmall!
+                                  .apply(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ],
-                ),
+                  );
+                }),
+              ),
+            ],
+          ),
         );
       },
     );
