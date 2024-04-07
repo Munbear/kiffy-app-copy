@@ -21,7 +21,7 @@ class Comments
     return res.data!.comments.toList();
   }
 
-  // 댓글창 없데이트
+  // 댓글 더 불렁기
   Future<PostCommentPageView> updateComments(String commentId) async {
     final data = await ref.read(openApiProvider).getPostApi().getPostComments(
           postId: commentId,
@@ -49,20 +49,37 @@ class Comments
   // 대댓글 달기
   Future postLeaveReply(
       {String? postId, String? commentId, String? replyText}) async {
-    final responseValue =
-        await ref.read(openApiProvider).getPostApi().createPostCommentReply(
-              postId: postId!,
-              commentId: commentId!,
-              createPostCommentRequestV1: CreatePostCommentRequestV1(
-                (b) {
-                  b.content = replyText;
-                },
-              ),
+    await ref
+        .read(openApiProvider)
+        .getPostApi()
+        .createPostCommentReply(
+          postId: postId!,
+          commentId: commentId!,
+          createPostCommentRequestV1: CreatePostCommentRequestV1(
+            (b) {
+              b.content = replyText;
+            },
+          ),
+        )
+        .then(
+      (value) {
+        logger.d("안녕 : $value");
+      },
+    );
+  }
+
+  /// 댓글 삭제
+  Future deleteComment(String commentId) async {
+    final resValue =
+        await ref.read(openApiProvider).getPostApi().deletePostComment(
+              postId: arg,
+              commentId: commentId,
             );
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    logger.d("워터 : $responseValue");
-    final List<PostCommentViewV1> updateList =
-        List<PostCommentViewV1>.from(state.value!);
+    if (resValue.statusCode == 200) {
+      final List<PostCommentViewV1> updateList =
+          state.value!.where((element) => element.id != commentId).toList();
+      state = AsyncValue.data(updateList);
+    }
   }
 }
 

@@ -89,12 +89,28 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                             children: [
                               // 댓글
                               Slidable(
+                                key: ValueKey(comment.id),
                                 endActionPane: ActionPane(
                                   extentRatio: 0.2,
-                                  motion: const ScrollMotion(),
+                                  motion: const DrawerMotion(),
+                                  dragDismissible: true,
+                                  dismissible: DismissiblePane(
+                                    onDismissed: () {
+                                      ref
+                                          .read(commentsProvider(widget.postId)
+                                              .notifier)
+                                          .deleteComment(comment.id);
+                                    },
+                                  ),
                                   children: [
                                     SlidableAction(
-                                      onPressed: (context) {},
+                                      onPressed: (context) {
+                                        ref
+                                            .read(
+                                                commentsProvider(widget.postId)
+                                                    .notifier)
+                                            .deleteComment(comment.id);
+                                      },
                                       backgroundColor: const Color(0xffF04646),
                                       icon: Icons.delete,
                                     ),
