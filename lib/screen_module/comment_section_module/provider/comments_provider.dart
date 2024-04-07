@@ -1,10 +1,9 @@
 import 'package:Kiffy/infra/openapi_client.dart';
-import 'package:Kiffy/util/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openapi/openapi.dart';
 
 // 댓글 불러오기
-final commentsProvider = AsyncNotifierProvider.autoDispose
+final commentProvider = AsyncNotifierProvider.autoDispose
     .family<Comments, List<PostCommentViewV1>, String>(
   Comments.new,
 );
@@ -49,23 +48,26 @@ class Comments
   // 대댓글 달기
   Future postLeaveReply(
       {String? postId, String? commentId, String? replyText}) async {
-    await ref
-        .read(openApiProvider)
-        .getPostApi()
-        .createPostCommentReply(
-          postId: postId!,
-          commentId: commentId!,
-          createPostCommentRequestV1: CreatePostCommentRequestV1(
-            (b) {
-              b.content = replyText;
-            },
-          ),
-        )
-        .then(
-      (value) {
-        logger.d("안녕 : $value");
-      },
-    );
+    final resValue =
+        await ref.read(openApiProvider).getPostApi().createPostCommentReply(
+              postId: postId!,
+              commentId: commentId!,
+              createPostCommentRequestV1: CreatePostCommentRequestV1(
+                (b) {
+                  b.content = replyText;
+                },
+              ),
+            );
+    List<PostCommentViewV1> updateList =
+        List<PostCommentViewV1>.from(state.value!);
+    PostCommentViewV1 newReply = resValue.data!;
+
+    int parentIndex =
+        updateList.indexWhere((element) => element.id == commentId);
+    if (parentIndex != -1) {
+      updateList.insert(parentIndex + 1, newReply);
+    }
+    state = AsyncValue.data(updateList);
   }
 
   /// 댓글 삭제

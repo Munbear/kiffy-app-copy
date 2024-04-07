@@ -43,7 +43,7 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
     final my = ref.read(myProvider);
     final textStyle = Theme.of(context).textTheme;
     AsyncValue<List<PostCommentViewV1>> comments =
-        ref.watch(commentsProvider(widget.postId));
+        ref.watch(commentProvider(widget.postId));
     comments.copyWithPrevious(comments);
     return comments.when(
       error: (e, errorStack) {
@@ -97,7 +97,7 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                                   dismissible: DismissiblePane(
                                     onDismissed: () {
                                       ref
-                                          .read(commentsProvider(widget.postId)
+                                          .read(commentProvider(widget.postId)
                                               .notifier)
                                           .deleteComment(comment.id);
                                     },
@@ -106,9 +106,8 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                                     SlidableAction(
                                       onPressed: (context) {
                                         ref
-                                            .read(
-                                                commentsProvider(widget.postId)
-                                                    .notifier)
+                                            .read(commentProvider(widget.postId)
+                                                .notifier)
                                             .deleteComment(comment.id);
                                       },
                                       backgroundColor: const Color(0xffF04646),
@@ -191,7 +190,7 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                               replyTo?.author != null
                                   // 대댓글
                                   ? ref
-                                      .read(commentsProvider(widget.postId)
+                                      .read(commentProvider(widget.postId)
                                           .notifier)
                                       .postLeaveReply(
                                         postId: widget.postId,
@@ -206,7 +205,7 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                                     )
                                   // 댓글
                                   : ref
-                                      .read(commentsProvider(widget.postId)
+                                      .read(commentProvider(widget.postId)
                                           .notifier)
                                       .postLeaveCommnet(
                                         widget.postId,
