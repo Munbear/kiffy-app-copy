@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:Kiffy/constant/style/gab.dart';
-import 'package:Kiffy/screen_module/create_feed/provider/create_feed_provider.dart';
+import 'package:Kiffy/screen_module/match/provider/feed_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -64,7 +64,7 @@ class _CreateFeedImageSectionState
                     child: IconButton(
                       onPressed: () {
                         ref
-                            .read(createFeedProvider.notifier)
+                            .read(communityProvider.notifier)
                             .removeImage(index)
                             .then((value) {
                           setState(() {});
@@ -121,7 +121,7 @@ class _CreateFeedImageSectionState
                   }
 
                   // 이미지 선택하기
-                  ref.read(createFeedProvider.notifier).getImageFilesV2();
+                  ref.read(communityProvider.notifier).getImageFilesV2();
                 },
                 icon: SvgPicture.asset("assets/svg/gallery.svg"),
               ),

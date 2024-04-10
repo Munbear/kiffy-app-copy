@@ -8,8 +8,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:inview_notifier_list/inview_notifier_list.dart';
 import 'package:openapi/openapi.dart';
 
-typedef Preview = List<Map<String, dynamic>>;
-
 class FeedSection extends ConsumerStatefulWidget {
   const FeedSection({super.key});
 
@@ -17,18 +15,30 @@ class FeedSection extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _FeedSectionState();
 }
 
-class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
+class _FeedSectionState extends ConsumerState<FeedSection>
+    with ScreenMixin, AutomaticKeepAliveClientMixin {
   final ScrollController scrollController = ScrollController();
+
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
   }
 
   @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     final textStyle = Theme.of(context).textTheme;
-    AsyncValue<FeedPageViewV1> feedData = ref.watch(feedListProvider);
-    // final feedList = feedData.valueOrNull!.posts;
+    AsyncValue<List<PostViewV1>> feedData = ref.watch(communityProvider);
     return feedData.when(
       loading: () {
         return const _FeedSkeleton();
@@ -39,13 +49,13 @@ class _FeedSectionState extends ConsumerState<FeedSection> with ScreenMixin {
         );
       },
       data: (data) {
-        final feedList = data.posts;
+        final feedList = data;
         return Expanded(
           child: feedList.isEmpty
               ? const Center(child: Text("아직 매칭된 사용자가 없거나 게시글이 존재 하지 않습니다."))
               : RefreshIndicator(
                   onRefresh: () async {
-                    return ref.refresh(feedListProvider.future);
+                    return ref.refresh(communityProvider.future);
                   },
                   color: const Color(0xff0031AA),
                   child: InViewNotifierList(
