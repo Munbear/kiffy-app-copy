@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/match/provider/feed_provider.dart';
+import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,9 +28,7 @@ class MatchingCancelContainer extends ConsumerWidget {
               borderRadius: BorderRadius.circular(10),
               onTap: () {
                 myInfo.value!.profile!.id == authorId
-                    ? ref
-                        .read(communityProvider(null).notifier)
-                        .deleteFeed(feedId)
+                    ? ref.read(communityProvider.notifier).deleteFeed(feedId)
                     : print("취소");
               },
               child: Padding(

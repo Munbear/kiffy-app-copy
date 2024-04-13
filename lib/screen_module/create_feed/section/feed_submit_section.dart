@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/match/provider/feed_provider.dart';
+import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +20,7 @@ class FeedSubmitSection extends ConsumerWidget {
                   ? null
                   : () {
                       ref
-                          .read(communityProvider(null).notifier)
+                          .read(communityProvider.notifier)
                           .postFeed(textController.text, uploadImageIds)
                           .then(
                         (statusCode) {
@@ -55,7 +55,7 @@ class FeedSubmitSection extends ConsumerWidget {
           : ElevatedButton(
               onPressed: () {
                 ref
-                    .read(communityProvider(null).notifier)
+                    .read(communityProvider.notifier)
                     .postFeed(textController.text, uploadImageIds)
                     .then(
                   (statusCode) {

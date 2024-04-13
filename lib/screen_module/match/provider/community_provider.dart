@@ -7,34 +7,45 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:openapi/openapi.dart';
 
-final communityProvider = AsyncNotifierProvider.family
-    .autoDispose<FeedList, List<PostViewV1>, String?>(FeedList.new);
+final communityProvider =
+    AsyncNotifierProvider.autoDispose<FeedList, List<PostViewV1>>(FeedList.new);
 
-class FeedList
-    extends AutoDisposeFamilyAsyncNotifier<List<PostViewV1>, String?> {
+class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
   @override
-  Future<List<PostViewV1>> build(String? arg) async {
+  Future<List<PostViewV1>> build() async {
     final res = await ref.read(openApiProvider).getPostApi().getFeed(
       getFeedRequestV1: GetFeedRequestV1(
         (b) {
-          b.nextKey = arg;
+          b.nextKey = null;
         },
       ),
     );
-    logger.d("안녕 :내가 여기서?");
-    logger.d(res.data);
+    ref
+        .read(feedPagingState.notifier)
+        .update((state) => res.data!.paging.nextKey);
+
     return res.data!.posts.toList();
   }
 
   // 피드 게시글 더 불러오기
-  Future<void> updateFeedList({String? nextPage, bool? isLoading}) async {
+  Future<void> updateFeedList({String? nextPage}) async {
+    // final nextKey = ref.watch(feedPagingState);
     final res = await ref.read(openApiProvider).getPostApi().getFeed(
-          getFeedRequestV1: GetFeedRequestV1(),
-        );
-    print("제브아아앙알");
-    List<PostViewV1> itemList = res.data!.posts.toList();
+      getFeedRequestV1: GetFeedRequestV1(
+        (b) {
+          b.nextKey = nextPage;
+        },
+      ),
+    );
 
-    // state = AsyncValue.data(itemList);
+    List<PostViewV1> newList = res.data!.posts.toList();
+    List<PostViewV1> currentList = state.value!;
+    currentList.addAll(newList);
+    state = AsyncValue.data(currentList);
+    ref
+        .read(feedPagingState.notifier)
+        .update((state) => res.data!.paging.nextKey);
+    // return res.data!.paging.nextKey;
   }
 
   // 사진 파일 가져오기
@@ -157,3 +168,5 @@ final imageFileState = StateProvider.autoDispose<List<XFile>>((ref) => []);
 final imageUploadState = StateProvider.autoDispose<List<String>>((ref) => []);
 // 로딩
 final loading2 = StateProvider.autoDispose<bool>((ref) => false);
+
+final feedPagingState = StateProvider<String>((ref) => "");

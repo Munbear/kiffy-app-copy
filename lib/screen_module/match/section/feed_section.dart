@@ -1,5 +1,5 @@
 import 'package:Kiffy/constant/style/gab.dart';
-import 'package:Kiffy/screen_module/match/provider/feed_provider.dart';
+import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:Kiffy/util/screen_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -40,7 +40,7 @@ class _FeedSectionState extends ConsumerState<FeedSection>
   Widget build(BuildContext context) {
     super.build(context);
     final textStyle = Theme.of(context).textTheme;
-    AsyncValue<List<PostViewV1>> feedData = ref.watch(communityProvider(null));
+    AsyncValue<List<PostViewV1>> feedData = ref.watch(communityProvider);
     return feedData.when(
       loading: () {
         return const _FeedSkeleton();
@@ -53,12 +53,13 @@ class _FeedSectionState extends ConsumerState<FeedSection>
       data: (data) {
         final feedList = data;
         final isLoading = ref.watch(loading2);
+        final nextKey = ref.watch(feedPagingState);
         return Expanded(
           child: feedList.isEmpty
               ? const Center(child: Text("아직 매칭된 사용자가 없거나 게시글이 존재 하지 않습니다."))
               : RefreshIndicator(
                   onRefresh: () async {
-                    return ref.refresh(communityProvider(null).future);
+                    return ref.refresh(communityProvider.future);
                   },
                   color: const Color(0xff0031AA),
                   child: InViewNotifierList(
@@ -75,8 +76,8 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                       if (!isLoading) {
                         ref.read(loading2.notifier).update((state) => true);
                         ref
-                            .read(communityProvider(null).notifier)
-                            .updateFeedList();
+                            .read(communityProvider.notifier)
+                            .updateFeedList(nextPage: nextKey);
                         await Future.delayed(const Duration(milliseconds: 2000))
                             .then((value) {
                           ref.read(loading2.notifier).update((state) => false);
