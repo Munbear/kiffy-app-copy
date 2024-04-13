@@ -1,4 +1,5 @@
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/util/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,26 +7,34 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:openapi/openapi.dart';
 
-final communityProvider =
-    AsyncNotifierProvider.autoDispose<FeedList, List<PostViewV1>>(FeedList.new);
+final communityProvider = AsyncNotifierProvider.family
+    .autoDispose<FeedList, List<PostViewV1>, String?>(FeedList.new);
 
-class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
+class FeedList
+    extends AutoDisposeFamilyAsyncNotifier<List<PostViewV1>, String?> {
   @override
-  Future<List<PostViewV1>> build() async {
+  Future<List<PostViewV1>> build(String? arg) async {
     final res = await ref.read(openApiProvider).getPostApi().getFeed(
-          getFeedRequestV1: GetFeedRequestV1(),
-        );
+      getFeedRequestV1: GetFeedRequestV1(
+        (b) {
+          b.nextKey = arg;
+        },
+      ),
+    );
+    logger.d("안녕 :내가 여기서?");
+    logger.d(res.data);
     return res.data!.posts.toList();
   }
 
   // 피드 게시글 더 불러오기
-  Future<void> updateFeedList({String? nextPage}) async {
+  Future<void> updateFeedList({String? nextPage, bool? isLoading}) async {
     final res = await ref.read(openApiProvider).getPostApi().getFeed(
           getFeedRequestV1: GetFeedRequestV1(),
         );
+    print("제브아아앙알");
     List<PostViewV1> itemList = res.data!.posts.toList();
 
-    state = AsyncValue.data(itemList);
+    // state = AsyncValue.data(itemList);
   }
 
   // 사진 파일 가져오기
@@ -122,6 +131,19 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
     }
     return statusCode;
   }
+
+  /// feed 삭제하기
+  Future deleteFeed(String feedId) async {
+    final res =
+        await ref.read(openApiProvider).getPostApi().deletePost(postId: feedId);
+    if (res.statusCode == 200) {
+      logger.d("삭제됨");
+    }
+  }
+
+  updateLoadingState(bool isLoading) {
+    ref.read(loading2.notifier).update((state) => isLoading);
+  }
 }
 
 //텍스트 상태
@@ -133,3 +155,5 @@ final feedTextLengthState = StateProvider.autoDispose<int>((ref) => 0);
 final imageFileState = StateProvider.autoDispose<List<XFile>>((ref) => []);
 // 이미지 업로드 상태
 final imageUploadState = StateProvider.autoDispose<List<String>>((ref) => []);
+// 로딩
+final loading2 = StateProvider.autoDispose<bool>((ref) => false);

@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/comment_section_module/section/comment_section.dart';
+import 'package:Kiffy/screen_module/comment_section/section/comment_section.dart';
 import 'package:Kiffy/screen_module/match/widget/feed_filter_contaienr.dart';
 import 'package:Kiffy/screen_module/match/widget/matching_cancel_container.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ mixin ScreenMixin<T extends StatefulWidget> on State<T> {
   }
 
   //
-  Future<void> showMatchingCancelBottomSheet() {
+  Future<void> showMatchingCancelBottomSheet(String feedId, String authorId) {
     return showModalBottomSheet(
       context: context,
       useRootNavigator: true,
@@ -35,7 +35,10 @@ mixin ScreenMixin<T extends StatefulWidget> on State<T> {
         minWidth: double.infinity,
       ),
       builder: (context) {
-        return const MatchingCancelContainer();
+        return MatchingCancelContainer(
+          feedId: feedId,
+          authorId: authorId,
+        );
       },
     );
   }

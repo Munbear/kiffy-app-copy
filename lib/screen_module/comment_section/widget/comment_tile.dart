@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/comment_section_module/section/comment_section.dart';
+import 'package:Kiffy/screen_module/comment_section/section/comment_section.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constant/style/gab.dart';

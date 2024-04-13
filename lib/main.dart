@@ -72,11 +72,11 @@ void main() async {
       useFallbackTranslations: true,
       saveLocale: true,
       useOnlyLangCode: true,
-      child: ProviderScope(
+      child: const ProviderScope(
         observers: [
-          ProviderLogger(),
+          // ProviderLogger(),
         ],
-        child: const KiffyApp(),
+        child: KiffyApp(),
       ),
     ),
   );

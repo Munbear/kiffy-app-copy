@@ -20,7 +20,7 @@ class FeedSubmitSection extends ConsumerWidget {
                   ? null
                   : () {
                       ref
-                          .read(communityProvider.notifier)
+                          .read(communityProvider(null).notifier)
                           .postFeed(textController.text, uploadImageIds)
                           .then(
                         (statusCode) {
@@ -55,7 +55,7 @@ class FeedSubmitSection extends ConsumerWidget {
           : ElevatedButton(
               onPressed: () {
                 ref
-                    .read(communityProvider.notifier)
+                    .read(communityProvider(null).notifier)
                     .postFeed(textController.text, uploadImageIds)
                     .then(
                   (statusCode) {

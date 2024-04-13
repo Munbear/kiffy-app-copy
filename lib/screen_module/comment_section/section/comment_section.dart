@@ -1,5 +1,5 @@
-import 'package:Kiffy/screen_module/comment_section_module/provider/comments_provider.dart';
-import 'package:Kiffy/screen_module/comment_section_module/widget/comment_tile.dart';
+import 'package:Kiffy/screen_module/comment_section/provider/comments_provider.dart';
+import 'package:Kiffy/screen_module/comment_section/widget/comment_tile.dart';
 import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/util/logger.dart';
 import 'package:flutter/material.dart';

@@ -64,7 +64,7 @@ class _CreateFeedImageSectionState
                     child: IconButton(
                       onPressed: () {
                         ref
-                            .read(communityProvider.notifier)
+                            .read(communityProvider(null).notifier)
                             .removeImage(index)
                             .then((value) {
                           setState(() {});
@@ -121,7 +121,7 @@ class _CreateFeedImageSectionState
                   }
 
                   // 이미지 선택하기
-                  ref.read(communityProvider.notifier).getImageFilesV2();
+                  ref.read(communityProvider(null).notifier).getImageFilesV2();
                 },
                 icon: SvgPicture.asset("assets/svg/gallery.svg"),
               ),

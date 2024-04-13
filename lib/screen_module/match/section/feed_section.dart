@@ -34,11 +34,13 @@ class _FeedSectionState extends ConsumerState<FeedSection>
     super.dispose();
   }
 
+  _load() async {}
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     final textStyle = Theme.of(context).textTheme;
-    AsyncValue<List<PostViewV1>> feedData = ref.watch(communityProvider);
+    AsyncValue<List<PostViewV1>> feedData = ref.watch(communityProvider(null));
     return feedData.when(
       loading: () {
         return const _FeedSkeleton();
@@ -50,25 +52,36 @@ class _FeedSectionState extends ConsumerState<FeedSection>
       },
       data: (data) {
         final feedList = data;
+        final isLoading = ref.watch(loading2);
         return Expanded(
           child: feedList.isEmpty
               ? const Center(child: Text("아직 매칭된 사용자가 없거나 게시글이 존재 하지 않습니다."))
               : RefreshIndicator(
                   onRefresh: () async {
-                    return ref.refresh(communityProvider.future);
+                    return ref.refresh(communityProvider(null).future);
                   },
                   color: const Color(0xff0031AA),
                   child: InViewNotifierList(
+                    endNotificationOffset: 10,
                     controller: scrollController,
                     physics: const BouncingScrollPhysics(),
-                    shrinkWrap: true,
+                    // shrinkWrap: true,
                     itemCount: feedList.length,
                     isInViewPortCondition: (double deltaTop, double deltaBottom,
                         double viewPortDimension) {
                       return false;
                     },
-                    onListEndReached: () {
-                      print('더 불러 오기');
+                    onListEndReached: () async {
+                      if (!isLoading) {
+                        ref.read(loading2.notifier).update((state) => true);
+                        ref
+                            .read(communityProvider(null).notifier)
+                            .updateFeedList();
+                        await Future.delayed(const Duration(milliseconds: 2000))
+                            .then((value) {
+                          ref.read(loading2.notifier).update((state) => false);
+                        });
+                      }
                     },
                     builder: (BuildContext context, int index) {
                       final feed = feedList[index];
@@ -112,7 +125,10 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                 const Spacer(),
                                 IconButton(
                                   onPressed: () {
-                                    showMatchingCancelBottomSheet();
+                                    showMatchingCancelBottomSheet(
+                                      feed.id,
+                                      feed.author.id,
+                                    );
                                   },
                                   icon: const Icon(Icons.more_horiz),
                                 ),
