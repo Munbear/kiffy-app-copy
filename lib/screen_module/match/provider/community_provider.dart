@@ -23,7 +23,7 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
     ref
         .read(feedPagingState.notifier)
         .update((state) => res.data!.paging.nextKey);
-
+    logger.d(res.data!);
     return res.data!.posts.toList();
   }
 

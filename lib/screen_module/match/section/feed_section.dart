@@ -1,5 +1,6 @@
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
+import 'package:Kiffy/util/convert_time.dart';
 import 'package:Kiffy/util/screen_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -33,8 +34,6 @@ class _FeedSectionState extends ConsumerState<FeedSection>
     scrollController.dispose();
     super.dispose();
   }
-
-  _load() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +85,8 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                     },
                     builder: (BuildContext context, int index) {
                       final feed = feedList[index];
+                      final createTime =
+                          ConvertTime.formatTimeDifference(feed.createdAt);
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -117,7 +118,7 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                       style: textStyle.bodyMedium,
                                     ),
                                     Text(
-                                      "${feed.createdAt.hour}",
+                                      createTime,
                                       // "10 minute ago",
                                       style: textStyle.labelMedium,
                                     ),
@@ -188,21 +189,23 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                             child: Text(feed.content),
                           ),
 
-                          Gab.height12,
                           // 댓글
-                          GestureDetector(
-                            onTap: () {
-                              showCommentBottomSheet(feed.id, feed.author.name);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 16),
-                              child: Text(
-                                "View all comments",
-                                style: textStyle.labelMedium!
-                                    .apply(color: Colors.grey[500]),
+                          if (feed.firstComments.isNotEmpty)
+                            GestureDetector(
+                              onTap: () {
+                                showCommentBottomSheet(
+                                    feed.id, feed.author.name);
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 16, top: 12),
+                                child: Text(
+                                  "View all comments",
+                                  style: textStyle.labelMedium!
+                                      .apply(color: Colors.grey[500]),
+                                ),
                               ),
                             ),
-                          ),
                           Gab.height4,
 
                           // 댓글 미리보기
