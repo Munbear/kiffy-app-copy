@@ -1,4 +1,6 @@
 import 'package:Kiffy/constant/style/gab.dart';
+import 'package:Kiffy/screen/matched_detail_list_screen/matched_detail_list_screen.dart';
+import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
 import 'package:Kiffy/screen_module/common/google_admob/admob_banner_widget.dart';
 import 'package:Kiffy/screen_module/match/provider/matched_user_provider.dart';
 import 'package:Kiffy/util/logger.dart';
@@ -48,7 +50,14 @@ class _PreviewMatchingUserSectionState
                     if (index == matchedUserList.length) {
                       return GestureDetector(
                         onTap: () {
-                          print("매칭 상세화면을 이동");
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) {
+                                return const MatchedDetailListScreen();
+                              },
+                            ),
+                          );
                         },
                         child: Column(
                           children: [
@@ -58,9 +67,10 @@ class _PreviewMatchingUserSectionState
                                 height: 64,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.grey[200]!,
+                                  border: Border.all(color: Colors.grey),
+                                  color: Colors.white,
                                 ),
-                                child: const Icon(Icons.people),
+                                child: const Icon(Icons.arrow_forward_rounded),
                               ),
                             ),
                             SizedBox(
@@ -85,7 +95,16 @@ class _PreviewMatchingUserSectionState
                       children: [
                         GestureDetector(
                           onTap: () {
-                            print("user deatil profile");
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) {
+                                  return MatchedDetailScreen(
+                                    matchedUser: matchedUser,
+                                  );
+                                },
+                              ),
+                            );
                           },
                           child: Container(
                             width: 64,

@@ -28,9 +28,6 @@ class MatchingScreen extends StatelessWidget {
 
           // 커뮤니티 피드
           FeedSection(),
-
-          // 매칭된 유저 카드 섹션
-          // const MatchedUserCardSection(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
