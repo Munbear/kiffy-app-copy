@@ -9,17 +9,17 @@ class ConvertTime {
     double days = hours / 24;
 
     if (days >= 2) {
-      return "${days.toInt()}일 전";
+      return "${days.toInt()}d ago";
     } else if (days >= 1) {
-      return "1일 전";
+      return "1d ago";
     } else if (hours >= 2) {
-      return "${hours.toInt()}시간 전";
+      return "${hours.toInt()}h ago";
     } else if (hours >= 1) {
-      return "1시간 전";
+      return "1h ago";
     } else if (minutes >= 2) {
-      return "${minutes.toInt()}분 전";
+      return "${minutes.toInt()}m ago";
     } else {
-      return "방금 전";
+      return "just now";
     }
   }
 }

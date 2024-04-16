@@ -1,4 +1,6 @@
 import 'package:Kiffy/infra/openapi_client.dart';
+import 'package:Kiffy/screen_module/match/widget/feed_filter_contaienr.dart';
+import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/util/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +48,19 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
         .read(feedPagingState.notifier)
         .update((state) => res.data!.paging.nextKey);
     // return res.data!.paging.nextKey;
+  }
+
+  Future feedFilter(FeedFilter currentFilter) async {
+    final myInfo = ref.read(myProvider);
+    ref.read(communityFilter.notifier).update((state) => currentFilter);
+    if (currentFilter == FeedFilter.my) {
+      List<PostViewV1> myList = state.value!
+          .where((element) => element.author.id == myInfo.value!.profile!.id)
+          .toList();
+      state = AsyncValue.data(myList);
+    } else {
+      ref.invalidate(communityProvider);
+    }
   }
 
   // 사진 파일 가져오기
@@ -168,5 +183,8 @@ final imageFileState = StateProvider.autoDispose<List<XFile>>((ref) => []);
 final imageUploadState = StateProvider.autoDispose<List<String>>((ref) => []);
 // 로딩
 final loading2 = StateProvider.autoDispose<bool>((ref) => false);
-
+// 피드 페이징
 final feedPagingState = StateProvider<String>((ref) => "");
+// 선택된 피드 필터
+final communityFilter =
+    StateProvider.autoDispose<FeedFilter>((ref) => FeedFilter.all);

@@ -1,3 +1,4 @@
+import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:Kiffy/util/screen_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +16,7 @@ class _FeedNavBarSectionState extends ConsumerState<FeedNavBarSection>
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
+    final currentFeedFilter = ref.watch(communityFilter);
     return Container(
       height: 48,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -29,33 +31,35 @@ class _FeedNavBarSectionState extends ConsumerState<FeedNavBarSection>
           ),
 
           // 필터 버튼
-          GestureDetector(
-            onTap: () {
-              showFeedFilterBottomSheet();
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6)
-                  .add(const EdgeInsets.only(left: 4)),
-              decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xff0031AA)),
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    "All",
-                    style: textStyle.labelMedium!.apply(
-                      color: const Color(0xff0031AA),
+          Builder(builder: (context) {
+            return GestureDetector(
+              onTap: () {
+                showFeedFilterBottomSheet();
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6)
+                    .add(const EdgeInsets.only(left: 4)),
+                decoration: BoxDecoration(
+                  border: Border.all(color: const Color(0xff0031AA)),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      currentFeedFilter.text,
+                      style: textStyle.labelMedium!.apply(
+                        color: const Color(0xff0031AA),
+                      ),
                     ),
-                  ),
-                  const Icon(
-                    Icons.arrow_drop_down,
-                    color: Color(0xff0031AA),
-                  ),
-                ],
+                    const Icon(
+                      Icons.arrow_drop_down,
+                      color: Color(0xff0031AA),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
+            );
+          }),
         ],
       ),
     );

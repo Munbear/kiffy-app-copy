@@ -99,7 +99,8 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                   width: 36,
                                   height: 36,
                                   decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
+                                    shape: BoxShape.circle,
+                                  ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(50),
                                     child: Image.network(
@@ -114,12 +115,10 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                   children: [
                                     Text(
                                       feed.author.name,
-                                      // "User name",
                                       style: textStyle.bodyMedium,
                                     ),
                                     Text(
                                       createTime,
-                                      // "10 minute ago",
                                       style: textStyle.labelMedium,
                                     ),
                                   ],

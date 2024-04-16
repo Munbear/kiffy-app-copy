@@ -1,5 +1,7 @@
+import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class FeedFilterContainer extends ConsumerWidget {
   const FeedFilterContainer({super.key});
@@ -19,7 +21,10 @@ class FeedFilterContainer extends ConsumerWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(10),
                 onTap: () {
-                  print(item);
+                  ref
+                      .read(communityProvider.notifier)
+                      .feedFilter(item)
+                      .then((value) => context.pop());
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
