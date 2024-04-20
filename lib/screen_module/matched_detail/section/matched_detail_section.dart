@@ -1,4 +1,4 @@
-import 'package:Kiffy/screen_module/common/space/widget/space.dart';
+import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page.dart';
 import 'package:Kiffy/screen_module/matched_detail/provider/match_manager_provider.dart';
 import 'package:Kiffy/screen_module/matched_detail/widget/matched_detail_cancel_button.dart';
@@ -28,22 +28,23 @@ class _MatchedDetailSectionState extends ConsumerState<MatchedDetailSection> {
           child:
               UserProfileCardPage(userProfile: widget.matchedUser.userProfile),
         ),
-        const SizedBox(height: 8),
+        Gab.height10,
         MatchedUserDetailInfoContainer(
           contactInfo: widget.matchedUser.userProfile.contacts.toList(),
           lastCheck: widget.matchedUser.lastKnockedAt,
           emoji: widget.matchedUser.emojis,
         ),
-        const Space(height: 8),
-        MatchedDetailCancelButton(
-          onPressed: () {
-            ref
-                .read(matchManagerProvider)
-                .cancelMatch(widget.matchedUser.matchId);
-            context.pop();
-          },
+        Gab.height10,
+        SizedBox(
+          child: MatchedDetailCancelButton(
+            onPressed: () {
+              ref
+                  .read(matchManagerProvider)
+                  .cancelMatch(widget.matchedUser.matchId);
+              context.pop();
+            },
+          ),
         ),
-        const Space(height: 20),
       ],
     );
   }

@@ -181,7 +181,7 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                           style: textStyle.labelSmall!
                                               .apply(color: Colors.grey[500]),
                                         )
-                                      : Text("${feed.firstComments.length}"),
+                                      : Text("${feed.commentCount}"),
                                 ],
                               ),
                             ),

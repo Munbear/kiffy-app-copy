@@ -16,7 +16,7 @@ class MatchedDetailCancelButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          padding: const EdgeInsets.symmetric(vertical: 23),
+          padding: const EdgeInsets.symmetric(vertical: 12),
           side: const BorderSide(color: Color(0xffFF3A3A)),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -26,11 +26,9 @@ class MatchedDetailCancelButton extends StatelessWidget {
         ),
         child: Text(
           tr("text.match.cancel"),
-          style: TextStyle(
-            fontSize: 20,
-            color: Color(0xffFF3A3A),
-            fontWeight: FontWeight.normal,
-          ),
+          style: Theme.of(context).textTheme.titleMedium!.apply(
+                color: const Color(0xffFF3A3A),
+              ),
         ),
       ),
     );
