@@ -35,14 +35,19 @@ class FeedOptionBottomSheetContainer extends ConsumerWidget {
                         .then(
                           (value) => context.pop(),
                         )
-                    : print("취소");
+                    : ref
+                        .read(communityProvider.notifier)
+                        .cancelMatching(authorId)
+                        .then(
+                          (value) => context.pop(),
+                        );
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
                   myInfo.value!.profile!.id == authorId
                       ? "Deleted"
-                      : "Show profile",
+                      : "Cancel Matching",
                   textAlign: TextAlign.center,
                 ),
               ),

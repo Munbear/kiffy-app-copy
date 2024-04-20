@@ -173,6 +173,18 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
   updateLoadingState(bool isLoading) {
     ref.read(loading2.notifier).update((state) => isLoading);
   }
+
+  Future cancelMatching(String userId) async {
+    Response res = await ref
+        .read(openApiProvider)
+        .getMatchApi()
+        .apiMatchV1MatchUserUserIdDelete(userId: userId);
+    if (res.statusCode == 200) {
+      final List<PostViewV1> updateList =
+          state.value!.where((element) => element.author.id != userId).toList();
+      state = AsyncValue.data(updateList);
+    }
+  }
 }
 
 //텍스트 상태
