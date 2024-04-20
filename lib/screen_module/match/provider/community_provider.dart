@@ -160,10 +160,13 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
 
   /// feed 삭제하기
   Future deleteFeed(String feedId) async {
-    final res =
+    Response res =
         await ref.read(openApiProvider).getPostApi().deletePost(postId: feedId);
     if (res.statusCode == 200) {
-      logger.d("삭제됨");
+      logger.d("삭제됨: ${res.data}");
+      final List<PostViewV1> updateList =
+          state.value!.where((element) => element.id != feedId).toList();
+      state = AsyncValue.data(updateList);
     }
   }
 

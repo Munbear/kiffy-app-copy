@@ -95,6 +95,7 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                 horizontal: 16, vertical: 12),
                             child: Row(
                               children: [
+                                /// 작성지 프로필 이미지
                                 Container(
                                   width: 36,
                                   height: 36,
@@ -110,6 +111,8 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                   ),
                                 ),
                                 Gab.width8,
+
+                                /// 작성자 닉네임 및 업로드 시간
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -124,9 +127,11 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                   ],
                                 ),
                                 const Spacer(),
+
+                                //  피드 옵션
                                 IconButton(
                                   onPressed: () {
-                                    showMatchingCancelBottomSheet(
+                                    showFeedOptionBottomSheet(
                                       feed.id,
                                       feed.author.id,
                                     );
@@ -167,7 +172,8 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                 children: [
                                   Gab.width16,
                                   SvgPicture.asset(
-                                      "assets/svg/icn_comment.svg"),
+                                    "assets/svg/icn_comment.svg",
+                                  ),
                                   Gab.width4,
                                   feed.firstComments.isEmpty
                                       ? Text(
