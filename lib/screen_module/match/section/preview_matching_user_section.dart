@@ -67,10 +67,15 @@ class _PreviewMatchingUserSectionState
                                 height: 64,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  border: Border.all(color: Colors.grey),
+                                  border: Border.all(
+                                    color: Colors.grey[200]!,
+                                  ),
                                   color: Colors.white,
                                 ),
-                                child: const Icon(Icons.arrow_forward_rounded),
+                                child: Icon(
+                                  Icons.arrow_forward_rounded,
+                                  color: Colors.grey[400]!,
+                                ),
                               ),
                             ),
                             SizedBox(

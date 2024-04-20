@@ -1,3 +1,4 @@
+import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final textStyle = Theme.of(context).textTheme;
     final myGender = ref.read(myProvider.notifier).getProfile().gender;
     final contactType = contactInfo.map((item) => item.contactType);
     final contactId = contactInfo.map((item) => item.contactId);
@@ -44,7 +46,7 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 18),
+          Gab.height18,
 
           /// 연락처 아이디 및 마지막 프로필 시간
           Text(
@@ -73,7 +75,7 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
                   )
                 : Text(lastCheck.toString()),
           ),
-          const SizedBox(height: 20),
+          Gab.height18,
 
           Text(
             myGender == GenderEnumView.FEMALE
@@ -92,16 +94,12 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
               myGender == GenderEnumView.FEMALE
                   ? tr("text.match.detail.contact_subtitle.female")
                   : tr("text.match.detail.contact_subtitle"),
-              style: const TextStyle(
-                fontSize: 13,
-                color: Colors.black,
-                fontWeight: FontWeight.w400,
-              ),
+              style: textStyle.bodySmall,
             ),
           ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
+          Gab.height8,
+          Container(
+            margin: const EdgeInsets.only(left: 20),
             child: ElevatedButton(
               onPressed: () {
                 Clipboard.setData(
@@ -111,7 +109,7 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
               style: ElevatedButton.styleFrom(
                 elevation: 0,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50),
                 ),
@@ -119,15 +117,11 @@ class MatchedUserDetailInfoContainer extends ConsumerWidget {
               ),
               child: Text(
                 "Hello $emoji",
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: textStyle.titleSmall,
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          Gab.height8,
           if (myGender == GenderEnumView.FEMALE)
             const Padding(
               padding: EdgeInsets.only(left: 30, bottom: 30),
