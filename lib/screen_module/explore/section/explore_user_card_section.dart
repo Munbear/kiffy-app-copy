@@ -54,38 +54,31 @@ class _ExploreUserCardSectionState
       );
     }
 
-    if (exploreUsers.requireValue.userProfiles.isEmpty) {
-      return Expanded(
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
-          child: const ExploreUserCardEmpty(),
-        ),
-      );
-    }
-
     return Expanded(
       child: Container(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
-        child: CardSwiper(
-          controller: controller,
-          allowedSwipeDirection: const AllowedSwipeDirection.none(),
-          isLoop: false,
-          padding: EdgeInsets.zero,
-          initialIndex: 0,
-          onEnd: () {
-            ref.read(exploreUsersProvider.notifier).refresh();
-          },
-          numberOfCardsDisplayed:
-              exploreUsers.requireValue.userProfiles.length <= 1 ? 1 : 2,
-          cardsCount: exploreUsers.requireValue.userProfiles.length,
-          cardBuilder: (context, index) {
-            return UserProfileCard(
-              userProfile: exploreUsers.requireValue.userProfiles[index],
-              onWish: (userId) => wishAndSwipe(userId),
-              onReject: (userId) => rejectAndSwipe(userId),
-            );
-          },
-        ),
+        child: exploreUsers.requireValue.userProfiles.isEmpty
+            ? const ExploreUserCardEmpty()
+            : CardSwiper(
+                controller: controller,
+                allowedSwipeDirection: const AllowedSwipeDirection.none(),
+                isLoop: false,
+                padding: EdgeInsets.zero,
+                initialIndex: 0,
+                onEnd: () {
+                  ref.read(exploreUsersProvider.notifier).refresh();
+                },
+                numberOfCardsDisplayed:
+                    exploreUsers.requireValue.userProfiles.length <= 1 ? 1 : 2,
+                cardsCount: exploreUsers.requireValue.userProfiles.length,
+                cardBuilder: (context, index) {
+                  return UserProfileCard(
+                    userProfile: exploreUsers.requireValue.userProfiles[index],
+                    onWish: (userId) => wishAndSwipe(userId),
+                    onReject: (userId) => rejectAndSwipe(userId),
+                  );
+                },
+              ),
       ),
     );
   }
