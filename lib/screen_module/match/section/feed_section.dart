@@ -1,4 +1,6 @@
 import 'package:Kiffy/constant/style/gab.dart';
+import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
+import 'package:Kiffy/screen_module/main_screen_module/provider/main_screen_provider.dart';
 import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:Kiffy/util/convert_time.dart';
 import 'package:Kiffy/util/screen_mixin.dart';
@@ -55,7 +57,30 @@ class _FeedSectionState extends ConsumerState<FeedSection>
         final nextKey = ref.watch(feedPagingState);
         return Expanded(
           child: feedList.isEmpty
-              ? const Center(child: Text("아직 매칭된 사용자가 없거나 게시글이 존재 하지 않습니다."))
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Do "wish" and\ntalk to various friends!',
+                      style: textStyle.headlineSmall,
+                      textAlign: TextAlign.center,
+                    ),
+                    Gab.height16,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: MainBlueButton(
+                        onTap: () {
+                          ref.read(mainPageController).jumpToPage(0);
+                          ref
+                              .read(currentPage.notifier)
+                              .update((state) => state = 0);
+                        },
+                        text: "Go to wish",
+                      ),
+                    ),
+                  ],
+                )
               : RefreshIndicator(
                   onRefresh: () async {
                     return ref.refresh(communityProvider.future);
