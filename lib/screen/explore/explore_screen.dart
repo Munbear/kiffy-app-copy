@@ -1,5 +1,5 @@
 import 'package:Kiffy/screen_module/common/custom_app_bar/widget/custom_app_bar.dart';
-import 'package:Kiffy/screen_module/explore/section/other_wish_preview_section.dart';
+import 'package:Kiffy/screen_module/explore/section/preview_wished_me_section.dart';
 import 'package:Kiffy/screen_module/explore/section/explore_user_card_section.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +16,7 @@ class ExploreScreen extends StatelessWidget {
       body: Column(
         children: [
           // 나에게 위시 보낸 유저 리스트
-          // PreviewWishedMeSection(),
-          // OtherWishPreviewSection(),
+          PreviewWishedMeSection(),
           // 탐색할 유저 카드
           ExploreUserProfileCardSection(),
         ],
