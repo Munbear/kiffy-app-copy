@@ -1,4 +1,4 @@
-import 'package:Kiffy/common/custom_chip.dart';
+import 'package:Kiffy/common/widget/custom_chip.dart';
 import 'package:Kiffy/constant/enum/zodiac_type.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:Kiffy/screen_module/common/provider/option_profile_tag_provider.dart';

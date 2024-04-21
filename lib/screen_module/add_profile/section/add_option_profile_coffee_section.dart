@@ -1,4 +1,4 @@
-import 'package:Kiffy/common/custom_chip.dart';
+import 'package:Kiffy/common/widget/custom_chip.dart';
 import 'package:Kiffy/screen_module/common/space/widget/space.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

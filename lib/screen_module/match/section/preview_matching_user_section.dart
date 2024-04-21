@@ -1,3 +1,5 @@
+import 'package:Kiffy/common/widget/circle_preview_more.dart';
+import 'package:Kiffy/common/widget/circle_preview_user_profile.dart';
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen/matched_detail_list_screen/matched_detail_list_screen.dart';
 import 'package:Kiffy/screen/matching_detail/matched_detail_screen.dart';
@@ -26,7 +28,6 @@ class _PreviewMatchingUserSectionState
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme;
     final matchedUsers = ref.watch(matchedUsersProvider);
     return matchedUsers.when(
       error: (error, errorStack) {
@@ -36,6 +37,7 @@ class _PreviewMatchingUserSectionState
       loading: () => const _MatchedUserPreviewSkeleton(),
       data: (data) {
         final matchedUserList = data;
+        logger.d(matchedUserList);
         return matchedUserList.isEmpty
             ? const AdmobBannerWidget()
             : SizedBox(
@@ -48,7 +50,7 @@ class _PreviewMatchingUserSectionState
                   itemBuilder: (context, index) {
                     /// 매칭된 유저 상세보기 화면 버튼
                     if (index == matchedUserList.length) {
-                      return GestureDetector(
+                      return CirclePreviewMore(
                         onTap: () {
                           Navigator.of(context).push(
                             PageRouteBuilder(
@@ -59,103 +61,27 @@ class _PreviewMatchingUserSectionState
                             ),
                           );
                         },
-                        child: Column(
-                          children: [
-                            GestureDetector(
-                              child: Container(
-                                width: 64,
-                                height: 64,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: Colors.grey[200]!,
-                                  ),
-                                  color: Colors.white,
-                                ),
-                                child: Icon(
-                                  Icons.arrow_forward_rounded,
-                                  color: Colors.grey[400]!,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 72,
-                              child: Text(
-                                "more",
-                                style: textStyle.titleSmall,
-                                textAlign: TextAlign.center,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
                       );
                     }
 
                     final matchedUser = matchedUserList[index];
 
                     /// 매칭된 유저 Preview UI
-                    return Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              PageRouteBuilder(
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) {
-                                  return MatchedDetailScreen(
-                                    matchedUser: matchedUser,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 64,
-                            height: 64,
-                            padding: const EdgeInsets.all(2),
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              // 프로필 확인 했을 때
-                              // color: Colors.grey[300]!,
-                              // 프로필 확인 안했을 때
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  Color(0xffBA00ff),
-                                  Color(0xff0031AA),
-                                ],
-                              ),
-                            ),
-                            child: Container(
-                              padding: const EdgeInsets.all(2),
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.network(
-                                  matchedUser.userProfile.medias.first.url,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
+                    return CirclePreviewUserProfile(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return MatchedDetailScreen(
+                                matchedUser: matchedUser,
+                              );
+                            },
                           ),
-                        ),
-                        SizedBox(
-                          width: 72,
-                          child: Text(
-                            matchedUser.userProfile.name,
-                            style: textStyle.titleSmall,
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                        );
+                      },
+                      profileUrl: matchedUser.userProfile.medias.first.url,
+                      userName: matchedUser.userProfile.name,
                     );
                   },
                   separatorBuilder: (context, index) {
