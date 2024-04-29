@@ -37,7 +37,6 @@ class _PreviewMatchingUserSectionState
       loading: () => const _MatchedUserPreviewSkeleton(),
       data: (data) {
         final matchedUserList = data;
-        logger.d(matchedUserList);
         return matchedUserList.isEmpty
             ? const AdmobBannerWidget()
             : SizedBox(

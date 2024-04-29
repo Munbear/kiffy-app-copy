@@ -23,14 +23,14 @@ class _ExploreUserCardSectionState
   /// 위시 및 스와이프
   void wishAndSwipe(String userId) async {
     await ref.read(wishManagerProvider).approve(userId);
-    await ref.read(otherWishUsersReaderProvider.notifier).removeUser(userId);
+    // await ref.read(otherWishUsersReaderProvider.notifier).removeUser(userId);
     controller.swipeRight();
   }
 
   /// 거절 및 스와이프
   void rejectAndSwipe(String userId) async {
     await ref.read(wishManagerProvider).reject(userId);
-    await ref.read(otherWishUsersReaderProvider.notifier).removeUser(userId);
+    // await ref.read(otherWishUsersReaderProvider.notifier).removeUser(userId);
     controller.swipeLeft();
   }
 
