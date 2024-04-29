@@ -3,6 +3,7 @@ import 'package:Kiffy/screen_module/common/button/widget/main_blue_button.dart';
 import 'package:Kiffy/screen_module/main_screen_module/provider/main_screen_provider.dart';
 import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:Kiffy/util/convert_time.dart';
+import 'package:Kiffy/util/logger.dart';
 import 'package:Kiffy/util/screen_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -47,7 +48,8 @@ class _FeedSectionState extends ConsumerState<FeedSection>
         return const _FeedSkeleton();
       },
       error: (error, stackTrace) {
-        return const SizedBox(
+        logger.d(error);
+        return const Center(
           child: Text("죄송합니다. 잠시우 다시 시작해주십시오"),
         );
       },
