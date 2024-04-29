@@ -1,12 +1,10 @@
 import 'package:Kiffy/constant/style/gab.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card_page.dart';
 import 'package:Kiffy/screen_module/match/provider/matched_user_provider.dart';
-import 'package:Kiffy/screen_module/matched_detail/provider/match_manager_provider.dart';
 import 'package:Kiffy/screen_module/matched_detail/widget/matched_detail_cancel_button.dart';
 import 'package:Kiffy/screen_module/matched_detail/widget/matched_user_detail_info_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:openapi/openapi.dart';
 
 class MatchedDetailSection extends ConsumerStatefulWidget {
