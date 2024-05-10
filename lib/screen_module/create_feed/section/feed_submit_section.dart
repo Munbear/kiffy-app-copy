@@ -1,4 +1,5 @@
 import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -48,7 +49,7 @@ class FeedSubmitSection extends ConsumerWidget {
                       ),
                     )
                   : Text(
-                      "Share",
+                      "text.tag.share".tr(),
                       style: textStyle.titleSmall!.apply(color: Colors.white),
                     ),
             )
@@ -74,7 +75,7 @@ class FeedSubmitSection extends ConsumerWidget {
                 ),
               ),
               child: Text(
-                "Share",
+                "text.tag.share".tr(),
                 style: textStyle.titleSmall!.apply(color: Colors.white),
               ),
             ),

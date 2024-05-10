@@ -3,6 +3,7 @@ import 'package:Kiffy/screen_module/create_feed/section/create_feed_image_sectio
 import 'package:Kiffy/screen_module/create_feed/section/feed_submit_section.dart';
 import 'package:Kiffy/screen_module/create_feed/section/feed_text_section.dart';
 import 'package:Kiffy/screen_module/create_feed/section/user_info_tile_section.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,7 +29,7 @@ class CreateFeedScreen extends StatelessWidget {
               context.pop();
             },
             child: Text(
-              "cancel",
+              "text.tag.cancel".tr(),
               style: textStyle.titleSmall,
             ),
           ),

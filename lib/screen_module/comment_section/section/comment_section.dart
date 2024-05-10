@@ -2,6 +2,7 @@ import 'package:Kiffy/screen_module/comment_section/provider/comments_provider.d
 import 'package:Kiffy/screen_module/comment_section/widget/comment_tile.dart';
 import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/util/logger.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -67,13 +68,13 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Write the first comment",
+                              "text.tag.write_the_first_comment".tr(),
                               style: textStyle.titleLarge!.apply(
                                 color: Colors.black,
                               ),
                             ),
                             Text(
-                              "\nThere are no comments yet",
+                              "text.tag.there_are_no_comments_yet".tr(),
                               style: textStyle.titleSmall!.apply(
                                 color: Colors.black,
                               ),
@@ -152,11 +153,10 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                       filled: true,
                       fillColor: const Color(0xffF1F3F5),
                       hintText: replyTo?.author != null
-                          ? "${replyTo?.author} 게시글에 댓글 추가"
-                          : "${widget.author} 게시글에 댓글 추가",
-                      hintStyle: textStyle.labelMedium!.apply(
-                        color: Colors.grey[600],
-                      ),
+                          ? "${"text.tag.reply_to".tr()}${replyTo?.author}${"text.tag.s_comment".tr()}"
+                          : "${"text.tag.leave_a_comment_on".tr()} ${widget.author}${"text.tag_s post".tr()}",
+                      hintStyle: textStyle.labelMedium!
+                          .apply(color: Colors.grey[600], heightDelta: 0.5),
                       enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide.none,
                       ),
@@ -226,7 +226,7 @@ class _CommentSectionState extends ConsumerState<CommentSection> {
                               elevation: 0,
                             ),
                             child: Text(
-                              "post",
+                              "text.tag.post".tr(),
                               style: textStyle.labelSmall!
                                   .apply(color: Colors.white),
                             ),

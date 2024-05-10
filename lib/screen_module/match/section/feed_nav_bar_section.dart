@@ -1,5 +1,6 @@
 import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:Kiffy/util/screen_mixin.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,7 +25,7 @@ class _FeedNavBarSectionState extends ConsumerState<FeedNavBarSection>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Community",
+            "community".tr(),
             style: textStyle.titleMedium!.apply(
               color: const Color(0xff0031AA),
             ),
@@ -46,7 +47,7 @@ class _FeedNavBarSectionState extends ConsumerState<FeedNavBarSection>
                 child: Row(
                   children: [
                     Text(
-                      currentFeedFilter.text,
+                      currentFeedFilter.text.tr(),
                       style: textStyle.labelMedium!.apply(
                         color: const Color(0xff0031AA),
                       ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CirclePreviewMore extends StatelessWidget {
@@ -35,7 +36,7 @@ class CirclePreviewMore extends StatelessWidget {
           SizedBox(
             width: 72,
             child: Text(
-              "more",
+              "text.tag.more".tr(),
               style: textStyle.titleSmall,
               textAlign: TextAlign.center,
               maxLines: 1,

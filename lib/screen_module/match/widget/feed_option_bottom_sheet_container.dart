@@ -1,6 +1,7 @@
 import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:Kiffy/screen_module/match/provider/matched_user_provider.dart';
 import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -50,8 +51,8 @@ class FeedOptionBottomSheetContainer extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
                   myInfo.value!.profile!.id == authorId
-                      ? "Deleted"
-                      : "Cancel Matching",
+                      ? "text.tag.delete".tr()
+                      : "text.tag.cancel matching".tr(),
                   textAlign: TextAlign.center,
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:Kiffy/constant/style/gab.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ExploreUserCardEmpty extends StatelessWidget {
@@ -12,13 +13,13 @@ class ExploreUserCardEmpty extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "We've all looked around",
+          "text.tag.weve_all_loocked_around".tr(),
           style: textStyle.headlineMedium!.apply(color: Colors.black),
           textAlign: TextAlign.center,
         ),
         Gab.height16,
         Text(
-          "주변 사람을 모두 탐색하였습니다.",
+          "text.tag.youve_explored_everyone_around_you".tr(),
           style: textStyle.titleMedium!.apply(color: Colors.black),
           textAlign: TextAlign.center,
         ),

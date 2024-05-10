@@ -3,6 +3,7 @@ import 'package:Kiffy/screen_module/match/widget/feed_filter_contaienr.dart';
 import 'package:Kiffy/screen_module/my/provider/my_provider.dart';
 import 'package:Kiffy/util/logger.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -69,7 +70,7 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
     List<XFile>? images = await picker.pickMultiImage();
     if (images.length > 10) {
       Fluttertoast.showToast(
-          msg: "사진은 최대 10까지 선택 가능 합니다.",
+          msg: "text.tag.please_enter_at_least_10_characters".tr(),
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -121,7 +122,7 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
     int statusCode = 0;
     if (text.isEmpty) {
       Fluttertoast.showToast(
-        msg: "내용을 입력해 주세요",
+        msg: "text.tag.please_enter_your_content".tr(),
         fontSize: 16,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
@@ -130,7 +131,7 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
 
     if (text.isNotEmpty && text.length < 10) {
       Fluttertoast.showToast(
-        msg: "10글잘 이상 입력해 주세요",
+        msg: "text.tag.you_can_select_up_to_10_photos".tr(),
         fontSize: 16,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
@@ -163,7 +164,6 @@ class FeedList extends AutoDisposeAsyncNotifier<List<PostViewV1>> {
     Response res =
         await ref.read(openApiProvider).getPostApi().deletePost(postId: feedId);
     if (res.statusCode == 200) {
-      logger.d("삭제됨: ${res.data}");
       final List<PostViewV1> updateList =
           state.value!.where((element) => element.id != feedId).toList();
       state = AsyncValue.data(updateList);

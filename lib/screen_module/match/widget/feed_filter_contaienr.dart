@@ -1,4 +1,5 @@
 import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -29,7 +30,7 @@ class FeedFilterContainer extends ConsumerWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Text(
-                    item.text,
+                    item.text.tr(),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -43,8 +44,8 @@ class FeedFilterContainer extends ConsumerWidget {
 }
 
 enum FeedFilter {
-  all(text: "All"),
-  my(text: "My");
+  all(text: "text.tag.all"),
+  my(text: "text.tag.my");
 
   final String text;
 

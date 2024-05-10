@@ -2,7 +2,6 @@ import 'package:Kiffy/screen_module/common/skeleton/widget/skeleton.dart';
 import 'package:Kiffy/screen_module/common/user_profile_card/widget/user_profile_card.dart';
 import 'package:Kiffy/screen_module/explore/provider/explore_users_provider.dart';
 import 'package:Kiffy/screen_module/explore/widget/explore_user_card_empty.dart';
-import 'package:Kiffy/screen_module/wish/provider/other_wish_users_reader.dart';
 import 'package:Kiffy/screen_module/wish/provider/wish_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';

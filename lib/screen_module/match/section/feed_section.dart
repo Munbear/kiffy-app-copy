@@ -5,6 +5,7 @@ import 'package:Kiffy/screen_module/match/provider/community_provider.dart';
 import 'package:Kiffy/util/convert_time.dart';
 import 'package:Kiffy/util/logger.dart';
 import 'package:Kiffy/util/screen_mixin.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,8 +50,8 @@ class _FeedSectionState extends ConsumerState<FeedSection>
       },
       error: (error, stackTrace) {
         logger.d(error);
-        return const Center(
-          child: Text("죄송합니다. 잠시우 다시 시작해주십시오"),
+        return Center(
+          child: Text("text.tag.please_try_again_later".tr()),
         );
       },
       data: (data) {
@@ -63,11 +64,25 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Do "wish" and\ntalk to various friends!',
-                      style: textStyle.headlineSmall,
-                      textAlign: TextAlign.center,
+                    Row(
+                      children: [
+                        Text(
+                          'text.tag.Do_wish_and'.tr(),
+                          style: textStyle.headlineSmall,
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          'text.tag.talk_to_various_friends!'.tr(),
+                          style: textStyle.headlineSmall,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
+                    // Text(
+                    //   'Do "wish" and\ntalk to various friends!',
+                    //   style: textStyle.headlineSmall,
+                    //   textAlign: TextAlign.center,
+                    // ),
                     Gab.height16,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -78,7 +93,7 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                               .read(currentPage.notifier)
                               .update((state) => state = 0);
                         },
-                        text: "Go to wish",
+                        text: "text.tag.go_to_wish".tr(),
                       ),
                     ),
                   ],
@@ -204,7 +219,8 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                   Gab.width4,
                                   feed.firstComments.isEmpty
                                       ? Text(
-                                          "Write the first Comment",
+                                          "text.tag.write_the_first_comment"
+                                              .tr(),
                                           style: textStyle.labelSmall!
                                               .apply(color: Colors.grey[500]),
                                         )
@@ -232,7 +248,7 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                                 padding:
                                     const EdgeInsets.only(left: 16, top: 12),
                                 child: Text(
-                                  "View all comments",
+                                  "text.tag.view_all_comments".tr(),
                                   style: textStyle.labelMedium!
                                       .apply(color: Colors.grey[500]),
                                 ),
