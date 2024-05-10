@@ -64,25 +64,16 @@ class _FeedSectionState extends ConsumerState<FeedSection>
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          'text.tag.Do_wish_and'.tr(),
-                          style: textStyle.headlineSmall,
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'text.tag.talk_to_various_friends!'.tr(),
-                          style: textStyle.headlineSmall,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                    Text(
+                      'text.tag.Do_wish_and'.tr(),
+                      style: textStyle.headlineSmall,
+                      textAlign: TextAlign.center,
                     ),
-                    // Text(
-                    //   'Do "wish" and\ntalk to various friends!',
-                    //   style: textStyle.headlineSmall,
-                    //   textAlign: TextAlign.center,
-                    // ),
+                    Text(
+                      'text.tag.talk_to_various_friends!'.tr(),
+                      style: textStyle.headlineSmall,
+                      textAlign: TextAlign.center,
+                    ),
                     Gab.height16,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
