@@ -18,7 +18,7 @@ FlavorConfig getFlavorConfig(String? flavor) {
         variables: {
           "isDebuggle": false,
           "appTitle": "kiffy",
-          "apiUrl": "https://api.kiffy.club",
+          "apiUrl": KeyBox.prodApiUrl,
           "isDev": false
         },
       );
@@ -28,7 +28,7 @@ FlavorConfig getFlavorConfig(String? flavor) {
         variables: {
           "isDebuggle": true,
           "appTitle": "[DEV] kiffy",
-          "apiUrl": "http://api.dev.kiffy.club",
+          "apiUrl": KeyBox.devApiUrl,
           "isDev": true,
         },
       );
