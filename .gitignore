@@ -31,11 +31,16 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+
+# Sensitive files and folders
 lib/util/keyBox.dart
 lib/config/firebase
 /ios
 /android
-
+/macos
+/web
+/windows 
+/linux 
 # Web related
 lib/generated_plugin_registrant.dart
 
